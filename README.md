@@ -1,7 +1,7 @@
-# Marco-SGBD-Neuronale
-Un système léger de gestion de concepts sans SQL/JSON, inspiré des réseaux neuronaux.
 # SGBD Neuronale Non-SQL / CCADH
 *Un système léger pour organiser et manipuler des concepts sans bases de données classiques (SQL/JSON).*
+# Marco-SGBD-Neuronale
+Un système léger de gestion de concepts sans SQL/JSON, inspiré des réseaux neuronaux.
 
 ---
 
