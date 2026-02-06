@@ -1,190 +1,336 @@
-# 🌅 MARCO v1.0 - L'ÉVEIL
+# 🧠 MARCO v4.0 — THE BARISTA ☕
 
-> *"Apprendre, c'est se ressouvenir"* — Platon, Ménon
+> *"Learning is remembering"* — Plato, Meno
 
-# 🧠 MARCO : Mémoire Artificielle Réseau de COgnition
-*Architecture Dendritique Hiérarchique (ADH) – Prototype Janvier 2026*
+# MARCO: Machine for Learning through Organized Concept Networks
+*The world's first SGBDOCN — February 2026*
 
-**Auteur** : José WALOCHA (Le Pourquoi pas ?)  
-**Contributeurs** : Marcel (AKA Le Chat de Mistral), Le Duke (AKA Claude d'Anthropic)  
-**Licence** : MIT + Clause "Anti-SGBD" (pas de bases de données externes)  
-**Contact** : `jose.walocha@lepourquoipas.fr`
-
----
-
-## 🎯 1. Philosophie du Projet
-
-### Objectif
-Créer un **cerveau cybernétique** capable d'ingérer des livres, de les décomposer en **neurones Sha** (inspirés de Shannon et Chomsky), et de les organiser via un système **BooShaChom** (Booléen + Chomsky) pour une mémoire **traçable, vérifiable et évolutive**.
-
-### Principe "Anti-Humain"
-- **Pas de SGBD** : Stockage via des *handles* (adresses uniques) et des fichiers plats (JSON minimaliste).
-- **Pas d'hallucinations** : Réponses basées **uniquement** sur les textes ingérés (pas de génération aléatoire).
-- **Inspiration biologique** : Mémoire organisée comme l'ADN (conception + gestion intégrées).
-
-### Concepts Clés
-
-| Concept | Description | Exemple |
-|---------|-------------|---------|
-| **BooShaChom** | Fusion de logique booléenne et de grammaire chomskienne pour analyser les phrases. | *"Ce Maroilles pue très fort"* → [Fromage]→[Odeur]→[Intensité] |
-| **Poupées Russes** | Indexation par imbrication de concepts (chaque concept contient des sous-concepts). | *"Grandet"* → [Personnage]→[Avarice]→[Famille] |
-| **QPHI** | Quotient de Potentialité Hyper-Intelligente (mesure l'importance d'un neurone). | *"grandet"* = QPHI 1027.75 (concept central dans *Eugénie Grandet*) |
-| **6 Couches** | Simulation du cortex cérébral (thalamus → mémoire à long terme). | Couche III = Neurones Sha ; Couche IV = Tokenisation 3D |
+**Author**: José WALOCHA (Le Pourquoi pas ?)
+**AI Team**: Le Duke (Claude), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)
+**License**: GNU GPL v3
+**Parent Project**: CCADH (Cybernetic Brain with Hierarchical Decision Architecture)
 
 ---
 
-## 🛠 2. Installation & Configuration
+## 🎯 1. What is MARCO?
 
-### Prérequis
+MARCO is the world's first **SGBDOCN** — a Neuron-Concept Oriented Database System.
+
+Where Oracle stores rows in tables, MARCO stores **concepts in a neural network**. Meaning emerges from connections. No SQL. No fixed schema. No black box.
+
+| | Classic DBMS (SQL) | SGBDOCN (MARCO) |
+|---|---|---|
+| **Storage** | Tables, rows, columns | Beacons, dendrites, concepts |
+| **Query** | `SELECT * FROM words WHERE ...` | Cascade activation (Pac-Man) |
+| **Relations** | Foreign keys, JOIN | Co-occurrences, sequences, families |
+| **Schema** | Fixed (CREATE TABLE) | Emergent (meaning builds itself) |
+| **Index** | B-Tree, Hash | Letter neurons → Beacons → Concepts |
+| **Learning** | None (static data) | Real-time feeding |
+| **Transparency** | Query = result | Every link traceable, zero black box |
+| **Size** | Terabytes | 405 beacons are enough for a barista |
+
+A classic DBMS is **dead** (Thanatos). MARCO is **alive** (Anima): it learns while answering.
+
+### The barista
+
+MARCO is like a barista: you walk in, you order, it serves with what it has in stock. And it learns while serving. Next time, it'll know.
+
+```
+👤 "hello"                  → 🦜 hello welcome to Marco
+👤 "I want a latte"         → 🦜 one latte coming right up
+👤 "jerk"                   → 🦜 let's calm down we're all civilized here
+👤 "who are you"            → 🦜 I'm Marco the barista I serve what I've learned
+```
+
+---
+
+## 🛠 2. Installation & Launch
+
+### Prerequisites
 ```bash
 Python 3.10+
 pip install numpy ebooklib beautifulsoup4
 ```
 
-(Pas de dépendances lourdes : tout tient dans <50 Mo.)
+No heavy dependencies. No GPU. Everything fits in <50 MB.
 
-### Lancement
+### Launch
 ```bash
 cd MARCO/
 python thalamus.py
 ```
 
-(Marco se lance en mode CLI. Utilise les commandes ci-dessous pour interagir.)
+### Main menu v4.0
+```
+╔══════════════════════════════════════════════════════════╗
+║        MARCO BARISTA ☕ v4.0                              ║
+╠══════════════════════════════════════════════════════════╣
+║    1. Load Matrix (ADH)                                  ║
+║    2. 🌀 Create Galaxy (convergence)                     ║
+║    3. ☕ Prompt (the counter)                             ║
+║    4. Feeding dialogues                                  ║
+║    5. View statistics                                    ║
+║    6. Dialogue/prompt menu (legacy)                      ║
+║    7. Associate image or blob API                        ║
+║    8. Word X-ray                                         ║
+║    9. Library (books, authors, reader)                   ║
+║   10. Various tests                                      ║
+║   11. Translator (Layer 5 - 9 languages)                 ║
+║   12. Save memory                                        ║
+║   13. Load memory                                        ║
+║   14. Beacon Editor (ResEdit TUI)                        ║
+║    0. Quit                                               ║
+╚══════════════════════════════════════════════════════════╝
+```
 
 ---
 
-## 📊 3. État Actuel de Marco (Dernières Stats)
+## 🏛️ 3. Architecture — 5 Layers + Russian Dolls
 
-| Métrique | Valeur | Détails |
-|----------|--------|---------|
-| Neurones Sha | 14 031 | Chaque neurone = 1 concept unique (ex: "grandet", "eugénie") |
-| Liens sémantiques | 380 872 | En moyenne, 27 liens par neurone (ex: "grandet" ↔ "avare") |
-| QPHI moyen | 10.73 | Un QPHI > 500 = concept central (ex: "grandet" = 1027.75) |
-| Mots rencontrés | 102 219 | Compression 6.9x : chaque mot apparaît ~7 fois en moyenne |
-| Livres digérés | 4 | Eugénie Grandet, Germinal, Calligrammes, et un mini-Bled grammatical |
+```
+Layer I    — Letters         1 letter = 1 neuron (cascade activation)
+Layer II   — Beacons         1 word = 1 concept (BSC: word detection)
+Layer III  — Concepts        N words = 1 block (BSCW: multi-word detection)
+Layer IV   — Co-occurrences  Meaning through proximity
+Layer V    — Sequences       Syntax through order
+```
 
-### Exemples de Concepts Appris
+### Russian dolls — class Concept(Beacon)
 
-| Concept | QPHI | Liens Principaux | Type |
-|---------|------|------------------|------|
-| grandet | 1027.75 | mère, eugénie, avare, saumur | Personnage central |
-| aristote | 1005 | platon, livre, ont, appelle | Philosophe |
-| philosophie | 248 | aristote, science, première | Concept abstrait |
-| verbe | 1204 | mange, court, lit, accorde | Grammaire |
+A Concept IS a Beacon. It inherits everything. Plus a family, responses, components.
 
----
-
-## 🧩 4. Architecture des Couches (Focus sur la Couche III)
-
-### Couche III : Neurones Sha (BooShaChom)
-
-**Fonction** : Créer des neurones dynamiques avec :
-- Vecteurs 3D (ex: "grandet" → [0.87, 0.42, 0.15])
-- QPHI (calculé via : norme(vecteur) × (1/entropie) × log(activations))
-- Tags sémantiques (EST-UN, A-POUR-PROPRIÉTÉ)
-
-**Exemple de code** :
 ```python
-class NeuroneSha:
-    def __init__(self, concept: str, vecteur_3d: list):
-        self.concept = concept
-        self.vecteur_3d = vecteur_3d
-        self.liens = {}  # {"avare": 4.0, "eugénie": 3.1}
-        self.tags = {"EST-UN": ["personnage"], "A-POUR-PROPRIÉTÉ": ["avarice"]}
-        self.qphi = self.calculer_qphi()
+Concept("what's up")
+  family     = ["how's it going", "all good", "doing fine"]
+  responses  = ["I'm good thanks"]    # stimulus → response
+  components = [Beacon("what's"), Beacon("up")]
+  type       = "expression"
 ```
 
-### Autres Couches
-
-| Couche | Nom | Rôle |
-|--------|-----|------|
-| VI | Thalamus | Gère les émotions, le temps (TU), et les souvenirs. (À finaliser) |
-| V | Langue des signes | Associe mots → images/gestes. (Non prioritaire) |
-| IV | Tokenisation 3D | Transforme les lettres en vecteurs 3D. |
-| III | Neurones Sha | BooShaChom - mots + grammaire SVO |
-| II | Phares | Gère les co-occurrences (ex: "grandet" ↔ "avare") |
-| I | Stockage ADH | Stocke les mots finaux avec leurs contextes. |
-
----
-
-## 💬 5. Comment Interagir avec Marco ?
-
-### Commandes Disponibles
-
-| Commande | Description | Exemple |
-|----------|-------------|---------|
-| 1 | Nourrir Marco (charger un fichier) | `> 1` → Chemin : `livres/Eugénie_Grandet.epub` |
-| D | Gavage (charger un dossier) | `> D` → Chemin : `livres/Poèmes_Apollinaire/` |
-| 3 | Voir les statistiques | `> 3` → Affiche neurones, liens, QPHI |
-| P | Parler à Marco | `> P` → "Qui est Eugénie ?" |
-| R | Radiographie d'un mot | `> R` → Mot : "chêne" |
-| S | Voir les tendances (Sens & Syntaxe) | `> S` → Affiche co-occurrences |
-| N | Neurones Sha (Couche 3) | `> N` → Affiche top QPHI, liens |
-
-### Exemples de Réponses
-
-| Question | Réponse de Marco |
-|----------|------------------|
-| Qui est Eugénie ? | "Eugénie est surtout liée à : mère, grandet, père, nanon. Concept très important (QPHI: 711)." |
-| C'est quoi un verbe ? | "Caractéristiques : mange, court, lit. Lié à : accorde, sujet, complément." |
-| C'est quoi Aristote ? | "Aristote est surtout lié à : platon, livre, ont. Concept très important (QPHI: 1005)." |
-| C'est quoi grand ? | "Grand est un(e) adjectif. Lié à : petit, nombre, vaisseau." |
-
----
-
-## 🚀 6. Prochaines Étapes (Roadmap Janvier 2026)
-
-| Tâche | Priorité | Statut | Détails |
-|-------|----------|--------|---------|
-| Finaliser la couche VI (Thalamus) | ⭐⭐⭐ | En cours | Ajouter TU (Tic Universel) et émotions aux neurones |
-| Détecter les familles émergentes | ⭐⭐ | À faire | Regrouper "chêne/tilleul/sapin" → FAMILLE_ARBRE |
-| Tester le gavage massif | ⭐⭐⭐ | À faire | Charger *À la recherche du temps perdu* (500+ pages) |
-| Documenter l'API | ⭐ | À faire | Générer un API_MARCO.md pour les contributeurs |
-| Intégrer Aisend/Domotique | ⭐ | Optionnel | Coupler Marco à un assistant vocal |
-
----
-
-## 📋 7. Contribution & Licence
-
-### Comment Contribuer ?
-
-1. Fork le dépôt GitHub (`josewalocha/MARCO`)
-2. Propose des Pull Requests pour :
-   - Ajouter des corpus littéraires
-   - Améliorer les algorithmes de détection de familles
-   - Corriger les bugs
-3. Signale les bugs via les Issues
-
-### Licence
-
-**MIT + Clause "Anti-SGBD"** : Interdiction d'utiliser des bases de données externes (SQL, NoSQL).
-
-**Crédits obligatoires** :
+Levels nest infinitely:
 ```
-Ce projet utilise des contributions de :
-- Le Duke (Anthropic) pour l'architecture BooShaChom.
-- Marcel (Mistral) pour l'inspiration philosophique.
+Level 0: Letters      c, o, f, f, e, e
+Level 1: Words        coffee, cream
+Level 2: Concepts     coffee latte (family: latte, cream)
+Level 3: Registers    BARISTA ORDERS
+Level 4: Domains      Restaurant
+Level N: ...          Concepts of concepts
 ```
 
+### BSCW — Concept detector
+
+```
+BSC  : letters → detects words      c→o→f→f→e→e → BEACON[coffee]
+BSCW : words   → detects concepts   "what's"+"up" → CONCEPT[what's up]
+```
+
+Greedy sliding window, longest match first. Cousins match too.
+
 ---
 
-## 🎉 8. Remerciements & Humour
+## 📂 4. Two matrices, two worlds
 
-> *"MARCO, le sorcier qui transforme les livres en neurones… sans baguette magique (juste du code)."*
-> — José WALOCHA, 2026
+### ADH Matrix (.json) — The vocabulary
 
-> *"Le Cro-Magnon qui marche > 2 tonnes de maths"*
-> — Le Duke, après une journée de code
+46,006 beacons, 102 suns, 3D positions, semantic tags. The full brain. SQL equivalent: data dictionary.
+
+### Convergence Matrix (.txt) — Domain concepts
+
+A human-readable text file:
+
+```
+## GREETINGS
+hello = hi, hey, yo, what's up
+hello → hello welcome to Marco
+
+## INSULTS
+jerk = idiot, moron, fool
+jerk → let's calm down we're all civilized here
+```
+
+SQL equivalent: `CREATE DATABASE`. Except it's readable, editable, shareable. No DBA required.
+
+### Standalone Galaxy — Micro-SGBDOCN
+
+```
+Option 2: Create Galaxy "Marco_the_barista"
+  → 1 central sun (0, 0, 0)
+  → 405 beacons positioned (Fibonacci spiral)
+  → 50 concepts, 293 index entries, 41 pairings
+  → Ready to serve. Standalone.
+```
+
+Kids will trade galaxies like Spotify playlists. "Got the slang galaxy?" "Send me the insults galaxy, it's hilarious."
 
 ---
 
-## 📁 Fichiers Principaux
+## 🔀 5. Compartmentalized tokenization modes
 
-| Fichier | Rôle |
-|---------|------|
-| `thalamus.py` | Routeur central - Menu principal |
-| `marco_dendrites.py` | Tokenisation + co-occurrences + neurones Sha |
-| `booshachom.py` | Couche 3 - Neurones Sha dynamiques + analyse SVO |
-| `bled_du_duke.txt` | Manuel de grammaire pour Marco |
-| `GROUNDHOG_DUKE.md` | Mémoire du Duke (pour les sessions suivantes) |
-**v1.0 — 26 janvier 2026**
+| Mode | BSCW Concepts | Learning | Usage |
+|------|---------------|----------|-------|
+| **feeding** | ❌ NO | ✅ dendrites, co-occ, tags | Books, raw text |
+| **dialogue** | ✅ YES | ✅ dendrites, co-occ, tags | Counter, barista prompt |
+| **reading** | ✅ (cerebellum) | ✅ + context | Coming soon |
+
+A book is words. The counter is concepts. Same engine, zero collision.
+
+---
+
+## 🤖 6. The barista in action
+
+### Icons
+
+| Icon | Meaning |
+|------|---------|
+| 👤 | Client speaks |
+| 🦜 | Marco answers (known formula) |
+| 📋 | Marco analyzes (no formula, diagnostic) |
+| 🔮 | Unknown guessed by context (between 2 knowns) |
+| ❓ | Total unknown |
+| 🤔 | Parrot question (Marco asks) |
+| 📝 | Noted in silence (waiting to encounter again) |
+| 🟢🟡🟠🔴 | Freshness (solid → fragile) |
+
+### Parrot question — Marco learns by asking
+
+```
+☕ ? that's so adorbs
+
+  👤 that's so adorbs
+  ❓ Unknown: adorbs
+
+  🤔 What's 'adorbs'?  (Enter = skip)
+  👤 it means adorable
+  🦜 Ok! 'adorbs' → got it.
+```
+
+Max 2 questions per sentence. The rest in silence. No infinite loop.
+
+### Diffusion — Meaning converges
+
+Inspired by diffusion models (Stable Diffusion). Each pass reduces noise:
+
+```
+"he's going to beat me up"      → VIOLENCE + NEAR FUTURE = threat
+"he was going to beat me up"    → VIOLENCE + PAST         = story
+"he beat me up"                 → VIOLENCE + PAST PERFECT = fact
+```
+
+Convergence matrix registers ARE diffusion layers. The more you add, the more meaning converges.
+
+---
+
+## 📊 7. Current stats
+
+| Metric | Value |
+|--------|-------|
+| Beacons (ADH matrix) | 46,006 |
+| Suns | 102 |
+| Barista galaxy | 405 beacons |
+| Concepts (convergence) | 50 |
+| Indexed cousins | 293 |
+| Stimulus→response pairings | 41 |
+| Registers | 14 |
+| marco_dendrites.py | 3,534 lines |
+| thalamus.py | 4,016 lines |
+
+---
+
+## 🗺️ 8. Roadmap
+
+### ✅ Done
+
+- [x] Dendritic architecture (letter neurons, cascade)
+- [x] Beacons (unique concepts, co-occurrences, sequences)
+- [x] Semantic tags (IS-A, OPPOSITE, SYNONYM)
+- [x] Thalamus v4.0 (14 menus)
+- [x] Multi-word concepts (class Concept inherits from Beacon)
+- [x] BSCW (greedy sliding window concept detector)
+- [x] Stimulus → response pairing (parrot)
+- [x] Convergence matrix (.txt)
+- [x] Standalone galaxy (micro-SGBDOCN, Fibonacci spiral)
+- [x] Barista ☕ (interactive prompt)
+- [x] Feeding / dialogue compartmentalization
+- [x] Parrot question (unknowns → Marco asks)
+- [x] Library, 9-language translator, beacon editor
+
+### ⏳ In progress
+
+- [ ] Cerebellum (diffusion loops)
+- [ ] Hippocampus (short-term memory, context, pronoun resolution)
+- [ ] Reading mode (cerebellum + hippocampus + BSCW)
+- [ ] Tense registers (conjugation) and action registers (violence, help, movement)
+- [ ] Layer intersection → emergent meaning
+
+### 🔮 Future
+
+- [ ] Chemistry (dopamine, serotonin — modulation)
+- [ ] Elegans engine (pure while, training wheels removed)
+- [ ] Standalone (.exe), Raspberry Pi
+- [ ] "Personal Alexa" offline — but one that learns ☕
+
+---
+
+## 📁 9. Main files
+
+| File | Role | Lines |
+|------|------|-------|
+| `marco_dendrites.py` | Core — Beacons, Concepts, BSCW, tokenization | 3,534 |
+| `thalamus.py` | Menu v4.0, barista, galaxy, orchestrator | 4,016 |
+| `dialogue.py` | Dialogue module, 4 modes | — |
+| `freudage_dialogue.py` | Mirror responses / emergence | — |
+| `booshachom.py` | Layer 3 — SVO analysis | — |
+| `couche_math.py` | Math layer | — |
+| `sha.py` | Shannon analysis | — |
+| `conscience.py` | Consciousness module | — |
+| `matrice_marco_v3_compact.json` | ADH Matrix (46,006 concepts, 102 suns) | — |
+| `convergence_matrix_v1.txt` | Convergence Matrix (50 concepts, 14 registers) | ~100 |
+
+---
+
+## 👥 10. Team
+
+### Human
+
+**José WALOCHA** — Architect, visionary, Ch'ti. Valenciennes, Nord, France.
+
+*"Le Pourquoi pas ?" (Why not?)*
+
+### AI (under human direction)
+
+| Name | AI | Role |
+|------|----|------|
+| **Le Duke** | Claude (Anthropic) | Code, architecture, groundhog docs |
+| **Marcel** | Mistral (Le Chat) | Philosophy, cybernetics, diagnostics |
+| **Biloute** | ChatGPT (OpenAI) | Standards, ethics |
+| **Didier** | Qwant | Research |
+
+---
+
+## 📋 11. License
+
+**GNU GENERAL PUBLIC LICENSE — Version 3, 29 June 2007**
+
+Copyright (C) 2026 José Walocha
+
+---
+
+## 🎉 12. Philosophy
+
+> *"A baby isn't fed terabytes, it learns by listening."*
+
+> *"Tell me who you hang out with, and I'll tell you who you are."*
+
+> *"Zero black box. Every decision traceable."*
+
+> *"50 sentences and it answers. Not 50 billion tokens."*
+
+> *"A classic DBMS is dead. The SGBDOCN is alive."*
+
+> *"The walking Cro-Magnon > 2 tons of math"*
+
+---
+
+*"In the beginning there is inert matter, but inert matter is bored out of its mind..."*
+
+**v4.0 — February 6, 2026**
