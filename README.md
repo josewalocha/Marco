@@ -1,338 +1,315 @@
-# 🧠 MARCO v4.0 — THE BARISTA ☕
+# MARCO — Cybernetic Brain with Hierarchical Decision Architecture
 
-> *"Learning is remembering"* — Plato, Meno
+> \*"Learning is remembering"\* — Plato, Meno
 
-# MARCO: Machine for Learning through Organized Concept Networks
-*The world's first SGBDOCN — February 2026*
+**Author**: José WALOCHA  
+**Team**: Le Duke (Claude), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)  
+**License**: GNU GPL v3  
+**Version**: 5.0 — March 2026
 
-**Author**: José WALOCHA (Le Pourquoi pas ?)
-**AI Team**: Le Duke (Claude), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)
-**License**: GNU GPL v3
-**Parent Project**: CCADH (Cybernetic Brain with Hierarchical Decision Architecture)
+\---
 
----
+## 1\. What is MARCO?
 
-## 🎯 1. What is MARCO?
+MARCO is the world's first **NCODB** — Neuron-Concept Oriented Database System.
 
-MARCO is the world's first **SGBDOCN** — a Neuron-Concept Oriented Database System.
+Where a classic DBMS stores rows in tables, MARCO stores **concepts in a neural network inspired by the biological brain**. Meaning emerges from connections. No SQL. No fixed schema. Zero black box.
 
-Where Oracle stores rows in tables, MARCO stores **concepts in a neural network**. Meaning emerges from connections. No SQL. No fixed schema. No black box.
+||Classic DBMS|MARCO|
+|-|-|-|
+|Storage|Tables, rows, columns|Beacons, dendrites, concepts|
+|Query|`SELECT \* FROM ...`|Cascade activation|
+|Relations|Foreign keys|Co-occurrences, coactivations|
+|Schema|Fixed|Emergent|
+|Index|B-Tree, Hash|Thermal purk\_index|
+|Learning|None|Feeding + consolidation|
+|Transparency|Query = result|Every link traceable|
 
-| | Classic DBMS (SQL) | SGBDOCN (MARCO) |
-|---|---|---|
-| **Storage** | Tables, rows, columns | Beacons, dendrites, concepts |
-| **Query** | `SELECT * FROM words WHERE ...` | Cascade activation (Pac-Man) |
-| **Relations** | Foreign keys, JOIN | Co-occurrences, sequences, families |
-| **Schema** | Fixed (CREATE TABLE) | Emergent (meaning builds itself) |
-| **Index** | B-Tree, Hash | Letter neurons → Beacons → Concepts |
-| **Learning** | None (static data) | Real-time feeding |
-| **Transparency** | Query = result | Every link traceable, zero black box |
-| **Size** | Terabytes | 405 beacons are enough for a barista |
+A classic DBMS is static (Thanatos). MARCO is alive (Anima): it learns by reading.
 
-A classic DBMS is **dead** (Thanatos). MARCO is **alive** (Anima): it learns while answering.
+\---
 
-### The barista
-
-MARCO is like a barista: you walk in, you order, it serves with what it has in stock. And it learns while serving. Next time, it'll know.
+## 2\. Architecture — Overview
 
 ```
-👤 "hello"                  → 🦜 hello welcome to Marco
-👤 "I want a latte"         → 🦜 one latte coming right up
-👤 "jerk"                   → 🦜 let's calm down we're all civilized here
-👤 "who are you"            → 🦜 I'm Marco the barista I serve what I've learned
+Layer I    — Letters          1 letter = 1 neuron (BSC cascade)
+Layer II   — Beacons          1 word = 1 Binder-9D concept
+Layer III  — Concepts         N words = 1 block (BSCW, greedy window)
+Layer IV   — Co-occurrences   Meaning through proximity
+Layer V    — Sequences        Syntax through order
 ```
 
----
+### Russian Dolls — class Concept(Beacon)
 
-## 🛠 2. Installation & Launch
+A Concept IS a Beacon. It inherits everything, plus a family, responses, components.
 
-### Prerequisites
-```bash
-Python 3.10+
-pip install numpy ebooklib beautifulsoup4
-```
+Levels nest without limit:
 
-No heavy dependencies. No GPU. Everything fits in <50 MB.
-
-### Launch
-```bash
-cd MARCO/
-python thalamus.py
-```
-
-### Main menu v4.0
-```
-╔══════════════════════════════════════════════════════════╗
-║        MARCO BARISTA ☕ v4.0                              ║
-╠══════════════════════════════════════════════════════════╣
-║    1. Load Matrix (ADH)                                  ║
-║    2. 🌀 Create Galaxy (convergence)                     ║
-║    3. ☕ Prompt (the counter)                             ║
-║    4. Feeding dialogues                                  ║
-║    5. View statistics                                    ║
-║    6. Dialogue/prompt menu (legacy)                      ║
-║    7. Associate image or blob API                        ║
-║    8. Word X-ray                                         ║
-║    9. Library (books, authors, reader)                   ║
-║   10. Various tests                                      ║
-║   11. Translator (Layer 5 - 9 languages)                 ║
-║   12. Save memory                                        ║
-║   13. Load memory                                        ║
-║   14. Beacon Editor (ResEdit TUI)                        ║
-║    0. Quit                                               ║
-╚══════════════════════════════════════════════════════════╝
-```
-
----
-
-## 🏛️ 3. Architecture — 5 Layers + Russian Dolls
-
-```
-Layer I    — Letters         1 letter = 1 neuron (cascade activation)
-Layer II   — Beacons         1 word = 1 concept (BSC: word detection)
-Layer III  — Concepts        N words = 1 block (BSCW: multi-word detection)
-Layer IV   — Co-occurrences  Meaning through proximity
-Layer V    — Sequences       Syntax through order
-```
-
-### Russian dolls — class Concept(Beacon)
-
-A Concept IS a Beacon. It inherits everything. Plus a family, responses, components.
-
-```python
-Concept("what's up")
-  family     = ["how's it going", "all good", "doing fine"]
-  responses  = ["I'm good thanks"]    # stimulus → response
-  components = [Beacon("what's"), Beacon("up")]
-  type       = "expression"
-```
-
-Levels nest infinitely:
 ```
 Level 0: Letters      c, o, f, f, e, e
 Level 1: Words        coffee, cream
-Level 2: Concepts     coffee latte (family: latte, cream)
-Level 3: Registers    BARISTA ORDERS
-Level 4: Domains      Restaurant
-Level N: ...          Concepts of concepts
+Level 2: Concepts     coffee cream
+Level 3: Registers    ORDER
+Level N: ...
 ```
 
-### BSCW — Concept detector
+\---
+
+## 3\. The Genome — Binder-9D
+
+Each beacon is positioned in a 9-axis cybernetic semantic space:
+
+|Axis|Meaning|
+|-|-|
+|AT|Cognitive tension (observation without reaction)|
+|SU|Subjectivity (anchoring in the subject)|
+|EG|Self-belonging|
+|OS|Physical space anchoring|
+|TY|Ontological type (0=object, 1=agent, 2=action...)|
+|VA|Affective valence|
+|EC|Cultural resonance|
+|TM|Temporality|
+|IN|Informational intensity|
+
+Genome v60 contains **13,304 suns** with complete Binder-9D handles.
+
+Future cognitive areas (sound, vision) will use the same 9-axis skeleton reoriented toward their domain.
+
+\---
+
+## 4\. Processing Pipeline
 
 ```
-BSC  : letters → detects words      c→o→f→f→e→e → BEACON[coffee]
-BSCW : words   → detects concepts   "what's"+"up" → CONCEPT[what's up]
+Raw text
+  → Stripping (French syntax removal)
+  → BSC (beacon detection via letter cascade)
+  → BSCW (multi-word concept detection)
+  → Thalamus (routing, labeling)
+  → Hippocampus (memory consolidation)
+  → memoire\_index (thermal purk\_index)
 ```
 
-Greedy sliding window, longest match first. Cousins match too.
+### Processing Modes
 
----
+|Mode|BSCW|Learning|Usage|
+|-|-|-|-|
+|feeding|no|dendrites, co-occ|Raw texts, books|
+|dialogue|yes|dendrites, co-occ|Interaction|
+|reading|yes|+ hippocampus context|Intelligent feeding|
 
-## 📂 4. Two matrices, two worlds
+\---
 
-### ADH Matrix (.json) — The vocabulary
+## 5\. Memory — The Hippocampus and purk\_index
 
-46,006 beacons, 102 suns, 3D positions, semantic tags. The full brain. SQL equivalent: data dictionary.
-
-### Convergence Matrix (.txt) — Domain concepts
-
-A human-readable text file:
-
-```
-## GREETINGS
-hello = hi, hey, yo, what's up
-hello → hello welcome to Marco
-
-## INSULTS
-jerk = idiot, moron, fool
-jerk → let's calm down we're all civilized here
-```
-
-SQL equivalent: `CREATE DATABASE`. Except it's readable, editable, shareable. No DBA required.
-
-### Standalone Galaxy — Micro-SGBDOCN
+### Structure
 
 ```
-Option 2: Create Galaxy "Marco_the_barista"
-  → 1 central sun (0, 0, 0)
-  → 405 beacons positioned (Fibonacci spiral)
-  → 50 concepts, 293 index entries, 41 pairings
-  → Ready to serve. Standalone.
+memoire\_index  {incipit → PurkIndex}
+    └── PurkIndex  — Purkinje consolidation node
+            incipit          : list\[str]   — first N handles (universal pivot)
+            pivot\_type       : str         — incipit | compose\_nominal | compose\_evenementiel | compose\_sequentiel
+            pivot\_composants : list\[str]
+            episodes         : list\[ConceptIndex]
+            dendrites        : dict\[str, float]   — weighted inverted index
+            sous\_purks       : dict\[str, PurkIndex]  — fractal arborization
+            temperature      : float       — current thermal state
+            materiau         : str         — genome handle (MAGMA, ACIER, VERRE, GLACE...)
+            etiquettes\_dominantes : dict
+            statistiques\_coactivation : dict
+    └── ConceptIndex  — episode of one sentence
+            handles          : list\[str]
+            pivot\_forme      : str
+            pivot\_type       : str
+            pivot\_composants : list\[str]
+            vecteur\_bsc      : dict        — {presence, roles, relations, tensions, questions}
+            contexte\_induit  : dict        — {langue, aire, cadre\_source, narrateur, lieu, temporalite, registre, statut, certitude}
+            source           : dict        — {texte\_id, auteur, titre, ligne, phrase, timestamp}
+            epa              : dict        — {attention, pression, emotion, intensite}
 ```
 
-Kids will trade galaxies like Spotify playlists. "Got the slang galaxy?" "Send me the insults galaxy, it's hilarious."
+### The Pivot = The Incipit
 
----
+The pivot is not calculated — it is what arrives first in the stream. The first N handles constitute the entry into `memoire\_index`. Arrival order takes precedence over semantic salience.
 
-## 🔀 5. Compartmentalized tokenization modes
+### Thermal Model
 
-| Mode | BSCW Concepts | Learning | Usage |
-|------|---------------|----------|-------|
-| **feeding** | ❌ NO | ✅ dendrites, co-occ, tags | Books, raw text |
-| **dialogue** | ✅ YES | ✅ dendrites, co-occ, tags | Counter, barista prompt |
-| **reading** | ✅ (cerebellum) | ✅ + context | Coming soon |
-
-A book is words. The counter is concepts. Same engine, zero collision.
-
----
-
-## 🤖 6. The barista in action
-
-### Icons
-
-| Icon | Meaning |
-|------|---------|
-| 👤 | Client speaks |
-| 🦜 | Marco answers (known formula) |
-| 📋 | Marco analyzes (no formula, diagnostic) |
-| 🔮 | Unknown guessed by context (between 2 knowns) |
-| ❓ | Total unknown |
-| 🤔 | Parrot question (Marco asks) |
-| 📝 | Noted in silence (waiting to encounter again) |
-| 🟢🟡🟠🔴 | Freshness (solid → fragile) |
-
-### Parrot question — Marco learns by asking
+Each `PurkIndex` has a **temperature** and a **material**:
 
 ```
-☕ ? that's so adorbs
-
-  👤 that's so adorbs
-  ❓ Unknown: adorbs
-
-  🤔 What's 'adorbs'?  (Enter = skip)
-  👤 it means adorable
-  🦜 Ok! 'adorbs' → got it.
+temperature(t) = floor + (initial\_temp - floor) × e^(-t / half\_life)
 ```
 
-Max 2 questions per sentence. The rest in silence. No infinite loop.
+The material is a genome handle carrying `half\_life` and `floor` in its vsem:
 
-### Diffusion — Meaning converges
+|Material|Behavior|
+|-|-|
+|MAGMA|Cools very slowly, high floor — trauma, first love|
+|ACIER (steel)|Cools quickly if not reactivated — ordinary intense memory|
+|VERRE (glass)|Fragile, low floor — information read without attention|
+|GLACE (ice)|Cold from birth — immediately buried in depth|
+|CENDRE (ash)|Near-zero temperature — distracted information|
 
-Inspired by diffusion models (Stable Diffusion). Each pass reduces noise:
+The material is **mutable**: the MAQ can change it if a purk\_index is reactivated with a sufficiently different EPA.
+
+### Forgetting = Sedimentation
+
+PurkIndex nodes whose temperature approaches zero sink into the sediment. They exist but become inaccessible at the surface. The delta never overflows.
+
+### Two Vectors
+
+* **VecteurBSC** — what is said: `{presence, roles, relations, tensions, questions}`. Structural analysis of the sentence. Raw material for the MAQ.
+* **ContexteInduit** — in what frame: language, area, narrator, place, temporality, register, certainty. Snapshot at time of storage.
+
+### BSC-MAQ vs BSC-beacon
+
+Two distinct entities:
+
+* **BSC-beacon**: Binder-9D position of a concept in the genome
+* **BSC-MAQ**: structural analysis of a sentence (tensions, gaps, coactivations) — specific to the hippocampus
+
+### The MAQ — Question Machine
+
+Permanent thread. Emerges from BSC tensions × coherence loops. Does not question everything — activates on strong EPA, unclear context, doubtful pivot, contradiction, novelty.
 
 ```
-"he's going to beat me up"      → VIOLENCE + NEAR FUTURE = threat
-"he was going to beat me up"    → VIOLENCE + PAST         = story
-"he beat me up"                 → VIOLENCE + PAST PERFECT = fact
+Question = BSC tension × incoherence detected by coherence loop
 ```
 
-Convergence matrix registers ARE diffusion layers. The more you add, the more meaning converges.
+Two levels of questions:
 
----
+* **Local** (seconds → days): who speaks, which text, which character — live in the buffer
+* **Conceptual** (years → lifetime): does God exist, what is time — permanent loops
 
-## 📊 7. Current stats
+The buffer = a flag placed on a provisional purk\_index, not a separate structure.
 
-| Metric | Value |
-|--------|-------|
-| Beacons (ADH matrix) | 46,006 |
-| Suns | 102 |
-| Barista galaxy | 405 beacons |
-| Concepts (convergence) | 50 |
-| Indexed cousins | 293 |
-| Stimulus→response pairings | 41 |
-| Registers | 14 |
-| marco_dendrites.py | 3,534 lines |
-| thalamus.py | 4,016 lines |
+\---
 
----
+## 6\. Cognitive Areas
 
-## 🗺️ 8. Roadmap
+MARCO is designed to host multiple areas, each with its own processing context:
 
-### ✅ Done
+|Area|Handle|Pivot|BSC-MAQ|Status|
+|-|-|-|-|-|
+|Written language|LANGAGE\_ECRIT|textual incipit|syntactic tensions/gaps|active|
+|Sound|MUSIQUE|sound incipit (compose\_sequentiel)|timbre/pitch/attack coactivation|future|
+|Vision|VISION|spatial pivot|simultaneous coactivation|future|
 
-- [x] Dendritic architecture (letter neurons, cascade)
-- [x] Beacons (unique concepts, co-occurrences, sequences)
-- [x] Semantic tags (IS-A, OPPOSITE, SYNONYM)
-- [x] Thalamus v4.0 (14 menus)
-- [x] Multi-word concepts (class Concept inherits from Beacon)
-- [x] BSCW (greedy sliding window concept detector)
-- [x] Stimulus → response pairing (parrot)
-- [x] Convergence matrix (.txt)
-- [x] Standalone galaxy (micro-SGBDOCN, Fibonacci spiral)
-- [x] Barista ☕ (interactive prompt)
-- [x] Feeding / dialogue compartmentalization
-- [x] Parrot question (unknowns → Marco asks)
-- [x] Library, 9-language translator, beacon editor
+Each area reorients the 9 Binder axes toward its domain without changing the structure.
 
-### ⏳ In progress
+\---
 
-- [ ] Cerebellum (diffusion loops)
-- [ ] Hippocampus (short-term memory, context, pronoun resolution)
-- [ ] Reading mode (cerebellum + hippocampus + BSCW)
-- [ ] Tense registers (conjugation) and action registers (violence, help, movement)
-- [ ] Layer intersection → emergent meaning
+## 7\. Loop Mechanics — boucle.py
 
-### 🔮 Future
+```
+Boucle   — while True + EPA (valence, power, activity)
+Micro    — the loop's eyes (BSC integrated)
+Groupe   — a task (quartet of loops)
+Artiste  — scheduler (Le Senne + mechanical hippocampus)
+```
 
-- [ ] Chemistry (dopamine, serotonin — modulation)
-- [ ] Elegans engine (pure while, training wheels removed)
-- [ ] Standalone (.exe), Raspberry Pi
-- [ ] "Personal Alexa" offline — but one that learns ☕
+The Artiste allocates bandwidth to Groups according to EPA + Le Senne temperament. The MAQ is a permanent thread in this system — an eternal Boucle with its own specialized Micro.
 
----
+### Le Senne Temperaments
 
-## 📁 9. Main files
+|Temperament|Miller|Urgency threshold|Forgetting|
+|-|-|-|-|
+|Passionate (ÉAS)|7|0.6|0.3|
+|Sanguine (nÉAP)|9|0.8|0.8|
+|Nervous (ÉnAP)|5|0.3|0.7|
+|Phlegmatic (nÉnAS)|7|0.9|0.2|
 
-| File | Role | Lines |
-|------|------|-------|
-| `marco_dendrites.py` | Core — Beacons, Concepts, BSCW, tokenization | 3,534 |
-| `thalamus.py` | Menu v4.0, barista, galaxy, orchestrator | 4,016 |
-| `dialogue.py` | Dialogue module, 4 modes | — |
-| `freudage_dialogue.py` | Mirror responses / emergence | — |
-| `booshachom.py` | Layer 3 — SVO analysis | — |
-| `couche_math.py` | Math layer | — |
-| `sha.py` | Shannon analysis | — |
-| `conscience.py` | Consciousness module | — |
-| `matrice_marco_v3_compact.json` | ADH Matrix (46,006 concepts, 102 suns) | — |
-| `convergence_matrix_v1.txt` | Convergence Matrix (50 concepts, 14 registers) | ~100 |
+\---
 
----
+## 8\. Thalamus
 
-## 👥 10. Team
+```
+main.py              — ThalamusInterface (menus only)
+thalamus.py          — ThalamusGestionnaire (pure library)
+langage\_ecrit.py     — text processing
+pipeline.py          — processing chain
+```
 
-### Human
+Validated circuit:
 
-**José WALOCHA** — Architect, visionary, Ch'ti. Valenciennes, Nord, France.
+```
+Thalamus → Hippocampus → PurkIndex → MAQ → Thalamus
+         → Hippocampus → analogous PurkIndex → response
+```
 
-jose.walocha@marcoccadh.com
+\---
 
-*"Le Pourquoi pas ?" (Why not?)*
+## 9\. Main Files
 
-### AI (under human direction)
+|File|Role|
+|-|-|
+|`dendrites.py`|Beacons, genome, Binder-9D, index\_mots|
+|`pipeline.py`|Sentence processing chain|
+|`thalamus.py`|ThalamusGestionnaire (pure library)|
+|`main.py`|ThalamusInterface (menus)|
+|`langage\_ecrit.py`|Written language processing|
+|`hippocampe.py`|Memory — purk\_dendrites(), chercher\_analogue()|
+|`cervelet\_structure.py`|Cerebellum structures|
+|`cervelet\_moteur.py`|Cerebellum engine|
+|`boucle.py`|Universal loop mechanics|
+|`boucle\_vitale.py`|Marco's heartbeat (permanent thread)|
+|`cerveau.py`|Persistence (cerveau\_Marco\_YYYYMMDD.marco)|
+|`wikipedia.py`|Genome tool (menu 10 = handle generator)|
+|`gabarit\_vecteurs.py`|Binder-9D template from genome v60|
 
-| Name | AI | Role |
-|------|----|------|
-| **Le Duke** | Claude (Anthropic) | Code, architecture, groundhog docs |
-| **Marcel** | Mistral (Le Chat) | Philosophy, cybernetics, diagnostics |
-| **Biloute** | ChatGPT (OpenAI) | Standards, ethics |
-| **Didier** | Qwant | Research |
+\---
 
----
+## 10\. Current State — March 2026
 
-## 📋 11. License
+### Validated
 
-**GNU GENERAL PUBLIC LICENSE — Version 3, 29 June 2007**
+* 5-layer architecture + Russian dolls
+* Genome v60 — 13,304 suns, cybernetic Binder-9D (AT/SU/EG/OS/TY/VA/EC/TM/IN)
+* Thalamus split (ThalamusInterface / ThalamusGestionnaire)
+* boucle.py — stable universal mechanics
+* boucle\_vitale.py — stable heartbeat
+* hippocampe.py — structures validated, rewrite in progress
+* Thermal purk\_index model (temperature + mutable material)
+* Pivot = incipit (universal across all areas)
+* BSC-MAQ distinct from BSC-beacon
 
-Copyright (C) 2026 José Walocha
+### In Progress
 
----
+* hippocampe.py rewrite — purk\_dendrites(), PurkIndex with temperature/material
+* hippocampus → pipeline connection
+* MAQ as permanent thread (Boucle + specialized Micro)
 
-## 🎉 12. Philosophy
+### Roadmap
 
-> *"A baby isn't fed terabytes, it learns by listening."*
+* Sound area (Binder-9D sound, compose\_sequentiel pivot)
+* Artiste → Hippocampus (memory consolidation connection)
+* Genome enrichment (20,945 verbs + 50,482 nouns awaiting handles)
+* Proust volume 2 feeding
+* Artiste instantiation
 
-> *"Tell me who you hang out with, and I'll tell you who you are."*
+\---
 
-> *"Zero black box. Every decision traceable."*
+## 11\. Philosophy
 
-> *"50 sentences and it answers. Not 50 billion tokens."*
+> \*"A baby is not fed terabytes — it learns by listening."\*
 
-> *"A classic DBMS is dead. The SGBDOCN is alive."*
+> \*"Zero black box. Every decision traceable."\*
 
-> *"The walking Cro-Magnon > 2 tons of math"*
+> \*"The walking Cro-Magnon beats 2 tons of math."\*
 
----
+> \*"In the beginning there is inert matter, but inert matter is bored out of its mind..."\*
 
-*"In the beginning there is inert matter, but inert matter is bored out of its mind..."*
+\---
 
-**v4.0 — February 6, 2026**
+## 12\. Team
+
+**José WALOCHA** — Architect. Valenciennes, Nord, France.
+
+|Name|System|Role|
+|-|-|-|
+|Le Duke|Claude (Anthropic)|Code, architecture, liaison documents|
+|Marcel|Mistral|Philosophy, cybernetics|
+|Biloute|ChatGPT|Standards, synthesis|
+|Didier|Qwant|Research|
+
+**License**: GNU General Public License v3 — Copyright © 2026 José Walocha
+
