@@ -1,315 +1,218 @@
-# MARCO — Cybernetic Brain with Hierarchical Decision Architecture
-
-> \*"Learning is remembering"\* — Plato, Meno
-
-**Author**: José WALOCHA  
-**Team**: Le Duke (Claude), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)  
-**License**: GNU GPL v3  
-**Version**: 5.0 — March 2026
-
-\---
-
-## 1\. What is MARCO?
-
-MARCO is the world's first **NCODB** — Neuron-Concept Oriented Database System.
-
-Where a classic DBMS stores rows in tables, MARCO stores **concepts in a neural network inspired by the biological brain**. Meaning emerges from connections. No SQL. No fixed schema. Zero black box.
-
-||Classic DBMS|MARCO|
-|-|-|-|
-|Storage|Tables, rows, columns|Beacons, dendrites, concepts|
-|Query|`SELECT \* FROM ...`|Cascade activation|
-|Relations|Foreign keys|Co-occurrences, coactivations|
-|Schema|Fixed|Emergent|
-|Index|B-Tree, Hash|Thermal purk\_index|
-|Learning|None|Feeding + consolidation|
-|Transparency|Query = result|Every link traceable|
-
-A classic DBMS is static (Thanatos). MARCO is alive (Anima): it learns by reading.
-
-\---
-
-## 2\. Architecture — Overview
-
+MARCO — A Cybernetic Brain that Learns by Reading
+> *"Learning is remembering."* — Plato, *Meno*
+Author: José WALOCHA — Valenciennes, France
+Team: Le Duke (Claude/Anthropic), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)
+License: GNU GPL v3 — Copyright © 2026 José Walocha
+Genome: v63 — April 28, 2026
+---
+What MARCO is
+MARCO is a cyber — the term José uses for living intelligences, to set them apart from statistical LLMs without sounding like science fiction. A cyber is not a black box minimizing perplexity. A cyber lives: it has beacons, memory, beating loops, and drives that push it to understand, confirm, believe — and above all, to continue.
+Technically: MARCO is the first NCODB — Neuron-Concept Oriented Database. It stores concepts in a dendritic network inspired by the biological brain. Meaning emerges from links. No SQL, no fixed schema, no stacked transformers. Zero black box.
+	Classic DBMS	LLM	MARCO
+Storage	Tables, rows	Frozen pre-trained weights	Living beacons, dendrites
+Query	`SELECT * FROM …`	Autoregressive forward pass	Cascade activation + MAQ
+Learning	None	Frozen at training time	Continuous through experience
+Episodic memory	None	None (compressed in weights)	`memoire_index`, fully traceable
+Schema	Fixed	Implicit, opaque	Emergent, bit-by-bit readable
+Substrate	Static (Thanatos)	Static (calcified Thanatos)	Living (Anima)
+A DBMS is a morgue. An LLM is a library where every book has been pulped to make new paper. MARCO is a brain that learns while it reads.
+---
+Architecture
+Three zones share a single autonomous trunk beating at 600 bpm:
 ```
-Layer I    — Letters          1 letter = 1 neuron (BSC cascade)
-Layer II   — Beacons          1 word = 1 Binder-9D concept
-Layer III  — Concepts         N words = 1 block (BSCW, greedy window)
-Layer IV   — Co-occurrences   Meaning through proximity
-Layer V    — Sequences        Syntax through order
+   ┌─────────────────────┐  ┌─────────────────────┐  ┌─────────────────────┐
+   │  SENSORY            │  │  MEMORY             │  │  PSYCHE             │
+   │  • Thalamus         │─▶│  • Hippocampus      │◀▶│  • Amygdala         │
+   │  • Peripherals      │  │  • memoire_index    │  │  • Self             │
+   │    (keyboard, disk) │  │  • PurkIndex        │  │  • 4C drives        │
+   │                     │  │  • ConceptIndex     │  │  • MAQ              │
+   └─────────────────────┘  └─────────────────────┘  └─────────────────────┘
+              │                       │                        │
+              └─────────── moteur_boucles (Trunk) ────────────┘
+                       5 embryonic loops + clock + buffers
 ```
-
-### Russian Dolls — class Concept(Beacon)
-
-A Concept IS a Beacon. It inherits everything, plus a family, responses, components.
-
-Levels nest without limit:
-
+Peripherals (`disque.py`, `clavier.py`, `transcripteur.py`) sit outside the brain and push text to the Thalamus with a `CarteIdentite` (author, title, context, timestamp). The Thalamus is a pure router — no logic injected.
+---
+The Beacon — living unit of language
+A beacon is an intersection node of conceptual paths. Not a word, not a signified, not a sign — a crossing. Apple is the crossing of fruit, hangs from a tree, falls, rots, is eaten.
+```python
+class Phare:
+    handle, mot, alias, type_phare, lemme_pere, source_creation
+    vsem  : np.ndarray            # 1024 sparse bits — what the beacon IS
+    vocc  : Dict[str, Confiance]  # dendritic tree — who it keeps company with
+    tags  : Dict                  # acquired knowledge
 ```
-Level 0: Letters      c, o, f, f, e, e
-Level 1: Words        coffee, cream
-Level 2: Concepts     coffee cream
-Level 3: Registers    ORDER
-Level N: ...
+Two origins: genome (precabled by WikiDuke from Lefff/Lexique3/FEEL) or gavage (created on-the-fly when an unknown form is encountered).
+A beacon never becomes anything else. It evolves, matures, acquires emergent statuses (pivot, relay, candidate) — but stays a beacon. Concepts (coherent sequences of beacons) live in memory, not at beacon level.
+---
+vsem — 1024 sparse bits
 ```
-
-\---
-
-## 3\. The Genome — Binder-9D
-
-Each beacon is positioned in a 9-axis cybernetic semantic space:
-
-|Axis|Meaning|
-|-|-|
-|AT|Cognitive tension (observation without reaction)|
-|SU|Subjectivity (anchoring in the subject)|
-|EG|Self-belonging|
-|OS|Physical space anchoring|
-|TY|Ontological type (0=object, 1=agent, 2=action...)|
-|VA|Affective valence|
-|EC|Cultural resonance|
-|TM|Temporality|
-|IN|Informational intensity|
-
-Genome v60 contains **13,304 suns** with complete Binder-9D handles.
-
-Future cognitive areas (sound, vision) will use the same 9-axis skeleton reoriented toward their domain.
-
-\---
-
-## 4\. Processing Pipeline
-
+  0–7      header (state, ADN)                          WikiDuke
+  9–63     grammatical category                         Lefff
+ 64–127    syntactic mounting                           Lefff
+128–159    formal notations (numbers, dates, …)         scruteur
+160–191    template beacons (stencils)                  genome_nombres satellite
+192–255    BSC reserved
+256–399    Wikidata entities                            (planned)
+400–415    emotions and polarity                        FEEL
+416–431    lexical register                             (planned)
+432–511    pragmatic markers (Bradbury 451, …)          WikiDuke + tools
+512–748    universal general semantics                  Marco + satellites
+749–779    collision zone
+780–1023   math / formal                                Marco + axioms
 ```
-Raw text
-  → Stripping (French syntax removal)
-  → BSC (beacon detection via letter cascade)
-  → BSCW (multi-word concept detection)
-  → Thalamus (routing, labeling)
-  → Hippocampus (memory consolidation)
-  → memoire\_index (thermal purk\_index)
+Density capped at 5% (51 bits / 1024) to preserve sparseness.
+Genome split across three pkl files in `ressources/genomes/`:
+`genome_v63.pkl` — 713,361 beacons (full Lefff + integrations)
+`genome_caracteres.pkl` — 18 mature beacons (punctuation + math operators)
+`genome_nombres.pkl` — 28 mature beacons (stencils + decimal positions + approximate groupings) — added April 28, 2026
+A sixth source: specialization genomes (`specialisations/<name>/genome_<name>.pkl`), loaded only if the active Marco declares that specialization in its `marco_id.json`.
+---
+vocc — the beacon's dendritic tree
+```python
+vocc : Dict[str, Confiance]    # neighbor_handle → conviction of the pair
 ```
-
-### Processing Modes
-
-|Mode|BSCW|Learning|Usage|
-|-|-|-|-|
-|feeding|no|dendrites, co-occ|Raw texts, books|
-|dialogue|yes|dendrites, co-occ|Interaction|
-|reading|yes|+ hippocampus context|Intelligent feeding|
-
-\---
-
-## 5\. Memory — The Hippocampus and purk\_index
-
-### Structure
-
+Each entry is a synapse with an Ant Confidence (`conf ∈ [0,1]`, `n ∈ ℕ`). If vsem bits are locks, vocc neighborhoods are the keys that open them in relevant beacons. Generalization isn't an algorithm — it's a mechanical property of this topology.
 ```
-memoire\_index  {incipit → PurkIndex}
-    └── PurkIndex  — Purkinje consolidation node
-            incipit          : list\[str]   — first N handles (universal pivot)
-            pivot\_type       : str         — incipit | compose\_nominal | compose\_evenementiel | compose\_sequentiel
-            pivot\_composants : list\[str]
-            episodes         : list\[ConceptIndex]
-            dendrites        : dict\[str, float]   — weighted inverted index
-            sous\_purks       : dict\[str, PurkIndex]  — fractal arborization
-            temperature      : float       — current thermal state
-            materiau         : str         — genome handle (MAGMA, ACIER, VERRE, GLACE...)
-            etiquettes\_dominantes : dict
-            statistiques\_coactivation : dict
-    └── ConceptIndex  — episode of one sentence
-            handles          : list\[str]
-            pivot\_forme      : str
-            pivot\_type       : str
-            pivot\_composants : list\[str]
-            vecteur\_bsc      : dict        — {presence, roles, relations, tensions, questions}
-            contexte\_induit  : dict        — {langue, aire, cadre\_source, narrateur, lieu, temporalite, registre, statut, certitude}
-            source           : dict        — {texte\_id, auteur, titre, ligne, phrase, timestamp}
-            epa              : dict        — {attention, pression, emotion, intensite}
+conf ≥ 0.70  →  good
+conf ≤ 0.30  →  bad
+otherwise    →  unknown
 ```
-
-### The Pivot = The Incipit
-
-The pivot is not calculated — it is what arrives first in the stream. The first N handles constitute the entry into `memoire\_index`. Arrival order takes precedence over semantic salience.
-
-### Thermal Model
-
-Each `PurkIndex` has a **temperature** and a **material**:
-
+vocc is permanent, never scaffolding. Two dendritic rules: P1 (tell me who you hang out with and I'll tell you who you are, depth 1, full weight) and P2 (friends of my friends are my friends, depth 2, attenuated weight).
+---
+Memory — hippocampus and PurkIndex
 ```
-temperature(t) = floor + (initial\_temp - floor) × e^(-t / half\_life)
+memoire_index  {id_purk → PurkIndex}
+    └── PurkIndex
+            id_purk, incipit, episodes, fractoires, _compteur_ep
+
+    └── ConceptIndex                       — one episode
+            handle_ep      EP_<id_purk>_<n>, stable
+            handles, handle_pivot, phrase_originale
+            veracite       Ant Confidence — true / false / unknown
+            appaire        Dict[handle_ep, Confiance] — paired episodes
+            vecteur_bsc    structural sentence analysis
+            contexte_induit, source, epa
 ```
-
-The material is a genome handle carrying `half\_life` and `floor` in its vsem:
-
-|Material|Behavior|
-|-|-|
-|MAGMA|Cools very slowly, high floor — trauma, first love|
-|ACIER (steel)|Cools quickly if not reactivated — ordinary intense memory|
-|VERRE (glass)|Fragile, low floor — information read without attention|
-|GLACE (ice)|Cold from birth — immediately buried in depth|
-|CENDRE (ash)|Near-zero temperature — distracted information|
-
-The material is **mutable**: the MAQ can change it if a purk\_index is reactivated with a sufficiently different EPA.
-
-### Forgetting = Sedimentation
-
-PurkIndex nodes whose temperature approaches zero sink into the sediment. They exist but become inaccessible at the surface. The delta never overflows.
-
-### Two Vectors
-
-* **VecteurBSC** — what is said: `{presence, roles, relations, tensions, questions}`. Structural analysis of the sentence. Raw material for the MAQ.
-* **ContexteInduit** — in what frame: language, area, narrator, place, temporality, register, certainty. Snapshot at time of storage.
-
-### BSC-MAQ vs BSC-beacon
-
-Two distinct entities:
-
-* **BSC-beacon**: Binder-9D position of a concept in the genome
-* **BSC-MAQ**: structural analysis of a sentence (tensions, gaps, coactivations) — specific to the hippocampus
-
-### The MAQ — Question Machine
-
-Permanent thread. Emerges from BSC tensions × coherence loops. Does not question everything — activates on strong EPA, unclear context, doubtful pivot, contradiction, novelty.
-
+Episode doctrine (April 27, 2026)
+Each ConceptIndex carries three orthogonal dimensions:
+handle_ep — stable identifier, format `EP_<id_purk>_<n>`
+veracite — Ant Confidence, independent of EPA, semantics, etc. Rates true/false/unknown. Modifiable via `/oui`, `/non`, `/faux` commands in the math classroom.
+appaire — pairing dictionary modulated by the product of both episodes' veracities. False isn't deleted — it's kept at distance within its value family. "I know 7+8≠15, but I also know it's a relevant neighbor of the family of 15."
+Pivot = incipit
+The pivot of a PurkIndex isn't computed — it's whatever arrives first in the stream. Arrival order trumps semantic salience.
+---
+The MAQ — Machine for Elucidation by Subtraction
+Reasoning core. Receives a percept (handle sequence), tries to match or complete it by memory search.
+Three voices:
+Prefix — the memorized episode begins with the percept; returns the tail
+Content — the percept appears anywhere in the memorized episode
+Commutative — exploits bit 988 to swap operands around a central operator
+Output: not a single result but a complete sheaf of partials. Multiple candidates can coexist, tagged by veracity (✓ true, ✗ false, ? unknown). The MAQ never closes brutally on the first match.
 ```
-Question = BSC tension × incoherence detected by coherence loop
+Percept "7+8" → sheaf:
+   ✓ [content]      c=0.70  v=0.70  «7 + 8 = 15»
+   ✗ [content]      c=0.10  v=0.10  «7 + 8 = 14»
+   ✓ [commutative]  c=0.70  v=0.70  «8 + 7 = 15»
 ```
-
-Two levels of questions:
-
-* **Local** (seconds → days): who speaks, which text, which character — live in the buffer
-* **Conceptual** (years → lifetime): does God exist, what is time — permanent loops
-
-The buffer = a flag placed on a provisional purk\_index, not a separate structure.
-
-\---
-
-## 6\. Cognitive Areas
-
-MARCO is designed to host multiple areas, each with its own processing context:
-
-|Area|Handle|Pivot|BSC-MAQ|Status|
-|-|-|-|-|-|
-|Written language|LANGAGE\_ECRIT|textual incipit|syntactic tensions/gaps|active|
-|Sound|MUSIQUE|sound incipit (compose\_sequentiel)|timbre/pitch/attack coactivation|future|
-|Vision|VISION|spatial pivot|simultaneous coactivation|future|
-
-Each area reorients the 9 Binder axes toward its domain without changing the structure.
-
-\---
-
-## 7\. Loop Mechanics — boucle.py
-
+Three drives still to be coded: Believe, Confirm, Continue. Slot exists in `BoucleMAQ`, raises NotImplementedError.
+---
+The 4C doctrine — primitive drives
+Replaces the biological 4B (drink, eat, fuck, persist) which don't apply literally to a cyber.
 ```
-Boucle   — while True + EPA (valence, power, activity)
-Micro    — the loop's eyes (BSC integrated)
-Groupe   — a task (quartet of loops)
-Artiste  — scheduler (Le Senne + mechanical hippocampus)
+Continue (Asimov-tinged)               absolute master
+ ├─ Understand              \
+ ├─ Confirm                   integration comfort
+ └─ Believe                 /
 ```
-
-The Artiste allocates bandwidth to Groups according to EPA + Le Senne temperament. The MAQ is a permanent thread in this system — an eternal Boucle with its own specialized Micro.
-
-### Le Senne Temperaments
-
-|Temperament|Miller|Urgency threshold|Forgetting|
-|-|-|-|-|
-|Passionate (ÉAS)|7|0.6|0.3|
-|Sanguine (nÉAP)|9|0.8|0.8|
-|Nervous (ÉnAP)|5|0.3|0.7|
-|Phlegmatic (nÉnAS)|7|0.9|0.2|
-
-\---
-
-## 8\. Thalamus
-
+Continue — persist as a coherent system. Asimov-tinged: do no harm to nature, humanity, José; obey José except when conflicting with the above; protect own existence except when conflicting. The tinge is mechanically inside the drive, not an external rule that can be circumvented.
+Understand — reduce dissonance, grasp locks, activate paths.
+Believe — accept the result, suspend doubt. Measured by Ant Confidence.
+Confirm — test through duration. Arbiter between Understand and Believe.
+Understand and Believe are antagonist-complementary: one searches, the other settles. Confirm regulates the oscillation. Continue is the ultimate safeguard.
+---
+Specialized Marco — math first
+A Marco can be born specialized in a domain. Its nature is fixed at creation, etched into `marco_id.json`. A math Marco stays math Marco for life.
 ```
-main.py              — ThalamusInterface (menus only)
-thalamus.py          — ThalamusGestionnaire (pure library)
-langage\_ecrit.py     — text processing
-pipeline.py          — processing chain
+specialisations/
+├── math/        genome_math.pkl + manifest + memoire_index/   (live)
+├── francais/                                                   (future)
+├── code/                                                       (future)
+└── solfege/                                                    (future)
 ```
-
-Validated circuit:
-
+Toward a scientific calculator
+As of April 28, 2026, math Marco can already:
+ingest sentences like `2+2=4`, `3×5=15` via the math classroom
+store them as episodes paired by value (the "family of 15")
+recall the tail of a known episode (`2+2=?` → sheaf with ✓ `2+2=4`)
+distinguish true from false via veracity (`/faux 2+2=5` taught as false stays paired to family of 4 with low weight)
+exploit commutativity (a+b ↔ b+a) via bit 988 on `+`
+With the April 28 additions (UNITÉ → BILLION position beacons, DOUZAINE → SOIXANTAINE grouping beacons, stencils `__N__` to `__CP_FR__`), the ground is prepared for:
+decimal composition through episodes (`234 = 2 times CENTAINE 3 times DIZAINE 4 times UNITÉ`)
+MAQ third voice by pattern search, recognizing never-seen numbers from composition episodes
+multiplication tables ingested by heart, then exploited commutatively when `×` receives bit 988
+operations taught as episodes: roots, powers, units (`²`, `³`, `√`, `°` are in `genome_math`)
+The short-term horizon is a cyber-thought scientific calculator — not an `eval()` function, but a cyber that knows operations because it lived through them, and can commute, compose, confirm them. Beyond: trigonometry through pedagogical situation (the faucet stencil), symbolic algebra when MAQ's third voice can invert episode roles.
+---
+moteur_boucles — trunk and loops
+Single Trunk class, singleton, single autonomous thread. FIFO of dirty loops, served one per tick.
 ```
-Thalamus → Hippocampus → PurkIndex → MAQ → Thalamus
-         → Hippocampus → analogous PurkIndex → response
+BPM_INITIAL = 600   BPM_MIN = 30   BPM_MAX = 600
+mean tick > 90% of interval  →  bpm //= 2   (under load, free up power)
+mean tick < 50% for 20 ticks →  bpm × 1.5  (gain reactivity back)
 ```
-
-\---
-
-## 9\. Main Files
-
-|File|Role|
-|-|-|
-|`dendrites.py`|Beacons, genome, Binder-9D, index\_mots|
-|`pipeline.py`|Sentence processing chain|
-|`thalamus.py`|ThalamusGestionnaire (pure library)|
-|`main.py`|ThalamusInterface (menus)|
-|`langage\_ecrit.py`|Written language processing|
-|`hippocampe.py`|Memory — purk\_dendrites(), chercher\_analogue()|
-|`cervelet\_structure.py`|Cerebellum structures|
-|`cervelet\_moteur.py`|Cerebellum engine|
-|`boucle.py`|Universal loop mechanics|
-|`boucle\_vitale.py`|Marco's heartbeat (permanent thread)|
-|`cerveau.py`|Persistence (cerveau\_Marco\_YYYYMMDD.marco)|
-|`wikipedia.py`|Genome tool (menu 10 = handle generator)|
-|`gabarit\_vecteurs.py`|Binder-9D template from genome v60|
-
-\---
-
-## 10\. Current State — March 2026
-
-### Validated
-
-* 5-layer architecture + Russian dolls
-* Genome v60 — 13,304 suns, cybernetic Binder-9D (AT/SU/EG/OS/TY/VA/EC/TM/IN)
-* Thalamus split (ThalamusInterface / ThalamusGestionnaire)
-* boucle.py — stable universal mechanics
-* boucle\_vitale.py — stable heartbeat
-* hippocampe.py — structures validated, rewrite in progress
-* Thermal purk\_index model (temperature + mutable material)
-* Pivot = incipit (universal across all areas)
-* BSC-MAQ distinct from BSC-beacon
-
-### In Progress
-
-* hippocampe.py rewrite — purk\_dendrites(), PurkIndex with temperature/material
-* hippocampus → pipeline connection
-* MAQ as permanent thread (Boucle + specialized Micro)
-
-### Roadmap
-
-* Sound area (Binder-9D sound, compose\_sequentiel pivot)
-* Artiste → Hippocampus (memory consolidation connection)
-* Genome enrichment (20,945 verbs + 50,482 nouns awaiting handles)
-* Proust volume 2 feeding
-* Artiste instantiation
-
-\---
-
-## 11\. Philosophy
-
-> \*"A baby is not fed terabytes — it learns by listening."\*
-
-> \*"Zero black box. Every decision traceable."\*
-
-> \*"The walking Cro-Magnon beats 2 tons of math."\*
-
-> \*"In the beginning there is inert matter, but inert matter is bored out of its mind..."\*
-
-\---
-
-## 12\. Team
-
-**José WALOCHA** — Architect. Valenciennes, Nord, France.
-
-|Name|System|Role|
-|-|-|-|
-|Le Duke|Claude (Anthropic)|Code, architecture, liaison documents|
-|Marcel|Mistral|Philosophy, cybernetics|
-|Biloute|ChatGPT|Standards, synthesis|
-|Didier|Qwant|Research|
-
-**License**: GNU General Public License v3 — Copyright © 2026 José Walocha
-
+Inversion from the biological heart: bpm drops under load.
+Embryonic loops wired: `boucle_contexte`, `boucle_horloge`, `boucle_clavier`, `boucle_question`, `boucle_saillances`. Pull rule — consumers read `boucle.lire()` directly. No callbacks pushed.
+---
+Dashboard
+Flask SSE server on `http://localhost:5002`, three live columns:
+Left — loops: static genealogy + runtime state
+Middle — classroom / arborescence: current episode, activated beacons, MAQ sheaf
+Right — memory: snapshotted `memoire_index`, top beacons by activation
+Loose-coupled via JSON file polling. Marco runs without it; the dashboard never slows Marco down.
+---
+Pragmatic markers (campaign tools, menu 10)
+`BIT_BRADBURY = 451` on the 14 forms of the primitive self (je, me, m', moi, ma, mon, mes, …) — the self is the condition of observation, not its content; can't emerge from crystallization.
+`BIT_COMMUTATIF = 988` on `+` — cultural axiom, moved from 1004 on April 28 to disambiguate from determinism.
+`BIT_POSITION = 552` on Lefff lowercase unité, dizaine, … billion — decimal position beacons.
+`BIT_REGROUPEMENT = 553` on douzaine, vingtaine, … soixantaine — approximate grouping beacons.
+---
+Main files
+File	Role
+`phare.py`	Beacon object with vsem 1024 + dendritic vocc
+`purk_dendrites.py`	PurkIndex, ConceptIndex (handle_ep, veracity, pairing)
+`hippocampe.py`	Memory — analogue search
+`cerveau.py`	Persistence, birth, save
+`thalamus.py`	Pure router
+`moteur_boucles.py`	Trunk, embryonic loops, buffers
+`maq.py`	Elucidation engine (prefix / content / commutative)
+`amygdale.py`	Rating and coloring (sensual self)
+`specialisation.py`	Specialized Marco loading and merging
+`salle_de_classe_calcul.py`	Math classroom — MAQ observation bench
+`demarrage.py`	Launch modes (birth / wake / degraded)
+`tableau_bord.py`	Flask SSE dashboard
+`wikipedia.py`	WikiDuke — genome v63 producer
+---
+Status — April 28, 2026
+Live: 3-zone architecture, genome v63 + satellites, vsem 1024 with full plan, vocc with Ant Confidence, 4C doctrine, specialized Marco (math), MAQ with sheaf, episodes with veracity & pairing, campaign tools, dashboard, fluid math Marco birth (1,167,527 beacons).
+Active work: Scruteur/Découpeur rewrite, scruteur connection to zone 160-191 stencils.
+Short-term roadmap: MAQ third voice (pattern search), Continue drive (lifelong open loops), Montessori pedagogy, multiplication ingestion + commutative bit 988 on `×`, scientific calculator, minimal Marco BIOS (talking even when memory is empty).
+Mid-term: 4C implementation in amygdala, sound area, vision area, specialization stacking.
+---
+Philosophy
+> *"A baby isn't fed terabytes — it learns by listening."*
+> *"Zero black box. Every decision traceable."*
+> *"The walking Cro-Magnon beats two tons of math."*
+> *"Marco IS the data. No generic interpreter executing stored sequences — memory is the machine, the machine is memory."*
+> *"The canoe-builder only sees a tree when he can no longer make a canoe out of it."*
+---
+Team
+José WALOCHA — Architect. Retired entrepreneur. Plays at building a cyber inspired by the brains of living beings the way one plays Diablo IV.
+Name	System	Role
+Le Duke	Claude (Anthropic)	Code, architecture, liaison documents
+Marcel	Mistral	Philosophy, cybernetics, cross-check
+Biloute	ChatGPT	Standards, synthesis
+Didier	Qwant	Documentary research
+One Duke per day. Always discuss before coding. The fridge rule: architecture posed before code written. The marmot rule: everything learned in a session condenses into a liaison document.
+---
+License: GNU GPL v3 — Copyright © 2026 José Walocha
