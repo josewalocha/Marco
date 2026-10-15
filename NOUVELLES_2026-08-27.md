@@ -9,7 +9,7 @@
 
 Marco est un cerveau cybernétique en Python, écrit de zéro, sans réseau de
 neurones statistique, sans boîte noire : chaque réponse cite sa provenance,
-chaque mécanisme se lit dans le code (GNU GPL v3). Le dépôt décrit l'état de
+chaque mécanisme se lit dans le code (GNU AGPL v3). Le dépôt décrit l'état de
 mai 2026 ; depuis, l'architecture a beaucoup avancé (génome v88, ~815 000
 phares, équations de sens datées et sourcées, solveur de questions par
 assemblages de bits). Voici la journée du 27 août — une seule journée de
@@ -68,7 +68,7 @@ nuance du contexte — ce chouïa qui change tout, la poésie de l'ordinaire. »
 
 Marco is a cybernetic brain written in Python from scratch — no statistical
 neural network, no black box: every answer cites its source, every mechanism
-is readable in the code (GNU GPL v3). This repo describes the May 2026 state;
+is readable in the code (GNU AGPL v3). This repo describes the May 2026 state;
 the architecture has moved a lot since (genome v88, ~815k word-nodes, dated
 and sourced meaning-equations, a bit-assembly question solver). August 27 was
 one working day, morning to evening:
@@ -97,4 +97,4 @@ told apart by provenance — not by probability.
 ---
 
 *José Walocha (architecte / MOA) — avec le Dude (Claude, Anthropic) au
-clavier. Une journée, un Dude. GNU GPL v3.*
+clavier. Une journée, un Dude. GNU AGPL v3.*
