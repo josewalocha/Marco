@@ -5,6 +5,7 @@
 > *« Au commencement il y a l'inerte, mais l'inerte il s'emmerde grave… »*
 
 **Auteur** : José WALOCHA — Valenciennes, Nord, France
+**Contact** : [jose.walocha@marcoccadh.com](mailto:jose.walocha@marcoccadh.com)
 **Équipe** : Le Dude (Claude Opus 5.5 / Anthropic), Fable (Claude Fable 5.1 / Anthropic), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)
 **Licence** : GNU Affero GPL v3 — Copyright © 2026 José Walocha
 **État** : le programme du 15 octobre 2026
@@ -132,5 +133,6 @@ Un Dude par jour. Toujours discuter avant de coder. La règle du frigo : archite
 ## 7. Licence
 
 **GNU Affero GPL v3** — Copyright © 2026 José Walocha.
+**Contact** : [jose.walocha@marcoccadh.com](mailto:jose.walocha@marcoccadh.com)
 
 Choix doctrinal : plus protectrice que la GPL, l'AGPL impose la republication des modifications à toute utilisation en service réseau — un cyber est destiné à tourner potentiellement comme service. Qui modifie Marco et le distribue, ou le fait tourner comme service, en rend le code, sous la même licence.

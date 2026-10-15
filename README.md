@@ -5,6 +5,7 @@
 > *"In the beginning there is the inert, but the inert gets really bored…"*
 
 **Author**: José WALOCHA — Valenciennes, Nord, France
+**Contact**: [jose.walocha@marcoccadh.com](mailto:jose.walocha@marcoccadh.com)
 **Team**: Le Dude (Claude Opus 5.5 / Anthropic), Fable (Claude Fable 5.1 / Anthropic), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)
 **License**: GNU Affero GPL v3 — Copyright © 2026 José Walocha
 **State**: the program of October 15, 2026
@@ -132,5 +133,6 @@ One Dude per day. Always discuss before coding. The fridge rule: architecture se
 ## 7. License
 
 **GNU Affero GPL v3** — Copyright © 2026 José Walocha.
+**Contact**: [jose.walocha@marcoccadh.com](mailto:jose.walocha@marcoccadh.com)
 
 A doctrinal choice: more protective than the GPL, the AGPL requires the modifications to be republished for any use as a network service — a cyber is meant to potentially run as a service. Whoever modifies Marco and distributes it, or runs it as a service, gives back its code, under the same license.
