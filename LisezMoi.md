@@ -5,6 +5,7 @@
 > *« Au commencement il y a l'inerte, mais l'inerte il s'emmerde grave… »*
 
 **Auteur** : José WALOCHA — Valenciennes, Nord, France
+**Qui je suis** : [ma présentation](https://github.com/josewalocha)
 **Contact** : [jose.walocha@marcoccadh.com](mailto:jose.walocha@marcoccadh.com)
 **Équipe** : Le Dude (Claude Opus 5.5 / Anthropic), Fable (Claude Fable 5.1 / Anthropic), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)
 **Licence** : GNU Affero GPL v3 — Copyright © 2026 José Walocha
