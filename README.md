@@ -5,6 +5,7 @@
 > *"In the beginning there is the inert, but the inert gets really bored…"*
 
 **Author**: José WALOCHA — Valenciennes, Nord, France
+**Who I am**: [my introduction](https://github.com/josewalocha)
 **Contact**: [jose.walocha@marcoccadh.com](mailto:jose.walocha@marcoccadh.com)
 **Team**: Le Dude (Claude Opus 5.5 / Anthropic), Fable (Claude Fable 5.1 / Anthropic), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)
 **License**: GNU Affero GPL v3 — Copyright © 2026 José Walocha
