@@ -53,7 +53,7 @@ Measurements are made on newborn Marcos, born for the bench, with a fixed seed; 
 
 ### The meaning of words, word by word
 
-On the ten texts of Marco's reading book — from *Frère Jacques* to *Le Dormeur du val*, by way of La Fontaine, Perrault and *La Chèvre de M. Seguin* —, a gold standard gives, for 474 words, the expected meaning. Marco reads the texts in order and chooses, for each word, a dimension of its genome: **66 % correct meanings** (315 of 474), **75 %** on *La Chèvre de M. Seguin*, **73 %** on *Le Dormeur du val*. This is not a word recognized: it is a meaning chosen, and each choice names the context phares that made it.
+On the ten texts of Marco's reading book — from *Frère Jacques* to *Le Dormeur du val*, by way of La Fontaine, Perrault and *La Chèvre de M. Seguin* —, a gold standard, annotated without seeing Marco's choices, gives the expected meaning for 474 words. Marco reads the texts in order and chooses, for each word, a dimension of its genome: **66 % correct meanings** (315 of 474), **75 %** on *La Chèvre de M. Seguin*, **73 %** on *Le Dormeur du val*. This is not a word recognized: it is a meaning chosen, and each choice names the context phares that made it.
 
 ### Universal Dependencies: a classic benchmark
 

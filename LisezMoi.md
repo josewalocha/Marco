@@ -53,7 +53,7 @@ Les mesures sont faites sur des Marco neufs, nés pour le banc, graine fixe ; ch
 
 ### Le sens des mots, mot par mot
 
-Sur les dix textes du livre de lecture de Marco — de *Frère Jacques* au *Dormeur du val*, en passant par La Fontaine, Perrault et *La Chèvre de M. Seguin* —, un étalon donne, pour 474 mots, le sens attendu. Marco lit les textes dans l'ordre et choisit, pour chaque mot, une dimension de son génome : **66 % de sens justes** (315 sur 474), **75 %** sur *La Chèvre de M. Seguin*, **73 %** sur *Le Dormeur du val*. Ce n'est pas un mot reconnu : c'est un sens choisi, et chaque choix dit les phares contexte qui l'ont fait.
+Sur les dix textes du livre de lecture de Marco — de *Frère Jacques* au *Dormeur du val*, en passant par La Fontaine, Perrault et *La Chèvre de M. Seguin* —, un étalon, annoté sans voir les choix de Marco, donne pour 474 mots le sens attendu. Marco lit les textes dans l'ordre et choisit, pour chaque mot, une dimension de son génome : **66 % de sens justes** (315 sur 474), **75 %** sur *La Chèvre de M. Seguin*, **73 %** sur *Le Dormeur du val*. Ce n'est pas un mot reconnu : c'est un sens choisi, et chaque choix dit les phares contexte qui l'ont fait.
 
 ### Universal Dependencies : un banc classique
 
