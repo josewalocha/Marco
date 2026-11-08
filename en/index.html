@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marco, the deduction machine</title>
+<meta name="description" content="Marco, the deduction machine: an intelligence with no black box, whose every answer says where it comes from. A bionic processor with nodal memory, a project by José Walocha.">
+<link rel="alternate" hreflang="fr" href="https://marcoccadh.com/">
+<link rel="alternate" hreflang="en" href="https://marcoccadh.com/en/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* A chip datasheet: a margin column for section numbers, content on the right; one signal colour, the amber of the beacon. */
+  --paper: #eff1f3;
+  --panel: #ffffff;
+  --ink: #14171c;
+  --muted: #586070;
+  --rule: #c6ccd4;
+  --accent: #935600;
+  --accent-soft: #f6e6c6;
+  --chip: #1c2027;
+  --chip-ink: #e8eaed;
+  --pin: #8f97a2;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --body: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --c-bg: #050d08;
+  --c-green: #3fdc85;
+  --c-white: #eef8f1;
+  --c-turq: #52d3c6;
+  --c-dim: #5d8c6c;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1115;
+    --panel: #161b22;
+    --ink: #e3e6ea;
+    --muted: #9ba4b2;
+    --rule: #2c333d;
+    --accent: #f0b43a;
+    --accent-soft: #3a2b0e;
+    --chip: #262d37;
+    --chip-ink: #e3e6ea;
+    --pin: #78818e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e1115;
+  --panel: #161b22;
+  --ink: #e3e6ea;
+  --muted: #9ba4b2;
+  --rule: #2c333d;
+  --accent: #f0b43a;
+  --accent-soft: #3a2b0e;
+  --chip: #262d37;
+  --chip-ink: #e3e6ea;
+  --pin: #78818e;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+a { color: var(--ink); text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+p { margin: 0; max-width: 66ch; }
+em { font-style: italic; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+.mono { font-family: var(--mono); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* En-tête de fiche */
+.sheet-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: end;
+  padding: 22px 0 10px;
+  border-bottom: 4px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.sheet-head .brand { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: .12em; line-height: 1; }
+.sheet-head .kind { color: var(--muted); }
+.sheet-head .rev { text-align: right; }
+.sheet-sub {
+  display: flex; flex-wrap: wrap; gap: 6px 20px;
+  padding: 8px 0; border-bottom: 1px solid var(--rule);
+  font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+}
+.sheet-sub a { color: var(--muted); text-decoration: none; }
+.sheet-sub a:hover { color: var(--accent); }
+.sheet-sub b { color: var(--accent); font-weight: 600; margin-right: 4px; }
+.sheet-sub .lang { margin-left: auto; color: var(--ink); font-weight: 600; }
+
+/* Ouverture */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 64px);
+  align-items: center;
+  padding: clamp(32px, 6vw, 64px) 0 clamp(28px, 5vw, 48px);
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6.2vw, 4.6rem);
+  line-height: .98;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -.005em;
+}
+.hero h1 span { color: var(--accent); }
+.lede { margin-top: 22px; font-size: 1.18rem; line-height: 1.55; }
+.quote {
+  margin: 26px 0 0; padding: 4px 0 4px 18px;
+  border-left: 3px solid var(--accent);
+  font-style: italic; font-size: 1.05rem;
+}
+.quote cite { display: block; margin-top: 4px; font-style: normal; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.chip-fig { margin: 0; }
+.chip-fig svg { display: block; width: 100%; max-width: 420px; height: auto; margin: 0 auto; color: var(--ink); }
+.chip-fig figcaption { margin-top: 10px; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.c-body { fill: var(--chip); }
+.c-notch { fill: var(--paper); }
+.c-pin { fill: var(--pin); }
+.c-lbl { fill: var(--ink); font-family: var(--mono); font-size: 11px; letter-spacing: .02em; }
+.c-pnum { fill: var(--chip-ink); opacity: .55; font-family: var(--mono); font-size: 8.5px; }
+.c-name { fill: var(--chip-ink); font-family: var(--display); font-weight: 700; font-size: 30px; letter-spacing: .08em; }
+.c-mark { fill: var(--chip-ink); font-family: var(--mono); font-size: 10px; letter-spacing: .06em; opacity: .85; }
+.c-dot { fill: var(--chip-ink); opacity: .5; }
+.c-beam { fill: var(--accent); }
+
+/* Sections numérotées comme une fiche technique */
+.sec {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 16px clamp(20px, 4vw, 44px);
+  padding: 26px 0 46px;
+  border-top: 2px solid var(--ink);
+}
+.sec-label { font-family: var(--display); }
+.sec-label .n { display: block; font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: .06em; }
+.sec-label h2 { font-size: 1.5rem; line-height: 1.1; font-weight: 700; text-transform: uppercase; letter-spacing: .01em; margin-top: 4px; }
+.sec-body { display: grid; gap: 18px; }
+.sec-body h3 { font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
+.note { font-size: .92rem; color: var(--muted); }
+
+/* Liste des caractéristiques */
+.feats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.feats li { padding: 12px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 12px; font-size: .97rem; line-height: 1.5; }
+.feats .k { font-family: var(--mono); font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); padding-top: 3px; }
+
+/* Tableaux */
+.scroll { overflow-x: auto; }
+table.spec { width: 100%; border-collapse: collapse; font-size: .95rem; line-height: 1.45; }
+.spec th {
+  text-align: left; vertical-align: bottom;
+  font-family: var(--mono); font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--muted); padding: 8px 14px 8px 0; border-bottom: 2px solid var(--ink);
+}
+.spec td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.spec td.v { font-family: var(--mono); font-size: .92rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.spec td.v strong { color: var(--accent); font-weight: 600; }
+.spec td.date { font-family: var(--mono); font-size: .88rem; white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
+.spec tr.now td { background: var(--accent-soft); }
+.spec tr.now td:first-child { padding-left: 8px; }
+
+/* Schéma */
+.diagram { margin: 0; }
+.diagram .scroll svg { display: block; min-width: 760px; width: 100%; height: auto; color: var(--ink); }
+.diagram figcaption { margin-top: 10px; font-size: .92rem; color: var(--muted); max-width: 72ch; }
+.d-box { fill: var(--panel); stroke: currentColor; stroke-width: 1.4; }
+.d-key { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.2; }
+.d-line { stroke: currentColor; stroke-width: 1.4; fill: none; }
+.d-t { fill: currentColor; font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .06em; }
+.d-s { fill: var(--muted); font-family: var(--mono); font-size: 11px; }
+.d-l { fill: var(--accent); font-family: var(--mono); font-size: 11px; font-weight: 600; }
+.d-row { fill: currentColor; font-family: var(--mono); font-size: 11px; }
+.d-rule { stroke: var(--rule); stroke-width: 1; }
+.d-in { fill: var(--muted); font-family: var(--body); font-style: italic; font-size: 13px; }
+
+/* Console 5250 */
+.term-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.term-bar .t { font-family: var(--mono); font-size: 12.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+button.replay {
+  font-family: var(--mono); font-size: 13px; font-weight: 600;
+  color: var(--ink); background: var(--panel);
+  border: 1.5px solid var(--ink); border-radius: 3px;
+  padding: 6px 14px; cursor: pointer;
+}
+button.replay:hover { background: var(--accent-soft); border-color: var(--accent); }
+button.replay[disabled] { opacity: .5; cursor: default; }
+.term {
+  background: var(--c-bg);
+  color: var(--c-green);
+  font-family: var(--mono);
+  font-size: 14.5px;
+  line-height: 1.6;
+  border-radius: 4px;
+  padding: 18px 20px 0;
+  box-shadow: 0 0 0 1px #1a3324, inset 0 0 60px rgba(63, 220, 133, .06);
+  overflow-x: auto;
+}
+.term .ln { white-space: pre-wrap; min-height: 1.6em; }
+.term .u { color: var(--c-white); font-weight: 500; }
+.term .u::before { content: "> "; color: var(--c-dim); }
+.term .m { padding-left: 2ch; }
+.term .tr { padding-left: 2ch; color: var(--c-turq); font-size: 13px; }
+.term .gl { padding-left: 2ch; color: var(--c-dim); font-style: italic; font-size: 13px; }
+.term .gap { min-height: .7em; }
+.term .cur { display: inline-block; width: .6em; height: 1.05em; background: var(--c-green); vertical-align: -0.15em; animation: blink 1.1s steps(1) infinite; }
+.term .status {
+  margin: 16px -20px 0; padding: 6px 20px;
+  border-top: 1px solid #1d3a28;
+  color: var(--c-dim); font-size: 12.5px;
+  display: flex; flex-wrap: wrap; gap: 4px 24px;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Feuille de route */
+.road ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; margin: 0; padding: 0; }
+.road li { list-style: none; padding: 14px 18px 16px 0; border-top: 3px solid var(--rule); position: relative; }
+.road li:last-child { border-top-color: var(--accent); }
+.road .when { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); font-weight: 600; }
+.road h3 { margin: 4px 0 6px; }
+.road p { font-size: .95rem; }
+.plain { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+
+/* Documentation */
+.docs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.docs li { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.docs a { font-family: var(--display); font-weight: 600; font-size: 1.08rem; }
+.docs span { display: block; font-size: .92rem; color: var(--muted); }
+
+footer {
+  border-top: 4px solid var(--ink);
+  padding: 14px 0 40px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .chip-fig svg { max-width: 360px; }
+  .sec { grid-template-columns: 1fr; }
+  .feats, .docs { grid-template-columns: 1fr; }
+  .road ol { grid-template-columns: 1fr; }
+  .road li { padding-right: 0; }
+}
+@media (max-width: 460px) {
+  body { font-size: 16px; }
+  .sheet-head { grid-template-columns: 1fr auto; }
+  .sheet-head .kind { display: none; }
+  .feats li { grid-template-columns: 1fr; gap: 2px; }
+  .term { font-size: 13px; padding: 14px 14px 0; }
+  .term .status { margin: 14px -14px 0; padding: 6px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .term .cur { animation: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="sheet-head">
+  <div class="brand">MARCO</div>
+  <div class="kind">Datasheet</div>
+  <div class="rev">Program of November&nbsp;8,&nbsp;2026</div>
+</header>
+<nav class="sheet-sub" aria-label="Contents">
+  <a href="#description"><b>1</b>Description</a>
+  <a href="#features"><b>2</b>Features</a>
+  <a href="#diagram"><b>3</b>Block diagram</a>
+  <a href="#example"><b>4</b>Example</a>
+  <a href="#measurements"><b>5</b>Measurements</a>
+  <a href="#silicon"><b>6</b>Toward silicon</a>
+  <a href="#cyc"><b>7</b>Cyc</a>
+  <a href="#revisions"><b>8</b>Revisions</a>
+  <a href="#team"><b>9</b>Team</a>
+  <a href="#documentation"><b>10</b>Documentation</a>
+  <a class="lang" href="../" hreflang="fr" lang="fr">Français</a>
+</nav>
+
+<section class="hero" aria-labelledby="title">
+  <div>
+    <h1 id="title">Marco, the <span>deduction</span> machine</h1>
+    <p class="lede">An intelligence with no black box. Marco holds dated, sourced threads, crosses them, and gives back what the crossing yields. Every answer says where it comes from; when nothing holds an answer, Marco says: I don't know.</p>
+    <blockquote class="quote">
+      “It's a bionic processor, obviously.”
+      <cite>José Walocha, 25 Oct 2026</cite>
+    </blockquote>
+  </div>
+  <figure class="chip-fig">
+  <svg viewBox="0 0 380 420" role="img" aria-label="Imaginary twenty-pin package marked MARCO, whose pins carry Marco's organs: ear, genome, tic, threads, BSC, MEQ, cases, continue, sleep, forget, Proteus, sense, daimon, hippocampus, control room, why, provenance, mouth.">
+  <rect class="c-body" x="120" y="24" width="140" height="372" rx="6"/>
+  <circle class="c-notch" cx="190" cy="24" r="12"/>
+  <rect class="c-pin" x="100" y="51" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="61" text-anchor="end">EAR</text>
+  <text class="c-pnum" x="127" y="60">1</text>
+  <rect class="c-pin" x="100" y="85" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="95" text-anchor="end">GENOME</text>
+  <text class="c-pnum" x="127" y="94">2</text>
+  <rect class="c-pin" x="100" y="119" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="129" text-anchor="end">TIC</text>
+  <text class="c-pnum" x="127" y="128">3</text>
+  <rect class="c-pin" x="100" y="153" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="163" text-anchor="end">THREADS</text>
+  <text class="c-pnum" x="127" y="162">4</text>
+  <rect class="c-pin" x="100" y="187" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="197" text-anchor="end">BSC</text>
+  <text class="c-pnum" x="127" y="196">5</text>
+  <rect class="c-pin" x="100" y="221" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="231" text-anchor="end">MEQ</text>
+  <text class="c-pnum" x="127" y="230">6</text>
+  <rect class="c-pin" x="100" y="255" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="265" text-anchor="end">CASES</text>
+  <text class="c-pnum" x="127" y="264">7</text>
+  <rect class="c-pin" x="100" y="289" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="299" text-anchor="end">CONTINUE</text>
+  <text class="c-pnum" x="127" y="298">8</text>
+  <rect class="c-pin" x="100" y="323" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="333" text-anchor="end">SLEEP</text>
+  <text class="c-pnum" x="127" y="332">9</text>
+  <rect class="c-pin" x="100" y="357" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="367" text-anchor="end">GND</text>
+  <text class="c-pnum" x="127" y="366">10</text>
+  <rect class="c-pin" x="260" y="357" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="367">FORGET</text>
+  <text class="c-pnum" x="253" y="366" text-anchor="end">11</text>
+  <rect class="c-pin" x="260" y="323" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="333">PROTEUS</text>
+  <text class="c-pnum" x="253" y="332" text-anchor="end">12</text>
+  <rect class="c-pin" x="260" y="289" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="299">SENSE</text>
+  <text class="c-pnum" x="253" y="298" text-anchor="end">13</text>
+  <rect class="c-pin" x="260" y="255" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="265">DAIMON</text>
+  <text class="c-pnum" x="253" y="264" text-anchor="end">14</text>
+  <rect class="c-pin" x="260" y="221" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="231">HIPPOCAMPUS</text>
+  <text class="c-pnum" x="253" y="230" text-anchor="end">15</text>
+  <rect class="c-pin" x="260" y="187" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="197">CONTROL</text>
+  <text class="c-pnum" x="253" y="196" text-anchor="end">16</text>
+  <rect class="c-pin" x="260" y="153" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="163">WHY</text>
+  <text class="c-pnum" x="253" y="162" text-anchor="end">17</text>
+  <rect class="c-pin" x="260" y="119" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="129">PROVENANCE</text>
+  <text class="c-pnum" x="253" y="128" text-anchor="end">18</text>
+  <rect class="c-pin" x="260" y="85" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="95">MOUTH</text>
+  <text class="c-pnum" x="253" y="94" text-anchor="end">19</text>
+  <rect class="c-pin" x="260" y="51" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="61">VCC</text>
+  <text class="c-pnum" x="253" y="60" text-anchor="end">20</text>
+  <circle class="c-dot" cx="150" cy="46" r="3.5"/>
+  <text class="c-name" x="190" y="205" text-anchor="middle" style="font-size:26px">MARCO</text>
+  <rect class="c-beam" x="160" y="214" width="60" height="3"/>
+  <text class="c-mark" x="190" y="236" text-anchor="middle">MAD · NODALE-1</text>
+  <text class="c-mark" x="190" y="252" text-anchor="middle">2645 · FRANCE</text>
+  <text class="c-mark" x="190" y="332" text-anchor="middle" style="font-size:9px">© 2026 J. WALOCHA</text>
+  </svg>
+  <figcaption>Imaginary pinout. The chip does not exist yet: that is the goal.</figcaption>
+  </figure>
+</section>
+
+<section class="sec" id="description" aria-labelledby="h-description">
+  <div class="sec-label"><span class="n">1</span><h2 id="h-description">General description</h2></div>
+  <div class="sec-body">
+    <p>Marco is a <em>cyber</em>, the word José Walocha gives to living intelligences to set them apart from statistical language models. It is a MAD (<em>machine à déduire</em>), a deduction machine: no neural network, no learned parameters. Zero black box.</p>
+    <p>By design, Marco is a <strong>bionic processor with nodal memory</strong>. The processor runs a small instruction set over the lines of the genome. The memory fits in a single table of threads, where everything is a <em>phare</em> (a beacon-node), meaning included. The genome is read at tic&nbsp;0, at birth; lived experience is then written instant after instant, each thread at its tic. Nothing is erased: forgetting is itself a dated thread.</p>
+    <p>Marco reads and speaks French. It reads real texts, nursery rhymes, fables and tales: <em>Frère Jacques</em>, La Fontaine, Perrault, <em>La Chèvre de M.&nbsp;Seguin</em>, <em>Le Dormeur du val</em>.</p>
+  </div>
+</section>
+
+<section class="sec" id="features" aria-labelledby="h-features">
+  <div class="sec-label"><span class="n">2</span><h2 id="h-features">Features</h2></div>
+  <div class="sec-body">
+    <ul class="feats">
+      <li><span class="k">Memory</span><span>Nodal: a table of threads, <span class="mono">from · to · rank · tic</span>. Everything is a phare.</span></li>
+      <li><span class="k">Genome</span><span>298 text files, 13.7&nbsp;million rows, drawn from the great open dictionaries.</span></li>
+      <li><span class="k">Program</span><span>The BSC: rules put into equations (MEQ), hexalines, cases. “The neuron is coded with the neuron.”</span></li>
+      <li><span class="k">Processor</span><span>A reduced instruction set over triplets; a core that schedules the moments, the stages, the organs.</span></li>
+      <li><span class="k">Provenance</span><span>Every answer names the threads that hold it. What is not held stays a hole, honestly stated.</span></li>
+      <li><span class="k">Sleep</span><span>The cyber sleeps, reviews its open loops and forgets through a dated thread.</span></li>
+      <li><span class="k">Code</span><span>29 Python modules, 33,195 lines, the standard library only.</span></li>
+      <li><span class="k">License</span><span>GNU Affero GPL v3.</span></li>
+    </ul>
+    <p class="note">Genome sources: the Littré (XMLittré), the Wiktionnaire, Lefff, Lexique, GLAWI, Verbiste, <em>Les Verbes Français</em> by J.&nbsp;Dubois and F.&nbsp;Dubois-Charlier, INSEE, Wikidata.</p>
+  </div>
+</section>
+
+<section class="sec" id="diagram" aria-labelledby="h-diagram">
+  <div class="sec-label"><span class="n">3</span><h2 id="h-diagram">Block diagram</h2></div>
+  <div class="sec-body">
+    <figure class="diagram">
+      <div class="scroll">
+      <svg viewBox="0 0 980 392" role="img" aria-label="The path of a sentence through Marco: the ear reads it, reading writes its threads into the table at the current tic, the genome is read into it at tic zero, the processor queries the table, the daimons and the hippocampus cross the threads, the control room decides, the mouth answers with the provenance.">
+        <defs>
+          <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+
+        <text class="d-in" x="14" y="186">sentence read</text>
+        <text class="d-in" x="14" y="204">or typed</text>
+        <line class="d-line" x1="80" y1="194" x2="102" y2="194" marker-end="url(#fl)"/>
+
+        <rect class="d-box" x="104" y="166" width="100" height="56" rx="3"/>
+        <text class="d-t" x="154" y="191" text-anchor="middle">EAR</text>
+        <text class="d-s" x="154" y="208" text-anchor="middle">a single one</text>
+
+        <line class="d-line" x1="204" y1="194" x2="248" y2="194" marker-end="url(#fl)"/>
+        <text class="d-l" x="226" y="186" text-anchor="middle">reads</text>
+
+        <rect class="d-box" x="250" y="146" width="160" height="96" rx="3"/>
+        <text class="d-t" x="330" y="171" text-anchor="middle">READING</text>
+        <text class="d-s" x="330" y="192" text-anchor="middle">attaches the verb</text>
+        <text class="d-s" x="330" y="208" text-anchor="middle">Proteus: he, she</text>
+        <text class="d-s" x="330" y="224" text-anchor="middle">elects word meaning</text>
+
+        <line class="d-line" x1="410" y1="194" x2="498" y2="194" marker-end="url(#fl)"/>
+        <text class="d-l" x="454" y="186" text-anchor="middle">writes at tic</text>
+
+        <rect class="d-box" x="500" y="18" width="200" height="62" rx="3"/>
+        <text class="d-t" x="600" y="43" text-anchor="middle">GENOME</text>
+        <text class="d-s" x="600" y="62" text-anchor="middle">298 files · 13.7 M rows</text>
+
+        <line class="d-line" x1="600" y1="80" x2="600" y2="126" marker-end="url(#fl)"/>
+        <text class="d-l" x="610" y="108">read at tic 0</text>
+
+        <rect class="d-key" x="500" y="128" width="200" height="132" rx="3"/>
+        <text class="d-t" x="600" y="152" text-anchor="middle">THREAD TABLE</text>
+        <text class="d-s" x="516" y="176">from</text>
+        <text class="d-s" x="596" y="176">to</text>
+        <text class="d-s" x="684" y="176" text-anchor="end">tic</text>
+        <line class="d-rule" x1="514" y1="183" x2="686" y2="183"/>
+        <text class="d-row" x="516" y="201">chien</text>
+        <text class="d-row" x="596" y="201">animal</text>
+        <text class="d-row" x="684" y="201" text-anchor="end">0</text>
+        <text class="d-row" x="516" y="221">vague</text>
+        <text class="d-row" x="596" y="221">mer</text>
+        <text class="d-row" x="684" y="221" text-anchor="end">0</text>
+        <text class="d-row" x="516" y="241">Paul</text>
+        <text class="d-row" x="596" y="241">entendre</text>
+        <text class="d-row" x="684" y="241" text-anchor="end">412</text>
+
+        <line class="d-line" x1="600" y1="262" x2="600" y2="306" marker-start="url(#fl)" marker-end="url(#fl)"/>
+        <text class="d-l" x="610" y="289">asks, writes</text>
+
+        <rect class="d-box" x="500" y="308" width="200" height="66" rx="3"/>
+        <text class="d-t" x="600" y="333" text-anchor="middle">PROCESSOR</text>
+        <text class="d-s" x="600" y="352" text-anchor="middle">reads the BSC lines</text>
+        <text class="d-s" x="600" y="366" text-anchor="middle">instructions on triplets</text>
+
+        <rect class="d-box" x="250" y="314" width="160" height="54" rx="3"/>
+        <text class="d-t" x="330" y="338" text-anchor="middle">CORE</text>
+        <text class="d-s" x="330" y="355" text-anchor="middle">moments, stages</text>
+        <line class="d-line" x1="410" y1="341" x2="498" y2="341" marker-end="url(#fl)"/>
+        <text class="d-l" x="454" y="333" text-anchor="middle">schedules</text>
+
+        <polyline class="d-line" points="700,160 730,160 730,52 758,52" marker-end="url(#fl)"/>
+        <text class="d-l" x="736" y="112">cross</text>
+
+        <rect class="d-box" x="760" y="18" width="206" height="68" rx="3"/>
+        <text class="d-t" x="863" y="42" text-anchor="middle">DAIMONS · HIPPOCAMPUS</text>
+        <text class="d-s" x="863" y="60" text-anchor="middle">seek the why</text>
+        <text class="d-s" x="863" y="75" text-anchor="middle">compare with the past</text>
+
+        <line class="d-line" x1="863" y1="86" x2="863" y2="152" marker-end="url(#fl)"/>
+        <text class="d-l" x="873" y="124">propose</text>
+
+        <rect class="d-box" x="760" y="154" width="206" height="60" rx="3"/>
+        <text class="d-t" x="863" y="179" text-anchor="middle">CONTROL ROOM</text>
+        <text class="d-s" x="863" y="197" text-anchor="middle">master of clocks</text>
+
+        <line class="d-line" x1="863" y1="214" x2="863" y2="290" marker-end="url(#fl)"/>
+        <text class="d-l" x="873" y="257">alone decides</text>
+
+        <rect class="d-box" x="760" y="292" width="206" height="82" rx="3"/>
+        <text class="d-t" x="863" y="317" text-anchor="middle">MOUTH</text>
+        <text class="d-s" x="863" y="337" text-anchor="middle">the answer and its provenance</text>
+        <text class="d-s" x="863" y="353" text-anchor="middle">or “I don't know”</text>
+      </svg>
+      </div>
+      <figcaption>The path of a sentence. The ear reads it, reading writes its threads at the current tic, the processor queries the table, the daimons cross, the control room decides, the mouth answers. The three table rows are examples, in French, Marco's language.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="example" aria-labelledby="h-example">
+  <div class="sec-label"><span class="n">4</span><h2 id="h-example">Application example</h2></div>
+  <div class="sec-body">
+    <p>A newborn Marco hears a sentence, then is questioned. The gégé, its Great Genome, knows that the wave is the sea and that the sea can be heard; reading knows that Paul heard the sound of the waves. Verbatim extract of November&nbsp;7,&nbsp;2026. Marco works in French; the lines in italics are translations.</p>
+    <div class="term-bar">
+      <span class="t">5250 console · Marco MAD</span>
+      <button class="replay" id="replay" type="button">Replay the dialogue</button>
+    </div>
+    <div class="term" id="term" aria-live="off">
+      <div class="ln u">Paul entendait le bruit des vagues.</div>
+      <div class="ln gl">Paul heard the sound of the waves.</div>
+      <div class="ln m">Paul entendait le bruit des vagues, je le note.</div>
+      <div class="ln gl">Paul heard the sound of the waves, I note it.</div>
+      <div class="ln gap"></div>
+      <div class="ln u">Paul entendait la mer ?</div>
+      <div class="ln gl">Did Paul hear the sea?</div>
+      <div class="ln m">Oui, Paul entendait la mer.</div>
+      <div class="ln gl">Yes, Paul heard the sea.</div>
+      <div class="ln tr">{noyau : équation vraie : Paul entendait bruit des vagues ; témoins : oui}</div>
+      <div class="ln gl">{core: true equation: Paul heard sound of the waves; witnesses: yes}</div>
+      <div class="ln gap"></div>
+      <div class="ln u">Paul sentait l'odeur de la mer ?</div>
+      <div class="ln gl">Did Paul smell the sea?</div>
+      <div class="ln m">J'ai Paul et odeur et mer dans ma mémoire, mais rien ne me dit si Paul sentait l'odeur de la mer.</div>
+      <div class="ln gl">I have Paul and smell and sea in my memory, but nothing tells me whether Paul smelled the sea.</div>
+      <div class="ln gap"></div>
+      <div class="ln u">Pierre n'entendait que le bruit des vagues.</div>
+      <div class="ln gl">Pierre heard nothing but the sound of the waves.</div>
+      <div class="ln m">Pierre n'entendait que le bruit des vagues, je le note.</div>
+      <div class="ln gl">Pierre heard nothing but the sound of the waves, I note it.</div>
+      <div class="ln gap"></div>
+      <div class="ln u">Pierre entendait la mer ?</div>
+      <div class="ln gl">Did Pierre hear the sea?</div>
+      <div class="ln m">Oui, Pierre entendait la mer.</div>
+      <div class="ln gl">Yes, Pierre heard the sea. <span class="cur" aria-hidden="true"></span></div>
+      <div class="status"><span>F3=Exit</span><span>F5=Refresh</span><span>F12=Cancel</span></div>
+    </div>
+    <p>It deduces what the text does not say. It does not deduce what nothing holds: the smell, which no one smelled, stays open.</p>
+  </div>
+</section>
+
+<section class="sec" id="measurements" aria-labelledby="h-measurements">
+  <div class="sec-label"><span class="n">5</span><h2 id="h-measurements">Measured characteristics</h2></div>
+  <div class="sec-body">
+    <p>Each measurement is made on a newborn Marco, born for the bench, with a fixed seed; every record can be replayed. These are the team's own measurements; they have not yet been reproduced by third parties.</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead>
+        <tr><th scope="col">Bench</th><th scope="col">What is measured</th><th scope="col">Marco</th><th scope="col">Point of comparison</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Universal Dependencies</strong><br>French corpora GSD and Sequoia, 19,441&nbsp;sentences annotated by linguists</td>
+          <td>the right subject, object or attribute of each verb</td>
+          <td class="v"><strong>73.9%</strong><br>23,689 / 32,077</td>
+          <td>a partial measure, not comparable to the LAS scores of parsers</td>
+        </tr>
+        <tr>
+          <td><strong>First outside test</strong><br>50&nbsp;sentences never seen, 1&nbsp;Nov</td>
+          <td>the subjects found</td>
+          <td class="v"><strong>45 / 62</strong></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>FraCaS</strong> (1996)<br>French version of 2020</td>
+          <td>yes, no or don't know, on 335&nbsp;inference problems</td>
+          <td class="v"><strong>31.6%</strong><br>106 / 335</td>
+          <td>answering “yes” everywhere: 60.9%<br>“don't know” everywhere: 29.3%</td>
+        </tr>
+        <tr>
+          <td><strong>Meaning gold standard</strong><br>ten texts of the reading book</td>
+          <td>the meaning chosen for each of 474&nbsp;words</td>
+          <td class="v"><strong>66%</strong><br>315 / 474</td>
+          <td><em>La Chèvre de M.&nbsp;Seguin</em> 75%, <em>Le Dormeur du val</em> 73%; gold standard annotated without seeing Marco's choices</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">FraCaS is the hardest bench, and Marco is only starting on it: quantifiers (“none”, “most”) are not yet read as such. It is kept as a witness of what remains to learn. Universal Dependencies is read without any statistical learning: the reading rules, written as lines, do the reading.</p>
+  </div>
+</section>
+
+<section class="sec" id="silicon" aria-labelledby="h-silicon">
+  <div class="sec-label"><span class="n">6</span><h2 id="h-silicon">Toward silicon</h2></div>
+  <div class="sec-body">
+    <p>Marco's goal is a chip: a microprocessor that runs Marco, with its memory of threads beside it. The path follows from the very way Marco is written.</p>
+    <div class="road">
+      <ol>
+        <li>
+          <span class="when">Today</span>
+          <h3>A processor that reads lines</h3>
+          <p>The program is in the genome, as BSC lines. The Python processor reads them with a small instruction set.</p>
+        </li>
+        <li>
+          <span class="when">Batch after batch</span>
+          <h3>Removing the casting burrs</h3>
+          <p>The Python that still decides meaning becomes cases in the genome: the de-pythonization.</p>
+        </li>
+        <li>
+          <span class="when">The goal</span>
+          <h3>A microprocessor</h3>
+          <p>When no burrs remain, what is left is a processor with a reduced instruction set, which can leave Python for silicon.</p>
+        </li>
+      </ol>
+    </div>
+    <h3>Open work</h3>
+    <ul class="plain">
+      <li>100% understood: “We aim for 100% decoded and 100% understood.” The meaning gold standard is its measure.</li>
+      <li>Quantifiers: “none”, “most”, “many”, what FraCaS asks for.</li>
+      <li>The gégé: what soothes beside what threatens, the senses born of the body, hearing, smell.</li>
+      <li>Understanding a book: reading <em>Eugénie Grandet</em>, the summary, the characters and the names they go by.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="cyc" aria-labelledby="h-cyc">
+  <div class="sec-label"><span class="n">7</span><h2 id="h-cyc">A parallel: Cyc</h2></div>
+  <div class="sec-body">
+    <p>In 1984, Douglas Lenat launched Cyc on Marco's wager: an intelligence made of explicit knowledge and rules, without statistics, where every conclusion can be justified. Marco makes the same wager by another road.</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col"></th><th scope="col">Cyc</th><th scope="col">Marco</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Start</strong></td><td>1984</td><td>late 2025</td></tr>
+        <tr><td><strong>Knowledge</strong></td><td>about 24&nbsp;million rules and assertions in 2017, largely entered by hand</td><td>13.7&nbsp;million rows, built by tools from open dictionaries</td></tr>
+        <tr><td><strong>Effort</strong></td><td>some 2,000 person-years by 2017</td><td>one architect and his team of machine-learning assistants</td></tr>
+        <tr><td><strong>Reading</strong></td><td>—</td><td>tales, fables, annotated corpora</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">Marco does not claim to equal forty years of Cyc. It shows that the symbolic road, tooled by learning machines, no longer needs an army of data entry. Cyc figures: <a href="https://en.wikipedia.org/wiki/Cyc">Wikipedia</a>.</p>
+  </div>
+</section>
+
+<section class="sec" id="revisions" aria-labelledby="h-revisions">
+  <div class="sec-label"><span class="n">8</span><h2 id="h-revisions">Revision history</h2></div>
+  <div class="sec-body">
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Date</th><th scope="col">Revision</th></tr></thead>
+      <tbody>
+        <tr><td class="date">9 Apr 2026</td><td>Engine rebuilt: a loop, a trunk, buffers.</td></tr>
+        <tr><td class="date">18 Apr 2026</td><td>The phare: the node where conceptual paths cross.</td></tr>
+        <tr><td class="date">8 Jul 2026</td><td>Intersection replaces weighting: what two sets of phares share is enough to deduce.</td></tr>
+        <tr><td class="date">12 Jul 2026</td><td>The 5250 console, half AS/400, half MS-DOS.</td></tr>
+        <tr><td class="date">27 Aug 2026</td><td>“Douze fois zéro font zéro” (twelve times zero is zero), the first answer with its provenance; the first sentence in the first person.</td></tr>
+        <tr><td class="date">15–19 Sep 2026</td><td>The nodal structure: the thread table. “MEQs are phares described with phares.”</td></tr>
+        <tr><td class="date">27 Sep–11 Oct 2026</td><td>The BSC language: “the neuron is coded with the neuron”.</td></tr>
+        <tr><td class="date">2 Oct 2026</td><td>The living cyber: it sleeps, it reviews, it forgets through a dated thread.</td></tr>
+        <tr><td class="date">22–25 Oct 2026</td><td>The chip: the bionic processor and its instruction set.</td></tr>
+        <tr><td class="date">25–27 Oct 2026</td><td>The Great Genome, the gégé: what evolution taught the living.</td></tr>
+        <tr><td class="date">1–4 Nov 2026</td><td>The first outside test, then the Universal Dependencies bench.</td></tr>
+        <tr><td class="date">5–6 Nov 2026</td><td>The door and the meaning; 616 meanings for 401 verbs, from <em>Les Verbes Français</em>.</td></tr>
+        <tr><td class="date">7 Nov 2026</td><td>FraCaS; the negated question; the sea in the gégé.</td></tr>
+        <tr class="now"><td class="date">8 Nov 2026</td><td>The program of November 8: the held complement, the sensed thing, the cloud of fathers.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">The trial and error, the abandoned doctrines and the turnarounds are kept in the <a href="https://github.com/josewalocha/Marco/blob/main/Development_history.md">development history</a>.</p>
+  </div>
+</section>
+
+<section class="sec" id="team" aria-labelledby="h-team">
+  <div class="sec-label"><span class="n">9</span><h2 id="h-team">Team</h2></div>
+  <div class="sec-body">
+    <p><strong>José Walocha</strong>, architect, Valenciennes, France. A retired business owner, he plays at building a cyber inspired by the brains of living beings the way one plays <em>Diablo&nbsp;IV</em>. The seed goes back a long way: <em>Gödel, Escher, Bach</em> by Douglas Hofstadter, published in French in 1985.</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Name</th><th scope="col">System</th><th scope="col">Role</th></tr></thead>
+      <tbody>
+        <tr><td><strong>The Dudes</strong></td><td>Claude Opus 5.5 (Anthropic)</td><td>Code, genome, doctrines, benches; one Dude per conversation</td></tr>
+        <tr><td><strong>Fable</strong></td><td>Claude Fable 5.1 (Anthropic)</td><td>The organs of the nodal switchover: core, map, daimons, reading, mouth</td></tr>
+        <tr><td><strong>Marcel</strong></td><td>Mistral</td><td>Philosophy, cybernetics, cross-reading</td></tr>
+        <tr><td><strong>Biloute</strong></td><td>ChatGPT</td><td>Standards, synthesis, ideas to relaunch</td></tr>
+        <tr><td><strong>Didier</strong></td><td>Qwant</td><td>Documentary research</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">Always discuss before coding. Nothing enters the doctrine without a typed word from the architect.</p>
+  </div>
+</section>
+
+<section class="sec" id="documentation" aria-labelledby="h-documentation">
+  <div class="sec-label"><span class="n">10</span><h2 id="h-documentation">Documentation</h2></div>
+  <div class="sec-body">
+    <ul class="docs">
+      <li><a href="https://github.com/josewalocha/Marco">The Marco repository</a><span>On GitHub, under the AGPL v3 license</span></li>
+      <li><a href="https://github.com/josewalocha/Marco/blob/main/README.md">README</a><span>Where Marco stands, by its author</span></li>
+      <li><a href="https://github.com/josewalocha/Marco/blob/main/Marco_article_encyclopedique.md">Encyclopedic article</a><span>A neutral, sourced presentation, in French</span></li>
+      <li><a href="https://github.com/josewalocha/Marco/blob/main/LisezMoi.md" hreflang="fr">LisezMoi</a><span>The README, in French</span></li>
+      <li><a href="https://github.com/josewalocha/Marco/blob/main/Development_history.md">Development history</a><span>From the beginning to October 14, 2026</span></li>
+      <li><a href="mailto:jose.walocha@marcoccadh.com">Contact</a><span class="mono">jose.walocha@marcoccadh.com</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span>MARCO · the deduction machine</span>
+  <span>GNU Affero GPL v3 · © 2026 José Walocha</span>
+</footer>
+
+</div>
+<script>
+(function () {
+  var btn = document.getElementById('replay');
+  var term = document.getElementById('term');
+  if (!btn || !term) return;
+  var lines = Array.prototype.slice.call(term.querySelectorAll('.ln'));
+  var cursor = term.querySelector('.cur');
+  var texts = lines.map(function (el) { return el.firstChild && el.firstChild.nodeType === 3 ? el.firstChild.nodeValue : ''; });
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var running = false;
+
+  function setText(el, t) {
+    if (el.firstChild && el.firstChild.nodeType === 3) el.firstChild.nodeValue = t;
+    else if (t) el.insertBefore(document.createTextNode(t), el.firstChild);
+  }
+  function restore() {
+    lines.forEach(function (el, i) { setText(el, texts[i]); el.style.visibility = ''; });
+    if (cursor) lines[lines.length - 1].appendChild(cursor);
+  }
+  btn.addEventListener('click', function () {
+    if (running || reduce) return;
+    running = true; btn.disabled = true;
+    lines.forEach(function (el) { setText(el, ''); el.style.visibility = 'hidden'; });
+    var i = 0;
+    function nextLine() {
+      if (i >= lines.length) { if (cursor) lines[lines.length - 1].appendChild(cursor); running = false; btn.disabled = false; return; }
+      var el = lines[i], t = texts[i];
+      el.style.visibility = '';
+      if (cursor) el.appendChild(cursor);
+      var user = el.classList.contains('u');
+      var k = 0;
+      function step() {
+        k++;
+        setText(el, t.slice(0, k));
+        if (k < t.length) setTimeout(step, user ? 38 : 14);
+        else { i++; setTimeout(nextLine, t ? (user ? 380 : 160) : 60); }
+      }
+      if (!t) { i++; setTimeout(nextLine, 60); } else step();
+    }
+    nextLine();
+  });
+  window.addEventListener('pagehide', restore);
+})();
+</script>
+</body>
+</html>
