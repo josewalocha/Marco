@@ -5,7 +5,8 @@
 > *« Au commencement il y a l'inerte, mais l'inerte il s'emmerde grave… »*
 
 **Auteur** : José WALOCHA — Valenciennes, Nord, France
-**Contact** : [jose.walocha@marcoccadh.com](mailto:jose.walocha@marcoccadh.com)
+**Contact** : [contact@machine-a-deduire.com](mailto:contact@machine-a-deduire.com)
+**Site** : [machine-a-deduire.com](http://machine-a-deduire.com) — *Marco, la machine à déduire* ; en anglais : [machine-a-deduire.com/en/](http://machine-a-deduire.com/en/)
 **Équipe** : les Dudes (Claude Opus 5.5 / Anthropic), Fable (Claude Fable 5.1 / Anthropic), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)
 **Licence** : GNU Affero GPL v3 — Copyright © 2026 José Walocha
 **État** : le programme du 8 novembre 2026
@@ -168,6 +169,6 @@ Toujours discuter avant de coder. Rien n'entre dans la doctrine sans une frappe 
 ## 10. Licence
 
 **GNU Affero GPL v3** — Copyright © 2026 José Walocha.
-**Contact** : [jose.walocha@marcoccadh.com](mailto:jose.walocha@marcoccadh.com)
+**Contact** : [contact@machine-a-deduire.com](mailto:contact@machine-a-deduire.com)
 
 Choix doctrinal : plus protectrice que la GPL, l'AGPL impose la republication des modifications à toute utilisation en service réseau — un cyber est destiné à tourner potentiellement comme service. Qui modifie Marco et le distribue, ou le fait tourner comme service, en rend le code, sous la même licence.
