@@ -1,0 +1,4 @@
+# Le http renvoie vers le https, pour les deux noms (machine-a-deduire.com, marcoccadh.com), avec ou sans www
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
