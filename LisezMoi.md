@@ -13,6 +13,8 @@
 > Cette page dit où en est Marco. Les tâtonnements des débuts, les doctrines successives et les revirements sont dans l'[historique du développement à ce jour](Historique_du_developpement.md). Les citations en italique sont des frappes de José, à leur date.
 >
 > *English version: [README.md](README.md).*
+>
+> Un article de présentation neutre, rédigé selon les règles d'une encyclopédie : [Marco_article_encyclopedique.md](Marco_article_encyclopedique.md).
 
 ---
 

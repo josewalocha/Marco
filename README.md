@@ -13,6 +13,8 @@
 > This page says where Marco stands. The early trial and error, the successive doctrines and the turnarounds are in the [development history to date](Development_history.md). Quotations in italics are José's own typed words ("frappes"), with their dates.
 >
 > *Version française : [LisezMoi.md](LisezMoi.md).*
+>
+> A neutral, encyclopedia-style article on Marco (in French): [Marco_article_encyclopedique.md](Marco_article_encyclopedique.md).
 
 ---
 
