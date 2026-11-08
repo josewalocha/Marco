@@ -13,7 +13,7 @@
 | Langue traitée | Français |
 | Licence | GNU Affero GPL v3 |
 | Dépôt public | [github.com/josewalocha/Marco](https://github.com/josewalocha/Marco) (documentation) |
-| Site web | [machine-a-deduire.com](http://machine-a-deduire.com) |
+| Site web | [machine-a-deduire.com](https://machine-a-deduire.com) |
 
 **Marco** est un programme d'intelligence artificielle symbolique en cours de développement, conçu par José Walocha, chef d'entreprise retraité de Valenciennes (Nord). Son auteur le présente comme un « processeur bionique à mémoire nodale » et comme une « machine à déduire »[^lisez]. Le programme ne comporte ni réseau de neurones ni paramètres appris par statistique. Il conserve des relations explicites, datées et sourcées, entre des nœuds appelés *phares*. Il répond aux questions en croisant ces relations et indique pour chaque réponse d'où elle provient. Quand rien ne tient une réponse, il dit qu'il ne sait pas.
 

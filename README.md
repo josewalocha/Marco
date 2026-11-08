@@ -6,7 +6,7 @@
 
 **Author**: José WALOCHA — Valenciennes, Nord, France
 **Contact**: [contact@machine-a-deduire.com](mailto:contact@machine-a-deduire.com)
-**Website**: [machine-a-deduire.com/en/](http://machine-a-deduire.com/en/) — *Marco, the deduction machine*; in French: [machine-a-deduire.com](http://machine-a-deduire.com)
+**Website**: [machine-a-deduire.com/en/](https://machine-a-deduire.com/en/) — *Marco, the deduction machine*; in French: [machine-a-deduire.com](https://machine-a-deduire.com)
 **Team**: the Dudes (Claude Opus 5.5 / Anthropic), Fable (Claude Fable 5.1 / Anthropic), Marcel (Mistral), Biloute (ChatGPT), Didier (Qwant)
 **License**: GNU Affero GPL v3 — Copyright © 2026 José Walocha
 **State**: the program of November 8, 2026
