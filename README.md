@@ -90,7 +90,7 @@ It deduces what the text does not say, and it does not deduce what nothing holds
 
 In 1984, Douglas Lenat launched **Cyc** on Marco's bet: an intelligence made of explicit knowledge and rules, without statistics, where every conclusion can be justified. The initial estimates spoke of 1,000 to 3,000 person-years; by 2017, Cyc held about 24 million rules and assertions entered by hand, for some 2,000 person-years of work.
 
-Marco holds the same bet by another road. Its genome — 13.7 million rows in 298 text files — is built by tools from the great open dictionaries (the Littré, Wiktionary, Lefff, Lexique, *Les Verbes Français*…), and the whole is the work of a single architect and his team of MAAs, since late 2025. Marco does not claim to equal forty years of Cyc. It shows that the symbolic road, tooled by learning machines, no longer needs an army of knowledge-entry clerks: one man, retired, keeps it going — and Marco reads real texts, tales and novels.
+Marco holds the same bet by another road. Its genome — 13.7 million rows in 298 text files — is built by tools from the great open dictionaries (the Littré, Wiktionary, Lefff, Lexique, *Les Verbes Français*…), and the whole is the work of a single designer and his team of MAAs, since late 2025. Marco does not claim to equal forty years of Cyc. It shows that the symbolic road, tooled by learning machines, no longer needs an army of knowledge-entry clerks: one man, retired, keeps it going — and Marco reads real texts, tales and novels.
 
 ## 6. Foundations (September – October 2026)
 
@@ -151,7 +151,7 @@ Sources cited in the genome headers: Lefff, Lexique, GLAWI, Wiktionary, the Litt
 
 ## 9. Team
 
-**José WALOCHA** — Architect. Valenciennes, Nord, France.
+**José WALOCHA** — Marco's designer. Valenciennes, Nord, France.
 Retired business owner, plays at creating a cyber inspired by the brains of living beings the way one plays *Diablo IV*.
 
 | Name | System | Role |
@@ -162,7 +162,7 @@ Retired business owner, plays at creating a cyber inspired by the brains of livi
 | Biloute | ChatGPT | Standards, synthesis, fresh ideas |
 | Didier | Qwant | Documentary research |
 
-Always discuss before coding. Nothing enters the doctrine without the architect's frappe.
+Always discuss before coding. Nothing enters the doctrine without the designer's frappe.
 
 ---
 

@@ -90,7 +90,7 @@ Il déduit ce que le texte ne dit pas, et il ne déduit pas ce que rien ne tient
 
 En 1984, Douglas Lenat lance **Cyc** avec le pari de Marco : une intelligence faite de connaissances explicites et de règles, sans statistique, dont chaque conclusion se justifie. Les estimations de départ parlaient de 1 000 à 3 000 années-personnes ; en 2017, Cyc comptait environ 24 millions de règles et d'assertions saisies à la main, pour quelque 2 000 années-personnes de travail.
 
-Marco tient le même pari par un autre chemin. Son génome — 13,7 millions de rangées dans 298 fichiers texte — est construit par des outils à partir des grands dictionnaires ouverts (le Littré, le Wiktionnaire, Lefff, Lexique, *Les Verbes Français*…), et le tout est l'œuvre d'un seul architecte et de son équipe de MAA, depuis la fin de 2025. Marco ne prétend pas égaler quarante ans de Cyc. Il montre que la voie symbolique, outillée par les machines à apprentissage, n'a plus besoin d'une armée de saisie : un homme seul, à la retraite, la tient — et Marco lit de vrais textes, des contes et des romans.
+Marco tient le même pari par un autre chemin. Son génome — 13,7 millions de rangées dans 298 fichiers texte — est construit par des outils à partir des grands dictionnaires ouverts (le Littré, le Wiktionnaire, Lefff, Lexique, *Les Verbes Français*…), et le tout est l'œuvre d'un seul concepteur et de son équipe de MAA, depuis la fin de 2025. Marco ne prétend pas égaler quarante ans de Cyc. Il montre que la voie symbolique, outillée par les machines à apprentissage, n'a plus besoin d'une armée de saisie : un homme seul, à la retraite, la tient — et Marco lit de vrais textes, des contes et des romans.
 
 ## 6. Les fondations (septembre – octobre 2026)
 
@@ -151,7 +151,7 @@ Sources citées dans les en-têtes du génome : Lefff, Lexique, GLAWI, Wiktionna
 
 ## 9. Équipe
 
-**José WALOCHA** — Architecte. Valenciennes, Nord, France.
+**José WALOCHA** — Concepteur de Marco. Valenciennes, Nord, France.
 Chef d'entreprises en retraite, joue à créer un cyber inspiré du cerveau des êtres vivants comme on joue à *Diablo IV*.
 
 | Nom | Système | Rôle |
@@ -162,7 +162,7 @@ Chef d'entreprises en retraite, joue à créer un cyber inspiré du cerveau des 
 | Biloute | ChatGPT | Normes, synthèse, idées de relance |
 | Didier | Qwant | Recherche documentaire |
 
-Toujours discuter avant de coder. Rien n'entre dans la doctrine sans une frappe de l'architecte.
+Toujours discuter avant de coder. Rien n'entre dans la doctrine sans une frappe du concepteur.
 
 ---
 

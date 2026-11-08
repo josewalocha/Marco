@@ -96,7 +96,7 @@ Exemple de dialogue publié par le projet[^lisez] :
 
 ## Méthode de développement
 
-Le projet est mené par un architecte seul, José Walocha. Le code, le génome et les bancs sont écrits par des instances de Claude (Anthropic). Mistral, ChatGPT et Qwant servent à la relecture, à la synthèse et à la recherche documentaire[^lisez]. Chaque décision d'architecture est consignée dans une « doctrine » datée ; aucune n'y entre sans une phrase de l'architecte[^lisez]. L'historique du projet garde les doctrines abandonnées, pour éviter de les réinventer[^hist]. Les mesures sont faites sur des cerveaux neufs, nés pour le banc, avec une graine aléatoire fixe[^lisez].
+Le projet est mené par un concepteur seul, José Walocha. Le code, le génome et les bancs sont écrits par des instances de Claude (Anthropic). Mistral, ChatGPT et Qwant servent à la relecture, à la synthèse et à la recherche documentaire[^lisez]. Chaque décision d'architecture est consignée dans une « doctrine » datée ; aucune n'y entre sans une phrase du concepteur[^lisez]. L'historique du projet garde les doctrines abandonnées, pour éviter de les réinventer[^hist]. Les mesures sont faites sur des cerveaux neufs, nés pour le banc, avec une graine aléatoire fixe[^lisez].
 
 ---
 
