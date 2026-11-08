@@ -25,7 +25,7 @@ Marco est un **cyber** — le mot que José donne aux intelligences vivantes, po
 
 ### Un processeur bionique à mémoire nodale
 
-- **La mémoire est nodale.** Tout le cerveau tient dans une seule table de fils — de, vers, rang, tic — où tout est phare, le sens compris. Le génome est l'ADN, lu au tic 0, à la naissance ; le vécu s'écrit ensuite, instant après instant, chaque fil à son tic. Rien n'est effacé : l'oubli est lui-même un fil daté.
+- **La mémoire est nodale.** Tout le cerveau tient dans une seule table de fils — de, vers, rang, tic — où tout est phare, le sens compris. Le génome est l'ADN, lu au tic 0, à la naissance ; le vécu s'écrit ensuite, instant après instant, chaque fil a son tic. Rien n'est effacé : l'oubli est lui-même un fil daté.
 - **Le processeur est bionique.** La puce (`processeur.py`) exécute un petit jeu d'instructions sur des triplets ; le noyau (`noyau.py`) en est le système d'exploitation : les moments, les étages joués, la cascade, les organes. Le programme, lui, n'est pas du Python : ce sont des lignes du génome, le **BSC** — des règles mises en équation (MEQ), des hexalignes et des cas. *« Le neurone se code avec le neurone. »* (04/10)
 
 *« Il faut un seul processeur, organisateur, ordonnanceur, ordinateur, joueur, mélangeur, fileur, filière, pour pouvoir assembler de manière cohérente les séquences produites par les boucles. »* — *« C'est processeur bionique, évidemment. »* (25/10)
