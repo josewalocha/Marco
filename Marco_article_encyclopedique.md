@@ -6,7 +6,7 @@
 |---|---|
 | Auteur | José Walocha |
 | Début du développement | avant 2026 |
-| Dernière version | programme du 8 novembre 2026 |
+| Dernière version | programme du 13 novembre 2026 |
 | État | en développement |
 | Écrit en | Python (bibliothèque standard) ; langage BSC pour les règles |
 | Type | Intelligence artificielle symbolique, système de déduction |
@@ -57,6 +57,10 @@ Le 2 octobre 2026, le programme acquiert un cycle de veille et de sommeil. Penda
 
 Fin octobre 2026, un « grand génome » rassemble des connaissances tenues pour innées : les animaux qui menacent, les effets sur le vivant, la boucle « tant que vie, vit »[^lisez]. En novembre 2026, le projet confronte Marco à des corpus de référence : un premier test sur des phrases inconnues (1er novembre), le banc Universal Dependencies (mesure du 4 novembre), FraCaS (7 novembre)[^lisez]. Le 6 novembre, les sens des verbes sont tirés du dictionnaire *Les Verbes français* de Jean Dubois et Françoise Dubois-Charlier[^lvf] : 616 sens pour 401 verbes[^lisez].
 
+### La logique en règles (novembre 2026)
+
+Du 10 au 13 novembre 2026, le travail porte sur le banc FraCaS. La logique de déduction, jusque-là écrite en Python dans un module (`electrique.py`), passe dans des « étages » de règles écrites dans le génome[^conv]. Les étages traitent successivement les quantificateurs et les ensembles (« tous », « quelques », « la plupart », « au plus »), la comparaison, que l'auteur résume par « voir, c'est comparer » (placer deux choses sur une même ligne), puis les adjectifs (qualifier ou comparer dans une référence)[^etages][^voir][^adj]. Le 12 novembre, l'auteur décide que le module de logique ne peut plus être modifié que sur son ordre exprès, et seulement pour en retirer du code[^conv]. Entre le 7 et le 12 novembre, le score au banc FraCaS passe de 106 à 166 problèmes résolus sur 335[^fracasdoc].
+
 ---
 
 ## Architecture
@@ -67,15 +71,17 @@ La mémoire de Marco tient dans une table de fils. Chaque fil relie deux phares 
 
 ### Génome
 
-Le génome compte 298 fichiers texte et environ 13,7 millions de rangées[^lisez]. Il est construit par des programmes à partir de ressources lexicales ouvertes : Lefff, Lexique, GLAWI, le Wiktionnaire, le Littré (XMLittré), Verbiste, *Les Verbes français*, des données de l'INSEE et de Wikidata[^lisez]. Les fichiers de règles sont des tableaux lisibles dans un tableur.
+Le génome compte 318 fichiers texte et environ 13,8 millions de rangées au 13 novembre 2026[^etat]. Il est construit par des programmes à partir de ressources lexicales ouvertes : Lefff, Lexique, GLAWI, le Wiktionnaire, le Littré (XMLittré), Verbiste, *Les Verbes français*, des données de l'INSEE et de Wikidata[^lisez]. Les fichiers de règles sont des tableaux lisibles dans un tableur.
 
 ### Le langage BSC
 
 Le BSC est le langage dans lequel sont écrites les règles du programme : des règles mises en équation (MEQ), des « hexalignes » et des « cas », rangés au génome sous forme de lignes[^lisez]. Selon la formule de l'auteur, « le neurone se code avec le neurone » : les règles sont des phares qui se décrivent avec des phares[^lisez].
 
+Depuis novembre 2026, une partie des règles de déduction est écrite en *cas* : de petites machines qui lisent la phrase mot à mot et écrivent ce qu'elles en tirent dans la mémoire. Les cas sont regroupés en étages. Au 13 novembre 2026, le programme de référence compte six étages et 221 cas : « voir » (placer et comparer), « ensemble » (les quantificateurs), « présentation » (les tournures comme « il y a … qui »), « consigne » (la manière de répondre), « qualité » (la place de l'adjectif) et « unités » (« beaucoup »)[^etages]. Un étage qui tranche une question répond par une phrase brève qui donne sa raison, par exemple « non, l'adjectif défait le nom »[^adj].
+
 ### Processeur et noyau
 
-Le module `processeur.py` exécute un petit jeu d'instructions sur des triplets. Le module `noyau.py` joue le rôle de système d'exploitation : il ordonnance les moments, les étages et les organes[^lisez]. Le code Python qui décide encore du sens, et que l'auteur appelle les « barbes de fonderie », doit passer progressivement en lignes du génome : c'est la *dépythonisation*[^lisez]. Le programme compte 29 modules et 33 195 lignes de Python[^lisez].
+Le module `processeur.py` exécute un petit jeu d'instructions sur des triplets. Le module `noyau.py` joue le rôle de système d'exploitation : il ordonnance les moments, les étages et les organes[^lisez]. Le code Python qui décide encore du sens, et que l'auteur appelle les « barbes de fonderie », doit passer progressivement en lignes du génome : c'est la *dépythonisation*[^lisez]. Le programme compte 29 modules et 34 674 lignes de Python au 13 novembre 2026, dont 8 952 pour le module de la logique ; celui-ci fait l'objet d'une analyse fonction par fonction avant le retrait de ce qui reste de logique en Python[^etat][^conv].
 
 ### Lecture et dialogue
 
@@ -92,11 +98,20 @@ Exemple de dialogue publié par le projet[^lisez] :
 🤖 J'ai Paul et odeur et mer dans ma mémoire, mais rien ne me dit si Paul sentait l'odeur de la mer.
 ```
 
+Exemple tiré du banc FraCaS, relevé du 12 novembre 2026[^fracasdoc] :
+
+```
+🧑 Jean est un ancien étudiant.
+🤖 Jean est un ancien étudiant, je le note.
+🧑 Jean est un étudiant ?
+🤖 non, l'adjectif défait le nom
+```
+
 ---
 
 ## Méthode de développement
 
-Le projet est mené par un concepteur seul, José Walocha. Le code, le génome et les bancs sont écrits par des instances de Claude (Anthropic). Mistral, ChatGPT et Qwant servent à la relecture, à la synthèse et à la recherche documentaire[^lisez]. Chaque décision d'architecture est consignée dans une « doctrine » datée ; aucune n'y entre sans une phrase du concepteur[^lisez]. L'historique du projet garde les doctrines abandonnées, pour éviter de les réinventer[^hist]. Les mesures sont faites sur des cerveaux neufs, nés pour le banc, avec une graine aléatoire fixe[^lisez].
+Le projet est mené par un concepteur seul, José Walocha. Le code, le génome et les bancs sont écrits par des instances de Claude (Anthropic), souvent deux à la fois, dans des conversations séparées : l'une pour le code, l'autre pour les doctrines[^lisez][^methode]. ChatGPT et Qwant servent à la relecture, à la synthèse et à la recherche documentaire ; Mistral y a servi jusqu'au 11 novembre 2026[^lisez]. Chaque décision d'architecture est consignée dans une « doctrine » datée ; aucune n'y entre sans une phrase du concepteur[^lisez]. L'historique du projet garde les doctrines abandonnées, pour éviter de les réinventer[^hist]. Les mesures sont faites sur des cerveaux neufs, nés pour le banc, avec une graine aléatoire fixe[^lisez].
 
 ---
 
@@ -106,8 +121,8 @@ Les résultats suivants sont publiés par l'équipe de développement. Ils n'ont
 
 | Banc | Mesure | Résultat de Marco | Point de comparaison |
 |---|---|---|---|
-| Universal Dependencies (GSD et Sequoia) | sujet, objet ou attribut des verbes | 23 689 / 32 077 (73,9 %) | — |
-| FraCaS, version française | réponse oui / non / on ne sait pas | 106 / 335 (31,6 %) | toujours « oui » : 204 / 335 (60,9 %) |
+| Universal Dependencies (GSD et Sequoia) | sujet, objet ou attribut des verbes | 23 689 / 32 077 (73,9 %) — 4 novembre 2026 | — |
+| FraCaS, version française | réponse oui / non / on ne sait pas | 166 / 335 (49,6 %) — 12 novembre 2026 | toujours « oui » : 204 / 335 (60,9 %) |
 | Étalon interne du sens des mots | sens choisi pour chaque mot | 315 / 474 (66 %) | — |
 
 ### Universal Dependencies
@@ -116,7 +131,25 @@ Universal Dependencies est un projet international de corpus annotés en dépend
 
 ### FraCaS
 
-FraCaS est une batterie de 346 problèmes d'inférence en langue naturelle, publiée en 1996[^fracas] et traduite en français en 2020[^fracasfr]. Chaque problème donne une ou plusieurs prémisses et une question, à laquelle on répond oui, non ou « on ne sait pas ». Sur les 335 problèmes retenus pour la notation, Marco en résout 106 (31,6 %)[^lisez]. Répondre « oui » à tous les problèmes en résoudrait 204 (60,9 %) ; répondre toujours « on ne sait pas », 98 (29,3 %). Marco répond « oui » 121 fois, dont 63 à raison. Selon l'équipe, les quantificateurs (« aucun », « la plupart ») ne sont pas encore lus comme tels, et le banc est gardé comme témoin de ce qui reste à faire[^lisez].
+FraCaS est une batterie de 346 problèmes d'inférence en langue naturelle, publiée en 1996[^fracas] et traduite en français en 2020[^fracasfr]. Chaque problème donne une ou plusieurs prémisses et une question, à laquelle on répond oui, non ou « on ne sait pas ». Sur les 335 problèmes retenus pour la notation, Marco en résout 166 (49,6 %) le 12 novembre 2026, contre 106 (31,6 %) le 7 novembre[^fracasdoc][^lisez]. Répondre « oui » à tous les problèmes en résoudrait 204 (60,9 %) ; répondre toujours « on ne sait pas », 98 (29,3 %).
+
+Le 12 novembre, Marco répond « oui » 125 fois, dont 92 à raison ; « non » 12 fois, dont 11 à raison ; « on ne sait pas » 183 fois, dont 63 à raison. Son défaut principal est de ne pas trouver un « oui » attendu : il répond qu'il ne sait pas dans 105 des 204 problèmes dont la réponse est « oui »[^fracasdoc].
+
+| Chapitre | Résolus |
+|---|---|
+| Adjectifs | 22 / 22 |
+| Quantificateurs | 59 / 74 |
+| Verbes | 6 / 8 |
+| Croyances | 8 / 13 |
+| Pluriels | 13 / 33 |
+| Comparatifs | 12 / 31 |
+| Ellipses | 17 / 55 |
+| Temps | 21 / 71 |
+| Reprises | 8 / 28 |
+
+Le chapitre des adjectifs passe de 4 à 22 problèmes résolus sur 22 dans la journée du 12 novembre. La règle retenue par l'auteur : un adjectif dit sans référence qualifie ; dit avec une référence (« un petit animal »), il compare dans cette référence[^adj]. Les quantificateurs sont lus depuis le 11 novembre. Cinq problèmes que résolvait une version antérieure ont été perdus le 12 novembre, quand le code Python qui les tenait a été retiré ; ils sont à réécrire en règles[^conv].
+
+Le 13 novembre, une version de développement qui lit les comparatifs (« plus rapide que », « aussi rapide que ») résout 183 problèmes (54,6 %), dont 29 comparatifs sur 31 ; elle n'est pas encore intégrée au programme de référence[^fracasdoc]. Deux des comparatifs manqués tiennent à un choix de lecture : l'équipe lit « aussi rapide que » comme une égalité, là où FraCaS l'entend comme « au moins aussi rapide »[^voir]. L'auteur tient le score pour secondaire : « le principal c'est d'avoir un MAD [machine à déduire] qui fait des déductions logiques »[^fracasdoc].
 
 ### Étalon interne du sens des mots
 
@@ -140,7 +173,7 @@ L'auteur fait remonter son projet à une question qu'il se pose depuis quarante 
 
 ## Objectifs
 
-Le projet déclare viser un microprocesseur qui gère Marco, avec sa mémoire de fils[^lisez]. Selon l'auteur, la dépythonisation y conduit : quand toutes les décisions de sens seront écrites en lignes du génome, il ne restera qu'un processeur au jeu d'instructions réduit, transposable dans le silicium[^lisez]. Les autres chantiers annoncés sont un sens compris pour 100 % des mots lus, la lecture des quantificateurs, et la lecture et le résumé d'un roman, *Eugénie Grandet* de Balzac[^lisez].
+Le projet déclare viser un microprocesseur qui gère Marco, avec sa mémoire de fils[^lisez]. Selon l'auteur, la dépythonisation y conduit : quand toutes les décisions de sens seront écrites en lignes du génome, il ne restera qu'un processeur au jeu d'instructions réduit, transposable dans le silicium[^lisez]. Les autres chantiers annoncés sont un sens compris pour 100 % des mots lus, le passage de toute la logique de déduction en règles du génome, et la lecture et le résumé d'un roman, *Eugénie Grandet* de Balzac[^lisez][^conv].
 
 ---
 
@@ -166,6 +199,20 @@ En novembre 2026, Marco n'a fait l'objet d'aucune publication dans une revue ou 
 [^lisez]: José Walocha, *MARCO — Processeur bionique à mémoire nodale* ([LisezMoi.md](LisezMoi.md)), dépôt josewalocha/Marco, état du 8 novembre 2026.
 
 [^hist]: José Walocha, *MARCO — Historique du développement à ce jour* ([Historique_du_developpement.md](Historique_du_developpement.md)), dépôt josewalocha/Marco, des débuts au 14 octobre 2026.
+
+[^fracasdoc]: José Walocha, *BANC — FraCaS*, doctrine du projet (BANC_FraCaS.html), état du 13 novembre 2026 ; relevé du banc du 12 novembre 2026 (fracas_2026-11-12_python_sorti.txt). Documentation interne, non publiée dans le dépôt public.
+
+[^adj]: José Walocha, *ADJECTIF — qualifier ou comparer*, doctrine du projet (ADJECTIF_qualifier_ou_comparer.html), 13 novembre 2026. Documentation interne, non publiée dans le dépôt public.
+
+[^voir]: José Walocha, *FLUX — voir, c'est comparer*, doctrine du projet (FLUX_voir_c_est_comparer.html), état du 13 novembre 2026. Documentation interne, non publiée dans le dépôt public.
+
+[^etages]: José Walocha, *LANGAGES — le joueur unique*, doctrine du projet (LANGAGES_le_joueur_unique.html), état du 13 novembre 2026. Documentation interne, non publiée dans le dépôt public.
+
+[^conv]: José Walocha, *LANGAGES — histoire des conversions*, doctrine du projet (LANGAGES_7_histoire_des_conversions.html), § 14, 13 novembre 2026. Documentation interne, non publiée dans le dépôt public.
+
+[^methode]: José Walocha, *Méthode de travail*, doctrine du projet (00Methode_de_travail.html), état du 13 novembre 2026. Documentation interne, non publiée dans le dépôt public.
+
+[^etat]: Programme de Marco, état du 13 novembre 2026 (version de démonstration de l'auteur, non publiée) : comptes des modules Python, des lignes de code et des fichiers du génome.
 
 [^lvf]: Jean Dubois et Françoise Dubois-Charlier, *Les Verbes français*, Paris, Larousse, 1997.
 
