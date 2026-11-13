@@ -15,7 +15,7 @@
 >
 > *Version française : [LisezMoi.md](LisezMoi.md).*
 >
-> A neutral, encyclopedia-style article on Marco (in French): [Marco_article_encyclopedique.md](Marco_article_encyclopedique.md).
+> A neutral, encyclopedia-style article on Marco: [Marco_encyclopedic_article.md](Marco_encyclopedic_article.md) (in French: [Marco_article_encyclopedique.md](Marco_article_encyclopedique.md)).
 
 ---
 
