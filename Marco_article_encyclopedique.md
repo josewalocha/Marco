@@ -59,7 +59,7 @@ Fin octobre 2026, un « grand génome » rassemble des connaissances tenues pour
 
 ### La logique en règles (novembre 2026)
 
-Du 10 au 13 novembre 2026, le travail porte sur le banc FraCaS. La logique de déduction, jusque-là écrite en Python dans un module (`electrique.py`), passe dans des « étages » de règles écrites dans le génome[^conv]. Les étages traitent successivement les quantificateurs et les ensembles (« tous », « quelques », « la plupart », « au plus »), la comparaison, que l'auteur résume par « voir, c'est comparer » (placer deux choses sur une même ligne), puis les adjectifs (qualifier ou comparer dans une référence)[^etages][^voir][^adj]. Le 12 novembre, l'auteur décide que le module de logique ne peut plus être modifié que sur son ordre exprès, et seulement pour en retirer du code[^conv]. Entre le 7 et le 12 novembre, le score au banc FraCaS passe de 106 à 166 problèmes résolus sur 335[^fracasdoc].
+Du 10 au 13 novembre 2026, le travail porte sur le banc FraCaS. La logique de déduction, jusque-là écrite en Python dans un module (`electrique.py`), passe dans des « étages » de règles écrites dans le génome[^conv]. Les étages traitent successivement les quantificateurs et les ensembles (« tous », « quelques », « la plupart », « au plus »), la comparaison, que l'auteur résume par « voir, c'est comparer » (placer deux choses sur une même ligne), les adjectifs (qualifier ou comparer dans une référence), puis les comparatifs (« plus rapide que », « aussi rapide que »)[^etages][^voir][^adj]. Le 12 novembre, l'auteur décide que le module de logique ne peut plus être modifié que sur son ordre exprès, et seulement pour en retirer du code[^conv]. Entre le 7 et le 13 novembre, le score au banc FraCaS passe de 106 à 183 problèmes résolus sur 335[^fracasdoc].
 
 ---
 
@@ -71,17 +71,17 @@ La mémoire de Marco tient dans une table de fils. Chaque fil relie deux phares 
 
 ### Génome
 
-Le génome compte 318 fichiers texte et environ 13,8 millions de rangées au 13 novembre 2026[^etat]. Il est construit par des programmes à partir de ressources lexicales ouvertes : Lefff, Lexique, GLAWI, le Wiktionnaire, le Littré (XMLittré), Verbiste, *Les Verbes français*, des données de l'INSEE et de Wikidata[^lisez]. Les fichiers de règles sont des tableaux lisibles dans un tableur.
+Le génome compte 320 fichiers texte et environ 13,8 millions de rangées au 13 novembre 2026[^etat]. Il est construit par des programmes à partir de ressources lexicales ouvertes : Lefff, Lexique, GLAWI, le Wiktionnaire, le Littré (XMLittré), Verbiste, *Les Verbes français*, des données de l'INSEE et de Wikidata[^lisez]. Les fichiers de règles sont des tableaux lisibles dans un tableur.
 
 ### Le langage BSC
 
 Le BSC est le langage dans lequel sont écrites les règles du programme : des règles mises en équation (MEQ), des « hexalignes » et des « cas », rangés au génome sous forme de lignes[^lisez]. Selon la formule de l'auteur, « le neurone se code avec le neurone » : les règles sont des phares qui se décrivent avec des phares[^lisez].
 
-Depuis novembre 2026, une partie des règles de déduction est écrite en *cas* : de petites machines qui lisent la phrase mot à mot et écrivent ce qu'elles en tirent dans la mémoire. Les cas sont regroupés en étages. Au 13 novembre 2026, le programme de référence compte six étages et 221 cas : « voir » (placer et comparer), « ensemble » (les quantificateurs), « présentation » (les tournures comme « il y a … qui »), « consigne » (la manière de répondre), « qualité » (la place de l'adjectif) et « unités » (« beaucoup »)[^etages]. Un étage qui tranche une question répond par une phrase brève qui donne sa raison, par exemple « non, l'adjectif défait le nom »[^adj].
+Depuis novembre 2026, une partie des règles de déduction est écrite en *cas* : de petites machines qui lisent la phrase mot à mot et écrivent ce qu'elles en tirent dans la mémoire. Les cas sont regroupés en étages. Au 13 novembre 2026, le programme de référence compte huit étages et 399 cas : « voir » (placer et comparer), « ensemble » (les quantificateurs), « présentation » (les tournures comme « il y a … qui »), « consigne » (la manière de répondre), « qualité » (la place de l'adjectif), « unités » (« beaucoup »), « comparer » (placer deux choses devant, derrière ou côte à côte) et « compter » (comparer des nombres, l'addition en colonne)[^etages]. Un étage qui tranche une question répond par une phrase brève qui donne sa raison, par exemple « non, l'adjectif défait le nom »[^adj].
 
 ### Processeur et noyau
 
-Le module `processeur.py` exécute un petit jeu d'instructions sur des triplets. Le module `noyau.py` joue le rôle de système d'exploitation : il ordonnance les moments, les étages et les organes[^lisez]. Le code Python qui décide encore du sens, et que l'auteur appelle les « barbes de fonderie », doit passer progressivement en lignes du génome : c'est la *dépythonisation*[^lisez]. Le programme compte 29 modules et 34 674 lignes de Python au 13 novembre 2026, dont 8 952 pour le module de la logique ; celui-ci fait l'objet d'une analyse fonction par fonction avant le retrait de ce qui reste de logique en Python[^etat][^conv].
+Le module `processeur.py` exécute un petit jeu d'instructions sur des triplets. Le module `noyau.py` joue le rôle de système d'exploitation : il ordonnance les moments, les étages et les organes[^lisez]. Le code Python qui décide encore du sens, et que l'auteur appelle les « barbes de fonderie », doit passer progressivement en lignes du génome : c'est la *dépythonisation*[^lisez]. Le programme compte 29 modules et 34 748 lignes de Python au 13 novembre 2026, dont 8 952 pour le module de la logique ; celui-ci fait l'objet d'une analyse fonction par fonction avant le retrait de ce qui reste de logique en Python[^etat][^conv].
 
 ### Lecture et dialogue
 
@@ -122,7 +122,7 @@ Les résultats suivants sont publiés par l'équipe de développement. Ils n'ont
 | Banc | Mesure | Résultat de Marco | Point de comparaison |
 |---|---|---|---|
 | Universal Dependencies (GSD et Sequoia) | sujet, objet ou attribut des verbes | 23 689 / 32 077 (73,9 %) — 4 novembre 2026 | — |
-| FraCaS, version française | réponse oui / non / on ne sait pas | 166 / 335 (49,6 %) — 12 novembre 2026 | toujours « oui » : 204 / 335 (60,9 %) |
+| FraCaS, version française | réponse oui / non / on ne sait pas | 183 / 335 (54,6 %) — 13 novembre 2026 | toujours « oui » : 204 / 335 (60,9 %) |
 | Étalon interne du sens des mots | sens choisi pour chaque mot | 315 / 474 (66 %) | — |
 
 ### Universal Dependencies
@@ -131,9 +131,9 @@ Universal Dependencies est un projet international de corpus annotés en dépend
 
 ### FraCaS
 
-FraCaS est une batterie de 346 problèmes d'inférence en langue naturelle, publiée en 1996[^fracas] et traduite en français en 2020[^fracasfr]. Chaque problème donne une ou plusieurs prémisses et une question, à laquelle on répond oui, non ou « on ne sait pas ». Sur les 335 problèmes retenus pour la notation, Marco en résout 166 (49,6 %) le 12 novembre 2026, contre 106 (31,6 %) le 7 novembre[^fracasdoc][^lisez]. Répondre « oui » à tous les problèmes en résoudrait 204 (60,9 %) ; répondre toujours « on ne sait pas », 98 (29,3 %).
+FraCaS est une batterie de 346 problèmes d'inférence en langue naturelle, publiée en 1996[^fracas] et traduite en français en 2020[^fracasfr]. Chaque problème donne une ou plusieurs prémisses et une question, à laquelle on répond oui, non ou « on ne sait pas ». Sur les 335 problèmes retenus pour la notation, Marco en résout 183 (54,6 %) le 13 novembre 2026, contre 166 (49,6 %) le 12 novembre et 106 (31,6 %) le 7 novembre[^fracasdoc][^lisez]. Répondre « oui » à tous les problèmes en résoudrait 204 (60,9 %) ; répondre toujours « on ne sait pas », 98 (29,3 %).
 
-Le 12 novembre, Marco répond « oui » 125 fois, dont 92 à raison ; « non » 12 fois, dont 11 à raison ; « on ne sait pas » 183 fois, dont 63 à raison. Son défaut principal est de ne pas trouver un « oui » attendu : il répond qu'il ne sait pas dans 105 des 204 problèmes dont la réponse est « oui »[^fracasdoc].
+Le 13 novembre, Marco répond « oui » 130 fois, dont 102 à raison ; « non » 16 fois, dont 14 à raison ; « on ne sait pas » 174 fois, dont 67 à raison. Son défaut principal est de ne pas trouver un « oui » attendu : il répond qu'il ne sait pas dans 95 des 204 problèmes dont la réponse est « oui »[^fracasdoc].
 
 | Chapitre | Résolus |
 |---|---|
@@ -142,14 +142,14 @@ Le 12 novembre, Marco répond « oui » 125 fois, dont 92 à raison ; « non » 
 | Verbes | 6 / 8 |
 | Croyances | 8 / 13 |
 | Pluriels | 13 / 33 |
-| Comparatifs | 12 / 31 |
+| Comparatifs | 29 / 31 |
 | Ellipses | 17 / 55 |
 | Temps | 21 / 71 |
 | Reprises | 8 / 28 |
 
 Le chapitre des adjectifs passe de 4 à 22 problèmes résolus sur 22 dans la journée du 12 novembre. La règle retenue par l'auteur : un adjectif dit sans référence qualifie ; dit avec une référence (« un petit animal »), il compare dans cette référence[^adj]. Les quantificateurs sont lus depuis le 11 novembre. Cinq problèmes que résolvait une version antérieure ont été perdus le 12 novembre, quand le code Python qui les tenait a été retiré ; ils sont à réécrire en règles[^conv].
 
-Le 13 novembre, une version de développement qui lit les comparatifs (« plus rapide que », « aussi rapide que ») résout 183 problèmes (54,6 %), dont 29 comparatifs sur 31 ; elle n'est pas encore intégrée au programme de référence[^fracasdoc]. Deux des comparatifs manqués tiennent à un choix de lecture : l'équipe lit « aussi rapide que » comme une égalité, là où FraCaS l'entend comme « au moins aussi rapide »[^voir]. L'auteur tient le score pour secondaire : « le principal c'est d'avoir un MAD [machine à déduire] qui fait des déductions logiques »[^fracasdoc].
+Le 13 novembre, la lecture des comparatifs (« plus rapide que », « aussi rapide que ») fait passer ce chapitre de 12 à 29 problèmes résolus sur 31[^fracasdoc]. Deux des comparatifs manqués tiennent à un choix de lecture : l'équipe lit « aussi rapide que » comme une égalité, là où FraCaS l'entend comme « au moins aussi rapide »[^voir]. L'auteur tient le score pour secondaire : « le principal c'est d'avoir un MAD [machine à déduire] qui fait des déductions logiques »[^fracasdoc].
 
 ### Étalon interne du sens des mots
 
@@ -200,7 +200,7 @@ En novembre 2026, Marco n'a fait l'objet d'aucune publication dans une revue ou 
 
 [^hist]: José Walocha, *MARCO — Historique du développement à ce jour* ([Historique_du_developpement.md](Historique_du_developpement.md)), dépôt josewalocha/Marco, des débuts au 14 octobre 2026.
 
-[^fracasdoc]: José Walocha, *BANC — FraCaS*, doctrine du projet (BANC_FraCaS.html), état du 13 novembre 2026 ; relevé du banc du 12 novembre 2026 (fracas_2026-11-12_python_sorti.txt). Documentation interne, non publiée dans le dépôt public.
+[^fracasdoc]: José Walocha, *BANC — FraCaS*, doctrine du projet (BANC_FraCaS.html), état du 13 novembre 2026 ; relevés du banc du 12 novembre 2026 (fracas_2026-11-12_python_sorti.txt) et du 13 novembre 2026 (fracas_2026-11-13_comparatifs.txt), ce dernier rejoué par l'auteur le même jour. Documentation interne, non publiée dans le dépôt public.
 
 [^adj]: José Walocha, *ADJECTIF — qualifier ou comparer*, doctrine du projet (ADJECTIF_qualifier_ou_comparer.html), 13 novembre 2026. Documentation interne, non publiée dans le dépôt public.
 
