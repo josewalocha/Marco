@@ -8,7 +8,7 @@
 |---|---|
 | Author | José Walocha |
 | Development started | before 2026 |
-| Latest version | program of 13 November 2026 |
+| Latest version | program of 14 November 2026 |
 | Status | in development |
 | Written in | Python (standard library); BSC language for the rules |
 | Type | Symbolic artificial intelligence, deduction system |
@@ -61,7 +61,7 @@ At the end of October 2026, a "Great Genome" gathers knowledge held to be innate
 
 ### Logic as rules (November 2026)
 
-From 10 to 13 November 2026, work focuses on the FraCaS benchmark. The deduction logic, until then written in Python in a single module (`electrique.py`), moves into "stages" (*étages*) of rules written in the genome[^conv]. The stages successively handle quantifiers and sets ("all", "some", "most", "at most"), comparison, which the author sums up as "to see is to compare" (placing two things on the same line), adjectives (qualifying or comparing within a reference), and then comparatives ("faster than", "as fast as")[^etages][^voir][^adj]. On 12 November, the author decides that the logic module may only be modified on his express order, and only to remove code from it[^conv]. Between 7 and 13 November, the FraCaS score rises from 106 to 183 problems solved out of 335[^fracasdoc].
+From 10 to 14 November 2026, work focuses on the FraCaS benchmark. The deduction logic, until then written in Python in a single module (`electrique.py`), moves into "stages" (*étages*) of rules written in the genome[^conv]. The stages successively handle quantifiers and sets ("all", "some", "most", "at most"), comparison, which the author sums up as "to see is to compare" (placing two things on the same line), adjectives (qualifying or comparing within a reference), and then comparatives ("faster than", "as fast as")[^etages][^voir][^adj]. On 13 and 14 November come the universe of each problem, which the author calls its "door" (*porte*: the entry point that holds the context), and ellipses, sentences that do not repeat their verb ("Guillaume too.", "Guillaume did it.", "And Guillaume by train.")[^porte][^ellipses]. On 12 November, the author decides that the logic module may only be modified on his express order, and only to remove code from it[^conv]. On 13 and 14 November, two organs leave it in this way and are replaced by rules: Proteus inversion (what the "it" of "Guillaume did it" designates) and the quantity of a fact ("all", "no")[^conv][^ellipses]. Between 7 and 14 November, the FraCaS score rises from 106 to 200 problems solved out of 335[^fracasdoc].
 
 ---
 
@@ -73,17 +73,17 @@ Marco's memory is held in a thread table. Each thread links two *phares*; it car
 
 ### Genome
 
-As of 13 November 2026, the genome comprises 320 text files and about 13.8 million rows[^etat]. It is built by programs from open lexical resources: Lefff, Lexique, GLAWI, the French Wiktionary, the Littré dictionary (XMLittré), Verbiste, *Les Verbes français*, and data from INSEE and Wikidata[^lisez]. The rule files are tables readable in a spreadsheet.
+As of 14 November 2026, the genome comprises 322 text files and about 13.8 million rows[^etat]. It is built by programs from open lexical resources: Lefff, Lexique, GLAWI, the French Wiktionary, the Littré dictionary (XMLittré), Verbiste, *Les Verbes français*, and data from INSEE and Wikidata[^lisez]. The rule files are tables readable in a spreadsheet.
 
 ### The BSC language
 
 BSC is the language in which the program's rules are written: rules put into equations (MEQ), "hexalines" and "cases", stored in the genome as rows[^lisez]. In the author's words, "the neuron is coded with the neuron": rules are *phares* described by other *phares*[^lisez].
 
-Since November 2026, part of the deduction rules has been written as *cases*: small machines that read the sentence word by word and write what they draw from it into memory. Cases are grouped into stages. As of 13 November 2026, the reference program has eight stages and 399 cases: "see" (placing and comparing), "set" (quantifiers), "presentation" (constructions such as "there is … who"), "instruction" (the manner of answering), "quality" (the position of the adjective), "units" ("many"), "compare" (placing two things ahead, behind or side by side) and "count" (comparing numbers, column addition)[^etages]. A stage that settles a question answers with a short sentence giving its reason, for example "no, the adjective undoes the noun" (*non, l'adjectif défait le nom*)[^adj].
+Since November 2026, part of the deduction rules has been written as *cases*: small machines that read the sentence word by word and write what they draw from it into memory. Cases are grouped into stages. As of 14 November 2026, the reference program has ten stages and 538 cases: "see" (placing and comparing), "set" (quantifiers), "presentation" (constructions such as "there is … who"), "instruction" (the manner of answering), "quality" (the position of the adjective), "units" ("many"), "compare" (placing two things ahead, behind or side by side), "count" (comparing numbers, column addition), "door" (the universe opened by a problem's title, and the lines it keeps) and "action taken up again" (ellipses, 123 cases)[^etages][^porte][^ellipses]. A stage that settles a question answers with a short sentence giving its reason, for example "no, the adjective undoes the noun" (*non, l'adjectif défait le nom*)[^adj].
 
 ### Processor and kernel
 
-The `processeur.py` module executes a small instruction set on triples. The `noyau.py` module acts as the operating system: it schedules moments, stages and organs[^lisez]. The Python code that still decides meaning, which the author calls the "casting burrs" (*barbes de fonderie*), is to be moved progressively into genome rows: this is *de-pythonization*[^lisez]. As of 13 November 2026, the program has 29 modules and 34,748 lines of Python, of which 8,952 belong to the logic module; that module is being analysed function by function before the remaining Python logic is removed[^etat][^conv].
+The `processeur.py` module executes a small instruction set on triples. The `noyau.py` module acts as the operating system: it schedules moments, stages and organs[^lisez]. The Python code that still decides meaning, which the author calls the "casting burrs" (*barbes de fonderie*), is to be moved progressively into genome rows: this is *de-pythonization*[^lisez]. On 13 November the author gives its compass: "Processor: neurons, synapses, the chemistry of neurotransmitters. Electrique.py: the current that carries the signal."[^conv] As of 14 November 2026, the program has 29 modules and 34,370 lines of Python, of which 8,574 belong to the logic module (8,952 the morning before). The function-by-function analysis of that module still counts about 4,500 lines there that decide, to be moved into rules organ by organ, and about 2,800 lines of transport, which stay[^etat][^conv].
 
 ### Reading and dialogue
 
@@ -109,6 +109,20 @@ Example from the FraCaS benchmark, run of 12 November 2026 (translated from Fren
 🤖 no, the adjective undoes the noun
 ```
 
+Two ellipses from the same benchmark, run of 14 November 2026 (problems 142 and 147), as the benchmark records them (translated from French)[^fracasdoc]:
+
+```
+Premise   : Jean talked to Marie.
+Premise   : Guillaume too.
+Question  : Guillaume talked to Marie?
+Marco     : yes, like Jean
+
+Premise   : Jean talked to Marie on Monday.
+Premise   : Guillaume did not do it.
+Question  : Guillaume talked to Marie on Monday?
+Marco     : no, unlike Jean
+```
+
 ---
 
 ## Development method
@@ -124,7 +138,7 @@ The following results are published by the development team. They have not been 
 | Benchmark | Measure | Marco's result | Point of comparison |
 |---|---|---|---|
 | Universal Dependencies (GSD and Sequoia) | subject, object or predicative complement of verbs | 23,689 / 32,077 (73.9%) — 4 November 2026 | — |
-| FraCaS, French version | answer yes / no / unknown | 183 / 335 (54.6%) — 13 November 2026 | always "yes": 204 / 335 (60.9%) |
+| FraCaS, French version | answer yes / no / unknown | 200 / 335 (59.7%) — 14 November 2026 | always "yes": 204 / 335 (60.9%) |
 | Internal word-sense gold standard | sense chosen for each word | 315 / 474 (66%) | — |
 
 ### Universal Dependencies
@@ -133,9 +147,9 @@ Universal Dependencies is an international project of corpora annotated with syn
 
 ### FraCaS
 
-FraCaS is a suite of 346 natural-language inference problems, published in 1996[^fracas] and translated into French in 2020[^fracasfr]. Each problem gives one or more premises and a question, to be answered yes, no or "unknown". Of the 335 problems kept for scoring, Marco solves 183 (54.6%) on 13 November 2026, against 166 (49.6%) on 12 November and 106 (31.6%) on 7 November[^fracasdoc][^lisez]. Answering "yes" to every problem would solve 204 (60.9%); always answering "unknown", 98 (29.3%).
+FraCaS is a suite of 346 natural-language inference problems, published in 1996[^fracas] and translated into French in 2020[^fracasfr]. Each problem gives one or more premises and a question, to be answered yes, no or "unknown". Of the 335 problems kept for scoring, Marco solves 200 (59.7%) on 14 November 2026, against 183 (54.6%) on 13 November, 166 (49.6%) on 12 November and 106 (31.6%) on 7 November[^fracasdoc][^lisez]. Answering "yes" to every problem would solve 204 (60.9%); always answering "unknown", 98 (29.3%). Marco's score therefore remains four problems below that of a systematic "yes".
 
-On 13 November, Marco answers "yes" 130 times, 102 of them correctly; "no" 16 times, 14 of them correctly; "unknown" 174 times, 67 of them correctly. Its main weakness is failing to find an expected "yes": it says it does not know in 95 of the 204 problems whose answer is "yes"[^fracasdoc].
+On 14 November, Marco answers "yes" 144 times, 116 of them correctly; "no" 18 times, 17 of them correctly; "unknown", or an answer that is neither yes nor no, 173 times, 67 of them correctly. Its main weakness is still failing to find an expected "yes": it does not give it in 88 of the 204 problems whose answer is "yes" (95 the day before)[^fracasdoc].
 
 | Section | Solved |
 |---|---|
@@ -143,15 +157,17 @@ On 13 November, Marco answers "yes" 130 times, 102 of them correctly; "no" 16 ti
 | Generalized quantifiers | 59 / 74 |
 | Verbs | 6 / 8 |
 | Attitudes | 8 / 13 |
-| Plurals | 13 / 33 |
+| Plurals | 14 / 33 |
 | Comparatives | 29 / 31 |
-| Ellipsis | 17 / 55 |
+| Ellipsis | 33 / 55 |
 | Temporal reference | 21 / 71 |
 | Anaphora | 8 / 28 |
 
 The adjectives section rises from 4 to 22 problems solved out of 22 in the course of 12 November. The rule adopted by the author: an adjective stated without a reference qualifies; stated with a reference ("a small animal"), it compares within that reference[^adj]. Quantifiers have been read since 11 November. Five problems solved by an earlier version were lost on 12 November, when the Python code that handled them was removed; they are to be rewritten as rules[^conv].
 
 On 13 November, reading comparatives ("faster than", "as fast as") raises that section from 12 to 29 problems solved out of 31[^fracasdoc]. Two of the comparatives still missed are due to a reading choice: the team reads "as fast as" as an equality, whereas FraCaS takes it to mean "at least as fast"[^voir]. The author regards the score as secondary: "the main thing is to have a MAD [deduction machine] that makes logical deductions"[^fracasdoc].
+
+On 13 and 14 November, the ellipsis section rises from 17 to 33 problems solved out of 55. An ellipsis does not repeat its verb: "Jean talked to Marie. Guillaume too." For the author, the second character holds the handle of the first one's action: nothing is copied or restated[^ellipses]. The rules read three signals, "too" without a verb, "do it" and the line without a verb, then rebuild the sentence piece by piece: in "Jean went to Paris by car and Guillaume by train", "by train" takes the place of "by car", and "to Paris" is kept[^ellipses]. These rules only read the universe of the current problem, held by its "door"[^porte]. The same day, problem 105 ("Exactly one accountant attended the meeting. None of the accountants attended the meeting?": no) is won by reading zero as rules. The temporal reference (21 of 71) and anaphora (8 of 28) sections remain the least solved. For the author, the benchmark is no longer anecdotal: Marco is "on the road to the inference of MADs" (14 November 2026).
 
 ### Internal word-sense gold standard
 
@@ -202,19 +218,23 @@ As of November 2026, Marco has not been the subject of any publication in a scie
 
 [^hist]: José Walocha, *MARCO — Development history to date* ([Development_history.md](Development_history.md)), josewalocha/Marco repository, from the beginnings to 14 October 2026. French original: [Historique_du_developpement.md](Historique_du_developpement.md).
 
-[^fracasdoc]: José Walocha, *BANC — FraCaS*, project doctrine (BANC_FraCaS.html), as of 13 November 2026; benchmark runs of 12 November 2026 (fracas_2026-11-12_python_sorti.txt) and 13 November 2026 (fracas_2026-11-13_comparatifs.txt), the latter re-run by the author the same day. Internal documentation, not published in the public repository. In French.
+[^fracasdoc]: José Walocha, *BANC — FraCaS*, project doctrine (BANC_FraCaS.html), as of 14 November 2026; benchmark runs of 12 November 2026 (fracas_2026-11-12_python_sorti.txt), 13 November 2026 (fracas_2026-11-13_comparatifs.txt) and 14 November 2026 (fracas_simple_2026-11-14_11h17.txt), the latter run by the author. Internal documentation, not published in the public repository. In French.
 
 [^adj]: José Walocha, *ADJECTIF — qualifier ou comparer*, project doctrine (ADJECTIF_qualifier_ou_comparer.html), 13 November 2026. Internal documentation, not published in the public repository. In French.
 
 [^voir]: José Walocha, *FLUX — voir, c'est comparer*, project doctrine (FLUX_voir_c_est_comparer.html), as of 13 November 2026. Internal documentation, not published in the public repository. In French.
 
-[^etages]: José Walocha, *LANGAGES — le joueur unique*, project doctrine (LANGAGES_le_joueur_unique.html), as of 13 November 2026. Internal documentation, not published in the public repository. In French.
+[^etages]: José Walocha, *LANGAGES — le joueur unique*, project doctrine (LANGAGES_le_joueur_unique.html), as of 14 November 2026. Internal documentation, not published in the public repository. In French.
 
-[^conv]: José Walocha, *LANGAGES — histoire des conversions*, project doctrine (LANGAGES_7_histoire_des_conversions.html), § 14, 13 November 2026. Internal documentation, not published in the public repository. In French.
+[^porte]: José Walocha, *CONTEXTE — l'univers et sa porte*, project doctrine (CONTEXTE_l_univers_et_sa_porte.html), as of 14 November 2026. Internal documentation, not published in the public repository. In French.
+
+[^ellipses]: José Walocha, *CONTEXTE — tenir et croiser*, project doctrine (CONTEXTE_tenir_et_croiser.html), strata of 14 November 2026: the action taken up again, quantity as rules. Internal documentation, not published in the public repository. In French.
+
+[^conv]: José Walocha, *LANGAGES — histoire des conversions*, project doctrine (LANGAGES_7_histoire_des_conversions.html), § 14 and 15, 13 and 14 November 2026. Internal documentation, not published in the public repository. In French.
 
 [^methode]: José Walocha, *Méthode de travail*, project doctrine (00Methode_de_travail.html), as of 13 November 2026. Internal documentation, not published in the public repository. In French.
 
-[^etat]: Marco program, state as of 13 November 2026 (the author's demonstration version, unpublished): counts of Python modules, lines of code and genome files.
+[^etat]: Marco program, state as of 14 November 2026 (the author's demonstration version, unpublished): counts of Python modules, lines of code and genome files.
 
 [^lvf]: Jean Dubois and Françoise Dubois-Charlier, *Les Verbes français*, Paris, Larousse, 1997.
 

@@ -64,7 +64,7 @@ Universal Dependencies is the international reference for corpora annotated by h
 
 ### FraCaS: the hardest bench
 
-FraCaS (1996) is the classic battery of natural-language inference: premises, a question, and three possible answers — yes, no, unknown. On its French translation, Marco solves **106 of 335**. Here Marco is beginning: quantifiers ("no", "most") are not yet read as such, and answering "yes" to everything would do better (61 %). The bench is kept as a witness: it says what remains to be learned, and it only moves when Marco understands better.
+FraCaS (1996) is the classic battery of natural-language inference: premises, a question, and three possible answers — yes, no, unknown. On its French translation, Marco solves **200 of 335** on 14/11 (106 on 07/11). In one week, quantifiers ("no", "most"), adjectives, comparatives and ellipses ("Jean talked to Marie. Guillaume too.") have moved into cases: adjectives 22 of 22, comparatives 29 of 31, ellipses 33 of 55. Answering "yes" to everything would still do slightly better (204, 61 %). The bench is kept as a witness: it says what remains to be learned, and it only moves when Marco understands better.
 
 ### An excerpt, as is
 
@@ -115,7 +115,7 @@ The question comes from far back: *"It's crazy, I have the explanation to my 40-
 - **100 % understood.** Frappe of 06/11: *"We aim for 100 % decoded and 100 % understood."* The meaning gold standard is its measure.
 - **Removing the casting burrs**: the Python that still decides meaning, to be turned into lines, on the way to the microprocessor.
 - **The gégé**: what soothes beside what threatens, the senses born of the body (hearing, smell), axonization — *"the sound of the sea"* pointing to a sound often heard and little varying.
-- **Quantifiers**: "no", "most", "many" — what FraCaS asks for.
+- **Quantifiers**: "no", "most", "many" — read as cases since 11/11 (59 of 74 in FraCaS); "few", "at most" and the parts of a set remain.
 - **Understanding a book**: reading *Eugénie Grandet*, the summary, the characters and their names.
 
 ---
