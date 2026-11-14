@@ -162,6 +162,14 @@ em { font-style: italic; }
 .sec-body h3 { font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
 .note { font-size: .92rem; color: var(--muted); }
 
+/* L'évolution au banc FraCaS (14/11/2026) */
+.evo { margin: 28px 0 0; }
+.evo svg { display: block; width: 100%; max-width: 640px; height: auto; margin: 8px 0 4px; color: var(--ink); }
+.evo-bar { fill: var(--accent); }
+.evo-bar:hover { opacity: .82; }
+.evo-ref { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4; }
+.evo-v { fill: var(--paper); font-family: var(--mono); font-size: 12px; font-weight: 600; }
+
 /* Liste des caractéristiques */
 .feats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
 .feats li { padding: 12px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 12px; font-size: .97rem; line-height: 1.5; }
@@ -565,7 +573,7 @@ footer {
         <tr>
           <td><strong>FraCaS</strong> (1996)<br>version française de 2020</td>
           <td>oui, non ou on ne sait pas, sur 335&nbsp;problèmes d'inférence</td>
-          <td class="v"><strong>54,6&nbsp;%</strong><br>183 / 335</td>
+          <td class="v"><strong>59,7&nbsp;%</strong><br>200 / 335</td>
           <td>répondre «&nbsp;oui&nbsp;» partout&nbsp;: 60,9&nbsp;%<br>«&nbsp;on ne sait pas&nbsp;» partout&nbsp;: 29,3&nbsp;%</td>
         </tr>
         <tr>
@@ -577,7 +585,28 @@ footer {
       </tbody>
     </table>
     </div>
-    <p class="note">FraCaS est le banc le plus dur, et Marco y commence&nbsp;: les quantificateurs («&nbsp;aucun&nbsp;», «&nbsp;la plupart&nbsp;») ne sont pas encore lus comme tels. Il est gardé comme témoin de ce qui reste à apprendre. Universal Dependencies est lu sans aucun apprentissage statistique&nbsp;: ce sont les règles de lecture, écrites en lignes, qui lisent.</p>
+    <p class="note">FraCaS est le banc le plus dur. En une semaine, Marco y passe de 106 à 200&nbsp;: les quantificateurs («&nbsp;aucun&nbsp;», «&nbsp;la plupart&nbsp;»), les adjectifs, les comparatifs et les ellipses sont lus en règles. Répondre «&nbsp;oui&nbsp;» partout fait encore un peu mieux. Le banc est gardé comme témoin de ce qui reste à apprendre. Universal Dependencies est lu sans aucun apprentissage statistique&nbsp;: ce sont les règles de lecture, écrites en lignes, qui lisent.</p>
+    <div class="evo">
+      <h3>L'évolution au banc FraCaS</h3>
+      <svg viewBox="0 0 640 206" role="img" aria-label="FraCaS, problèmes résolus sur 335 : 106 le 7 novembre, 116 le 10, 166 le 12, 183 le 13, 200 le 14 ; répondre oui partout en résoudrait 204.">
+        <line class="d-rule" x1="64" y1="182" x2="624" y2="182"/>
+        <line class="evo-ref" x1="64" y1="33.6" x2="624" y2="33.6"/>
+        <text class="d-s" x="64" y="27.6">répondre « oui » partout : 204</text>
+        <path class="evo-bar" d="M96.0,182 V108.9 Q96.0,104.9 100.0,104.9 H140.0 Q144.0,104.9 144.0,108.9 V182 Z"><title>07/11/2026 : 106 sur 335</title></path>
+        <text class="evo-v" x="120.0" y="121.9" text-anchor="middle">106</text>
+        <text class="d-s" x="120.0" y="199" text-anchor="middle">07/11</text>
+        <path class="evo-bar" d="M208.0,182 V101.6 Q208.0,97.6 212.0,97.6 H252.0 Q256.0,97.6 256.0,101.6 V182 Z"><title>10/11/2026 : 116 sur 335</title></path>
+        <text class="d-s" x="232.0" y="199" text-anchor="middle">10/11</text>
+        <path class="evo-bar" d="M320.0,182 V65.3 Q320.0,61.3 324.0,61.3 H364.0 Q368.0,61.3 368.0,65.3 V182 Z"><title>12/11/2026 : 166 sur 335</title></path>
+        <text class="d-s" x="344.0" y="199" text-anchor="middle">12/11</text>
+        <path class="evo-bar" d="M432.0,182 V52.9 Q432.0,48.9 436.0,48.9 H476.0 Q480.0,48.9 480.0,52.9 V182 Z"><title>13/11/2026 : 183 sur 335</title></path>
+        <text class="d-s" x="456.0" y="199" text-anchor="middle">13/11</text>
+        <path class="evo-bar" d="M544.0,182 V40.5 Q544.0,36.5 548.0,36.5 H588.0 Q592.0,36.5 592.0,40.5 V182 Z"><title>14/11/2026 : 200 sur 335</title></path>
+        <text class="evo-v" x="568.0" y="53.5" text-anchor="middle">200</text>
+        <text class="d-s" x="568.0" y="199" text-anchor="middle">14/11</text>
+      </svg>
+      <p class="note">Problèmes résolus sur 335, chaque fois sur un Marco neuf. Le 14&nbsp;novembre, les ellipses passent de 17 à 33 sur 55&nbsp;: «&nbsp;Jean a parlé à Marie. Guillaume aussi. Guillaume a parlé à Marie&nbsp;?&nbsp;» — «&nbsp;oui, comme Jean&nbsp;». Marco n'est plus seulement un lecteur&nbsp;: il est sur le chemin de l'inférence.</p>
+    </div>
   </div>
 </section>
 
@@ -607,7 +636,7 @@ footer {
     <h3>Chantiers ouverts</h3>
     <ul class="plain">
       <li>Le 100&nbsp;% compris&nbsp;: «&nbsp;On vise le 100&nbsp;% décrypté et 100&nbsp;% compris.&nbsp;» L'étalon du sens en est la mesure.</li>
-      <li>Les quantificateurs&nbsp;: «&nbsp;aucun&nbsp;», «&nbsp;la plupart&nbsp;», «&nbsp;beaucoup&nbsp;», ce que FraCaS demande.</li>
+      <li>Les quantificateurs&nbsp;: «&nbsp;aucun&nbsp;», «&nbsp;la plupart&nbsp;», «&nbsp;beaucoup&nbsp;», lus en cas depuis le 11/11 (59 sur 74 à FraCaS)&nbsp;; restent «&nbsp;peu&nbsp;», «&nbsp;au plus&nbsp;» et les parties d'un ensemble.</li>
       <li>Le gégé&nbsp;: ce qui apaise à côté de ce qui menace, les sens qui naissent du corps, l'ouïe, l'odorat.</li>
       <li>Comprendre un livre&nbsp;: la lecture d'<em>Eugénie Grandet</em>, le résumé, les personnages et leurs appellations.</li>
     </ul>
@@ -654,7 +683,8 @@ footer {
         <tr><td class="date">05-06/11/2026</td><td>La porte et le sens&nbsp;; 616 sens pour 401 verbes, tirés de <em>Les Verbes Français</em>.</td></tr>
         <tr><td class="date">07/11/2026</td><td>FraCaS&nbsp;; la question niée&nbsp;; la mer au gégé.</td></tr>
         <tr><td class="date">08/11/2026</td><td>Le programme du 8 novembre&nbsp;: le complément tenu, la chose sentie, le nuage des pères.</td></tr>
-        <tr class="now"><td class="date">10-13/11/2026</td><td>La logique en règles&nbsp;: les quantificateurs, «&nbsp;voir, c'est comparer&nbsp;», les adjectifs, les comparatifs&nbsp;; FraCaS 183&nbsp;/ 335.</td></tr>
+        <tr><td class="date">10-13/11/2026</td><td>La logique en règles&nbsp;: les quantificateurs, «&nbsp;voir, c'est comparer&nbsp;», les adjectifs, les comparatifs&nbsp;; FraCaS 183&nbsp;/ 335.</td></tr>
+        <tr class="now"><td class="date">13-14/11/2026</td><td>La porte de l'univers et les ellipses («&nbsp;Guillaume aussi&nbsp;», «&nbsp;Guillaume l'a fait&nbsp;»)&nbsp;; l'inversion de Protée et la quantité sortent du Python&nbsp;; FraCaS 200&nbsp;/ 335.</td></tr>
       </tbody>
     </table>
     </div>

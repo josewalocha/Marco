@@ -162,6 +162,14 @@ em { font-style: italic; }
 .sec-body h3 { font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
 .note { font-size: .92rem; color: var(--muted); }
 
+/* L'évolution au banc FraCaS (14/11/2026) */
+.evo { margin: 28px 0 0; }
+.evo svg { display: block; width: 100%; max-width: 640px; height: auto; margin: 8px 0 4px; color: var(--ink); }
+.evo-bar { fill: var(--accent); }
+.evo-bar:hover { opacity: .82; }
+.evo-ref { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4; }
+.evo-v { fill: var(--paper); font-family: var(--mono); font-size: 12px; font-weight: 600; }
+
 /* Liste des caractéristiques */
 .feats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
 .feats li { padding: 12px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 12px; font-size: .97rem; line-height: 1.5; }
@@ -576,7 +584,7 @@ footer {
         <tr>
           <td><strong>FraCaS</strong> (1996)<br>French version of 2020</td>
           <td>yes, no or don't know, on 335&nbsp;inference problems</td>
-          <td class="v"><strong>54.6%</strong><br>183 / 335</td>
+          <td class="v"><strong>59.7%</strong><br>200 / 335</td>
           <td>answering “yes” everywhere: 60.9%<br>“don't know” everywhere: 29.3%</td>
         </tr>
         <tr>
@@ -588,7 +596,28 @@ footer {
       </tbody>
     </table>
     </div>
-    <p class="note">FraCaS is the hardest bench, and Marco is only starting on it: quantifiers (“none”, “most”) are not yet read as such. It is kept as a witness of what remains to learn. Universal Dependencies is read without any statistical learning: the reading rules, written as lines, do the reading.</p>
+    <p class="note">FraCaS is the hardest bench. In one week, Marco goes from 106 to 200 on it: quantifiers (“none”, “most”), adjectives, comparatives and ellipses are read as rules. Answering “yes” everywhere still does slightly better. The bench is kept as a witness of what remains to learn. Universal Dependencies is read without any statistical learning: the reading rules, written as lines, do the reading.</p>
+    <div class="evo">
+      <h3>Progress on the FraCaS bench</h3>
+      <svg viewBox="0 0 640 206" role="img" aria-label="FraCaS, problems solved out of 335: 106 on 7 November, 116 on the 10th, 166 on the 12th, 183 on the 13th, 200 on the 14th; answering yes everywhere would solve 204.">
+        <line class="d-rule" x1="64" y1="182" x2="624" y2="182"/>
+        <line class="evo-ref" x1="64" y1="33.6" x2="624" y2="33.6"/>
+        <text class="d-s" x="64" y="27.6">answering “yes” everywhere: 204</text>
+        <path class="evo-bar" d="M96.0,182 V108.9 Q96.0,104.9 100.0,104.9 H140.0 Q144.0,104.9 144.0,108.9 V182 Z"><title>7 Nov 2026: 106 of 335</title></path>
+        <text class="evo-v" x="120.0" y="121.9" text-anchor="middle">106</text>
+        <text class="d-s" x="120.0" y="199" text-anchor="middle">7 Nov</text>
+        <path class="evo-bar" d="M208.0,182 V101.6 Q208.0,97.6 212.0,97.6 H252.0 Q256.0,97.6 256.0,101.6 V182 Z"><title>10 Nov 2026: 116 of 335</title></path>
+        <text class="d-s" x="232.0" y="199" text-anchor="middle">10 Nov</text>
+        <path class="evo-bar" d="M320.0,182 V65.3 Q320.0,61.3 324.0,61.3 H364.0 Q368.0,61.3 368.0,65.3 V182 Z"><title>12 Nov 2026: 166 of 335</title></path>
+        <text class="d-s" x="344.0" y="199" text-anchor="middle">12 Nov</text>
+        <path class="evo-bar" d="M432.0,182 V52.9 Q432.0,48.9 436.0,48.9 H476.0 Q480.0,48.9 480.0,52.9 V182 Z"><title>13 Nov 2026: 183 of 335</title></path>
+        <text class="d-s" x="456.0" y="199" text-anchor="middle">13 Nov</text>
+        <path class="evo-bar" d="M544.0,182 V40.5 Q544.0,36.5 548.0,36.5 H588.0 Q592.0,36.5 592.0,40.5 V182 Z"><title>14 Nov 2026: 200 of 335</title></path>
+        <text class="evo-v" x="568.0" y="53.5" text-anchor="middle">200</text>
+        <text class="d-s" x="568.0" y="199" text-anchor="middle">14 Nov</text>
+      </svg>
+      <p class="note">Problems solved out of 335, each time on a newborn Marco. On 14 November, ellipses go from 17 to 33 of 55: “Jean talked to Marie. Guillaume too. Did Guillaume talk to Marie?” — “yes, like Jean”. Marco is no longer just a reader: it is on the road to inference.</p>
+    </div>
   </div>
 </section>
 
@@ -618,7 +647,7 @@ footer {
     <h3>Open work</h3>
     <ul class="plain">
       <li>100% understood: “We aim for 100% decoded and 100% understood.” The meaning gold standard is its measure.</li>
-      <li>Quantifiers: “none”, “most”, “many”, what FraCaS asks for.</li>
+      <li>Quantifiers: “none”, “most”, “many”, read as cases since 11 Nov (59 of 74 in FraCaS); “few”, “at most” and the parts of a set remain.</li>
       <li>The gégé: what soothes beside what threatens, the senses born of the body, hearing, smell.</li>
       <li>Understanding a book: reading <em>Eugénie Grandet</em>, the summary, the characters and the names they go by.</li>
     </ul>
@@ -665,7 +694,8 @@ footer {
         <tr><td class="date">5–6 Nov 2026</td><td>The door and the meaning; 616 meanings for 401 verbs, from <em>Les Verbes Français</em>.</td></tr>
         <tr><td class="date">7 Nov 2026</td><td>FraCaS; the negated question; the sea in the gégé.</td></tr>
         <tr><td class="date">8 Nov 2026</td><td>The program of November 8: the held complement, the sensed thing, the cloud of fathers.</td></tr>
-        <tr class="now"><td class="date">10–13 Nov 2026</td><td>Logic as rules: quantifiers, “to see is to compare”, adjectives, comparatives; FraCaS 183&nbsp;/ 335.</td></tr>
+        <tr><td class="date">10–13 Nov 2026</td><td>Logic as rules: quantifiers, “to see is to compare”, adjectives, comparatives; FraCaS 183&nbsp;/ 335.</td></tr>
+        <tr class="now"><td class="date">13–14 Nov 2026</td><td>The door of the universe and ellipses (“Guillaume too”, “Guillaume did it”); Proteus inversion and quantity leave the Python; FraCaS 200&nbsp;/ 335.</td></tr>
       </tbody>
     </table>
     </div>
