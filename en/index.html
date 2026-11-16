@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marco, the deduction machine</title>
-<meta name="description" content="Marco, the deduction machine: an intelligence with no black box, whose every answer says where it comes from. A bionic processor with nodal memory, a project by José Walocha.">
+<meta name="description" content="Marco, the deduction machine: no black box, every answer says where it comes from. A bionic processor with nodal memory, a project by José Walocha.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="192x192" href="/icone-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -162,6 +162,10 @@ em { font-style: italic; }
 .sec-body h3 { font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
 .note { font-size: .92rem; color: var(--muted); }
 
+/* L'accroche (16/11/2026) */
+.accroche { font-family: var(--display); font-weight: 600; font-size: clamp(1.2rem, 2.6vw, 1.6rem); line-height: 1.3; margin: 0; max-width: 30ch; }
+.accroche-r { margin: 8px 0 18px; font-family: var(--mono); font-size: 14px; color: var(--accent); letter-spacing: .02em; }
+.credit { margin-top: 12px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
 /* L'évolution au banc FraCaS (14/11/2026) */
 .evo { margin: 28px 0 0; }
 .evo svg { display: block; width: 100%; max-width: 640px; height: auto; margin: 8px 0 4px; color: var(--ink); }
@@ -309,8 +313,11 @@ footer {
 
 <section class="hero" aria-labelledby="title">
   <div>
-    <h1 id="title">Marco, the <span>deduction</span> machine</h1>
-    <p class="lede">An intelligence with no black box. Marco holds dated, sourced threads, crosses them, and gives back what the crossing yields. Every answer says where it comes from; when nothing holds an answer, Marco says: I don't know.</p>
+    <p class="accroche">“AI is neither intelligent nor artificial. So what is it?”</p>
+    <p class="accroche-r">A learning machine.</p>
+    <h1 id="title">Marco, on the other hand, is a <span>deduction</span> machine.</h1>
+    <p class="lede">No black box: Marco holds dated, sourced threads, crosses them, and gives back what the crossing yields. Every answer says where it comes from; when nothing holds an answer, Marco says: I don't know.</p>
+    <p class="credit">“Neither intelligent nor artificial”: after Kate Crawford, <em>Atlas of AI</em>, 2021.</p>
     <blockquote class="quote">
       “It's a bionic processor, obviously.”
       <cite>José Walocha, 25 Oct 2026</cite>
@@ -584,7 +591,7 @@ footer {
         <tr>
           <td><strong>FraCaS</strong> (1996)<br>French version of 2020</td>
           <td>yes, no or don't know, on 335&nbsp;inference problems</td>
-          <td class="v"><strong>59.7%</strong><br>200 / 335</td>
+          <td class="v"><strong>94.9%</strong><br>318 / 335</td>
           <td>answering “yes” everywhere: 60.9%<br>“don't know” everywhere: 29.3%</td>
         </tr>
         <tr>
@@ -596,27 +603,29 @@ footer {
       </tbody>
     </table>
     </div>
-    <p class="note">FraCaS is the hardest bench. In one week, Marco goes from 106 to 200 on it: quantifiers (“none”, “most”), adjectives, comparatives and ellipses are read as rules. Answering “yes” everywhere still does slightly better. The bench is kept as a witness of what remains to learn. Universal Dependencies is read without any statistical learning: the reading rules, written as lines, do the reading.</p>
+    <p class="note">FraCaS is the hardest bench. From 7 to 15&nbsp;November, Marco goes from 106 to 318 of 335 on it: quantifiers, adjectives, comparatives and ellipses are read as rules, one stage undoes the “yes” answers given wrongly, and Agatha, the daimon of logic, handles dates, durations and counts. For its designer, the bench is done: “we have learned what we had to learn from it” (15 Nov). Universal Dependencies is read without any statistical learning: the reading rules, written as lines, do the reading.</p>
     <div class="evo">
       <h3>Progress on the FraCaS bench</h3>
-      <svg viewBox="0 0 640 206" role="img" aria-label="FraCaS, problems solved out of 335: 106 on 7 November, 116 on the 10th, 166 on the 12th, 183 on the 13th, 200 on the 14th; answering yes everywhere would solve 204.">
+      <svg viewBox="0 0 640 206" role="img" aria-label="FraCaS, problems solved out of 335: 106 on 7 November, 116 on the 10th, 166 on the 12th, 183 on the 13th, 200 on the 14th, 318 on the 15th; answering yes everywhere would solve 204.">
         <line class="d-rule" x1="64" y1="182" x2="624" y2="182"/>
-        <line class="evo-ref" x1="64" y1="33.6" x2="624" y2="33.6"/>
-        <text class="d-s" x="64" y="27.6">answering “yes” everywhere: 204</text>
-        <path class="evo-bar" d="M96.0,182 V108.9 Q96.0,104.9 100.0,104.9 H140.0 Q144.0,104.9 144.0,108.9 V182 Z"><title>7 Nov 2026: 106 of 335</title></path>
-        <text class="evo-v" x="120.0" y="121.9" text-anchor="middle">106</text>
-        <text class="d-s" x="120.0" y="199" text-anchor="middle">7 Nov</text>
-        <path class="evo-bar" d="M208.0,182 V101.6 Q208.0,97.6 212.0,97.6 H252.0 Q256.0,97.6 256.0,101.6 V182 Z"><title>10 Nov 2026: 116 of 335</title></path>
-        <text class="d-s" x="232.0" y="199" text-anchor="middle">10 Nov</text>
-        <path class="evo-bar" d="M320.0,182 V65.3 Q320.0,61.3 324.0,61.3 H364.0 Q368.0,61.3 368.0,65.3 V182 Z"><title>12 Nov 2026: 166 of 335</title></path>
-        <text class="d-s" x="344.0" y="199" text-anchor="middle">12 Nov</text>
-        <path class="evo-bar" d="M432.0,182 V52.9 Q432.0,48.9 436.0,48.9 H476.0 Q480.0,48.9 480.0,52.9 V182 Z"><title>13 Nov 2026: 183 of 335</title></path>
-        <text class="d-s" x="456.0" y="199" text-anchor="middle">13 Nov</text>
-        <path class="evo-bar" d="M544.0,182 V40.5 Q544.0,36.5 548.0,36.5 H588.0 Q592.0,36.5 592.0,40.5 V182 Z"><title>14 Nov 2026: 200 of 335</title></path>
-        <text class="evo-v" x="568.0" y="53.5" text-anchor="middle">200</text>
-        <text class="d-s" x="568.0" y="199" text-anchor="middle">14 Nov</text>
+        <line class="evo-ref" x1="64" y1="84.6" x2="624" y2="84.6"/>
+        <text class="d-s" x="64" y="78.6">answering “yes” everywhere: 204</text>
+        <path class="evo-bar" d="M86.7,182 V135.4 Q86.7,131.4 90.7,131.4 H130.7 Q134.7,131.4 134.7,135.4 V182 Z"><title>7 Nov 2026: 106 of 335</title></path>
+        <text class="evo-v" x="110.7" y="148.4" text-anchor="middle">106</text>
+        <text class="d-s" x="110.7" y="199" text-anchor="middle">7 Nov</text>
+        <path class="evo-bar" d="M180.0,182 V130.6 Q180.0,126.6 184.0,126.6 H224.0 Q228.0,126.6 228.0,130.6 V182 Z"><title>10 Nov 2026: 116 of 335</title></path>
+        <text class="d-s" x="204.0" y="199" text-anchor="middle">10 Nov</text>
+        <path class="evo-bar" d="M273.3,182 V106.7 Q273.3,102.7 277.3,102.7 H317.3 Q321.3,102.7 321.3,106.7 V182 Z"><title>12 Nov 2026: 166 of 335</title></path>
+        <text class="d-s" x="297.3" y="199" text-anchor="middle">12 Nov</text>
+        <path class="evo-bar" d="M366.7,182 V98.6 Q366.7,94.6 370.7,94.6 H410.7 Q414.7,94.6 414.7,98.6 V182 Z"><title>13 Nov 2026: 183 of 335</title></path>
+        <text class="d-s" x="390.7" y="199" text-anchor="middle">13 Nov</text>
+        <path class="evo-bar" d="M460.0,182 V90.5 Q460.0,86.5 464.0,86.5 H504.0 Q508.0,86.5 508.0,90.5 V182 Z"><title>14 Nov 2026: 200 of 335</title></path>
+        <text class="d-s" x="484.0" y="199" text-anchor="middle">14 Nov</text>
+        <path class="evo-bar" d="M553.3,182 V34.1 Q553.3,30.1 557.3,30.1 H597.3 Q601.3,30.1 601.3,34.1 V182 Z"><title>15 Nov 2026: 318 of 335</title></path>
+        <text class="evo-v" x="577.3" y="47.1" text-anchor="middle">318</text>
+        <text class="d-s" x="577.3" y="199" text-anchor="middle">15 Nov</text>
       </svg>
-      <p class="note">Problems solved out of 335, each time on a newborn Marco. On 14 November, ellipses go from 17 to 33 of 55: “Jean talked to Marie. Guillaume too. Did Guillaume talk to Marie?” — “yes, like Jean”. Marco is no longer just a reader: it is on the road to inference.</p>
+      <p class="note">Problems solved out of 335, each time on a newborn Marco. From 14 to 15&nbsp;November, the temporal section goes from 21 to 66 of 71, ellipses from 33 to 50 of 55. Of the 17 problems missed, the designer holds three to be right; three belong to pairs where the same sentences and the same question expect two opposite answers; four bear on one long sentence, left for the end.</p>
     </div>
   </div>
 </section>
@@ -647,7 +656,8 @@ footer {
     <h3>Open work</h3>
     <ul class="plain">
       <li>100% understood: “We aim for 100% decoded and 100% understood.” The meaning gold standard is its measure.</li>
-      <li>Quantifiers: “none”, “most”, “many”, read as cases since 11 Nov (59 of 74 in FraCaS); “few”, “at most” and the parts of a set remain.</li>
+      <li>Nested dolls: ideas nested inside one another like Russian dolls. “Marie's old black cat” is a single thing, placed inside the sentence; Marco still reads flat, subject, verb, object. Work opened on 16 Nov.</li>
+      <li>Figurative meaning: meaning deduced from the concrete is reached; next comes meaning deduced from a word turned aside, up to the sentence that speaks of itself: <span lang="fr">«&nbsp;Ce n'est pas un point qui termine cette phrase.&nbsp;»</span> (“It is not a full stop that ends this sentence.”), José Walocha, after Magritte.</li>
       <li>The gégé: what soothes beside what threatens, the senses born of the body, hearing, smell.</li>
       <li>Understanding a book: reading <em>Eugénie Grandet</em>, the summary, the characters and the names they go by.</li>
     </ul>
@@ -695,7 +705,9 @@ footer {
         <tr><td class="date">7 Nov 2026</td><td>FraCaS; the negated question; the sea in the gégé.</td></tr>
         <tr><td class="date">8 Nov 2026</td><td>The program of November 8: the held complement, the sensed thing, the cloud of fathers.</td></tr>
         <tr><td class="date">10–13 Nov 2026</td><td>Logic as rules: quantifiers, “to see is to compare”, adjectives, comparatives; FraCaS 183&nbsp;/ 335.</td></tr>
-        <tr class="now"><td class="date">13–14 Nov 2026</td><td>The door of the universe and ellipses (“Guillaume too”, “Guillaume did it”); Proteus inversion and quantity leave the Python; FraCaS 200&nbsp;/ 335.</td></tr>
+        <tr><td class="date">13–14 Nov 2026</td><td>The door of the universe and ellipses (“Guillaume too”, “Guillaume did it”); Proteus inversion and quantity leave the Python; FraCaS 200&nbsp;/ 335.</td></tr>
+        <tr><td class="date">14–15 Nov 2026</td><td>Wrong “yes” answers undone, two lines assembled into one, counting; Agatha, the daimon of logic: dates, durations, counts. FraCaS 318&nbsp;/ 335: the bench is done.</td></tr>
+        <tr class="now"><td class="date">16 Nov 2026</td><td>Photos of the words of <em>La Chèvre de M.&nbsp;Seguin</em>, 835 sentences; the nested-dolls work.</td></tr>
       </tbody>
     </table>
     </div>

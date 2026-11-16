@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marco, la machine à déduire</title>
-<meta name="description" content="Marco, la machine à déduire : une intelligence sans boîte noire, dont chaque réponse dit d'où elle vient. Un processeur bionique à mémoire nodale, projet de José Walocha.">
+<meta name="description" content="Marco, la machine à déduire : pas de boîte noire, chaque réponse dit d'où elle vient. Un processeur bionique à mémoire nodale, projet de José Walocha.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="192x192" href="/icone-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -162,6 +162,10 @@ em { font-style: italic; }
 .sec-body h3 { font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
 .note { font-size: .92rem; color: var(--muted); }
 
+/* L'accroche (16/11/2026) */
+.accroche { font-family: var(--display); font-weight: 600; font-size: clamp(1.2rem, 2.6vw, 1.6rem); line-height: 1.3; margin: 0; max-width: 30ch; }
+.accroche-r { margin: 8px 0 18px; font-family: var(--mono); font-size: 14px; color: var(--accent); letter-spacing: .02em; }
+.credit { margin-top: 12px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
 /* L'évolution au banc FraCaS (14/11/2026) */
 .evo { margin: 28px 0 0; }
 .evo svg { display: block; width: 100%; max-width: 640px; height: auto; margin: 8px 0 4px; color: var(--ink); }
@@ -309,8 +313,11 @@ footer {
 
 <section class="hero" aria-labelledby="titre">
   <div>
-    <h1 id="titre">Marco, la machine à <span>déduire</span></h1>
-    <p class="lede">Une intelligence sans boîte noire. Marco tient des fils datés et sourcés, il les croise, et il rend ce que le croisement donne. Chaque réponse dit d'où elle vient&nbsp;; quand rien ne la tient, Marco dit&nbsp;: je ne sais pas.</p>
+    <p class="accroche">«&nbsp;L'IA n'est ni intelligente ni artificielle. Alors, elle est quoi&nbsp;?&nbsp;»</p>
+    <p class="accroche-r">Une machine à apprendre.</p>
+    <h1 id="titre">Marco, lui, est une machine à <span>déduire</span>.</h1>
+    <p class="lede">Pas de boîte noire&nbsp;: Marco tient des fils datés et sourcés, il les croise, et il rend ce que le croisement donne. Chaque réponse dit d'où elle vient&nbsp;; quand rien ne la tient, Marco dit&nbsp;: je ne sais pas.</p>
+    <p class="credit">«&nbsp;Ni intelligente ni artificielle&nbsp;»&nbsp;: d'après Kate Crawford, <em>Atlas of AI</em>, 2021.</p>
     <blockquote class="quote">
       «&nbsp;C'est processeur bionique, évidemment.&nbsp;»
       <cite>José Walocha, 25/10/2026</cite>
@@ -573,7 +580,7 @@ footer {
         <tr>
           <td><strong>FraCaS</strong> (1996)<br>version française de 2020</td>
           <td>oui, non ou on ne sait pas, sur 335&nbsp;problèmes d'inférence</td>
-          <td class="v"><strong>59,7&nbsp;%</strong><br>200 / 335</td>
+          <td class="v"><strong>94,9&nbsp;%</strong><br>318 / 335</td>
           <td>répondre «&nbsp;oui&nbsp;» partout&nbsp;: 60,9&nbsp;%<br>«&nbsp;on ne sait pas&nbsp;» partout&nbsp;: 29,3&nbsp;%</td>
         </tr>
         <tr>
@@ -585,27 +592,29 @@ footer {
       </tbody>
     </table>
     </div>
-    <p class="note">FraCaS est le banc le plus dur. En une semaine, Marco y passe de 106 à 200&nbsp;: les quantificateurs («&nbsp;aucun&nbsp;», «&nbsp;la plupart&nbsp;»), les adjectifs, les comparatifs et les ellipses sont lus en règles. Répondre «&nbsp;oui&nbsp;» partout fait encore un peu mieux. Le banc est gardé comme témoin de ce qui reste à apprendre. Universal Dependencies est lu sans aucun apprentissage statistique&nbsp;: ce sont les règles de lecture, écrites en lignes, qui lisent.</p>
+    <p class="note">FraCaS est le banc le plus dur. Du 7 au 15&nbsp;novembre, Marco y passe de 106 à 318 sur 335&nbsp;: les quantificateurs, les adjectifs, les comparatifs et les ellipses sont lus en règles, un étage défait les «&nbsp;oui&nbsp;» donnés à tort, et Agatha, le daimon de la logique, tient les dates, les durées et les comptes. Pour son concepteur, le banc est plié&nbsp;: «&nbsp;on a appris ce que l'on devait en apprendre&nbsp;» (15/11). Universal Dependencies est lu sans aucun apprentissage statistique&nbsp;: ce sont les règles de lecture, écrites en lignes, qui lisent.</p>
     <div class="evo">
       <h3>L'évolution au banc FraCaS</h3>
-      <svg viewBox="0 0 640 206" role="img" aria-label="FraCaS, problèmes résolus sur 335 : 106 le 7 novembre, 116 le 10, 166 le 12, 183 le 13, 200 le 14 ; répondre oui partout en résoudrait 204.">
+      <svg viewBox="0 0 640 206" role="img" aria-label="FraCaS, problèmes résolus sur 335 : 106 le 7 novembre, 116 le 10, 166 le 12, 183 le 13, 200 le 14, 318 le 15 ; répondre oui partout en résoudrait 204.">
         <line class="d-rule" x1="64" y1="182" x2="624" y2="182"/>
-        <line class="evo-ref" x1="64" y1="33.6" x2="624" y2="33.6"/>
-        <text class="d-s" x="64" y="27.6">répondre « oui » partout : 204</text>
-        <path class="evo-bar" d="M96.0,182 V108.9 Q96.0,104.9 100.0,104.9 H140.0 Q144.0,104.9 144.0,108.9 V182 Z"><title>07/11/2026 : 106 sur 335</title></path>
-        <text class="evo-v" x="120.0" y="121.9" text-anchor="middle">106</text>
-        <text class="d-s" x="120.0" y="199" text-anchor="middle">07/11</text>
-        <path class="evo-bar" d="M208.0,182 V101.6 Q208.0,97.6 212.0,97.6 H252.0 Q256.0,97.6 256.0,101.6 V182 Z"><title>10/11/2026 : 116 sur 335</title></path>
-        <text class="d-s" x="232.0" y="199" text-anchor="middle">10/11</text>
-        <path class="evo-bar" d="M320.0,182 V65.3 Q320.0,61.3 324.0,61.3 H364.0 Q368.0,61.3 368.0,65.3 V182 Z"><title>12/11/2026 : 166 sur 335</title></path>
-        <text class="d-s" x="344.0" y="199" text-anchor="middle">12/11</text>
-        <path class="evo-bar" d="M432.0,182 V52.9 Q432.0,48.9 436.0,48.9 H476.0 Q480.0,48.9 480.0,52.9 V182 Z"><title>13/11/2026 : 183 sur 335</title></path>
-        <text class="d-s" x="456.0" y="199" text-anchor="middle">13/11</text>
-        <path class="evo-bar" d="M544.0,182 V40.5 Q544.0,36.5 548.0,36.5 H588.0 Q592.0,36.5 592.0,40.5 V182 Z"><title>14/11/2026 : 200 sur 335</title></path>
-        <text class="evo-v" x="568.0" y="53.5" text-anchor="middle">200</text>
-        <text class="d-s" x="568.0" y="199" text-anchor="middle">14/11</text>
+        <line class="evo-ref" x1="64" y1="84.6" x2="624" y2="84.6"/>
+        <text class="d-s" x="64" y="78.6">répondre « oui » partout : 204</text>
+        <path class="evo-bar" d="M86.7,182 V135.4 Q86.7,131.4 90.7,131.4 H130.7 Q134.7,131.4 134.7,135.4 V182 Z"><title>07/11/2026 : 106 sur 335</title></path>
+        <text class="evo-v" x="110.7" y="148.4" text-anchor="middle">106</text>
+        <text class="d-s" x="110.7" y="199" text-anchor="middle">07/11</text>
+        <path class="evo-bar" d="M180.0,182 V130.6 Q180.0,126.6 184.0,126.6 H224.0 Q228.0,126.6 228.0,130.6 V182 Z"><title>10/11/2026 : 116 sur 335</title></path>
+        <text class="d-s" x="204.0" y="199" text-anchor="middle">10/11</text>
+        <path class="evo-bar" d="M273.3,182 V106.7 Q273.3,102.7 277.3,102.7 H317.3 Q321.3,102.7 321.3,106.7 V182 Z"><title>12/11/2026 : 166 sur 335</title></path>
+        <text class="d-s" x="297.3" y="199" text-anchor="middle">12/11</text>
+        <path class="evo-bar" d="M366.7,182 V98.6 Q366.7,94.6 370.7,94.6 H410.7 Q414.7,94.6 414.7,98.6 V182 Z"><title>13/11/2026 : 183 sur 335</title></path>
+        <text class="d-s" x="390.7" y="199" text-anchor="middle">13/11</text>
+        <path class="evo-bar" d="M460.0,182 V90.5 Q460.0,86.5 464.0,86.5 H504.0 Q508.0,86.5 508.0,90.5 V182 Z"><title>14/11/2026 : 200 sur 335</title></path>
+        <text class="d-s" x="484.0" y="199" text-anchor="middle">14/11</text>
+        <path class="evo-bar" d="M553.3,182 V34.1 Q553.3,30.1 557.3,30.1 H597.3 Q601.3,30.1 601.3,34.1 V182 Z"><title>15/11/2026 : 318 sur 335</title></path>
+        <text class="evo-v" x="577.3" y="47.1" text-anchor="middle">318</text>
+        <text class="d-s" x="577.3" y="199" text-anchor="middle">15/11</text>
       </svg>
-      <p class="note">Problèmes résolus sur 335, chaque fois sur un Marco neuf. Le 14&nbsp;novembre, les ellipses passent de 17 à 33 sur 55&nbsp;: «&nbsp;Jean a parlé à Marie. Guillaume aussi. Guillaume a parlé à Marie&nbsp;?&nbsp;» — «&nbsp;oui, comme Jean&nbsp;». Marco n'est plus seulement un lecteur&nbsp;: il est sur le chemin de l'inférence.</p>
+      <p class="note">Problèmes résolus sur 335, chaque fois sur un Marco neuf. Du 14 au 15&nbsp;novembre, le chapitre du temps passe de 21 à 66 sur 71, les ellipses de 33 à 50 sur 55. Des 17 problèmes manqués, le concepteur en tient trois pour justes&nbsp;; trois appartiennent à des paires où les mêmes phrases et la même question attendent deux réponses opposées&nbsp;; quatre portent sur une même longue phrase, laissée pour la fin.</p>
     </div>
   </div>
 </section>
@@ -636,7 +645,8 @@ footer {
     <h3>Chantiers ouverts</h3>
     <ul class="plain">
       <li>Le 100&nbsp;% compris&nbsp;: «&nbsp;On vise le 100&nbsp;% décrypté et 100&nbsp;% compris.&nbsp;» L'étalon du sens en est la mesure.</li>
-      <li>Les quantificateurs&nbsp;: «&nbsp;aucun&nbsp;», «&nbsp;la plupart&nbsp;», «&nbsp;beaucoup&nbsp;», lus en cas depuis le 11/11 (59 sur 74 à FraCaS)&nbsp;; restent «&nbsp;peu&nbsp;», «&nbsp;au plus&nbsp;» et les parties d'un ensemble.</li>
+      <li>Les poupées&nbsp;: des idées emboîtées comme des poupées russes. «&nbsp;Le vieux chat noir de Marie&nbsp;» est une seule chose, rangée dans la phrase&nbsp;; Marco lit encore à plat, sujet, verbe, objet. Chantier ouvert le 16/11.</li>
+      <li>Le sens figuré&nbsp;: le sens déduit du concret est atteint&nbsp;; vient le sens déduit d'un mot détourné, jusqu'à la phrase qui parle d'elle-même&nbsp;: «&nbsp;Ce n'est pas un point qui termine cette phrase.&nbsp;» (José Walocha, d'après Magritte).</li>
       <li>Le gégé&nbsp;: ce qui apaise à côté de ce qui menace, les sens qui naissent du corps, l'ouïe, l'odorat.</li>
       <li>Comprendre un livre&nbsp;: la lecture d'<em>Eugénie Grandet</em>, le résumé, les personnages et leurs appellations.</li>
     </ul>
@@ -684,7 +694,9 @@ footer {
         <tr><td class="date">07/11/2026</td><td>FraCaS&nbsp;; la question niée&nbsp;; la mer au gégé.</td></tr>
         <tr><td class="date">08/11/2026</td><td>Le programme du 8 novembre&nbsp;: le complément tenu, la chose sentie, le nuage des pères.</td></tr>
         <tr><td class="date">10-13/11/2026</td><td>La logique en règles&nbsp;: les quantificateurs, «&nbsp;voir, c'est comparer&nbsp;», les adjectifs, les comparatifs&nbsp;; FraCaS 183&nbsp;/ 335.</td></tr>
-        <tr class="now"><td class="date">13-14/11/2026</td><td>La porte de l'univers et les ellipses («&nbsp;Guillaume aussi&nbsp;», «&nbsp;Guillaume l'a fait&nbsp;»)&nbsp;; l'inversion de Protée et la quantité sortent du Python&nbsp;; FraCaS 200&nbsp;/ 335.</td></tr>
+        <tr><td class="date">13-14/11/2026</td><td>La porte de l'univers et les ellipses («&nbsp;Guillaume aussi&nbsp;», «&nbsp;Guillaume l'a fait&nbsp;»)&nbsp;; l'inversion de Protée et la quantité sortent du Python&nbsp;; FraCaS 200&nbsp;/ 335.</td></tr>
+        <tr><td class="date">14-15/11/2026</td><td>Les «&nbsp;oui&nbsp;» à tort défaits, deux lignes assemblées en une, les dénombrements&nbsp;; Agatha, le daimon de la logique&nbsp;: les dates, les durées, les comptes. FraCaS 318&nbsp;/ 335&nbsp;: le banc est plié.</td></tr>
+        <tr class="now"><td class="date">16/11/2026</td><td>Les photos des mots de <em>La Chèvre de M.&nbsp;Seguin</em>, 835 phrases&nbsp;; le chantier des poupées.</td></tr>
       </tbody>
     </table>
     </div>
