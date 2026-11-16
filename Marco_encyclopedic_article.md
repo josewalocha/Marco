@@ -63,6 +63,8 @@ At the end of October 2026, a "Great Genome" gathers knowledge held to be innate
 
 From 10 to 14 November 2026, work focuses on the FraCaS benchmark. The deduction logic, until then written in Python in a single module (`electrique.py`), moves into "stages" (*étages*) of rules written in the genome[^conv]. The stages successively handle quantifiers and sets ("all", "some", "most", "at most"), comparison, which the author sums up as "to see is to compare" (placing two things on the same line), adjectives (qualifying or comparing within a reference), and then comparatives ("faster than", "as fast as")[^etages][^voir][^adj]. On 13 and 14 November come the universe of each problem, which the author calls its "door" (*porte*: the entry point that holds the context), and ellipses, sentences that do not repeat their verb ("Guillaume too.", "Guillaume did it.", "And Guillaume by train.")[^porte][^ellipses]. On 12 November, the author decides that the logic module may only be modified on his express order, and only to remove code from it[^conv]. On 13 and 14 November, two organs leave it in this way and are replaced by rules: Proteus inversion (what the "it" of "Guillaume did it" designates) and the quantity of a fact ("all", "no")[^conv][^ellipses]. Between 7 and 14 November, the FraCaS score rises from 106 to 200 problems solved out of 335[^fracasdoc].
 
+On 14 and 15 November, a stage named "contre" (*against*) undoes the "yes" answers given wrongly, two lines are read assembled into one, each pronoun in the place of what it refers to, and enumerations are counted. A daimon named Agatha, which the author describes as the daimon of logic, handles dates, durations and counts; it only adds things of the same kind, interest with fees, never kindnesses with spitefulness[^agatha]. On 15 November, Marco solves 318 problems out of 335; for the author, the benchmark is done: "we have learned what we had to learn from it"[^fracasdoc]. On 16 November work opens on the "dolls" (*poupées*): reading a nested group ("Marie's old black cat") as a single thing placed inside the sentence, where reading used to cut it into flat facts, subject, verb, object. It prepares the next milestone, figurative meaning deduced from a word turned aside[^poupees].
+
 ---
 
 ## Architecture
@@ -138,7 +140,7 @@ The following results are published by the development team. They have not been 
 | Benchmark | Measure | Marco's result | Point of comparison |
 |---|---|---|---|
 | Universal Dependencies (GSD and Sequoia) | subject, object or predicative complement of verbs | 23,689 / 32,077 (73.9%) — 4 November 2026 | — |
-| FraCaS, French version | answer yes / no / unknown | 200 / 335 (59.7%) — 14 November 2026 | always "yes": 204 / 335 (60.9%) |
+| FraCaS, French version | answer yes / no / unknown | 318 / 335 (94.9%) — 15 November 2026 | always "yes": 204 / 335 (60.9%) |
 | Internal word-sense gold standard | sense chosen for each word | 315 / 474 (66%) | — |
 
 ### Universal Dependencies
@@ -147,27 +149,29 @@ Universal Dependencies is an international project of corpora annotated with syn
 
 ### FraCaS
 
-FraCaS is a suite of 346 natural-language inference problems, published in 1996[^fracas] and translated into French in 2020[^fracasfr]. Each problem gives one or more premises and a question, to be answered yes, no or "unknown". Of the 335 problems kept for scoring, Marco solves 200 (59.7%) on 14 November 2026, against 183 (54.6%) on 13 November, 166 (49.6%) on 12 November and 106 (31.6%) on 7 November[^fracasdoc][^lisez]. Answering "yes" to every problem would solve 204 (60.9%); always answering "unknown", 98 (29.3%). Marco's score therefore remains four problems below that of a systematic "yes".
+FraCaS is a suite of 346 natural-language inference problems, published in 1996[^fracas] and translated into French in 2020[^fracasfr]. Each problem gives one or more premises and a question, to be answered yes, no or "unknown". Of the 335 problems kept for scoring, Marco solves 318 (94.9%) on 15 November 2026, against 200 (59.7%) on 14 November, 183 (54.6%) on the 13th, 166 (49.6%) on the 12th and 106 (31.6%) on 7 November[^fracasdoc][^lisez]. Answering "yes" to every problem would solve 204 (60.9%); always answering "unknown", 98 (29.3%). On 14 November, Marco was still four problems below a systematic "yes"; on the 15th, it exceeds it by 114.
 
-On 14 November, Marco answers "yes" 144 times, 116 of them correctly; "no" 18 times, 17 of them correctly; "unknown", or an answer that is neither yes nor no, 173 times, 67 of them correctly. Its main weakness is still failing to find an expected "yes": it does not give it in 88 of the 204 problems whose answer is "yes" (95 the day before)[^fracasdoc].
+On 14 November, Marco answers "yes" 144 times, 116 of them correctly; "no" 18 times, 17 of them correctly; "unknown", or an answer that is neither yes nor no, 173 times, 67 of them correctly. Its main weakness was then failing to find an expected "yes": it does not give it in 88 of the 204 problems whose answer is "yes" (95 the day before)[^fracasdoc].
 
-| Section | Solved |
-|---|---|
-| Adjectives | 22 / 22 |
-| Generalized quantifiers | 59 / 74 |
-| Verbs | 6 / 8 |
-| Attitudes | 8 / 13 |
-| Plurals | 14 / 33 |
-| Comparatives | 29 / 31 |
-| Ellipsis | 33 / 55 |
-| Temporal reference | 21 / 71 |
-| Anaphora | 8 / 28 |
+| Section | Solved on 14 November | Solved on 15 November |
+|---|---|---|
+| Adjectives | 22 / 22 | 22 / 22 |
+| Generalized quantifiers | 59 / 74 | 73 / 74 |
+| Verbs | 6 / 8 | 8 / 8 |
+| Attitudes | 8 / 13 | 13 / 13 |
+| Plurals | 14 / 33 | 32 / 33 |
+| Comparatives | 29 / 31 | 29 / 31 |
+| Ellipsis | 33 / 55 | 50 / 55 |
+| Temporal reference | 21 / 71 | 66 / 71 |
+| Anaphora | 8 / 28 | 25 / 28 |
+
+Of the 17 problems still missed on 15 November, the author holds three to be correct (88, 226 and 228); three belong to pairs in which the same premises and the same question expect two opposite answers (129 and 130, 160 and 161, 256 and 257); four bear on one long sentence (191, 192, 193 and 195), left for the end[^fracasdoc].
 
 The adjectives section rises from 4 to 22 problems solved out of 22 in the course of 12 November. The rule adopted by the author: an adjective stated without a reference qualifies; stated with a reference ("a small animal"), it compares within that reference[^adj]. Quantifiers have been read since 11 November. Five problems solved by an earlier version were lost on 12 November, when the Python code that handled them was removed; they are to be rewritten as rules[^conv].
 
 On 13 November, reading comparatives ("faster than", "as fast as") raises that section from 12 to 29 problems solved out of 31[^fracasdoc]. Two of the comparatives still missed are due to a reading choice: the team reads "as fast as" as an equality, whereas FraCaS takes it to mean "at least as fast"[^voir]. The author regards the score as secondary: "the main thing is to have a MAD [deduction machine] that makes logical deductions"[^fracasdoc].
 
-On 13 and 14 November, the ellipsis section rises from 17 to 33 problems solved out of 55. An ellipsis does not repeat its verb: "Jean talked to Marie. Guillaume too." For the author, the second character holds the handle of the first one's action: nothing is copied or restated[^ellipses]. The rules read three signals, "too" without a verb, "do it" and the line without a verb, then rebuild the sentence piece by piece: in "Jean went to Paris by car and Guillaume by train", "by train" takes the place of "by car", and "to Paris" is kept[^ellipses]. These rules only read the universe of the current problem, held by its "door"[^porte]. The same day, problem 105 ("Exactly one accountant attended the meeting. None of the accountants attended the meeting?": no) is won by reading zero as rules. The temporal reference (21 of 71) and anaphora (8 of 28) sections remain the least solved. For the author, the benchmark is no longer anecdotal: Marco is "on the road to the inference of MADs" (14 November 2026).
+On 13 and 14 November, the ellipsis section rises from 17 to 33 problems solved out of 55. An ellipsis does not repeat its verb: "Jean talked to Marie. Guillaume too." For the author, the second character holds the handle of the first one's action: nothing is copied or restated[^ellipses]. The rules read three signals, "too" without a verb, "do it" and the line without a verb, then rebuild the sentence piece by piece: in "Jean went to Paris by car and Guillaume by train", "by train" takes the place of "by car", and "to Paris" is kept[^ellipses]. These rules only read the universe of the current problem, held by its "door"[^porte]. The same day, problem 105 ("Exactly one accountant attended the meeting. None of the accountants attended the meeting?": no) is won by reading zero as rules. That day, the temporal reference (21 of 71) and anaphora (8 of 28) sections are the least solved; the next day, they stand at 66 and 25. For the author, the benchmark is no longer anecdotal: Marco is "on the road to the inference of MADs" (14 November 2026).
 
 ### Internal word-sense gold standard
 
@@ -218,7 +222,7 @@ As of November 2026, Marco has not been the subject of any publication in a scie
 
 [^hist]: José Walocha, *MARCO — Development history to date* ([Development_history.md](Development_history.md)), josewalocha/Marco repository, from the beginnings to 14 October 2026. French original: [Historique_du_developpement.md](Historique_du_developpement.md).
 
-[^fracasdoc]: José Walocha, *BANC — FraCaS*, project doctrine (BANC_FraCaS.html), as of 14 November 2026; benchmark runs of 12 November 2026 (fracas_2026-11-12_python_sorti.txt), 13 November 2026 (fracas_2026-11-13_comparatifs.txt) and 14 November 2026 (fracas_simple_2026-11-14_11h17.txt), the latter run by the author. Internal documentation, not published in the public repository. In French.
+[^fracasdoc]: José Walocha, *BANC — FraCaS*, project doctrine (BANC_FraCaS.html), as of 14 November 2026; benchmark runs of 12 November 2026 (fracas_2026-11-12_python_sorti.txt), 13 November 2026 (fracas_2026-11-13_comparatifs.txt), 14 November 2026 (fracas_simple_2026-11-14_11h17.txt) and 15 November 2026 (fracas_simple_2026-11-15_11h34.txt), the last two run by the author. Internal documentation, not published in the public repository. In French.
 
 [^adj]: José Walocha, *ADJECTIF — qualifier ou comparer*, project doctrine (ADJECTIF_qualifier_ou_comparer.html), 13 November 2026. Internal documentation, not published in the public repository. In French.
 
@@ -229,6 +233,10 @@ As of November 2026, Marco has not been the subject of any publication in a scie
 [^porte]: José Walocha, *CONTEXTE — l'univers et sa porte*, project doctrine (CONTEXTE_l_univers_et_sa_porte.html), as of 14 November 2026. Internal documentation, not published in the public repository. In French.
 
 [^ellipses]: José Walocha, *CONTEXTE — tenir et croiser*, project doctrine (CONTEXTE_tenir_et_croiser.html), strata of 14 November 2026: the action taken up again, quantity as rules. Internal documentation, not published in the public repository. In French.
+
+[^agatha]: Marco project liaison documents, 15 November 2026: Agatha, the daimon of logic. Internal documentation, not published in the public repository. In French.
+
+[^poupees]: Marco project liaison documents, 16 November 2026: the dolls benchmark. Internal documentation, not published in the public repository. In French.
 
 [^conv]: José Walocha, *LANGAGES — histoire des conversions*, project doctrine (LANGAGES_7_histoire_des_conversions.html), § 14 and 15, 13 and 14 November 2026. Internal documentation, not published in the public repository. In French.
 

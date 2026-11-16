@@ -64,7 +64,7 @@ Universal Dependencies is the international reference for corpora annotated by h
 
 ### FraCaS: the hardest bench
 
-FraCaS (1996) is the classic battery of natural-language inference: premises, a question, and three possible answers — yes, no, unknown. On its French translation, Marco solves **200 of 335** on 14/11 (106 on 07/11). In one week, quantifiers ("no", "most"), adjectives, comparatives and ellipses ("Jean talked to Marie. Guillaume too.") have moved into cases: adjectives 22 of 22, comparatives 29 of 31, ellipses 33 of 55. Answering "yes" to everything would still do slightly better (204, 61 %). The bench is kept as a witness: it says what remains to be learned, and it only moves when Marco understands better.
+FraCaS (1996) is the classic battery of natural-language inference: premises, a question, and three possible answers — yes, no, unknown. On its French translation, Marco solves **318 of 335** on 15/11 (200 on 14/11, 106 on 07/11). Quantifiers, adjectives, comparatives and ellipses ("Jean talked to Marie. Guillaume too.") have moved into cases; one stage undoes the "yes" answers given wrongly; Agatha, the daimon of logic, handles dates, durations and counts. By section: adjectives 22 of 22, verbs 8 of 8, attitudes 13 of 13, quantifiers 73 of 74, plurals 32 of 33, comparatives 29 of 31, ellipses 50 of 55, temporal reference 66 of 71, anaphora 25 of 28. Answering "yes" to everything would solve 204. Typed on 15/11: *"for me the FraCaS bench is done, we have learned what we had to learn from it"*.
 
 ### An excerpt, as is
 
@@ -115,7 +115,8 @@ The question comes from far back: *"It's crazy, I have the explanation to my 40-
 - **100 % understood.** Frappe of 06/11: *"We aim for 100 % decoded and 100 % understood."* The meaning gold standard is its measure.
 - **Removing the casting burrs**: the Python that still decides meaning, to be turned into lines, on the way to the microprocessor.
 - **The gégé**: what soothes beside what threatens, the senses born of the body (hearing, smell), axonization — *"the sound of the sea"* pointing to a sound often heard and little varying.
-- **Quantifiers**: "no", "most", "many" — read as cases since 11/11 (59 of 74 in FraCaS); "few", "at most" and the parts of a set remain.
+- **Nested dolls**: ideas nested inside one another like Russian dolls — "Marie's old black cat" is a single thing, placed inside the sentence; Marco still reads flat, subject, verb, object. Work opened on 16/11.
+- **Figurative meaning**: meaning deduced from the concrete is reached; next comes meaning deduced from a word turned aside, up to the sentence that speaks of itself: « Ce n'est pas un point qui termine cette phrase. » ("It is not a full stop that ends this sentence."), José Walocha, after Magritte
 - **Understanding a book**: reading *Eugénie Grandet*, the summary, the characters and their names.
 
 ---

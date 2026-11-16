@@ -64,7 +64,7 @@ Universal Dependencies est la référence internationale des corpus annotés à 
 
 ### FraCaS : le banc le plus dur
 
-FraCaS (1996) est la batterie classique de l'inférence en langue naturelle : des prémisses, une question, et trois réponses possibles — oui, non, on ne sait pas. Sur sa traduction française, Marco en résout **200 sur 335** le 14/11 (106 le 07/11). En une semaine, les quantificateurs (« aucun », « la plupart »), les adjectifs, les comparatifs et les ellipses (« Jean a parlé à Marie. Guillaume aussi. ») sont passés en cas : adjectifs 22 sur 22, comparatifs 29 sur 31, ellipses 33 sur 55. Répondre « oui » à tout ferait encore un peu mieux (204, 61 %). Ce banc est gardé comme témoin : il dit ce qui reste à apprendre, et il ne bouge que quand Marco comprend mieux.
+FraCaS (1996) est la batterie classique de l'inférence en langue naturelle : des prémisses, une question, et trois réponses possibles — oui, non, on ne sait pas. Sur sa traduction française, Marco en résout **318 sur 335** le 15/11 (200 le 14/11, 106 le 07/11). Les quantificateurs, les adjectifs, les comparatifs et les ellipses (« Jean a parlé à Marie. Guillaume aussi. ») sont passés en cas ; un étage défait les « oui » donnés à tort ; Agatha, le daimon de la logique, tient les dates, les durées et les comptes. Par chapitre : adjectifs 22 sur 22, verbes 8 sur 8, croyances 13 sur 13, quantificateurs 73 sur 74, pluriels 32 sur 33, comparatifs 29 sur 31, ellipses 50 sur 55, temps 66 sur 71, reprises 25 sur 28. Répondre « oui » à tout en ferait 204. Frappe du 15/11 : *« pour moi le banc FraCaS est fini, on a appris ce que l'on devait en apprendre »*.
 
 ### Un extrait, tel quel
 
@@ -115,7 +115,8 @@ La question vient de loin : *« C'est dingue j'ai l'explication à ma question d
 - **Le 100 % compris.** Frappe du 06/11 : *« On vise le 100 % décrypté et 100 % compris. »* L'étalon du sens en est la mesure.
 - **Ôter les barbes de fonderie** : le Python qui décide encore du sens, à passer en lignes, sur le chemin du microprocesseur.
 - **Le gégé** : ce qui apaise à côté de ce qui menace, les sens qui naissent du corps (l'ouïe, l'odorat), l'axonisation — *« le bruit de la mer »* qui pointe sur un bruit entendu souvent et qui varie peu.
-- **Les quantificateurs** : « aucun », « la plupart », « beaucoup » — lus en cas depuis le 11/11 (59 sur 74 à FraCaS) ; restent « peu », « au plus » et les parties d'un ensemble.
+- **Les poupées** : des idées emboîtées comme des poupées russes — « le vieux chat noir de Marie » est une seule chose, rangée dans la phrase ; Marco lit encore à plat, sujet, verbe, objet. Chantier ouvert le 16/11.
+- **Le sens figuré** : le sens déduit du concret est atteint ; vient le sens déduit d'un mot détourné, jusqu'à la phrase qui parle d'elle-même : « Ce n'est pas un point qui termine cette phrase. » (José Walocha, d'après Magritte)
 - **Comprendre un livre** : la lecture d'*Eugénie Grandet*, le résumé, les personnages et leurs appellations.
 
 ---

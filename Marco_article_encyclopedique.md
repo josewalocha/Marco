@@ -61,6 +61,8 @@ Fin octobre 2026, un « grand génome » rassemble des connaissances tenues pour
 
 Du 10 au 14 novembre 2026, le travail porte sur le banc FraCaS. La logique de déduction, jusque-là écrite en Python dans un module (`electrique.py`), passe dans des « étages » de règles écrites dans le génome[^conv]. Les étages traitent successivement les quantificateurs et les ensembles (« tous », « quelques », « la plupart », « au plus »), la comparaison, que l'auteur résume par « voir, c'est comparer » (placer deux choses sur une même ligne), les adjectifs (qualifier ou comparer dans une référence), puis les comparatifs (« plus rapide que », « aussi rapide que »)[^etages][^voir][^adj]. Les 13 et 14 novembre s'y ajoutent l'univers de chaque problème, que l'auteur appelle sa « porte » (le point d'entrée qui tient le contexte), et les ellipses, ces phrases qui ne redisent pas leur verbe (« Guillaume aussi. », « Guillaume l'a fait. », « Et Guillaume en train. »)[^porte][^ellipses]. Le 12 novembre, l'auteur décide que le module de logique ne peut plus être modifié que sur son ordre exprès, et seulement pour en retirer du code[^conv]. Les 13 et 14 novembre, deux organes en sortent ainsi, remplacés par des règles : l'inversion de Protée (ce que désigne le « l' » de « Guillaume l'a fait ») et la quantité d'un fait (« tous », « aucun »)[^conv][^ellipses]. Entre le 7 et le 14 novembre, le score au banc FraCaS passe de 106 à 200 problèmes résolus sur 335[^fracasdoc].
 
+Les 14 et 15 novembre, un étage nommé « contre » défait les « oui » donnés à tort, deux lignes se lisent assemblées en une, chaque pronom à la place de ce qu'il reprend, et les dénombrements se comptent. Un daimon nommé Agatha, que l'auteur décrit comme le daimon de la logique, tient les dates, les durées et les comptes ; il n'additionne que des choses de même sorte, des intérêts avec des frais, jamais des gentillesses avec des méchancetés[^agatha]. Le 15 novembre, Marco résout 318 problèmes sur 335 ; pour l'auteur, le banc est plié : « on a appris ce que l'on devait en apprendre »[^fracasdoc]. Le 16 novembre s'ouvre le chantier des « poupées » : lire un groupe emboîté (« le vieux chat noir de Marie ») comme une seule chose rangée dans la phrase, là où la lecture le découpait en faits à plat, sujet, verbe, objet. Il prépare le jalon suivant, le sens figuré déduit d'un mot détourné[^poupees].
+
 ---
 
 ## Architecture
@@ -136,7 +138,7 @@ Les résultats suivants sont publiés par l'équipe de développement. Ils n'ont
 | Banc | Mesure | Résultat de Marco | Point de comparaison |
 |---|---|---|---|
 | Universal Dependencies (GSD et Sequoia) | sujet, objet ou attribut des verbes | 23 689 / 32 077 (73,9 %) — 4 novembre 2026 | — |
-| FraCaS, version française | réponse oui / non / on ne sait pas | 200 / 335 (59,7 %) — 14 novembre 2026 | toujours « oui » : 204 / 335 (60,9 %) |
+| FraCaS, version française | réponse oui / non / on ne sait pas | 318 / 335 (94,9 %) — 15 novembre 2026 | toujours « oui » : 204 / 335 (60,9 %) |
 | Étalon interne du sens des mots | sens choisi pour chaque mot | 315 / 474 (66 %) | — |
 
 ### Universal Dependencies
@@ -145,27 +147,29 @@ Universal Dependencies est un projet international de corpus annotés en dépend
 
 ### FraCaS
 
-FraCaS est une batterie de 346 problèmes d'inférence en langue naturelle, publiée en 1996[^fracas] et traduite en français en 2020[^fracasfr]. Chaque problème donne une ou plusieurs prémisses et une question, à laquelle on répond oui, non ou « on ne sait pas ». Sur les 335 problèmes retenus pour la notation, Marco en résout 200 (59,7 %) le 14 novembre 2026, contre 183 (54,6 %) le 13 novembre, 166 (49,6 %) le 12 novembre et 106 (31,6 %) le 7 novembre[^fracasdoc][^lisez]. Répondre « oui » à tous les problèmes en résoudrait 204 (60,9 %) ; répondre toujours « on ne sait pas », 98 (29,3 %). Le score de Marco reste donc, à quatre problèmes près, sous celui de la réponse « oui » systématique.
+FraCaS est une batterie de 346 problèmes d'inférence en langue naturelle, publiée en 1996[^fracas] et traduite en français en 2020[^fracasfr]. Chaque problème donne une ou plusieurs prémisses et une question, à laquelle on répond oui, non ou « on ne sait pas ». Sur les 335 problèmes retenus pour la notation, Marco en résout 318 (94,9 %) le 15 novembre 2026, contre 200 (59,7 %) le 14 novembre, 183 (54,6 %) le 13, 166 (49,6 %) le 12 et 106 (31,6 %) le 7 novembre[^fracasdoc][^lisez]. Répondre « oui » à tous les problèmes en résoudrait 204 (60,9 %) ; répondre toujours « on ne sait pas », 98 (29,3 %). Le 14 novembre, Marco restait encore à quatre problèmes sous la réponse « oui » systématique ; le 15, il la dépasse de 114.
 
-Le 14 novembre, Marco répond « oui » 144 fois, dont 116 à raison ; « non » 18 fois, dont 17 à raison ; « on ne sait pas », ou une réponse qui n'est ni oui ni non, 173 fois, dont 67 à raison. Son défaut principal reste de ne pas trouver un « oui » attendu : il ne le donne pas dans 88 des 204 problèmes dont la réponse est « oui » (95 la veille)[^fracasdoc].
+Le 14 novembre, Marco répond « oui » 144 fois, dont 116 à raison ; « non » 18 fois, dont 17 à raison ; « on ne sait pas », ou une réponse qui n'est ni oui ni non, 173 fois, dont 67 à raison. Son défaut principal était alors de ne pas trouver un « oui » attendu : il ne le donne pas dans 88 des 204 problèmes dont la réponse est « oui » (95 la veille)[^fracasdoc].
 
-| Chapitre | Résolus |
-|---|---|
-| Adjectifs | 22 / 22 |
-| Quantificateurs | 59 / 74 |
-| Verbes | 6 / 8 |
-| Croyances | 8 / 13 |
-| Pluriels | 14 / 33 |
-| Comparatifs | 29 / 31 |
-| Ellipses | 33 / 55 |
-| Temps | 21 / 71 |
-| Reprises | 8 / 28 |
+| Chapitre | Résolus le 14 novembre | Résolus le 15 novembre |
+|---|---|---|
+| Adjectifs | 22 / 22 | 22 / 22 |
+| Quantificateurs | 59 / 74 | 73 / 74 |
+| Verbes | 6 / 8 | 8 / 8 |
+| Croyances | 8 / 13 | 13 / 13 |
+| Pluriels | 14 / 33 | 32 / 33 |
+| Comparatifs | 29 / 31 | 29 / 31 |
+| Ellipses | 33 / 55 | 50 / 55 |
+| Temps | 21 / 71 | 66 / 71 |
+| Reprises | 8 / 28 | 25 / 28 |
+
+Les 17 problèmes encore manqués le 15 novembre : l'auteur en tient trois pour justes (88, 226 et 228) ; trois appartiennent à des paires où les mêmes prémisses et la même question attendent deux réponses opposées (129 et 130, 160 et 161, 256 et 257) ; quatre portent sur une même longue phrase (191, 192, 193 et 195), laissée pour la fin[^fracasdoc].
 
 Le chapitre des adjectifs passe de 4 à 22 problèmes résolus sur 22 dans la journée du 12 novembre. La règle retenue par l'auteur : un adjectif dit sans référence qualifie ; dit avec une référence (« un petit animal »), il compare dans cette référence[^adj]. Les quantificateurs sont lus depuis le 11 novembre. Cinq problèmes que résolvait une version antérieure ont été perdus le 12 novembre, quand le code Python qui les tenait a été retiré ; ils sont à réécrire en règles[^conv].
 
 Le 13 novembre, la lecture des comparatifs (« plus rapide que », « aussi rapide que ») fait passer ce chapitre de 12 à 29 problèmes résolus sur 31[^fracasdoc]. Deux des comparatifs manqués tiennent à un choix de lecture : l'équipe lit « aussi rapide que » comme une égalité, là où FraCaS l'entend comme « au moins aussi rapide »[^voir]. L'auteur tient le score pour secondaire : « le principal c'est d'avoir un MAD [machine à déduire] qui fait des déductions logiques »[^fracasdoc].
 
-Les 13 et 14 novembre, le chapitre des ellipses passe de 17 à 33 problèmes résolus sur 55. Une ellipse ne redit pas son verbe : « Jean a parlé à Marie. Guillaume aussi. » Pour l'auteur, le second personnage tient la poignée (*handle*) de l'action du premier : rien n'est recopié ni redit[^ellipses]. Les règles lisent trois signaux, « aussi » sans verbe, « le faire » et la ligne sans verbe, puis refont la phrase pièce à pièce : dans « Jean est allé à Paris en voiture et Guillaume en train », « en train » prend la place de « en voiture », et « à Paris » est gardé[^ellipses]. Ces règles ne lisent que l'univers du problème en cours, que tient sa « porte »[^porte]. Le même jour, le problème 105 (« Un seul comptable a assisté à la réunion. Aucun des comptables n'a assisté à la réunion ? » : non) est gagné par la lecture du zéro en règles. Les chapitres du temps (21 sur 71) et des reprises (8 sur 28) restent les moins résolus. Pour l'auteur, le banc n'est plus anecdotique : Marco est « sur le chemin de l'inférence des MAD » (14 novembre 2026).
+Les 13 et 14 novembre, le chapitre des ellipses passe de 17 à 33 problèmes résolus sur 55. Une ellipse ne redit pas son verbe : « Jean a parlé à Marie. Guillaume aussi. » Pour l'auteur, le second personnage tient la poignée (*handle*) de l'action du premier : rien n'est recopié ni redit[^ellipses]. Les règles lisent trois signaux, « aussi » sans verbe, « le faire » et la ligne sans verbe, puis refont la phrase pièce à pièce : dans « Jean est allé à Paris en voiture et Guillaume en train », « en train » prend la place de « en voiture », et « à Paris » est gardé[^ellipses]. Ces règles ne lisent que l'univers du problème en cours, que tient sa « porte »[^porte]. Le même jour, le problème 105 (« Un seul comptable a assisté à la réunion. Aucun des comptables n'a assisté à la réunion ? » : non) est gagné par la lecture du zéro en règles. Ce jour-là, les chapitres du temps (21 sur 71) et des reprises (8 sur 28) sont les moins résolus ; le lendemain, ils en sont à 66 et 25. Pour l'auteur, le banc n'est plus anecdotique : Marco est « sur le chemin de l'inférence des MAD » (14 novembre 2026).
 
 ### Étalon interne du sens des mots
 
@@ -216,7 +220,7 @@ En novembre 2026, Marco n'a fait l'objet d'aucune publication dans une revue ou 
 
 [^hist]: José Walocha, *MARCO — Historique du développement à ce jour* ([Historique_du_developpement.md](Historique_du_developpement.md)), dépôt josewalocha/Marco, des débuts au 14 octobre 2026.
 
-[^fracasdoc]: José Walocha, *BANC — FraCaS*, doctrine du projet (BANC_FraCaS.html), état du 14 novembre 2026 ; relevés du banc du 12 novembre 2026 (fracas_2026-11-12_python_sorti.txt), du 13 novembre 2026 (fracas_2026-11-13_comparatifs.txt) et du 14 novembre 2026 (fracas_simple_2026-11-14_11h17.txt), ce dernier joué par l'auteur. Documentation interne, non publiée dans le dépôt public.
+[^fracasdoc]: José Walocha, *BANC — FraCaS*, doctrine du projet (BANC_FraCaS.html), état du 14 novembre 2026 ; relevés du banc du 12 novembre 2026 (fracas_2026-11-12_python_sorti.txt), du 13 novembre 2026 (fracas_2026-11-13_comparatifs.txt), du 14 novembre 2026 (fracas_simple_2026-11-14_11h17.txt) et du 15 novembre 2026 (fracas_simple_2026-11-15_11h34.txt), ces deux derniers joués par l'auteur. Documentation interne, non publiée dans le dépôt public.
 
 [^adj]: José Walocha, *ADJECTIF — qualifier ou comparer*, doctrine du projet (ADJECTIF_qualifier_ou_comparer.html), 13 novembre 2026. Documentation interne, non publiée dans le dépôt public.
 
@@ -227,6 +231,10 @@ En novembre 2026, Marco n'a fait l'objet d'aucune publication dans une revue ou 
 [^porte]: José Walocha, *CONTEXTE — l'univers et sa porte*, doctrine du projet (CONTEXTE_l_univers_et_sa_porte.html), état du 14 novembre 2026. Documentation interne, non publiée dans le dépôt public.
 
 [^ellipses]: José Walocha, *CONTEXTE — tenir et croiser*, doctrine du projet (CONTEXTE_tenir_et_croiser.html), strates du 14 novembre 2026 : l'action reprise, la quantité en règles. Documentation interne, non publiée dans le dépôt public.
+
+[^agatha]: Documents de liaison du projet Marco, 15 novembre 2026 : Agatha, le daimon de la logique. Documentation interne, non publiée dans le dépôt public.
+
+[^poupees]: Documents de liaison du projet Marco, 16 novembre 2026 : le banc des poupées. Documentation interne, non publiée dans le dépôt public.
 
 [^conv]: José Walocha, *LANGAGES — histoire des conversions*, doctrine du projet (LANGAGES_7_histoire_des_conversions.html), § 14 et 15, 13 et 14 novembre 2026. Documentation interne, non publiée dans le dépôt public.
 
