@@ -116,7 +116,7 @@ The question comes from far back: *"It's crazy, I have the explanation to my 40-
 - **Removing the casting burrs**: the Python that still decides meaning, to be turned into lines, on the way to the microprocessor.
 - **The gégé**: what soothes beside what threatens, the senses born of the body (hearing, smell), axonization — *"the sound of the sea"* pointing to a sound often heard and little varying.
 - **Nested dolls**: ideas nested inside one another like Russian dolls — "Marie's old black cat" is a single thing, placed inside the sentence; Marco still reads flat, subject, verb, object. Work opened on 16/11.
-- **Figurative meaning**: meaning deduced from the concrete is reached; next comes meaning deduced from a word turned aside, up to the sentence that speaks of itself: « Ce n'est pas un point qui termine cette phrase. » ("It is not a full stop that ends this sentence."), José Walocha, after Magritte
+- **Figurative meaning**: meaning deduced from the concrete is reached; next comes meaning deduced from a word turned aside, up to the sentence that speaks of itself: « Ce n'est pas un point qui termine cette phrase. » ("It is not a full stop that ends this sentence."), José Walocha, in the spirit of Hofstadter and Magritte
 - **Understanding a book**: reading *Eugénie Grandet*, the summary, the characters and their names.
 
 ---

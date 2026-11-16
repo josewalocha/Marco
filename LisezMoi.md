@@ -116,7 +116,7 @@ La question vient de loin : *« C'est dingue j'ai l'explication à ma question d
 - **Ôter les barbes de fonderie** : le Python qui décide encore du sens, à passer en lignes, sur le chemin du microprocesseur.
 - **Le gégé** : ce qui apaise à côté de ce qui menace, les sens qui naissent du corps (l'ouïe, l'odorat), l'axonisation — *« le bruit de la mer »* qui pointe sur un bruit entendu souvent et qui varie peu.
 - **Les poupées** : des idées emboîtées comme des poupées russes — « le vieux chat noir de Marie » est une seule chose, rangée dans la phrase ; Marco lit encore à plat, sujet, verbe, objet. Chantier ouvert le 16/11.
-- **Le sens figuré** : le sens déduit du concret est atteint ; vient le sens déduit d'un mot détourné, jusqu'à la phrase qui parle d'elle-même : « Ce n'est pas un point qui termine cette phrase. » (José Walocha, d'après Magritte)
+- **Le sens figuré** : le sens déduit du concret est atteint ; vient le sens déduit d'un mot détourné, jusqu'à la phrase qui parle d'elle-même : « Ce n'est pas un point qui termine cette phrase. » (José Walocha, dans l'esprit de Hofstadter et de Magritte)
 - **Comprendre un livre** : la lecture d'*Eugénie Grandet*, le résumé, les personnages et leurs appellations.
 
 ---
