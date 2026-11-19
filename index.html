@@ -10,6 +10,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="alternate" hreflang="fr" href="https://machine-a-deduire.com/">
 <link rel="alternate" hreflang="en" href="https://machine-a-deduire.com/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://machine-a-deduire.com/zh/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -110,6 +111,7 @@ em { font-style: italic; }
 .sheet-sub a:hover { color: var(--accent); }
 .sheet-sub b { color: var(--accent); font-weight: 600; margin-right: 4px; }
 .sheet-sub .lang { margin-left: auto; color: var(--ink); font-weight: 600; }
+.sheet-sub .lang + .lang { margin-left: 0; }
 
 /* Ouverture */
 .hero {
@@ -244,6 +246,12 @@ button.replay[disabled] { opacity: .5; cursor: default; }
   color: var(--c-dim); font-size: 12.5px;
   display: flex; flex-wrap: wrap; gap: 4px 24px;
 }
+.term.code { padding-bottom: 18px; font-size: 13.5px; }
+.term .u0 { color: var(--c-white); }
+.term.code .gl, .term.code .tr { padding-left: 0; }
+.sec-body td.mono { font-size: .86rem; }
+.term.code .ln { white-space: pre; }
+.sec-body p .mono { font-size: .9em; }
 @keyframes blink { 50% { opacity: 0; } }
 
 /* Feuille de route */
@@ -304,11 +312,13 @@ footer {
   <a href="#exemple"><b>4</b>Exemple</a>
   <a href="#mesures"><b>5</b>Mesures</a>
   <a href="#silicium"><b>6</b>Vers le silicium</a>
-  <a href="#cyc"><b>7</b>Cyc</a>
-  <a href="#revisions"><b>8</b>Révisions</a>
-  <a href="#equipe"><b>9</b>Équipe</a>
-  <a href="#documentation"><b>10</b>Documentation</a>
+  <a href="#parents"><b>7</b>Parents</a>
+  <a href="#mandarin"><b>8</b>Mandarin, anglais</a>
+  <a href="#revisions"><b>9</b>Révisions</a>
+  <a href="#equipe"><b>10</b>Équipe</a>
+  <a href="#documentation"><b>11</b>Documentation</a>
   <a class="lang" href="en/" hreflang="en" lang="en">English</a>
+  <a class="lang" href="zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a>
 </nav>
 
 <section class="hero" aria-labelledby="titre">
@@ -653,10 +663,29 @@ footer {
   </div>
 </section>
 
-<section class="sec" id="cyc" aria-labelledby="h-cyc">
-  <div class="sec-label"><span class="n">7</span><h2 id="h-cyc">Un parallèle&nbsp;: Cyc</h2></div>
+<section class="sec" id="parents" aria-labelledby="h-parents">
+  <div class="sec-label"><span class="n">7</span><h2 id="h-parents">Système expert + Cyc + Lisp + BSC</h2></div>
   <div class="sec-body">
-    <p>En 1984, Douglas Lenat lance Cyc avec le pari de Marco&nbsp;: une intelligence faite de connaissances explicites et de règles, sans statistique, dont chaque conclusion se justifie. Marco tient le même pari par un autre chemin.</p>
+    <p>Marco n'invente pas la déduction. Son concepteur le résume en une formule&nbsp;: «&nbsp;système expert + Cyc + Lisp + BSC&nbsp;» (19/11/2026). Les trois premiers sont ses parents, connus depuis plus de quarante ans&nbsp;; le quatrième est à lui.</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Héritage</th><th scope="col">Ce qu'il apporte</th><th scope="col">Chez Marco</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Système expert</strong><br><span class="note">OPS5, Charles Forgy, Carnegie Mellon, fin des années 1970&nbsp;; MYCIN, Stanford, années 1970</span></td><td>Le moteur&nbsp;: des règles jouées des faits vers les conclusions, le chaînage avant. Et le pourquoi&nbsp;: MYCIN montrait au médecin les règles qui l'avaient mené à sa conclusion.</td><td>Le joueur rejoue un étage de cas jusqu'à ce que plus rien de neuf ne s'écrive. Chaque réponse dit les fils qui la tiennent.</td></tr>
+        <tr><td><strong>Cyc</strong><br><span class="note">Douglas Lenat, 1984</span></td><td>Le sens commun écrit en assertions, rangé en micro-théories, des contextes.</td><td>Les leçons&nbsp;: «&nbsp;un porche est un abri&nbsp;», «&nbsp;la pluie grille les circuits&nbsp;». Deux contextes où la même pluie ne menace pas la même chose.</td></tr>
+        <tr><td><strong>Lisp</strong><br><span class="note">John McCarthy, 1958</span></td><td>Le programme est une donnée&nbsp;: le code s'écrit avec les listes qu'il manipule.</td><td>Un cas est une ligne du génome, comme un fait.</td></tr>
+        <tr class="now"><td><strong>BSC</strong><br><span class="note">Marco</span></td><td>La donnée est la langue.</td><td>La règle, le fait et la leçon sont des mots du génome, dans la langue qu'il lit&nbsp;: aucune traduction entre ce qu'il lit et ce qu'il joue. «&nbsp;Le neurone se code avec le neurone&nbsp;»&nbsp;: c'est ce que son concepteur appelle la programmation neuronale.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>Marco parle français parce que son concepteur parle français. Le système, lui, fonctionne avec n'importe quelle langue, idéogrammes compris&nbsp;: un mot est une place dans une ligne, quelle que soit son écriture. L'essai est au <a href="#mandarin">chapitre 8</a>.</p>
+
+    <h3>Ce qu'aucun des trois n'avait</h3>
+    <ul class="plain">
+      <li><strong>Il lit.</strong> Son savoir est tiré des dictionnaires ouverts et de ce qu'il lit, pas saisi à la main. L'écriture à la main du savoir est le mur où se sont arrêtés les systèmes experts, et où Cyc a passé quarante ans.</li>
+      <li><strong>Il tient à quelque chose.</strong> Un système expert déduit tout ce qu'on lui demande&nbsp;; Marco déduit d'abord ce qui menace ce à quoi il tient. C'est l'éveil.</li>
+    </ul>
     <div class="scroll">
     <table class="spec">
       <thead><tr><th scope="col"></th><th scope="col">Cyc</th><th scope="col">Marco</th></tr></thead>
@@ -668,12 +697,138 @@ footer {
       </tbody>
     </table>
     </div>
-    <p class="note">Marco ne prétend pas égaler quarante ans de Cyc. Il montre que la voie symbolique, outillée par les machines à apprentissage, n'a plus besoin d'une armée de saisie. Chiffres de Cyc&nbsp;: <a href="https://en.wikipedia.org/wiki/Cyc">Wikipedia</a>.</p>
+    <p class="note">Marco ne prétend pas égaler quarante ans de Cyc. Il montre que la voie symbolique, outillée par les machines à apprentissage, n'a plus besoin d'une armée de saisie.</p>
+
+    <h3>Exemple de code&nbsp;: le robot sous la pluie</h3>
+    <p>Le 19/11/2026, Marco joue un robot. Ses capteurs sentent la pluie&nbsp;; une leçon dit que la pluie grille les circuits, une autre qu'un robot soigne ses circuits. Il cherche un abri, demande au web quand la pluie finira, compte le temps perdu et son retard. Trente et un cas en trois étages&nbsp;; voici les trois qui font avancer l'horloge, tels qu'ils sont au génome.</p>
+    <div class="term-bar"><span class="t">BSC · patch robot · 19/11/2026</span></div>
+    <div class="term code">
+      <div class="ln gl">TA1 — l'arrivée : on part du départ avec la durée du trajet</div>
+      <div class="ln">si    ( la_journée , départ , un_t )</div>
+      <div class="ln">si    ( la_journée , trajet , _|_ , un_d )</div>
+      <div class="ln u0">alors ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">TA2 — un pas : un quart d'heure de plus à l'horloge, un quart de moins à faire</div>
+      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln">si    ( un_t , puis , un_t2 )</div>
+      <div class="ln">si    ( un_d2 , puis , un_d )</div>
+      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">TA3 — arrivé : plus rien à faire</div>
+      <div class="ln">si    ( la_journée , avance , un_t , 0q )</div>
+      <div class="ln u0">alors ( la_journée , arrivée , un_t )</div>
+      <div class="ln gap"></div>
+      <div class="ln tr">{départ 8h30, trajet 2q : ( avance , 8h30 , 2q ) → ( avance , 8h45 , 1q ) → ( avance , 9h00 , 0q ) → ( arrivée , 9h00 )}</div>
+    </div>
+    <p>Aucun cas ne dit «&nbsp;répète&nbsp;»&nbsp;: le joueur rejoue l'étage tant qu'il écrit du neuf, et s'arrête quand plus rien ne bouge. Avancer, c'est un pas sur une chaîne du génome, <span class="mono">( 8h15 , puis , 8h30 )</span>&nbsp;; additionner, c'est marcher sur deux chaînes à la fois&nbsp;; comparer, c'est marcher de l'un vers l'autre jusqu'à la rencontre. Aucun nombre n'est calculé.</p>
+    <p>Un cas, un fait et une leçon ont la même forme au génome&nbsp;: un mot par place.</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Ligne</th><th scope="col">Les mots, à leur place</th><th scope="col">C'est</th></tr></thead>
+      <tbody>
+        <tr><td class="date">L-meq-c-972200-001</td><td class="mono">la_journée 1 · sent 2 · un_a 3 · un_b 4 · _|_ 5</td><td>un cas, sa première condition</td></tr>
+        <tr><td class="date">M-robot_horloge-0001</td><td class="mono">6h00 1 · puis 2 · 6h15 3</td><td>un fait</td></tr>
+        <tr><td class="date">M-robot_lecons-0004</td><td class="mono">un 1 · porche 2 · est 3 · un 4 · abri 5</td><td>une leçon</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">Les cas parlent encore un français de convention (<span class="mono">la_journée</span>, <span class="mono">un_t</span>, <span class="mono">_|_</span>)&nbsp;; les leçons, un français libre. Le but&nbsp;: que Marco écrive lui-même un cas à partir d'une phrase qu'il a lue. Le banc du robot, 20 attendus sur 20, montre que le code tourne&nbsp;; écrit avec les règles, il ne mesure pas la compréhension. Sources&nbsp;: <a href="https://en.wikipedia.org/wiki/OPS5">OPS5</a>, <a href="https://en.wikipedia.org/wiki/Mycin">MYCIN</a>, <a href="https://en.wikipedia.org/wiki/Homoiconicity">Lisp et l'homoiconicité</a>, <a href="https://en.wikipedia.org/wiki/Cyc">Cyc</a> (Wikipedia).</p>
+  </div>
+</section>
+
+<section class="sec" id="mandarin" aria-labelledby="h-mandarin">
+  <div class="sec-label"><span class="n">8</span><h2 id="h-mandarin">Marco en mandarin, et en anglais</h2></div>
+  <div class="sec-body">
+    <p>Le 19/11/2026, le robot sous la pluie a été traduit en mandarin, puis en anglais, pour voir ce que le système encaisse. Les mêmes 31 cas, la même puce, le même banc de cinq scènes&nbsp;: seuls les mots changent. Les mots chinois sont des idéogrammes, un mot par place, comme au génome français.</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Essai</th><th scope="col">Ce qui est traduit</th><th scope="col">Banc du robot</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Français</strong>, le témoin</td><td>—</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr><td><strong>Mandarin</strong>, premier temps</td><td>les mots du monde&nbsp;: les leçons, la pluie, le porche, le robot, l'horloge, les quarts d'heure (一刻, 两刻…)</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr class="now"><td><strong>Mandarin</strong>, second temps</td><td>aussi les mots du programme&nbsp;: la journée, la menace, le refuge, l'action, «&nbsp;puis&nbsp;»… 55 mots chinois dans les cas</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr><td><strong>Anglais</strong></td><td>les mots du monde et du programme&nbsp;: rain, porch, shelter, threat, then… 55 mots anglais dans les cas</td><td class="v"><strong>20</strong> / 20</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Les mêmes actions, aux mêmes heures, avec le même retard. Le même cas s'écrit dans les deux langues&nbsp;:</p>
+    <div class="term-bar"><span class="t">BSC · TA2 · français, puis mandarin</span></div>
+    <div class="term code">
+      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln">si    ( un_t , puis , un_t2 )</div>
+      <div class="ln">si    ( un_d2 , puis , un_d )</div>
+      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln gap"></div>
+      <div class="ln">si    ( la_今天 , 前进 , un_t , un_d )</div>
+      <div class="ln">si    ( un_t , 然后 , un_t2 )</div>
+      <div class="ln">si    ( un_d2 , 然后 , un_d )</div>
+      <div class="ln u0">alors ( la_今天 , 前进 , un_t2 , un_d2 )</div>
+    </div>
+
+    <h3>Les leçons, en chinois</h3>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Au génome, un mot par place</th><th scope="col">En français</th></tr></thead>
+      <tbody>
+        <tr><td class="mono" lang="zh-Hans">雨 · 烧坏 · 电路</td><td>la pluie grille les circuits</td></tr>
+        <tr><td class="mono" lang="zh-Hans">机器人 · 保养 · 自己 · 的 · 电路</td><td>un robot soigne ses circuits</td></tr>
+        <tr><td class="mono" lang="zh-Hans">门廊 · 是 · 避雨处</td><td>un porche est un abri</td></tr>
+        <tr><td class="mono" lang="zh-Hans">避雨处 · 保护 · 人 · 不 · 淋 · 雨</td><td>un abri protège de la pluie</td></tr>
+        <tr><td class="mono" lang="zh-Hans">下雨 · 就是 · 手 · 上 · 感到 · 一 · 滴 · 水</td><td>pleuvoir, c'est sentir une goutte d'eau sur sa main</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>Ce qu'il pense, ce qu'il dit</h3>
+    <p>La scène où le web se trompe, en mandarin, extraite telle quelle. Il est 8&nbsp;h&nbsp;15, il pleut&nbsp;; le web annoncera la fin de la pluie pour 8&nbsp;h&nbsp;45, puis, à 8&nbsp;h&nbsp;45, pour 9&nbsp;h&nbsp;15.</p>
+    <div class="term-bar"><span class="t">Banc du robot · mandarin · second temps</span></div>
+    <div class="term code" lang="zh-Hans">
+      <div class="ln gl">8点15分 — 感觉 滴 水 手 · 看见 门廊</div>
+      <div class="ln">( J , 事件 , 下雨 )</div>
+      <div class="ln">( J , 威胁 , 雨 , 下雨 )</div>
+      <div class="ln">( J , 触及 , 雨 , 电路 )</div>
+      <div class="ln">( J , 在乎 , 电路 )</div>
+      <div class="ln">( J , 避难处 , 门廊 , 雨 )</div>
+      <div class="ln">( J , 威胁到 , 电路 , 雨 )</div>
+      <div class="ln u0">( J , 行动 , 去 , 门廊 )</div>
+      <div class="ln u0">( J , 行动 , 问 , 天气 , 结束 , 雨 )</div>
+      <div class="ln tr">「我到门廊下躲雨。我上网问雨什么时候停。」</div>
+      <div class="ln gl" lang="fr">« Je vais sous le porche. Je demande au web quand la pluie finira. »</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">8点45分 — 感觉 滴 水 手 · 看见 门廊 · 在下面 门廊</div>
+      <div class="ln u0">( J , 行动 , 问 , 天气 , 结束 , 雨 )</div>
+      <div class="ln tr">「我上网问雨什么时候停。」</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">8点45分 — 感觉 滴 水 手 · 看见 门廊 · 在下面 门廊 · 天气 结束 雨 9点15分</div>
+      <div class="ln u0">( J , 行动 , 等 , 9点15分 )</div>
+      <div class="ln">( J , 共耽误 , 四刻 )</div>
+      <div class="ln">( J , 迟到 , 三刻 )</div>
+      <div class="ln tr">「我在门廊下等雨停，大约9点15分。我将在9点45分到达，而不是8点45分。」</div>
+      <div class="ln gl" lang="fr">« J'attends sous le porche la fin de la pluie, vers 9 h 15. J'arriverai à 9 h 45 au lieu de 8 h 45. »</div>
+    </div>
+    <p>Il sent une goutte sur sa main, en déduit qu'il pleut, que la pluie menace ses circuits, qu'il tient à ses circuits, que le porche est un refuge. Il y va, demande au web, attend, redemande, et additionne le temps perdu&nbsp;: deux quarts, puis deux de plus, quatre (四刻). Les phrases entre 「&nbsp;」 sont rendues par le banc, comme en français&nbsp;: la bouche ne les dit pas encore.</p>
+
+    <h3>Ce qui reste français&nbsp;: les mots de la puce</h3>
+    <p>Au premier essai du second temps, «&nbsp;la_journée&nbsp;» était devenu «&nbsp;今天&nbsp;»&nbsp;: rien n'a bougé, 2 attendus sur 20. La puce reconnaît le nom qu'on lui donne et les inconnues par l'article français qui les ouvre&nbsp;: «&nbsp;la_&nbsp;» pour celle qu'on lui donne, la journée&nbsp;; «&nbsp;un_&nbsp;» pour n'importe laquelle, <span class="mono">un_t</span>, <span class="mono">un_d</span>. Le mandarin n'a pas d'article. L'article remis, «&nbsp;la_今天&nbsp;», tout a bougé&nbsp;: 20 sur 20. L'anglais a des articles, mais pas ceux de la puce&nbsp;: avec «&nbsp;the_day&nbsp;», rien ne bouge non plus, 2 sur 20&nbsp;; avec «&nbsp;la_day&nbsp;», 20 sur 20.</p>
+    <p>Dans le robot en mandarin, il reste donc en français neuf mots et deux articles, ceux du jeu d'instructions de la puce&nbsp;: <span class="mono">tient</span>, <span class="mono">membre_de</span>, <span class="mono">même</span>, <span class="mono">vrai</span>, <span class="mono">faux</span>, <span class="mono">faire</span>, <span class="mono">ou</span>, <span class="mono">ensemble</span>, <span class="mono">joue</span>, et <span class="mono">un_</span>, <span class="mono">la_</span>. Ce sont les mnémoniques d'un processeur&nbsp;: une puce en mandarin dirait 某 («&nbsp;un certain&nbsp;») pour <span class="mono">un_</span> et 这 («&nbsp;ce&nbsp;») pour <span class="mono">la_</span>. C'est une table à ajouter à la puce, pas une règle à réécrire.</p>
+
+    <p>En anglais, «&nbsp;rain&nbsp;» est à la fois le verbe et le nom&nbsp;: le même mot tient «&nbsp;verbe&nbsp;» et «&nbsp;nom commun&nbsp;», et le robot ne s'y perd pas. Des mots anglais existent aussi en français, avec un autre sens&nbsp;: «&nbsp;water&nbsp;», «&nbsp;tend&nbsp;», «&nbsp;drop&nbsp;». Le génome français leur donne ses marques&nbsp;; elles ne gênent pas, parce que le robot ne lit que ses leçons.</p>
+
+    <h3>Ce que l'essai ne montre pas</h3>
+    <ul class="plain">
+      <li>Marco ne lit pas encore le mandarin&nbsp;: les mots chinois ont reçu à la main les marques que les cas demandent (verbe, nom commun). Un génome chinois viendrait d'un dictionnaire ouvert comme CC-CEDICT.</li>
+      <li>Les cas de lecture sont écrits pour la grammaire française. Le chinois n'a ni conjugaison ni article&nbsp;; il a ses classificateurs et ses particules (了, 过, 着).</li>
+      <li>Le chinois s'écrit sans espace&nbsp;: pour lire une phrase, il faut d'abord la couper en mots.</li>
+    </ul>
+
+    <h3>Le cerveau humain fait de même</h3>
+    <p>Le lecteur chinois et le lecteur français lisent avec le même réseau, et une même région, dans le gyrus fusiforme gauche, est décisive pour reconnaître les mots dans toutes les écritures&nbsp;; l'écriture en module les variations. Marco aussi&nbsp;: un seul mécanisme, quelle que soit l'écriture&nbsp;; les variations sont dans les mots de la puce et dans la grammaire des cas.</p>
+    <p class="note">Sources&nbsp;: D.&nbsp;J.&nbsp;Bolger, C.&nbsp;A.&nbsp;Perfetti, W.&nbsp;Schneider, «&nbsp;<a href="https://doi.org/10.1002/hbm.20124">Cross-cultural effect on the brain revisited</a>&nbsp;», <em>Human Brain Mapping</em>, 2005&nbsp;; X.&nbsp;Feng et al., «&nbsp;<a href="https://elifesciences.org/articles/54591">A universal reading network and its modulation by writing system and reading ability in French and Chinese children</a>&nbsp;», <em>eLife</em>, 2020. Le banc&nbsp;: le patch robot de Dudo (Opus&nbsp;5.5), traduit le 19/11/2026&nbsp;; puce v19, Marco neuf.</p>
   </div>
 </section>
 
 <section class="sec" id="revisions" aria-labelledby="h-revisions">
-  <div class="sec-label"><span class="n">8</span><h2 id="h-revisions">Historique des révisions</h2></div>
+  <div class="sec-label"><span class="n">9</span><h2 id="h-revisions">Historique des révisions</h2></div>
   <div class="sec-body">
     <div class="scroll">
     <table class="spec">
@@ -696,7 +851,8 @@ footer {
         <tr><td class="date">10-13/11/2026</td><td>La logique en règles&nbsp;: les quantificateurs, «&nbsp;voir, c'est comparer&nbsp;», les adjectifs, les comparatifs&nbsp;; FraCaS 183&nbsp;/ 335.</td></tr>
         <tr><td class="date">13-14/11/2026</td><td>La porte de l'univers et les ellipses («&nbsp;Guillaume aussi&nbsp;», «&nbsp;Guillaume l'a fait&nbsp;»)&nbsp;; l'inversion de Protée et la quantité sortent du Python&nbsp;; FraCaS 200&nbsp;/ 335.</td></tr>
         <tr><td class="date">14-15/11/2026</td><td>Les «&nbsp;oui&nbsp;» à tort défaits, deux lignes assemblées en une, les dénombrements&nbsp;; Agatha, le daimon de la logique&nbsp;: les dates, les durées, les comptes. FraCaS 318&nbsp;/ 335&nbsp;: le banc est plié.</td></tr>
-        <tr class="now"><td class="date">16/11/2026</td><td>Les photos des mots de <em>La Chèvre de M.&nbsp;Seguin</em>, 835 phrases&nbsp;; le chantier des poupées.</td></tr>
+        <tr><td class="date">16/11/2026</td><td>Les photos des mots de <em>La Chèvre de M.&nbsp;Seguin</em>, 835 phrases&nbsp;; le chantier des poupées.</td></tr>
+        <tr class="now"><td class="date">19/11/2026</td><td>Système expert + Cyc + Lisp + BSC&nbsp;; le robot sous la pluie, un algorithme écrit en cas&nbsp;; le robot en mandarin et en anglais, 20 sur 20, et les mots qui restent à la puce.</td></tr>
       </tbody>
     </table>
     </div>
@@ -705,7 +861,7 @@ footer {
 </section>
 
 <section class="sec" id="equipe" aria-labelledby="h-equipe">
-  <div class="sec-label"><span class="n">9</span><h2 id="h-equipe">Équipe</h2></div>
+  <div class="sec-label"><span class="n">10</span><h2 id="h-equipe">Équipe</h2></div>
   <div class="sec-body">
     <p><strong>José Walocha</strong>, concepteur de Marco, Valenciennes. Chef d'entreprises en retraite, il joue à créer un cyber inspiré du cerveau des êtres vivants comme on joue à <em>Diablo&nbsp;IV</em>. La graine vient de loin&nbsp;: <em>Gödel, Escher, Bach</em>, de Douglas Hofstadter, paru en français en 1985.</p>
     <div class="scroll">
@@ -725,7 +881,7 @@ footer {
 </section>
 
 <section class="sec" id="documentation" aria-labelledby="h-documentation">
-  <div class="sec-label"><span class="n">10</span><h2 id="h-documentation">Documentation</h2></div>
+  <div class="sec-label"><span class="n">11</span><h2 id="h-documentation">Documentation</h2></div>
   <div class="sec-body">
     <ul class="docs">
       <li><a href="https://github.com/josewalocha/Marco">Le dépôt Marco</a><span>Sur GitHub, sous licence AGPL v3</span></li>

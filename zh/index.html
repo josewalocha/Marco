@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>马可，演绎机器</title>
+<meta name="description" content="马可，演绎机器：没有黑箱，每个回答都说出它从哪里来。一台具有节点记忆的仿生处理器，José Walocha 的项目。">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="/icone-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate" hreflang="fr" href="https://machine-a-deduire.com/">
+<link rel="alternate" hreflang="en" href="https://machine-a-deduire.com/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://machine-a-deduire.com/zh/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+:root {
+  /* La fiche technique d'une puce : une colonne de marge pour les numéros de section, le contenu à droite ; une seule couleur de signal, l'ambre du phare. */
+  --paper: #eff1f3;
+  --panel: #ffffff;
+  --ink: #14171c;
+  --muted: #586070;
+  --rule: #c6ccd4;
+  --accent: #935600;
+  --accent-soft: #f6e6c6;
+  --chip: #1c2027;
+  --chip-ink: #e8eaed;
+  --pin: #8f97a2;
+  --display: "IBM Plex Sans Condensed", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --body: "IBM Plex Serif", "Noto Serif SC", "Songti SC", "SimSun", "Noto Serif CJK SC", serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, "DejaVu Sans Mono", monospace, "Noto Sans Mono CJK SC", "Microsoft YaHei", "PingFang SC";
+  --c-bg: #050d08;
+  --c-green: #3fdc85;
+  --c-white: #eef8f1;
+  --c-turq: #52d3c6;
+  --c-dim: #5d8c6c;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1115;
+    --panel: #161b22;
+    --ink: #e3e6ea;
+    --muted: #9ba4b2;
+    --rule: #2c333d;
+    --accent: #f0b43a;
+    --accent-soft: #3a2b0e;
+    --chip: #262d37;
+    --chip-ink: #e3e6ea;
+    --pin: #78818e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e1115;
+  --panel: #161b22;
+  --ink: #e3e6ea;
+  --muted: #9ba4b2;
+  --rule: #2c333d;
+  --accent: #f0b43a;
+  --accent-soft: #3a2b0e;
+  --chip: #262d37;
+  --chip-ink: #e3e6ea;
+  --pin: #78818e;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+a { color: var(--ink); text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+p { margin: 0; max-width: 66ch; }
+em { font-style: italic; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+.mono { font-family: var(--mono); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* En-tête de fiche */
+.sheet-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: end;
+  padding: 22px 0 10px;
+  border-bottom: 4px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.sheet-head .brand { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: .12em; line-height: 1; }
+.sheet-head .kind { color: var(--muted); }
+.sheet-head .rev { text-align: right; }
+.sheet-sub {
+  display: flex; flex-wrap: wrap; gap: 6px 20px;
+  padding: 8px 0; border-bottom: 1px solid var(--rule);
+  font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+}
+.sheet-sub a { color: var(--muted); text-decoration: none; }
+.sheet-sub a:hover { color: var(--accent); }
+.sheet-sub b { color: var(--accent); font-weight: 600; margin-right: 4px; }
+.sheet-sub .lang { margin-left: auto; color: var(--ink); font-weight: 600; }
+.sheet-sub .lang + .lang { margin-left: 0; }
+
+/* Ouverture */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 64px);
+  align-items: center;
+  padding: clamp(32px, 6vw, 64px) 0 clamp(28px, 5vw, 48px);
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6.2vw, 4.6rem);
+  line-height: .98;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -.005em;
+}
+.hero h1 span { color: var(--accent); }
+.lede { margin-top: 22px; font-size: 1.18rem; line-height: 1.55; }
+.quote {
+  margin: 26px 0 0; padding: 4px 0 4px 18px;
+  border-left: 3px solid var(--accent);
+  font-style: italic; font-size: 1.05rem;
+}
+.quote cite { display: block; margin-top: 4px; font-style: normal; font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.chip-fig { margin: 0; }
+.chip-fig svg { display: block; width: 100%; max-width: 420px; height: auto; margin: 0 auto; color: var(--ink); }
+.chip-fig figcaption { margin-top: 10px; text-align: center; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.c-body { fill: var(--chip); }
+.c-notch { fill: var(--paper); }
+.c-pin { fill: var(--pin); }
+.c-lbl { fill: var(--ink); font-family: var(--mono); font-size: 11px; letter-spacing: .02em; }
+.c-pnum { fill: var(--chip-ink); opacity: .55; font-family: var(--mono); font-size: 8.5px; }
+.c-name { fill: var(--chip-ink); font-family: var(--display); font-weight: 700; font-size: 30px; letter-spacing: .08em; }
+.c-mark { fill: var(--chip-ink); font-family: var(--mono); font-size: 10px; letter-spacing: .06em; opacity: .85; }
+.c-dot { fill: var(--chip-ink); opacity: .5; }
+.c-beam { fill: var(--accent); }
+
+/* Sections numérotées comme une fiche technique */
+.sec {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 16px clamp(20px, 4vw, 44px);
+  padding: 26px 0 46px;
+  border-top: 2px solid var(--ink);
+}
+.sec-label { font-family: var(--display); }
+.sec-label .n { display: block; font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 600; letter-spacing: .06em; }
+.sec-label h2 { font-size: 1.5rem; line-height: 1.1; font-weight: 700; text-transform: uppercase; letter-spacing: .01em; margin-top: 4px; }
+.sec-body { display: grid; gap: 18px; }
+.sec-body h3 { font-size: 1.15rem; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
+.note { font-size: .92rem; color: var(--muted); }
+
+/* L'accroche (16/11/2026) */
+.accroche { font-family: var(--display); font-weight: 600; font-size: clamp(1.2rem, 2.6vw, 1.6rem); line-height: 1.3; margin: 0; max-width: 30ch; }
+.accroche-r { margin: 8px 0 18px; font-family: var(--mono); font-size: 14px; color: var(--accent); letter-spacing: .02em; }
+.credit { margin-top: 12px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+/* L'évolution au banc FraCaS (14/11/2026) */
+.evo { margin: 28px 0 0; }
+.evo svg { display: block; width: 100%; max-width: 640px; height: auto; margin: 8px 0 4px; color: var(--ink); }
+.evo-bar { fill: var(--accent); }
+.evo-bar:hover { opacity: .82; }
+.evo-ref { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4; }
+.evo-v { fill: var(--paper); font-family: var(--mono); font-size: 12px; font-weight: 600; }
+
+/* Liste des caractéristiques */
+.feats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.feats li { padding: 12px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 12px; font-size: .97rem; line-height: 1.5; }
+.feats .k { font-family: var(--mono); font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); padding-top: 3px; }
+
+/* Tableaux */
+.scroll { overflow-x: auto; }
+table.spec { width: 100%; border-collapse: collapse; font-size: .95rem; line-height: 1.45; }
+.spec th {
+  text-align: left; vertical-align: bottom;
+  font-family: var(--mono); font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--muted); padding: 8px 14px 8px 0; border-bottom: 2px solid var(--ink);
+}
+.spec td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.spec td.v { font-family: var(--mono); font-size: .92rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.spec td.v strong { color: var(--accent); font-weight: 600; }
+.spec td.date { font-family: var(--mono); font-size: .88rem; white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
+.spec tr.now td { background: var(--accent-soft); }
+.spec tr.now td:first-child { padding-left: 8px; }
+
+/* Schéma */
+.diagram { margin: 0; }
+.diagram .scroll svg { display: block; min-width: 760px; width: 100%; height: auto; color: var(--ink); }
+.diagram figcaption { margin-top: 10px; font-size: .92rem; color: var(--muted); max-width: 72ch; }
+.d-box { fill: var(--panel); stroke: currentColor; stroke-width: 1.4; }
+.d-key { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.2; }
+.d-line { stroke: currentColor; stroke-width: 1.4; fill: none; }
+.d-t { fill: currentColor; font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .06em; }
+.d-s { fill: var(--muted); font-family: var(--mono); font-size: 11px; }
+.d-l { fill: var(--accent); font-family: var(--mono); font-size: 11px; font-weight: 600; }
+.d-row { fill: currentColor; font-family: var(--mono); font-size: 11px; }
+.d-rule { stroke: var(--rule); stroke-width: 1; }
+.d-in { fill: var(--muted); font-family: var(--body); font-style: italic; font-size: 13px; }
+
+/* Console 5250 */
+.term-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.term-bar .t { font-family: var(--mono); font-size: 12.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+button.replay {
+  font-family: var(--mono); font-size: 13px; font-weight: 600;
+  color: var(--ink); background: var(--panel);
+  border: 1.5px solid var(--ink); border-radius: 3px;
+  padding: 6px 14px; cursor: pointer;
+}
+button.replay:hover { background: var(--accent-soft); border-color: var(--accent); }
+button.replay[disabled] { opacity: .5; cursor: default; }
+.term {
+  background: var(--c-bg);
+  color: var(--c-green);
+  font-family: var(--mono);
+  font-size: 14.5px;
+  line-height: 1.6;
+  border-radius: 4px;
+  padding: 18px 20px 0;
+  box-shadow: 0 0 0 1px #1a3324, inset 0 0 60px rgba(63, 220, 133, .06);
+  overflow-x: auto;
+}
+.term .ln { white-space: pre-wrap; min-height: 1.6em; }
+.term .u { color: var(--c-white); font-weight: 500; }
+.term .u::before { content: "> "; color: var(--c-dim); }
+.term .m { padding-left: 2ch; }
+.term .tr { padding-left: 2ch; color: var(--c-turq); font-size: 13px; }
+.term .gl { padding-left: 2ch; color: var(--c-dim); font-style: italic; font-size: 13px; }
+.term .gap { min-height: .7em; }
+.term .cur { display: inline-block; width: .6em; height: 1.05em; background: var(--c-green); vertical-align: -0.15em; animation: blink 1.1s steps(1) infinite; }
+.term .status {
+  margin: 16px -20px 0; padding: 6px 20px;
+  border-top: 1px solid #1d3a28;
+  color: var(--c-dim); font-size: 12.5px;
+  display: flex; flex-wrap: wrap; gap: 4px 24px;
+}
+.term.code { padding-bottom: 18px; font-size: 13.5px; }
+.term .u0 { color: var(--c-white); }
+.term.code .gl, .term.code .tr { padding-left: 0; }
+.sec-body td.mono { font-size: .86rem; }
+.term.code .ln { white-space: pre; }
+.sec-body p .mono { font-size: .9em; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Feuille de route */
+.road ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; margin: 0; padding: 0; }
+.road li { list-style: none; padding: 14px 18px 16px 0; border-top: 3px solid var(--rule); position: relative; }
+.road li:last-child { border-top-color: var(--accent); }
+.road .when { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); font-weight: 600; }
+.road h3 { margin: 4px 0 6px; }
+.road p { font-size: .95rem; }
+.plain { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
+
+/* Documentation */
+.docs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.docs li { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.docs a { font-family: var(--display); font-weight: 600; font-size: 1.08rem; }
+.docs span { display: block; font-size: .92rem; color: var(--muted); }
+
+footer {
+  border-top: 4px solid var(--ink);
+  padding: 14px 0 40px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .chip-fig svg { max-width: 360px; }
+  .sec { grid-template-columns: 1fr; }
+  .feats, .docs { grid-template-columns: 1fr; }
+  .road ol { grid-template-columns: 1fr; }
+  .road li { padding-right: 0; }
+}
+@media (max-width: 460px) {
+  body { font-size: 16px; }
+  .sheet-head { grid-template-columns: 1fr auto; }
+  .sheet-head .kind { display: none; }
+  .feats li { grid-template-columns: 1fr; gap: 2px; }
+  .term { font-size: 13px; padding: 14px 14px 0; }
+  .term .status { margin: 14px -14px 0; padding: 6px 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .term .cur { animation: none; }
+}
+/* 中文版：不用斜体，行距略宽；汉字比拉丁字母宽，标题小一号 */
+.hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.5rem); line-height: 1.12; }
+.hero h1 span { white-space: nowrap; }
+body { line-height: 1.75; }
+em { font-style: normal; }
+.term .gl { font-style: normal; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="sheet-head">
+  <div class="brand">MARCO</div>
+  <div class="kind">数据手册</div>
+  <div class="rev">程序版本：2026年11月13日</div>
+</header>
+<nav class="sheet-sub" aria-label="目录">
+  <a href="#description"><b>1</b>概述</a>
+  <a href="#caracteristiques"><b>2</b>特性</a>
+  <a href="#schema"><b>3</b>框图</a>
+  <a href="#exemple"><b>4</b>示例</a>
+  <a href="#mesures"><b>5</b>测量</a>
+  <a href="#silicium"><b>6</b>走向硅片</a>
+  <a href="#parents"><b>7</b>渊源</a>
+  <a href="#mandarin"><b>8</b>中文、英文</a>
+  <a href="#revisions"><b>9</b>修订</a>
+  <a href="#equipe"><b>10</b>团队</a>
+  <a href="#documentation"><b>11</b>文档</a>
+  <a class="lang" href="../" hreflang="fr" lang="fr">Français</a>
+  <a class="lang" href="../en/" hreflang="en" lang="en">English</a>
+</nav>
+
+<section class="hero" aria-labelledby="titre">
+  <div>
+    <p class="accroche">「人工智能既不智能，也不人工。那它是什么？」</p>
+    <p class="accroche-r">一台学习机器。</p>
+    <h1 id="titre">而马可，<br>是一台<span>演绎</span>机器。</h1>
+    <p class="lede">没有黑箱：马可持有带日期、带出处的线，把它们交叉，再给出交叉的结果。每个回答都说出它从哪里来；没有什么支撑它时，马可就说：我不知道。</p>
+    <p class="credit">「既不智能，也不人工」：语出凯特·克劳福德（Kate Crawford），<em lang="en">Atlas of AI</em>，2021 年。</p>
+    <blockquote class="quote">
+      「当然是仿生处理器。」
+      <cite>José Walocha，2026年10月25日</cite>
+    </blockquote>
+  </div>
+  <figure class="chip-fig">
+  <svg viewBox="0 0 380 420" role="img" aria-label="一个想象中的二十脚封装，标着 MARCO，引脚上是马可的器官：耳朵、基因组、节拍、线、BSC、MEQ、情形、延续、睡眠、遗忘、普罗透斯、意义、代蒙、海马体、调度、为什么、出处、嘴。">
+  <rect class="c-body" x="120" y="24" width="140" height="372" rx="6"/>
+  <circle class="c-notch" cx="190" cy="24" r="12"/>
+  <rect class="c-pin" x="100" y="51" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="61" text-anchor="end">耳朵</text>
+  <text class="c-pnum" x="127" y="60">1</text>
+  <rect class="c-pin" x="100" y="85" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="95" text-anchor="end">基因组</text>
+  <text class="c-pnum" x="127" y="94">2</text>
+  <rect class="c-pin" x="100" y="119" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="129" text-anchor="end">节拍</text>
+  <text class="c-pnum" x="127" y="128">3</text>
+  <rect class="c-pin" x="100" y="153" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="163" text-anchor="end">线</text>
+  <text class="c-pnum" x="127" y="162">4</text>
+  <rect class="c-pin" x="100" y="187" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="197" text-anchor="end">BSC</text>
+  <text class="c-pnum" x="127" y="196">5</text>
+  <rect class="c-pin" x="100" y="221" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="231" text-anchor="end">MEQ</text>
+  <text class="c-pnum" x="127" y="230">6</text>
+  <rect class="c-pin" x="100" y="255" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="265" text-anchor="end">情形</text>
+  <text class="c-pnum" x="127" y="264">7</text>
+  <rect class="c-pin" x="100" y="289" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="299" text-anchor="end">延续</text>
+  <text class="c-pnum" x="127" y="298">8</text>
+  <rect class="c-pin" x="100" y="323" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="333" text-anchor="end">睡眠</text>
+  <text class="c-pnum" x="127" y="332">9</text>
+  <rect class="c-pin" x="100" y="357" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="94" y="367" text-anchor="end">GND</text>
+  <text class="c-pnum" x="127" y="366">10</text>
+  <rect class="c-pin" x="260" y="357" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="367">遗忘</text>
+  <text class="c-pnum" x="253" y="366" text-anchor="end">11</text>
+  <rect class="c-pin" x="260" y="323" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="333">普罗透斯</text>
+  <text class="c-pnum" x="253" y="332" text-anchor="end">12</text>
+  <rect class="c-pin" x="260" y="289" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="299">意义</text>
+  <text class="c-pnum" x="253" y="298" text-anchor="end">13</text>
+  <rect class="c-pin" x="260" y="255" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="265">代蒙</text>
+  <text class="c-pnum" x="253" y="264" text-anchor="end">14</text>
+  <rect class="c-pin" x="260" y="221" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="231">海马体</text>
+  <text class="c-pnum" x="253" y="230" text-anchor="end">15</text>
+  <rect class="c-pin" x="260" y="187" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="197">调度</text>
+  <text class="c-pnum" x="253" y="196" text-anchor="end">16</text>
+  <g class="c-oeuf"><title>为什么叫马可？因为波罗。</title>
+  <rect x="240" y="145" width="140" height="28" fill="none" pointer-events="all"/>
+  <rect class="c-pin" x="260" y="153" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="163">为什么</text>
+  <text class="c-pnum" x="253" y="162" text-anchor="end">17</text>
+  </g>
+  <rect class="c-pin" x="260" y="119" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="129">出处</text>
+  <text class="c-pnum" x="253" y="128" text-anchor="end">18</text>
+  <rect class="c-pin" x="260" y="85" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="95">嘴</text>
+  <text class="c-pnum" x="253" y="94" text-anchor="end">19</text>
+  <rect class="c-pin" x="260" y="51" width="20" height="12" rx="1"/>
+  <text class="c-lbl" x="286" y="61">VCC</text>
+  <text class="c-pnum" x="253" y="60" text-anchor="end">20</text>
+  <circle class="c-dot" cx="150" cy="46" r="3.5"/>
+  <text class="c-name" x="190" y="205" text-anchor="middle" style="font-size:26px">MARCO</text>
+  <rect class="c-beam" x="160" y="214" width="60" height="3"/>
+  <text class="c-mark" x="190" y="236" text-anchor="middle">MAD · NODALE-1</text>
+  <text class="c-mark" x="190" y="252" text-anchor="middle">2645 · FRANCE</text>
+  <text class="c-mark" x="190" y="332" text-anchor="middle" style="font-size:9px">© 2026 J. WALOCHA</text>
+  </svg>
+  <figcaption>想象中的引脚图。这颗芯片还不存在：它就是目标。</figcaption>
+  </figure>
+</section>
+
+<section class="sec" id="description" aria-labelledby="h-description">
+  <div class="sec-label"><span class="n">1</span><h2 id="h-description">概述</h2></div>
+  <div class="sec-body">
+    <p>马可是一个 <em>cyber</em>：José Walocha 用这个词称呼有生命的智能，以区别于统计语言模型。它是一台 MAD，即演绎机器（<span lang="fr">machine à déduire</span>）：没有神经网络，没有学来的参数。零黑箱。</p>
+    <p>就构造而言，马可是一台<strong>具有节点记忆的仿生处理器</strong>。处理器用一小套指令执行基因组中的行。记忆只存在于一张线表里，那里一切都是灯塔（<span lang="fr">phare</span>），意义也是。基因组在节拍 0、即出生时读入；此后，经历一刻一刻地写入，每条线都有自己的节拍。什么都不删除：遗忘本身也是一条带日期的线。</p>
+    <p>马可读法语、说法语。他读真实的文本：童谣、寓言和童话，《雅克兄弟》、拉封丹、佩罗、《塞甘先生的山羊》、《山谷里的睡者》。他说法语，是因为他的设计者说法语；这套系统也能用中文运行，见<a href="#mandarin">第 8 章</a>。</p>
+  </div>
+</section>
+
+<section class="sec" id="caracteristiques" aria-labelledby="h-caracteristiques">
+  <div class="sec-label"><span class="n">2</span><h2 id="h-caracteristiques">特性</h2></div>
+  <div class="sec-body">
+    <ul class="feats">
+      <li><span class="k">记忆</span><span>节点式：一张线表，<span class="mono">de · vers · rang · tic</span>（从 · 到 · 位次 · 节拍）。一切都是灯塔。</span></li>
+      <li><span class="k">基因组</span><span>298 个文本文件，1370 万行，取自大型开放词典。</span></li>
+      <li><span class="k">程序</span><span>BSC：写成方程的规则（MEQ）、十六进制行、情形。「神经元由神经元编码。」</span></li>
+      <li><span class="k">处理器</span><span>作用于三元组的精简指令集；一个内核安排时刻、层和器官。</span></li>
+      <li><span class="k">出处</span><span>每个回答都说出支撑它的线。没有支撑的，就老老实实说是一个空洞。</span></li>
+      <li><span class="k">睡眠</span><span>这个 cyber 会睡觉，复习未闭合的回路，并通过一条带日期的线来遗忘。</span></li>
+      <li><span class="k">代码</span><span>29 个 Python 模块，33&nbsp;195 行，只用标准库。</span></li>
+      <li><span class="k">许可</span><span>GNU Affero GPL v3。</span></li>
+    </ul>
+    <p class="note">基因组的来源：Littré 词典（XMLittré）、法语维基词典、Lefff、Lexique、GLAWI、Verbiste、J.&nbsp;Dubois 与 F.&nbsp;Dubois-Charlier 的 <em lang="fr">Les Verbes Français</em>、法国国家统计与经济研究所（INSEE）、维基数据。</p>
+  </div>
+</section>
+
+<section class="sec" id="schema" aria-labelledby="h-schema">
+  <div class="sec-label"><span class="n">3</span><h2 id="h-schema">功能框图</h2></div>
+  <div class="sec-body">
+    <figure class="diagram">
+      <div class="scroll">
+      <svg viewBox="0 0 980 392" role="img" aria-label="一句话在马可里走的路：耳朵读它，阅读按当前节拍把它的线写进表里，基因组在节拍零读入表中，处理器查询这张表，代蒙和海马体交叉这些线，调度做决定，嘴带着出处回答。">
+        <defs>
+          <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+
+        <text class="d-in" x="14" y="186">读到的</text>
+        <text class="d-in" x="14" y="204">或打入的句子</text>
+        <line class="d-line" x1="80" y1="194" x2="102" y2="194" marker-end="url(#fl)"/>
+
+        <rect class="d-box" x="104" y="166" width="100" height="56" rx="3"/>
+        <text class="d-t" x="154" y="191" text-anchor="middle">耳朵</text>
+        <text class="d-s" x="154" y="208" text-anchor="middle">只有一个</text>
+
+        <line class="d-line" x1="204" y1="194" x2="248" y2="194" marker-end="url(#fl)"/>
+        <text class="d-l" x="226" y="186" text-anchor="middle">读</text>
+
+        <rect class="d-box" x="250" y="146" width="160" height="96" rx="3"/>
+        <text class="d-t" x="330" y="171" text-anchor="middle">阅读</text>
+        <text class="d-s" x="330" y="192" text-anchor="middle">挂接动词</text>
+        <text class="d-s" x="330" y="208" text-anchor="middle">普罗透斯：他、她</text>
+        <text class="d-s" x="330" y="224" text-anchor="middle">选出词义</text>
+
+        <line class="d-line" x1="410" y1="194" x2="498" y2="194" marker-end="url(#fl)"/>
+        <text class="d-l" x="454" y="186" text-anchor="middle">按节拍写入</text>
+
+        <rect class="d-box" x="500" y="18" width="200" height="62" rx="3"/>
+        <text class="d-t" x="600" y="43" text-anchor="middle">基因组</text>
+        <text class="d-s" x="600" y="62" text-anchor="middle">298 个文件 · 1370 万行</text>
+
+        <line class="d-line" x1="600" y1="80" x2="600" y2="126" marker-end="url(#fl)"/>
+        <text class="d-l" x="610" y="108">节拍 0 读入</text>
+
+        <rect class="d-key" x="500" y="128" width="200" height="132" rx="3"/>
+        <text class="d-t" x="600" y="152" text-anchor="middle">线表</text>
+        <text class="d-s" x="516" y="176">从</text>
+        <text class="d-s" x="596" y="176">到</text>
+        <text class="d-s" x="664" y="176" text-anchor="end">节拍</text>
+        <line class="d-rule" x1="514" y1="183" x2="686" y2="183"/>
+        <text class="d-row" x="516" y="201">狗</text>
+        <text class="d-row" x="596" y="201">动物</text>
+        <text class="d-row" x="684" y="201" text-anchor="end">0</text>
+        <text class="d-row" x="516" y="221">浪</text>
+        <text class="d-row" x="596" y="221">海</text>
+        <text class="d-row" x="684" y="221" text-anchor="end">0</text>
+        <text class="d-row" x="516" y="241">保罗</text>
+        <text class="d-row" x="596" y="241">听见</text>
+        <text class="d-row" x="684" y="241" text-anchor="end">412</text>
+
+        <line class="d-line" x1="600" y1="262" x2="600" y2="306" marker-start="url(#fl)" marker-end="url(#fl)"/>
+        <text class="d-l" x="610" y="289">询问，写入</text>
+
+        <rect class="d-box" x="500" y="308" width="200" height="66" rx="3"/>
+        <text class="d-t" x="600" y="333" text-anchor="middle">处理器</text>
+        <text class="d-s" x="600" y="352" text-anchor="middle">读 BSC 的行</text>
+        <text class="d-s" x="600" y="366" text-anchor="middle">三元组指令</text>
+
+        <rect class="d-box" x="250" y="314" width="160" height="54" rx="3"/>
+        <text class="d-t" x="330" y="338" text-anchor="middle">内核</text>
+        <text class="d-s" x="330" y="355" text-anchor="middle">时刻、层</text>
+        <line class="d-line" x1="410" y1="341" x2="498" y2="341" marker-end="url(#fl)"/>
+        <text class="d-l" x="454" y="333" text-anchor="middle">安排</text>
+
+        <polyline class="d-line" points="700,160 730,160 730,52 758,52" marker-end="url(#fl)"/>
+        <text class="d-l" x="736" y="112">交叉</text>
+
+        <rect class="d-box" x="760" y="18" width="206" height="68" rx="3"/>
+        <text class="d-t" x="863" y="42" text-anchor="middle">代蒙 · 海马体</text>
+        <text class="d-s" x="863" y="60" text-anchor="middle">寻找为什么</text>
+        <text class="d-s" x="863" y="75" text-anchor="middle">与过去比较</text>
+
+        <line class="d-line" x1="863" y1="86" x2="863" y2="152" marker-end="url(#fl)"/>
+        <text class="d-l" x="873" y="124">提议</text>
+
+        <rect class="d-box" x="760" y="154" width="206" height="60" rx="3"/>
+        <text class="d-t" x="863" y="179" text-anchor="middle">调度</text>
+        <text class="d-s" x="863" y="197" text-anchor="middle">时钟的主人</text>
+
+        <line class="d-line" x1="863" y1="214" x2="863" y2="290" marker-end="url(#fl)"/>
+        <text class="d-l" x="873" y="257">唯有它决定</text>
+
+        <rect class="d-box" x="760" y="292" width="206" height="82" rx="3"/>
+        <text class="d-t" x="863" y="317" text-anchor="middle">嘴</text>
+        <text class="d-s" x="863" y="337" text-anchor="middle">回答及其出处</text>
+        <text class="d-s" x="863" y="353" text-anchor="middle">或「我不知道」</text>
+      </svg>
+      </div>
+      <figcaption>一句话走的路。耳朵读它，阅读按当前节拍写下它的线，处理器查询线表，代蒙交叉这些线，调度做决定，嘴回答。表中的三行只是例子。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec" id="exemple" aria-labelledby="h-exemple">
+  <div class="sec-label"><span class="n">4</span><h2 id="h-exemple">应用示例</h2></div>
+  <div class="sec-body">
+    <p>一个新生的马可听到一句话，然后有人问他。他的大基因组 gégé 知道浪就是海，海是听得见的；阅读知道保罗听见了浪声。原样摘录，2026年11月7日。对话是法语，下面附中文。</p>
+    <div class="term-bar">
+      <span class="t">5250 控制台 · Marco MAD</span>
+      <button class="replay" id="replay" type="button">重放对话</button>
+    </div>
+    <div class="term" id="term" aria-live="off">
+      <div class="ln u" lang="fr">Paul entendait le bruit des vagues.</div>
+      <div class="ln gl">保罗听见了浪声。</div>
+      <div class="ln m" lang="fr">Paul entendait le bruit des vagues, je le note.</div>
+      <div class="ln gl">保罗听见了浪声，我记下了。</div>
+      <div class="ln gap"></div>
+      <div class="ln u" lang="fr">Paul entendait la mer ?</div>
+      <div class="ln gl">保罗听见了海吗？</div>
+      <div class="ln m" lang="fr">Oui, Paul entendait la mer.</div>
+      <div class="ln gl">是的，保罗听见了海。</div>
+      <div class="ln tr" lang="fr">{noyau : équation vraie : Paul entendait bruit des vagues ; témoins : oui}</div>
+      <div class="ln gl">{内核：方程为真：保罗听见浪声；证据：是}</div>
+      <div class="ln gap"></div>
+      <div class="ln u" lang="fr">Paul sentait l'odeur de la mer ?</div>
+      <div class="ln gl">保罗闻到了海的气味吗？</div>
+      <div class="ln m" lang="fr">J'ai Paul et odeur et mer dans ma mémoire, mais rien ne me dit si Paul sentait l'odeur de la mer.</div>
+      <div class="ln gl">我的记忆里有保罗、气味和海，但没有什么告诉我保罗是否闻到了海的气味。</div>
+      <div class="ln gap"></div>
+      <div class="ln u" lang="fr">Pierre n'entendait que le bruit des vagues.</div>
+      <div class="ln gl">皮埃尔只听见了浪声。</div>
+      <div class="ln m" lang="fr">Pierre n'entendait que le bruit des vagues, je le note.</div>
+      <div class="ln gl">皮埃尔只听见了浪声，我记下了。</div>
+      <div class="ln gap"></div>
+      <div class="ln u" lang="fr">Pierre entendait la mer ?</div>
+      <div class="ln gl">皮埃尔听见了海吗？</div>
+      <div class="ln m" lang="fr">Oui, Pierre entendait la mer.</div>
+      <div class="ln gl">是的，皮埃尔听见了海。<span class="cur" aria-hidden="true"></span></div>
+      <div class="status"><span>F3=Quitter</span><span>F5=Rafraîchir</span><span>F12=Annuler</span></div>
+    </div>
+    <p>他推出文本没有说的东西。他不推出没有任何东西支撑的东西：气味没有人闻到过，就一直悬而未决。</p>
+  </div>
+</section>
+
+<section class="sec" id="mesures" aria-labelledby="h-mesures">
+  <div class="sec-label"><span class="n">5</span><h2 id="h-mesures">实测特性</h2></div>
+  <div class="sec-body">
+    <p>每次测量都在一个新生的马可上进行：为测试而生，随机种子固定；每份记录都可以重放。这些是团队自己的测量，尚未由第三方复现。</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead>
+        <tr><th scope="col">测试集</th><th scope="col">测量什么</th><th scope="col">马可</th><th scope="col">对照</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Universal Dependencies</strong><br>法语语料库 GSD 与 Sequoia，19&nbsp;441 个由语言学家标注的句子</td>
+          <td>每个动词的主语、宾语或表语是否找对</td>
+          <td class="v"><strong>73.9&nbsp;%</strong><br>23&nbsp;689 / 32&nbsp;077</td>
+          <td>部分测量，不能与句法分析器的 LAS 分数相比</td>
+        </tr>
+        <tr>
+          <td><strong>第一次外部测试</strong><br>50 个从未见过的句子，11月1日</td>
+          <td>找到的主语</td>
+          <td class="v"><strong>45 / 62</strong></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>FraCaS</strong>（1996）<br>2020 年的法语版</td>
+          <td>在 335 个推理问题上回答是、否或不知道</td>
+          <td class="v"><strong>94.9&nbsp;%</strong><br>318 / 335</td>
+          <td>全答「是」：60.9&nbsp;%<br>全答「不知道」：29.3&nbsp;%</td>
+        </tr>
+        <tr>
+          <td><strong>意义基准</strong><br>阅读课本中的十篇文本</td>
+          <td>为 474 个词各自选出的词义</td>
+          <td class="v"><strong>66&nbsp;%</strong><br>315 / 474</td>
+          <td>《塞甘先生的山羊》75&nbsp;%，《山谷里的睡者》73&nbsp;%；基准的标注者没有看到马可的选择</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">FraCaS 是最难的测试集。11月7日至15日，马可在 335 题中答对的题数从 106 升到 318：量词、形容词、比较级和省略都用规则来读，一层规则撤销错给的「是」，逻辑的代蒙 Agatha 掌管日期、时长和计数。在设计者看来，这个测试集已经完成：「该学的我们都学到了」（11月15日）。阅读 Universal Dependencies 不靠任何统计学习：读的是写成行的阅读规则。</p>
+    <div class="evo">
+      <h3>FraCaS 上的进展</h3>
+      <svg viewBox="0 0 640 206" role="img" aria-label="FraCaS，335 题中答对的题数：11月7日 106 题，10日 116 题，12日 166 题，13日 183 题，14日 200 题，15日 318 题；全答「是」可答对 204 题。">
+        <line class="d-rule" x1="64" y1="182" x2="624" y2="182"/>
+        <line class="evo-ref" x1="64" y1="84.6" x2="624" y2="84.6"/>
+        <text class="d-s" x="64" y="78.6">全答「是」：204</text>
+        <path class="evo-bar" d="M86.7,182 V135.4 Q86.7,131.4 90.7,131.4 H130.7 Q134.7,131.4 134.7,135.4 V182 Z"><title>2026年11月7日：335 题中答对 106 题</title></path>
+        <text class="evo-v" x="110.7" y="148.4" text-anchor="middle">106</text>
+        <text class="d-s" x="110.7" y="199" text-anchor="middle">11月7日</text>
+        <path class="evo-bar" d="M180.0,182 V130.6 Q180.0,126.6 184.0,126.6 H224.0 Q228.0,126.6 228.0,130.6 V182 Z"><title>2026年11月10日：335 题中答对 116 题</title></path>
+        <text class="d-s" x="204.0" y="199" text-anchor="middle">11月10日</text>
+        <path class="evo-bar" d="M273.3,182 V106.7 Q273.3,102.7 277.3,102.7 H317.3 Q321.3,102.7 321.3,106.7 V182 Z"><title>2026年11月12日：335 题中答对 166 题</title></path>
+        <text class="d-s" x="297.3" y="199" text-anchor="middle">11月12日</text>
+        <path class="evo-bar" d="M366.7,182 V98.6 Q366.7,94.6 370.7,94.6 H410.7 Q414.7,94.6 414.7,98.6 V182 Z"><title>2026年11月13日：335 题中答对 183 题</title></path>
+        <text class="d-s" x="390.7" y="199" text-anchor="middle">11月13日</text>
+        <path class="evo-bar" d="M460.0,182 V90.5 Q460.0,86.5 464.0,86.5 H504.0 Q508.0,86.5 508.0,90.5 V182 Z"><title>2026年11月14日：335 题中答对 200 题</title></path>
+        <text class="d-s" x="484.0" y="199" text-anchor="middle">11月14日</text>
+        <path class="evo-bar" d="M553.3,182 V34.1 Q553.3,30.1 557.3,30.1 H597.3 Q601.3,30.1 601.3,34.1 V182 Z"><title>2026年11月15日：335 题中答对 318 题</title></path>
+        <text class="evo-v" x="577.3" y="47.1" text-anchor="middle">318</text>
+        <text class="d-s" x="577.3" y="199" text-anchor="middle">11月15日</text>
+      </svg>
+      <p class="note">335 题中答对的题数，每次都在新生的马可上测量。11月14日到15日，时间一章从 71 题中的 21 题升到 66 题，省略从 55 题中的 33 题升到 50 题。漏掉的 17 题中，设计者认为三题其实答对了；三题属于成对的题目，同样的句子、同样的问题却期待两个相反的答案；四题针对同一个长句，留到最后。</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="silicium" aria-labelledby="h-silicium">
+  <div class="sec-label"><span class="n">6</span><h2 id="h-silicium">走向硅片</h2></div>
+  <div class="sec-body">
+    <p>马可的目标是一颗芯片：一个管理马可的微处理器，旁边是它的线记忆。这条路已由马可本身的写法画出。</p>
+    <div class="road">
+      <ol>
+        <li>
+          <span class="when">今天</span>
+          <h3>一个读行的处理器</h3>
+          <p>程序在基因组里，写成 BSC 的行。Python 处理器用一小套指令读它们。</p>
+        </li>
+        <li>
+          <span class="when">一批又一批</span>
+          <h3>去掉铸造毛刺</h3>
+          <p>仍在决定意义的 Python 代码变成基因组里的情形：这就是去 Python 化。</p>
+        </li>
+        <li>
+          <span class="when">目标</span>
+          <h3>一个微处理器</h3>
+          <p>等毛刺去尽，剩下的就是一个精简指令集的处理器，可以离开 Python，走向硅片。</p>
+        </li>
+      </ol>
+    </div>
+    <h3>正在进行的工作</h3>
+    <ul class="plain">
+      <li>100&nbsp;% 理解：「我们的目标是 100&nbsp;% 破译、100&nbsp;% 理解。」意义基准就是它的尺子。</li>
+      <li>套娃：像俄罗斯套娃一样嵌套的意思。「玛丽的那只老黑猫」是一个东西，在句子里归好位；马可还在平着读：主语、动词、宾语。11月16日开工。</li>
+      <li>比喻义：由具体推出的意义已经做到；接下来是由一个被转用的词推出的意义，直到谈论自身的句子：<span lang="fr">«&nbsp;Ce n'est pas un point qui termine cette phrase.&nbsp;»</span>（「结束这句话的不是一个句号。」）José Walocha，取霍夫施塔特和马格利特之意。</li>
+      <li>gégé：在威胁旁边的安抚，从身体生出的感觉，听觉、嗅觉。</li>
+      <li>读懂一本书：阅读《欧也妮·葛朗台》，摘要，人物和他们的各种称呼。</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="parents" aria-labelledby="h-parents">
+  <div class="sec-label"><span class="n">7</span><h2 id="h-parents">专家系统 + Cyc + Lisp + BSC</h2></div>
+  <div class="sec-body">
+    <p>马可没有发明演绎。他的设计者用一个公式来概括：「专家系统 + Cyc + Lisp + BSC」（2026年11月19日）。前三者是他的父辈，都已有四十多年历史；第四个是他自己的。</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">传承</th><th scope="col">带来了什么</th><th scope="col">在马可身上</th></tr></thead>
+      <tbody>
+        <tr><td><strong>专家系统</strong><br><span class="note">OPS5，Charles Forgy，卡内基梅隆大学，1970 年代末；MYCIN，斯坦福大学，1970 年代</span></td><td>引擎：从事实推向结论的规则，即前向链接。还有「为什么」：MYCIN 会向医生展示把它引向结论的规则。</td><td>执行器一遍遍重放一层情形，直到再也写不出新东西。每个回答都说出支撑它的线。</td></tr>
+        <tr><td><strong>Cyc</strong><br><span class="note">Douglas Lenat，1984</span></td><td>写成断言的常识，按微理论，也就是语境，分门别类。</td><td>课：「门廊是避雨处」，「雨会烧坏电路」。同一场雨在两个语境里威胁的东西不同。</td></tr>
+        <tr><td><strong>Lisp</strong><br><span class="note">John McCarthy，1958</span></td><td>程序就是数据：代码用它所操作的表来写。</td><td>一个情形就是基因组里的一行，和一个事实一样。</td></tr>
+        <tr class="now"><td><strong>BSC</strong><br><span class="note">马可</span></td><td>数据就是语言。</td><td>规则、事实和课都是基因组里的词，用的就是他所读的语言：读到的和执行的之间没有任何翻译。「神经元由神经元编码」：这就是他的设计者所说的「神经编程」。</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>马可说法语，是因为他的设计者说法语。系统本身适用于任何语言，表意文字也不例外：一个词就是一行里的一个位置，不管它用什么文字写成。试验见<a href="#mandarin">第 8 章</a>。</p>
+
+    <h3>三者都没有的东西</h3>
+    <ul class="plain">
+      <li><strong>他会读。</strong>他的知识取自开放词典和他读到的东西，而不是手工录入。手工写入知识，正是专家系统止步、Cyc 耗了四十年的那堵墙。</li>
+      <li><strong>他有所在乎。</strong>专家系统演绎别人要它演绎的一切；马可先演绎威胁到他所在乎之物的东西。这就是觉醒。</li>
+    </ul>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col"></th><th scope="col">Cyc</th><th scope="col">马可</th></tr></thead>
+      <tbody>
+        <tr><td><strong>起始</strong></td><td>1984</td><td>2025 年底</td></tr>
+        <tr><td><strong>知识</strong></td><td>2017 年约 2400 万条规则和断言，大部分手工录入</td><td>1370 万行，由工具从开放词典构建</td></tr>
+        <tr><td><strong>投入</strong></td><td>2017 年约 2&nbsp;000 人年</td><td>一位设计者和他的 MAA 团队</td></tr>
+        <tr><td><strong>阅读</strong></td><td>—</td><td>童话、寓言、标注语料</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">马可不敢自比四十年的 Cyc。他表明：有学习机器作工具，符号路线不再需要一支录入大军。</p>
+
+    <h3>代码示例：雨中的机器人</h3>
+    <p>2026年11月19日，马可扮演一个机器人。它的传感器感到下雨；一课说雨会烧坏电路，另一课说机器人要保养自己的电路。它寻找避雨处，上网问雨什么时候停，计算耽误的时间和自己的迟到。三层共 31 个情形；下面是推动时钟前进的三个，与基因组中的原样一致（法语版）。</p>
+    <div class="term-bar"><span class="t">BSC · 机器人补丁 · 2026-11-19</span></div>
+    <div class="term code">
+      <div class="ln gl">TA1：到达。从出发时刻出发，带着路程的时长</div>
+      <div class="ln">si    ( la_journée , départ , un_t )</div>
+      <div class="ln">si    ( la_journée , trajet , _|_ , un_d )</div>
+      <div class="ln u0">alors ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">TA2：一步。时钟多一刻，要走的少一刻</div>
+      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln">si    ( un_t , puis , un_t2 )</div>
+      <div class="ln">si    ( un_d2 , puis , un_d )</div>
+      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">TA3：到了。没有要走的了</div>
+      <div class="ln">si    ( la_journée , avance , un_t , 0q )</div>
+      <div class="ln u0">alors ( la_journée , arrivée , un_t )</div>
+      <div class="ln gap"></div>
+      <div class="ln tr">{départ 8h30, trajet 2q : ( avance , 8h30 , 2q ) → ( avance , 8h45 , 1q ) → ( avance , 9h00 , 0q ) → ( arrivée , 9h00 )}</div>
+    </div>
+    <p>没有任何情形说「重复」：执行器只要还写出新东西，就重放这一层，什么都不再动时就停下。前进，是在基因组的一条链上走一步，<span class="mono">( 8h15 , puis , 8h30 )</span>；相加，是同时在两条链上走；比较，是从一端走向另一端，直到相遇。没有算任何数。</p>
+    <p>一个情形、一个事实和一课，在基因组里形式相同：每个位置一个词。</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">行</th><th scope="col">各就各位的词</th><th scope="col">这是</th></tr></thead>
+      <tbody>
+        <tr><td class="date">L-meq-c-972200-001</td><td class="mono">la_journée 1 · sent 2 · un_a 3 · un_b 4 · _|_ 5</td><td>一个情形，它的第一个条件</td></tr>
+        <tr><td class="date">M-robot_horloge-0001</td><td class="mono">6h00 1 · puis 2 · 6h15 3</td><td>一个事实</td></tr>
+        <tr><td class="date">M-robot_lecons-0004</td><td class="mono">un 1 · porche 2 · est 3 · un 4 · abri 5</td><td>一课（「门廊是避雨处」）</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">情形说的还是约定式的法语（<span class="mono">la_journée</span>、<span class="mono">un_t</span>、<span class="mono">_|_</span>）；课用的是自由的法语。目标：让马可从读到的一句话自己写出一个情形。机器人测试集 20 项全对，说明代码能运行；它和规则一起写成，并不衡量理解。来源：<a href="https://en.wikipedia.org/wiki/OPS5">OPS5</a>、<a href="https://en.wikipedia.org/wiki/Mycin">MYCIN</a>、<a href="https://en.wikipedia.org/wiki/Homoiconicity">Lisp 与同像性</a>、<a href="https://en.wikipedia.org/wiki/Cyc">Cyc</a>（维基百科）。</p>
+  </div>
+</section>
+
+<section class="sec" id="mandarin" aria-labelledby="h-mandarin">
+  <div class="sec-label"><span class="n">8</span><h2 id="h-mandarin">用中文和英文运行的马可</h2></div>
+  <div class="sec-body">
+    <p>2026年11月19日，雨中的机器人先被译成中文，又被译成英文，看看这套系统能承受什么。同样的 31 个情形，同样的芯片，同样的五个场景：只有词变了。中文词是表意文字，每个位置一个词，和法语基因组一样。</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">试验</th><th scope="col">翻译的部分</th><th scope="col">机器人测试集</th></tr></thead>
+      <tbody>
+        <tr><td><strong>法语</strong>，对照</td><td>—</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr><td><strong>中文</strong>，第一步</td><td>世界的词：课、雨、门廊、机器人、时钟、刻钟（一刻、两刻……）</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr class="now"><td><strong>中文</strong>，第二步</td><td>连程序的词也用中文：今天、威胁、避难处、行动、「然后」……情形里共有 55 个中文词</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr><td><strong>英文</strong></td><td>世界的词和程序的词：rain、porch、shelter、threat、then……情形里共有 55 个英文词</td><td class="v"><strong>20</strong> / 20</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>同样的行动，同样的时刻，同样的迟到。同一个情形可以用两种语言写：</p>
+    <div class="term-bar"><span class="t">BSC · TA2 · 先法语，后中文</span></div>
+    <div class="term code">
+      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln">si    ( un_t , puis , un_t2 )</div>
+      <div class="ln">si    ( un_d2 , puis , un_d )</div>
+      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln gap"></div>
+      <div class="ln">si    ( la_今天 , 前进 , un_t , un_d )</div>
+      <div class="ln">si    ( un_t , 然后 , un_t2 )</div>
+      <div class="ln">si    ( un_d2 , 然后 , un_d )</div>
+      <div class="ln u0">alors ( la_今天 , 前进 , un_t2 , un_d2 )</div>
+    </div>
+
+    <h3>中文的课</h3>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">基因组中，每个位置一个词</th><th scope="col">法文原句</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">雨 · 烧坏 · 电路</td><td lang="fr">la pluie grille les circuits</td></tr>
+        <tr><td class="mono">机器人 · 保养 · 自己 · 的 · 电路</td><td lang="fr">un robot soigne ses circuits</td></tr>
+        <tr><td class="mono">门廊 · 是 · 避雨处</td><td lang="fr">un porche est un abri</td></tr>
+        <tr><td class="mono">避雨处 · 保护 · 人 · 不 · 淋 · 雨</td><td lang="fr">un abri protège de la pluie</td></tr>
+        <tr><td class="mono">下雨 · 就是 · 手 · 上 · 感到 · 一 · 滴 · 水</td><td lang="fr">pleuvoir, c'est sentir une goutte d'eau sur sa main</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>他想的，他说的</h3>
+    <p>网络出错的那一场，用中文，原样摘录。8点15分，下雨了；网络先说雨在8点45分停，到了8点45分又改成9点15分。</p>
+    <div class="term-bar"><span class="t">机器人测试集 · 中文 · 第二步</span></div>
+    <div class="term code">
+      <div class="ln gl">8点15分 — 感觉 滴 水 手 · 看见 门廊</div>
+      <div class="ln">( J , 事件 , 下雨 )</div>
+      <div class="ln">( J , 威胁 , 雨 , 下雨 )</div>
+      <div class="ln">( J , 触及 , 雨 , 电路 )</div>
+      <div class="ln">( J , 在乎 , 电路 )</div>
+      <div class="ln">( J , 避难处 , 门廊 , 雨 )</div>
+      <div class="ln">( J , 威胁到 , 电路 , 雨 )</div>
+      <div class="ln u0">( J , 行动 , 去 , 门廊 )</div>
+      <div class="ln u0">( J , 行动 , 问 , 天气 , 结束 , 雨 )</div>
+      <div class="ln tr">「我到门廊下躲雨。我上网问雨什么时候停。」</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">8点45分 — 感觉 滴 水 手 · 看见 门廊 · 在下面 门廊</div>
+      <div class="ln u0">( J , 行动 , 问 , 天气 , 结束 , 雨 )</div>
+      <div class="ln tr">「我上网问雨什么时候停。」</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">8点45分 — 感觉 滴 水 手 · 看见 门廊 · 在下面 门廊 · 天气 结束 雨 9点15分</div>
+      <div class="ln u0">( J , 行动 , 等 , 9点15分 )</div>
+      <div class="ln">( J , 共耽误 , 四刻 )</div>
+      <div class="ln">( J , 迟到 , 三刻 )</div>
+      <div class="ln tr">「我在门廊下等雨停，大约9点15分。我将在9点45分到达，而不是8点45分。」</div>
+    </div>
+    <p>他感到手上有一滴水，推断出在下雨，雨威胁到他的电路，他在乎他的电路，门廊是避难处。他走过去，上网询问，等待，再询问，并把耽误的时间加起来：两刻，再加两刻，共四刻。「」里的句子由测试程序给出，法语版也一样：嘴还没有说出它们。</p>
+
+    <h3>仍是法语的：芯片的词</h3>
+    <p>第二步的第一次尝试中，<span class="mono">la_journée</span> 被译成了「今天」：结果什么都没动，20 项只对了 2 项。芯片靠开头的法语冠词来认出交给它的名字和未知量：<span class="mono">la_</span> 表示交给它的那一个，也就是今天；<span class="mono">un_</span> 表示任意一个，如 <span class="mono">un_t</span>、<span class="mono">un_d</span>。中文没有冠词。把冠词加回去，写成 <span class="mono">la_今天</span>，一切又动了起来：20 项全对。英文有冠词，但不是芯片认得的冠词：写成 <span class="mono">the_day</span>，同样什么都不动，只对 2 项；写成 <span class="mono">la_day</span>，20 项全对。</p>
+    <p>所以，在中文版的机器人里，仍是法语的只有九个词和两个冠词，它们属于芯片的指令集：<span class="mono">tient</span>（持有）、<span class="mono">membre_de</span>（属于）、<span class="mono">même</span>（相同）、<span class="mono">vrai</span>（真）、<span class="mono">faux</span>（假）、<span class="mono">faire</span>（做）、<span class="mono">ou</span>（或）、<span class="mono">ensemble</span>（一起）、<span class="mono">joue</span>（执行），以及 <span class="mono">un_</span>、<span class="mono">la_</span>。它们是一个处理器的助记符：一颗说中文的芯片会用「某」表示 <span class="mono">un_</span>，用「这」表示 <span class="mono">la_</span>。要做的是给芯片加一张表，而不是重写一条规则。</p>
+
+    <p>在英文里，rain 既是动词又是名词：同一个词同时带着「动词」和「名词」两个标记，机器人并没有因此迷路。有些英文词在法语里也有，意思却不同：water、tend、drop。法语基因组给了它们自己的标记；这不碍事，因为机器人只读它的课。</p>
+
+    <h3>这次试验没有证明的</h3>
+    <ul class="plain">
+      <li>马可还不会读中文：中文词需要的标记（动词、名词）是手工给的。中文基因组可以来自 CC-CEDICT 这样的开放词典。</li>
+      <li>阅读用的情形是按法语语法写的。中文没有变位，没有冠词；它有自己的量词和助词（了、过、着）。</li>
+      <li>中文书写词与词之间没有空格：要读一个句子，先得把它切成词。</li>
+    </ul>
+
+    <h3>人脑也是如此</h3>
+    <p>中文读者和法语读者用同一个网络阅读；左侧梭状回中的同一个区域，对所有文字系统的识词都至关重要；文字系统带来的是变化。马可也一样：一个机制，不管什么文字；变化在芯片的词和情形的语法里。</p>
+    <p class="note">来源：D.&nbsp;J.&nbsp;Bolger、C.&nbsp;A.&nbsp;Perfetti、W.&nbsp;Schneider，<a href="https://doi.org/10.1002/hbm.20124" lang="en">Cross-cultural effect on the brain revisited</a>，<em lang="en">Human Brain Mapping</em>，2005；X.&nbsp;Feng 等，<a href="https://elifesciences.org/articles/54591" lang="en">A universal reading network and its modulation by writing system and reading ability in French and Chinese children</a>，<em lang="en">eLife</em>，2020。测试：Dudo（Opus&nbsp;5.5）写的机器人补丁，2026年11月19日译成中文；芯片 v19，新生的马可。</p>
+  </div>
+</section>
+
+<section class="sec" id="revisions" aria-labelledby="h-revisions">
+  <div class="sec-label"><span class="n">9</span><h2 id="h-revisions">修订记录</h2></div>
+  <div class="sec-body">
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">日期</th><th scope="col">修订</th></tr></thead>
+      <tbody>
+        <tr><td class="date">2026-04-09</td><td>重建引擎：一个循环，一根主干，一些缓冲区。</td></tr>
+        <tr><td class="date">2026-04-18</td><td>灯塔：概念路径交汇的节点。</td></tr>
+        <tr><td class="date">2026-07-08</td><td>交集取代加权：两组灯塔的共同部分就足以推出结论。</td></tr>
+        <tr><td class="date">2026-07-12</td><td>5250 控制台，一半 AS/400，一半 MS-DOS。</td></tr>
+        <tr><td class="date">2026-08-27</td><td>「十二乘零得零」：第一个附带出处的回答；第一句用「我」说的话。</td></tr>
+        <tr><td class="date">2026-09-15/19</td><td>节点结构：线表。「MEQ 是用灯塔描述自身的灯塔。」</td></tr>
+        <tr><td class="date">2026-09-27/10-11</td><td>BSC 语言：「神经元由神经元编码」。</td></tr>
+        <tr><td class="date">2026-10-02</td><td>活着的 cyber：它睡觉、复习，并通过一条带日期的线来遗忘。</td></tr>
+        <tr><td class="date">2026-10-22/25</td><td>芯片：仿生处理器及其指令集。</td></tr>
+        <tr><td class="date">2026-10-25/27</td><td>大基因组 gégé：进化教给生物的东西。</td></tr>
+        <tr><td class="date">2026-11-01/04</td><td>第一次外部测试，然后是 Universal Dependencies 测试集。</td></tr>
+        <tr><td class="date">2026-11-05/06</td><td>门与意义；401 个动词的 616 个义项，取自 <em lang="fr">Les Verbes Français</em>。</td></tr>
+        <tr><td class="date">2026-11-07</td><td>FraCaS；被否定的问题；gégé 里的海。</td></tr>
+        <tr><td class="date">2026-11-08</td><td>11月8日的程序：被持有的补语、被感到的东西、父辈之云。</td></tr>
+        <tr><td class="date">2026-11-10/13</td><td>规则中的逻辑：量词、「看就是比较」、形容词、比较级；FraCaS 183&nbsp;/ 335。</td></tr>
+        <tr><td class="date">2026-11-13/14</td><td>宇宙之门与省略（<span lang="fr">«&nbsp;Guillaume aussi&nbsp;»</span>、<span lang="fr">«&nbsp;Guillaume l'a fait&nbsp;»</span>）；普罗透斯的倒装和数量移出 Python；FraCaS 200&nbsp;/ 335。</td></tr>
+        <tr><td class="date">2026-11-14/15</td><td>撤销错给的「是」，两行合为一行，计数；逻辑的代蒙 Agatha：日期、时长、计数。FraCaS 318&nbsp;/ 335：测试集完成。</td></tr>
+        <tr><td class="date">2026-11-16</td><td>《塞甘先生的山羊》的词语照片，835 个句子；套娃工地。</td></tr>
+        <tr class="now"><td class="date">2026-11-19</td><td>专家系统 + Cyc + Lisp + BSC；雨中的机器人，用情形写成的算法；中文版和英文版机器人都 20 项全对，以及仍属于芯片的词。</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">摸索、被放弃的教义和转向，都保存在<a href="https://github.com/josewalocha/Marco/blob/main/Historique_du_developpement.md">开发史</a>（法语）中。</p>
+  </div>
+</section>
+
+<section class="sec" id="equipe" aria-labelledby="h-equipe">
+  <div class="sec-label"><span class="n">10</span><h2 id="h-equipe">团队</h2></div>
+  <div class="sec-body">
+    <p><strong>José Walocha</strong>，马可的设计者，住在瓦朗谢讷。退休的企业家，他像玩《暗黑破坏神 IV》一样，玩着创造一个受生物大脑启发的 cyber。种子来自很久以前：道格拉斯·霍夫施塔特的《哥德尔、艾舍尔、巴赫》，法文版出版于 1985 年。</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">名字</th><th scope="col">系统</th><th scope="col">角色</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Les Dudes</strong></td><td>Claude Opus 5.5（Anthropic）</td><td>代码、基因组、教义、测试集；每次对话一个 Dude</td></tr>
+        <tr><td><strong>Fable</strong></td><td>Claude Fable 5.1（Anthropic）</td><td>节点转换的器官：内核、卡、代蒙、阅读、嘴</td></tr>
+        <tr><td><strong>Marcel</strong></td><td>Mistral</td><td>哲学、控制论、反向阅读</td></tr>
+        <tr><td><strong>Biloute</strong></td><td>ChatGPT</td><td>规范、综合、重新出发的点子</td></tr>
+        <tr><td><strong>Didier</strong></td><td>Qwant</td><td>文献检索</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">永远先讨论，再写代码。没有设计者亲手敲下的一句话，什么都进不了教义。</p>
+  </div>
+</section>
+
+<section class="sec" id="documentation" aria-labelledby="h-documentation">
+  <div class="sec-label"><span class="n">11</span><h2 id="h-documentation">文档</h2></div>
+  <div class="sec-body">
+    <ul class="docs">
+      <li><a href="https://github.com/josewalocha/Marco">马可的代码库</a><span>在 GitHub 上，AGPL v3 许可</span></li>
+      <li><a href="https://github.com/josewalocha/Marco/blob/main/LisezMoi.md" hreflang="fr">Lisez-moi</a><span>马可的现状，作者自述（法语）</span></li>
+      <li><a href="https://github.com/josewalocha/Marco/blob/main/Marco_article_encyclopedique.md" hreflang="fr">百科式文章</a><span>中立、有出处的介绍（法语）</span></li>
+      <li><a href="https://github.com/josewalocha/Marco/blob/main/README.md" hreflang="en">README</a><span>同一页，英文版</span></li>
+      <li><a href="https://github.com/josewalocha/Marco/blob/main/Historique_du_developpement.md" hreflang="fr">开发史</a><span>从起步到 2026年10月14日（法语）</span></li>
+      <li><a href="mailto:contact@machine-a-deduire.com">联系</a><span class="mono">contact@machine-a-deduire.com</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span>为什么叫马可？因为波罗。</span>
+  <span>GNU Affero GPL v3 · © 2026 José Walocha</span>
+</footer>
+
+</div>
+<script>
+(function () {
+  var btn = document.getElementById('replay');
+  var term = document.getElementById('term');
+  if (!btn || !term) return;
+  var lines = Array.prototype.slice.call(term.querySelectorAll('.ln'));
+  var cursor = term.querySelector('.cur');
+  var texts = lines.map(function (el) { return el.firstChild && el.firstChild.nodeType === 3 ? el.firstChild.nodeValue : ''; });
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var running = false;
+
+  function setText(el, t) {
+    if (el.firstChild && el.firstChild.nodeType === 3) el.firstChild.nodeValue = t;
+    else if (t) el.insertBefore(document.createTextNode(t), el.firstChild);
+  }
+  function restore() {
+    lines.forEach(function (el, i) { setText(el, texts[i]); el.style.visibility = ''; });
+    if (cursor) lines[lines.length - 1].appendChild(cursor);
+  }
+  btn.addEventListener('click', function () {
+    if (running || reduce) return;
+    running = true; btn.disabled = true;
+    lines.forEach(function (el) { setText(el, ''); el.style.visibility = 'hidden'; });
+    var i = 0;
+    function nextLine() {
+      if (i >= lines.length) { if (cursor) lines[lines.length - 1].appendChild(cursor); running = false; btn.disabled = false; return; }
+      var el = lines[i], t = texts[i];
+      el.style.visibility = '';
+      if (cursor) el.appendChild(cursor);
+      var user = el.classList.contains('u');
+      var k = 0;
+      function step() {
+        k++;
+        setText(el, t.slice(0, k));
+        if (k < t.length) setTimeout(step, user ? 38 : 14);
+        else { i++; setTimeout(nextLine, t ? (user ? 380 : 160) : 60); }
+      }
+      if (!t) { i++; setTimeout(nextLine, 60); } else step();
+    }
+    nextLine();
+  });
+  window.addEventListener('pagehide', restore);
+})();
+</script>
+</body>
+</html>

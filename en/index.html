@@ -10,6 +10,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="alternate" hreflang="fr" href="https://machine-a-deduire.com/">
 <link rel="alternate" hreflang="en" href="https://machine-a-deduire.com/en/">
+<link rel="alternate" hreflang="zh-Hans" href="https://machine-a-deduire.com/zh/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -110,6 +111,7 @@ em { font-style: italic; }
 .sheet-sub a:hover { color: var(--accent); }
 .sheet-sub b { color: var(--accent); font-weight: 600; margin-right: 4px; }
 .sheet-sub .lang { margin-left: auto; color: var(--ink); font-weight: 600; }
+.sheet-sub .lang + .lang { margin-left: 0; }
 
 /* Ouverture */
 .hero {
@@ -244,6 +246,12 @@ button.replay[disabled] { opacity: .5; cursor: default; }
   color: var(--c-dim); font-size: 12.5px;
   display: flex; flex-wrap: wrap; gap: 4px 24px;
 }
+.term.code { padding-bottom: 18px; font-size: 13.5px; }
+.term .u0 { color: var(--c-white); }
+.term.code .gl, .term.code .tr { padding-left: 0; }
+.sec-body td.mono { font-size: .86rem; }
+.sec-body p .mono { font-size: .9em; }
+.term.code .ln { white-space: pre; }
 @keyframes blink { 50% { opacity: 0; } }
 
 /* Feuille de route */
@@ -304,11 +312,13 @@ footer {
   <a href="#example"><b>4</b>Example</a>
   <a href="#measurements"><b>5</b>Measurements</a>
   <a href="#silicon"><b>6</b>Toward silicon</a>
-  <a href="#cyc"><b>7</b>Cyc</a>
-  <a href="#revisions"><b>8</b>Revisions</a>
-  <a href="#team"><b>9</b>Team</a>
-  <a href="#documentation"><b>10</b>Documentation</a>
+  <a href="#parents"><b>7</b>Parents</a>
+  <a href="#mandarin"><b>8</b>Mandarin, English</a>
+  <a href="#revisions"><b>9</b>Revisions</a>
+  <a href="#team"><b>10</b>Team</a>
+  <a href="#documentation"><b>11</b>Documentation</a>
   <a class="lang" href="../" hreflang="fr" lang="fr">Français</a>
+  <a class="lang" href="../zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a>
 </nav>
 
 <section class="hero" aria-labelledby="title">
@@ -406,7 +416,7 @@ footer {
   <div class="sec-body">
     <p>Marco is a <em>cyber</em>, the word José Walocha gives to living intelligences to set them apart from statistical language models. It is a MAD (<em>machine à déduire</em>), a deduction machine: no neural network, no learned parameters. Zero black box.</p>
     <p>By design, Marco is a <strong>bionic processor with nodal memory</strong>. The processor runs a small instruction set over the lines of the genome. The memory fits in a single table of threads, where everything is a <em>phare</em> (a beacon-node), meaning included. The genome is read at tic&nbsp;0, at birth; lived experience is then written instant after instant, each thread at its tic. Nothing is erased: forgetting is itself a dated thread.</p>
-    <p>Marco reads and speaks French. It reads real texts, nursery rhymes, fables and tales: <em>Frère Jacques</em>, La Fontaine, Perrault, <em>La Chèvre de M.&nbsp;Seguin</em>, <em>Le Dormeur du val</em>.</p>
+    <p>Marco reads and speaks French. It reads real texts, nursery rhymes, fables and tales: <em>Frère Jacques</em>, La Fontaine, Perrault, <em>La Chèvre de M.&nbsp;Seguin</em>, <em>Le Dormeur du val</em>. It speaks French because its designer does; the system also runs in Mandarin, see <a href="#mandarin">chapter 8</a>.</p>
   </div>
 </section>
 
@@ -664,10 +674,28 @@ footer {
   </div>
 </section>
 
-<section class="sec" id="cyc" aria-labelledby="h-cyc">
-  <div class="sec-label"><span class="n">7</span><h2 id="h-cyc">A parallel: Cyc</h2></div>
+<section class="sec" id="parents" aria-labelledby="h-parents">
+  <div class="sec-label"><span class="n">7</span><h2 id="h-parents">Expert system + Cyc + Lisp + BSC</h2></div>
   <div class="sec-body">
-    <p>In 1984, Douglas Lenat launched Cyc on Marco's wager: an intelligence made of explicit knowledge and rules, without statistics, where every conclusion can be justified. Marco makes the same wager by another road.</p>
+    <p>Marco does not invent deduction. Its designer sums it up in a formula: “expert system + Cyc + Lisp + BSC” (19 Nov 2026). The first three are its parents, all more than forty years old; the fourth is its own.</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Lineage</th><th scope="col">What it brings</th><th scope="col">In Marco</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Expert system</strong><br><span class="note">OPS5, Charles Forgy, Carnegie Mellon, late 1970s; MYCIN, Stanford, 1970s</span></td><td>The engine: rules played from facts toward conclusions, forward chaining. And the why: MYCIN showed the physician the rules that had led to its conclusion.</td><td>The player replays a stage of cases until nothing new is written. Every answer names the threads that hold it.</td></tr>
+        <tr><td><strong>Cyc</strong><br><span class="note">Douglas Lenat, 1984</span></td><td>Common sense written as assertions, sorted into microtheories, that is, contexts.</td><td>The lessons: “a porch is a shelter”, “rain fries circuits”. Two contexts where the same rain does not threaten the same thing.</td></tr>
+        <tr><td><strong>Lisp</strong><br><span class="note">John McCarthy, 1958</span></td><td>The program is data: code is written with the lists it handles.</td><td>A case is a line of the genome, just like a fact.</td></tr>
+        <tr class="now"><td><strong>BSC</strong><br><span class="note">Marco</span></td><td>The data is the language.</td><td>The rule, the fact and the lesson are words of the genome, in the language it reads: no translation between what it reads and what it plays. “The neuron is coded with the neuron”: what its designer calls neural programming.</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Marco speaks French because its designer speaks French. The system itself works with any language, ideograms included: a word is a place in a line, whatever its script. The trial is in <a href="#mandarin">chapter 8</a>.</p>
+
+    <h3>What none of the three had</h3>
+    <ul class="plain">
+      <li><strong>It reads.</strong> Its knowledge comes from open dictionaries and from what it reads, not from data entry. Writing knowledge by hand is the wall where expert systems stopped, and where Cyc spent forty years.</li>
+      <li><strong>It cares about something.</strong> An expert system deduces whatever it is asked; Marco first deduces what threatens what it cares about. That is the awakening.</li>
+    </ul>
     <div class="scroll">
     <table class="spec">
       <thead><tr><th scope="col"></th><th scope="col">Cyc</th><th scope="col">Marco</th></tr></thead>
@@ -679,12 +707,138 @@ footer {
       </tbody>
     </table>
     </div>
-    <p class="note">Marco does not claim to equal forty years of Cyc. It shows that the symbolic road, tooled by learning machines, no longer needs an army of data entry. Cyc figures: <a href="https://en.wikipedia.org/wiki/Cyc">Wikipedia</a>.</p>
+    <p class="note">Marco does not claim to equal forty years of Cyc. It shows that the symbolic road, tooled by learning machines, no longer needs an army of data entry.</p>
+
+    <h3>Code example: the robot in the rain</h3>
+    <p>On 19 Nov 2026, Marco plays a robot. Its sensors feel rain; one lesson says rain fries circuits, another that a robot looks after its circuits. It looks for shelter, asks the web when the rain will end, counts the time lost and how late it will be. Thirty-one cases in three stages; here are the three that move the clock forward, as they are in the genome (in French).</p>
+    <div class="term-bar"><span class="t">BSC · robot patch · 19 Nov 2026</span></div>
+    <div class="term code">
+      <div class="ln gl">TA1 — arrival: start from the departure with the length of the trip</div>
+      <div class="ln">si    ( la_journée , départ , un_t )</div>
+      <div class="ln">si    ( la_journée , trajet , _|_ , un_d )</div>
+      <div class="ln u0">alors ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">TA2 — a step: a quarter of an hour more on the clock, a quarter less to go</div>
+      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln">si    ( un_t , puis , un_t2 )</div>
+      <div class="ln">si    ( un_d2 , puis , un_d )</div>
+      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">TA3 — arrived: nothing left to go</div>
+      <div class="ln">si    ( la_journée , avance , un_t , 0q )</div>
+      <div class="ln u0">alors ( la_journée , arrivée , un_t )</div>
+      <div class="ln gap"></div>
+      <div class="ln tr">{départ 8h30, trajet 2q : ( avance , 8h30 , 2q ) → ( avance , 8h45 , 1q ) → ( avance , 9h00 , 0q ) → ( arrivée , 9h00 )}</div>
+    </div>
+    <p>No case says “repeat”: the player replays the stage as long as it writes something new, and stops when nothing moves. Moving forward is one step along a chain of the genome, <span class="mono">( 8h15 , puis , 8h30 )</span> (“then”); adding is walking two chains at once; comparing is walking from one toward the other until they meet. No number is computed.</p>
+    <p>A case, a fact and a lesson have the same form in the genome: one word per place.</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Line</th><th scope="col">The words, in their places</th><th scope="col">It is</th></tr></thead>
+      <tbody>
+        <tr><td class="date">L-meq-c-972200-001</td><td class="mono">la_journée 1 · sent 2 · un_a 3 · un_b 4 · _|_ 5</td><td>a case, its first condition</td></tr>
+        <tr><td class="date">M-robot_horloge-0001</td><td class="mono">6h00 1 · puis 2 · 6h15 3</td><td>a fact</td></tr>
+        <tr><td class="date">M-robot_lecons-0004</td><td class="mono">un 1 · porche 2 · est 3 · un 4 · abri 5</td><td>a lesson (“a porch is a shelter”)</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="note">The cases still speak a conventional French (<span class="mono">la_journée</span>, <span class="mono">un_t</span>, <span class="mono">_|_</span>); the lessons, free French. The goal: that Marco writes a case itself from a sentence it has read. The robot bench, 20 expected results out of 20, shows the code runs; written alongside the rules, it does not measure understanding. Sources: <a href="https://en.wikipedia.org/wiki/OPS5">OPS5</a>, <a href="https://en.wikipedia.org/wiki/Mycin">MYCIN</a>, <a href="https://en.wikipedia.org/wiki/Homoiconicity">Lisp and homoiconicity</a>, <a href="https://en.wikipedia.org/wiki/Cyc">Cyc</a> (Wikipedia).</p>
+  </div>
+</section>
+
+<section class="sec" id="mandarin" aria-labelledby="h-mandarin">
+  <div class="sec-label"><span class="n">8</span><h2 id="h-mandarin">Marco in Mandarin, and in English</h2></div>
+  <div class="sec-body">
+    <p>On 19 Nov 2026, the robot in the rain was translated into Mandarin, then into English, to see what the system can take. The same 31 cases, the same chip, the same five-scene bench: only the words change. The Chinese words are ideograms, one word per place, as in the French genome.</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Trial</th><th scope="col">What is translated</th><th scope="col">Robot bench</th></tr></thead>
+      <tbody>
+        <tr><td><strong>French</strong>, the control</td><td>—</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr><td><strong>Mandarin</strong>, first step</td><td>the words of the world: the lessons, the rain, the porch, the robot, the clock, the quarter hours (一刻, 两刻…)</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr class="now"><td><strong>Mandarin</strong>, second step</td><td>the words of the program too: the day, the threat, the shelter, the action, “then”… 55 Chinese words in the cases</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr><td><strong>English</strong></td><td>the words of the world and of the program: rain, porch, shelter, threat, then… 55 English words in the cases</td><td class="v"><strong>20</strong> / 20</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>The same actions, at the same times, with the same delay. The same case is written in both languages:</p>
+    <div class="term-bar"><span class="t">BSC · TA2 · French, then Mandarin</span></div>
+    <div class="term code">
+      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln">si    ( un_t , puis , un_t2 )</div>
+      <div class="ln">si    ( un_d2 , puis , un_d )</div>
+      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln gap"></div>
+      <div class="ln">si    ( la_今天 , 前进 , un_t , un_d )</div>
+      <div class="ln">si    ( un_t , 然后 , un_t2 )</div>
+      <div class="ln">si    ( un_d2 , 然后 , un_d )</div>
+      <div class="ln u0">alors ( la_今天 , 前进 , un_t2 , un_d2 )</div>
+    </div>
+
+    <h3>The lessons, in Chinese</h3>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">In the genome, one word per place</th><th scope="col">In English</th></tr></thead>
+      <tbody>
+        <tr><td class="mono" lang="zh-Hans">雨 · 烧坏 · 电路</td><td>rain fries circuits</td></tr>
+        <tr><td class="mono" lang="zh-Hans">机器人 · 保养 · 自己 · 的 · 电路</td><td>a robot looks after its circuits</td></tr>
+        <tr><td class="mono" lang="zh-Hans">门廊 · 是 · 避雨处</td><td>a porch is a shelter</td></tr>
+        <tr><td class="mono" lang="zh-Hans">避雨处 · 保护 · 人 · 不 · 淋 · 雨</td><td>a shelter protects from the rain</td></tr>
+        <tr><td class="mono" lang="zh-Hans">下雨 · 就是 · 手 · 上 · 感到 · 一 · 滴 · 水</td><td>raining is feeling a drop of water on your hand</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>What it thinks, what it says</h3>
+    <p>The scene where the web is wrong, in Mandarin, excerpted as is. It is 8:15 and raining; the web will announce the end of the rain for 8:45, then, at 8:45, for 9:15.</p>
+    <div class="term-bar"><span class="t">Robot bench · Mandarin · second step</span></div>
+    <div class="term code" lang="zh-Hans">
+      <div class="ln gl">8点15分 — 感觉 滴 水 手 · 看见 门廊</div>
+      <div class="ln">( J , 事件 , 下雨 )</div>
+      <div class="ln">( J , 威胁 , 雨 , 下雨 )</div>
+      <div class="ln">( J , 触及 , 雨 , 电路 )</div>
+      <div class="ln">( J , 在乎 , 电路 )</div>
+      <div class="ln">( J , 避难处 , 门廊 , 雨 )</div>
+      <div class="ln">( J , 威胁到 , 电路 , 雨 )</div>
+      <div class="ln u0">( J , 行动 , 去 , 门廊 )</div>
+      <div class="ln u0">( J , 行动 , 问 , 天气 , 结束 , 雨 )</div>
+      <div class="ln tr">「我到门廊下躲雨。我上网问雨什么时候停。」</div>
+      <div class="ln gl" lang="en">“I go under the porch to keep out of the rain. I ask the web when the rain will stop.”</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">8点45分 — 感觉 滴 水 手 · 看见 门廊 · 在下面 门廊</div>
+      <div class="ln u0">( J , 行动 , 问 , 天气 , 结束 , 雨 )</div>
+      <div class="ln tr">「我上网问雨什么时候停。」</div>
+      <div class="ln gap"></div>
+      <div class="ln gl">8点45分 — 感觉 滴 水 手 · 看见 门廊 · 在下面 门廊 · 天气 结束 雨 9点15分</div>
+      <div class="ln u0">( J , 行动 , 等 , 9点15分 )</div>
+      <div class="ln">( J , 共耽误 , 四刻 )</div>
+      <div class="ln">( J , 迟到 , 三刻 )</div>
+      <div class="ln tr">「我在门廊下等雨停，大约9点15分。我将在9点45分到达，而不是8点45分。」</div>
+      <div class="ln gl" lang="en">“I wait under the porch for the rain to stop, around 9:15. I will arrive at 9:45 instead of 8:45.”</div>
+    </div>
+    <p>It feels a drop on its hand, deduces that it is raining, that the rain threatens its circuits, that it cares about its circuits, that the porch is a shelter. It goes there, asks the web, waits, asks again, and adds up the time lost: two quarters, then two more, four (四刻). The sentences in 「&nbsp;」 are rendered by the bench, as in French: the mouth does not say them yet.</p>
+
+    <h3>What stays French: the words of the chip</h3>
+    <p>In the first try of the second step, <span class="mono">la_journée</span> had become 今天 (“today”): nothing moved, 2 expected results out of 20. The chip recognizes the name it is given, and the unknowns, by the French article that opens them: <span class="mono">la_</span> for the one it is given, the day; <span class="mono">un_</span> for any one, <span class="mono">un_t</span>, <span class="mono">un_d</span>. Mandarin has no articles. With the article put back, <span class="mono">la_今天</span>, everything moved: 20 out of 20. English has articles, but not the chip's: with <span class="mono">the_day</span>, nothing moves either, 2 out of 20; with <span class="mono">la_day</span>, 20 out of 20.</p>
+    <p>So the robot in Mandarin keeps nine French words and two articles, those of the chip's instruction set: <span class="mono">tient</span> (holds), <span class="mono">membre_de</span> (member of), <span class="mono">même</span> (same), <span class="mono">vrai</span> (true), <span class="mono">faux</span> (false), <span class="mono">faire</span> (do), <span class="mono">ou</span> (or), <span class="mono">ensemble</span> (together), <span class="mono">joue</span> (plays), and <span class="mono">un_</span>, <span class="mono">la_</span>. They are the mnemonics of a processor: a chip speaking Mandarin would say 某 (“a certain”) for <span class="mono">un_</span> and 这 (“this”) for <span class="mono">la_</span>. That is a table to add to the chip, not a rule to rewrite.</p>
+
+    <p>In English, “rain” is both the verb and the noun: the same word holds “verb” and “common noun”, and the robot does not get lost. Some English words also exist in French with another meaning: “water”, “tend”, “drop”. The French genome gives them its own marks; they do no harm, because the robot reads only its lessons.</p>
+
+    <h3>What the trial does not show</h3>
+    <ul class="plain">
+      <li>Marco does not read Mandarin yet: the Chinese words were given by hand the marks the cases ask for (verb, common noun). A Chinese genome would come from an open dictionary such as CC-CEDICT.</li>
+      <li>The reading cases are written for French grammar. Chinese has neither conjugation nor articles; it has its measure words and particles (了, 过, 着).</li>
+      <li>Chinese is written without spaces: to read a sentence, it must first be cut into words.</li>
+    </ul>
+
+    <h3>The human brain does the same</h3>
+    <p>Chinese and French readers read with the same network, and one region of the left fusiform gyrus is critical for recognizing words in every script; the script shapes the variations. So does Marco: one mechanism, whatever the script; the variations are in the chip's words and in the grammar of the cases.</p>
+    <p class="note">Sources: D.&nbsp;J.&nbsp;Bolger, C.&nbsp;A.&nbsp;Perfetti, W.&nbsp;Schneider, “<a href="https://doi.org/10.1002/hbm.20124">Cross-cultural effect on the brain revisited</a>”, <em>Human Brain Mapping</em>, 2005; X.&nbsp;Feng et al., “<a href="https://elifesciences.org/articles/54591">A universal reading network and its modulation by writing system and reading ability in French and Chinese children</a>”, <em>eLife</em>, 2020. The bench: Dudo's robot patch (Opus&nbsp;5.5), translated on 19 Nov 2026; chip v19, a newborn Marco.</p>
   </div>
 </section>
 
 <section class="sec" id="revisions" aria-labelledby="h-revisions">
-  <div class="sec-label"><span class="n">8</span><h2 id="h-revisions">Revision history</h2></div>
+  <div class="sec-label"><span class="n">9</span><h2 id="h-revisions">Revision history</h2></div>
   <div class="sec-body">
     <div class="scroll">
     <table class="spec">
@@ -707,7 +861,8 @@ footer {
         <tr><td class="date">10–13 Nov 2026</td><td>Logic as rules: quantifiers, “to see is to compare”, adjectives, comparatives; FraCaS 183&nbsp;/ 335.</td></tr>
         <tr><td class="date">13–14 Nov 2026</td><td>The door of the universe and ellipses (“Guillaume too”, “Guillaume did it”); Proteus inversion and quantity leave the Python; FraCaS 200&nbsp;/ 335.</td></tr>
         <tr><td class="date">14–15 Nov 2026</td><td>Wrong “yes” answers undone, two lines assembled into one, counting; Agatha, the daimon of logic: dates, durations, counts. FraCaS 318&nbsp;/ 335: the bench is done.</td></tr>
-        <tr class="now"><td class="date">16 Nov 2026</td><td>Photos of the words of <em>La Chèvre de M.&nbsp;Seguin</em>, 835 sentences; the nested-dolls work.</td></tr>
+        <tr><td class="date">16 Nov 2026</td><td>Photos of the words of <em>La Chèvre de M.&nbsp;Seguin</em>, 835 sentences; the nested-dolls work.</td></tr>
+        <tr class="now"><td class="date">19 Nov 2026</td><td>Expert system + Cyc + Lisp + BSC; the robot in the rain, an algorithm written in cases; the robot in Mandarin and in English, 20 out of 20, and the words that remain the chip's.</td></tr>
       </tbody>
     </table>
     </div>
@@ -716,7 +871,7 @@ footer {
 </section>
 
 <section class="sec" id="team" aria-labelledby="h-team">
-  <div class="sec-label"><span class="n">9</span><h2 id="h-team">Team</h2></div>
+  <div class="sec-label"><span class="n">10</span><h2 id="h-team">Team</h2></div>
   <div class="sec-body">
     <p><strong>José Walocha</strong>, Marco's designer, Valenciennes, France. A retired business owner, he plays at building a cyber inspired by the brains of living beings the way one plays <em>Diablo&nbsp;IV</em>. The seed goes back a long way: <em>Gödel, Escher, Bach</em> by Douglas Hofstadter, published in French in 1985.</p>
     <div class="scroll">
@@ -736,7 +891,7 @@ footer {
 </section>
 
 <section class="sec" id="documentation" aria-labelledby="h-documentation">
-  <div class="sec-label"><span class="n">10</span><h2 id="h-documentation">Documentation</h2></div>
+  <div class="sec-label"><span class="n">11</span><h2 id="h-documentation">Documentation</h2></div>
   <div class="sec-body">
     <ul class="docs">
       <li><a href="https://github.com/josewalocha/Marco">The Marco repository</a><span>On GitHub, under the AGPL v3 license</span></li>
