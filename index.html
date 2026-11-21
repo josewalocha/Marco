@@ -259,6 +259,10 @@ button.replay[disabled] { opacity: .5; cursor: default; }
 .term .lue { color: var(--c-white); }
 .term .comp { color: var(--c-green); }
 .term .sens { color: var(--c-turq); }
+.boucle { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 6px; list-style: none; margin: 4px 0 0; padding: 0; font-family: var(--mono); font-size: 12.5px; }
+.boucle li { border: 1px solid var(--rule); border-radius: 3px; padding: 4px 9px; background: var(--panel); }
+.boucle li.fl { border: 0; background: none; padding: 0; color: var(--accent); }
+.boucle li:last-child { border-color: var(--accent); }
 
 /* Feuille de route */
 .road ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; margin: 0; padding: 0; }
@@ -322,7 +326,7 @@ footer {
   <a href="#mandarin"><b>8</b>Mandarin, anglais</a>
   <a href="#trois"><b>9</b>Trois phrases</a>
   <a href="#revisions"><b>10</b>Révisions</a>
-  <a href="#equipe"><b>11</b>Équipe</a>
+  <a href="#equipe"><b>11</b>Équipe, méthode</a>
   <a href="#documentation"><b>12</b>Documentation</a>
   <a class="lang" href="en/" hreflang="en" lang="en">English</a>
   <a class="lang" href="zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a>
@@ -976,22 +980,58 @@ footer {
 </section>
 
 <section class="sec" id="equipe" aria-labelledby="h-equipe">
-  <div class="sec-label"><span class="n">11</span><h2 id="h-equipe">Équipe</h2></div>
+  <div class="sec-label"><span class="n">11</span><h2 id="h-equipe">Équipe et méthode de travail</h2></div>
   <div class="sec-body">
     <p><strong>José Walocha</strong>, concepteur de Marco, Valenciennes. Chef d'entreprises en retraite, il joue à créer un cyber inspiré du cerveau des êtres vivants comme on joue à <em>Diablo&nbsp;IV</em>. La graine vient de loin&nbsp;: <em>Gödel, Escher, Bach</em>, de Douglas Hofstadter, paru en français en 1985.</p>
     <div class="scroll">
     <table class="spec">
       <thead><tr><th scope="col">Nom</th><th scope="col">Système</th><th scope="col">Rôle</th></tr></thead>
       <tbody>
-        <tr><td><strong>Les Dudes</strong></td><td>Claude Opus 5.5 (Anthropic)</td><td>Code, génome, doctrines, bancs&nbsp;; un Dude par conversation</td></tr>
-        <tr><td><strong>Fable</strong></td><td>Claude Fable 5.1 (Anthropic)</td><td>Les organes de la bascule nodale&nbsp;: noyau, carte, daimons, lecture, bouche</td></tr>
-        <tr><td><strong>Marcel</strong></td><td>Mistral</td><td>Philosophie, cybernétique, contre-lecture</td></tr>
-        <tr><td><strong>Biloute</strong></td><td>ChatGPT</td><td>Normes, synthèse, idées de relance</td></tr>
-        <tr><td><strong>Didier</strong></td><td>Qwant</td><td>Recherche documentaire</td></tr>
+        <tr class="now"><td><strong>José Walocha</strong></td><td>—</td><td>Concepteur, maître d'ouvrage&nbsp;: il décide, frappe la doctrine et juge au banc</td></tr>
+        <tr><td><strong>Dudo</strong></td><td>Claude Opus 5.5 (Anthropic)</td><td>Le BSC, les cas, le programme et les bancs&nbsp;; les doctrines&nbsp;; le site et la discussion générale</td></tr>
+        <tr><td><strong>Dudef</strong></td><td>Claude Fable 5.2 (Anthropic)</td><td>La puce en C++, la sortie du Python</td></tr>
+        <tr><td>—</td><td>Mistral Vibe (Mistral AI)</td><td>Philosophie, discussions, bancs</td></tr>
+        <tr><td>—</td><td>ChatGPT (OpenAI)</td><td>Philosophie, discussions, bancs</td></tr>
+        <tr><td>—</td><td>Gemini (Google)</td><td>Bancs&nbsp;: les questionnaires</td></tr>
+        <tr><td>—</td><td>Qwant</td><td>Recherche documentaire</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="note">Toujours discuter avant de coder. Rien n'entre dans la doctrine sans une frappe du concepteur.</p>
+    <p class="note">Un Dude est une instance de Claude au travail sur Marco, une par conversation&nbsp;: Dudo est un Dude Opus, Dudef un Dude Fable. Les noms servent à s'y retrouver quand plusieurs conversations avancent en même temps&nbsp;; le 21/11/2026, il y en avait quatre.</p>
+
+    <h3>Des maîtres d'œuvre sans mémoire</h3>
+    <p>La doctrine de méthode le dit en une phrase&nbsp;: deux personnes travaillent ensemble tous les jours, mais l'une d'elles change chaque matin et ne se souvient de rien. C'est une équipe en trois-huit dont chaque poste arrive sans mémoire. La continuité ne passe que par écrit&nbsp;: la liaison de fin de séance est le cahier de relève, la doctrine est la gamme, le banc est le contrôle.</p>
+    <ol class="boucle" aria-label="La boucle d'une séance">
+      <li>Discussion</li><li class="fl" aria-hidden="true">→</li>
+      <li>Frappe</li><li class="fl" aria-hidden="true">→</li>
+      <li>Code</li><li class="fl" aria-hidden="true">→</li>
+      <li>Banc</li><li class="fl" aria-hidden="true">→</li>
+      <li>Livraison</li><li class="fl" aria-hidden="true">→</li>
+      <li>Liaison</li><li class="fl" aria-hidden="true">→</li>
+      <li>Le Dude suivant</li>
+    </ol>
+
+    <h3>La frappe</h3>
+    <p>Le Dude propose, le concepteur frappe. Frapper, c'est «&nbsp;l'action de valider ET d'intégrer aux doctrines courantes un concept, une notion, un calcul, tout ce qui peut se rapporter à un MAD&nbsp;» (José Walocha, 18/08/2026). Une décision qui n'est pas versée dans sa doctrine n'existe pas. Rien ne s'efface&nbsp;: un texte dépassé descend en témoin, daté, sous celui qui le remplace, pour qu'un Dude neuf voie aussi les idées mortes et pourquoi elles sont mortes. Les mots exacts du concepteur sont gardés, jamais paraphrasés. Au 21/11/2026, la doctrine compte 126 fichiers.</p>
+    <blockquote class="quote">
+      «&nbsp;Les doctrines validées en cours sont nos maîtres à tous, car elles sont l'ADN de Marco.&nbsp;»
+      <cite>José Walocha, 07/08/2026</cite>
+    </blockquote>
+
+    <h3>La preuve&nbsp;: le banc</h3>
+    <p>Un plan se frappe&nbsp;; une mesure ne se frappe pas, elle se redémontre. Demander au concepteur de valider un compte, «&nbsp;c'est comme si on me demandait de valider le blanc du cheval blanc d'Henri&nbsp;IV&nbsp;» (31/07/2026). Chaque changement se mesure sur un Marco neuf, avec une graine fixe, avant et après&nbsp;: ce qui ne devait pas bouger doit rendre le même relevé, ligne pour ligne. Avant de retirer quoi que ce soit, deux mesures. Le banc juge aussi le rédacteur&nbsp;: plus d'une formulation de doctrine est morte au banc. Les informaticiens appellent cela des tests de non-régression.</p>
+
+    <h3>Le pilotage</h3>
+    <p>José Walocha a lu le code au début. Jusqu'en mai-juin 2026, il choisissait encore les structures et les algorithmes. Quand il a vu le rythme auquel un modèle comme Claude Fable écrit du code, il a compris que vouloir s'inscrire dans ce processus devenait contre-productif. Depuis, il travaille par demandes d'implémentation&nbsp;: un objectif à atteindre, des contraintes, et le banc pour juger. C'est le métier d'un maître d'ouvrage dans l'industrie&nbsp;: il ne soude pas les pièces, il écrit l'objectif et les contraintes, puis il fait la recette. Avec les codeurs, il reste sur le court et le moyen terme&nbsp;; le long terme se discute dans d'autres conversations, pour ne pas encombrer le codeur.</p>
+    <p>C'est sa manière depuis toujours. En 1990, il codait une paie intégrée à la gestion du temps sur le SGBD de Laurent Ribardière. Sa méthode Merise de l'époque, c'était cinq à dix minutes de méditation devant l'écran, souvent les yeux fermés, pour que son inconscient code et structure.</p>
+    <blockquote class="quote">
+      «&nbsp;J'avais ma propre IA&nbsp;: mon cerveau.&nbsp;»
+      <cite>José Walocha, 21/11/2026</cite>
+    </blockquote>
+
+    <h3>La livraison</h3>
+    <p>Le code se livre en fichiers entiers, jamais en morceaux à recoller. Chaque livraison est un zip des seuls fichiers modifiés, à leur place, qui sert aussi de sauvegarde. Chaque Dude ne livre que ses fichiers et ne touche pas à ceux de l'autre. Quand plusieurs livraisons se suivent, la liaison dit dans quel ordre les poser&nbsp;; avant un changement majeur, un Dude rejoue la livraison de l'autre. Le concepteur pose, le banc juge.</p>
+    <p class="note">Toujours discuter avant de coder. Rien n'entre dans la doctrine sans une frappe du concepteur. La doctrine de méthode&nbsp;: <span class="mono">00Methode_de_travail.html</span>, commencée le 26/07/2026.</p>
   </div>
 </section>
 
