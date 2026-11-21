@@ -253,6 +253,12 @@ button.replay[disabled] { opacity: .5; cursor: default; }
 .sec-body p .mono { font-size: .9em; }
 .term.code .ln { white-space: pre; }
 @keyframes blink { 50% { opacity: 0; } }
+.term.tp { padding-bottom: 0; }
+.term.tp .ln { padding-left: 1.7em; text-indent: -1.7em; }
+.term.tp .ln.gap { min-height: .9em; }
+.term .lue { color: var(--c-white); }
+.term .comp { color: var(--c-green); }
+.term .sens { color: var(--c-turq); }
 
 /* Feuille de route */
 .road ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; margin: 0; padding: 0; }
@@ -303,7 +309,7 @@ footer {
 <header class="sheet-head">
   <div class="brand">MARCO</div>
   <div class="kind">Datasheet</div>
-  <div class="rev">Program of November&nbsp;13,&nbsp;2026</div>
+  <div class="rev">Program of November&nbsp;21,&nbsp;2026</div>
 </header>
 <nav class="sheet-sub" aria-label="Contents">
   <a href="#description"><b>1</b>Description</a>
@@ -314,9 +320,10 @@ footer {
   <a href="#silicon"><b>6</b>Toward silicon</a>
   <a href="#parents"><b>7</b>Parents</a>
   <a href="#mandarin"><b>8</b>Mandarin, English</a>
-  <a href="#revisions"><b>9</b>Revisions</a>
-  <a href="#team"><b>10</b>Team</a>
-  <a href="#documentation"><b>11</b>Documentation</a>
+  <a href="#trois"><b>9</b>Three sentences</a>
+  <a href="#revisions"><b>10</b>Revisions</a>
+  <a href="#team"><b>11</b>Team</a>
+  <a href="#documentation"><b>12</b>Documentation</a>
   <a class="lang" href="../" hreflang="fr" lang="fr">Français</a>
   <a class="lang" href="../zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a>
 </nav>
@@ -416,7 +423,7 @@ footer {
   <div class="sec-body">
     <p>Marco is a <em>cyber</em>, the word José Walocha gives to living intelligences to set them apart from statistical language models. It is a MAD (<em>machine à déduire</em>), a deduction machine: no neural network, no learned parameters. Zero black box.</p>
     <p>By design, Marco is a <strong>bionic processor with nodal memory</strong>. The processor runs a small instruction set over the lines of the genome. The memory fits in a single table of threads, where everything is a <em>phare</em> (a beacon-node), meaning included. The genome is read at tic&nbsp;0, at birth; lived experience is then written instant after instant, each thread at its tic. Nothing is erased: forgetting is itself a dated thread.</p>
-    <p>Marco reads and speaks French. It reads real texts, nursery rhymes, fables and tales: <em>Frère Jacques</em>, La Fontaine, Perrault, <em>La Chèvre de M.&nbsp;Seguin</em>, <em>Le Dormeur du val</em>. It speaks French because its designer does; the system also runs in Mandarin, see <a href="#mandarin">chapter 8</a>.</p>
+    <p>Marco reads and speaks French. It reads real texts, nursery rhymes, fables, tales and novels: <em>Frère Jacques</em>, La Fontaine, Perrault, <em>La Chèvre de M.&nbsp;Seguin</em>, <em>Le Dormeur du val</em>, <em>Eugénie Grandet</em>. Of every sentence read, it keeps three: the read, the understood, the felt (<a href="#trois">chapter&nbsp;9</a>). It speaks French because its designer does; the system also runs in Mandarin, see <a href="#mandarin">chapter 8</a>.</p>
   </div>
 </section>
 
@@ -425,12 +432,12 @@ footer {
   <div class="sec-body">
     <ul class="feats">
       <li><span class="k">Memory</span><span>Nodal: a table of threads, <span class="mono">from · to · rank · tic</span>. Everything is a phare.</span></li>
-      <li><span class="k">Genome</span><span>298 text files, 13.7&nbsp;million rows, drawn from the great open dictionaries.</span></li>
+      <li><span class="k">Genome</span><span>336 text files, 12.7&nbsp;million lines, drawn from the great open dictionaries. Born in 43&nbsp;seconds.</span></li>
       <li><span class="k">Program</span><span>The BSC: rules put into equations (MEQ), hexalines, cases. “The neuron is coded with the neuron.”</span></li>
       <li><span class="k">Processor</span><span>A reduced instruction set over triplets; a core that schedules the moments, the stages, the organs.</span></li>
       <li><span class="k">Provenance</span><span>Every answer names the threads that hold it. What is not held stays a hole, honestly stated.</span></li>
       <li><span class="k">Sleep</span><span>The cyber sleeps, reviews its open loops and forgets through a dated thread.</span></li>
-      <li><span class="k">Code</span><span>29 Python modules, 33,195 lines, the standard library only.</span></li>
+      <li><span class="k">Code</span><span>31 Python modules, 35,465 lines, the standard library only, and the chip in C++.</span></li>
       <li><span class="k">License</span><span>GNU Affero GPL v3.</span></li>
     </ul>
     <p class="note">Genome sources: the Littré (XMLittré), the Wiktionnaire, Lefff, Lexique, GLAWI, Verbiste, <em>Les Verbes Français</em> by J.&nbsp;Dubois and F.&nbsp;Dubois-Charlier, INSEE, Wikidata.</p>
@@ -471,7 +478,7 @@ footer {
 
         <rect class="d-box" x="500" y="18" width="200" height="62" rx="3"/>
         <text class="d-t" x="600" y="43" text-anchor="middle">GENOME</text>
-        <text class="d-s" x="600" y="62" text-anchor="middle">298 files · 13.7 M rows</text>
+        <text class="d-s" x="600" y="62" text-anchor="middle">336 files · 12.7 M lines</text>
 
         <line class="d-line" x1="600" y1="80" x2="600" y2="126" marker-end="url(#fl)"/>
         <text class="d-l" x="610" y="108">read at tic 0</text>
@@ -711,22 +718,22 @@ footer {
 
     <h3>Code example: the robot in the rain</h3>
     <p>On 19 Nov 2026, Marco plays a robot. Its sensors feel rain; one lesson says rain fries circuits, another that a robot looks after its circuits. It looks for shelter, asks the web when the rain will end, counts the time lost and how late it will be. Thirty-one cases in three stages; here are the three that move the clock forward, as they are in the genome (in French).</p>
-    <div class="term-bar"><span class="t">BSC · robot patch · 19 Nov 2026</span></div>
+    <div class="term-bar"><span class="t">BSC · robot patch · genome of 21 Nov 2026</span></div>
     <div class="term code">
       <div class="ln gl">TA1 — arrival: start from the departure with the length of the trip</div>
-      <div class="ln">si    ( la_journée , départ , un_t )</div>
-      <div class="ln">si    ( la_journée , trajet , _|_ , un_d )</div>
-      <div class="ln u0">alors ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln">si    ( _|journée , départ , _|t )</div>
+      <div class="ln">si    ( _|journée , trajet , _|_ , _|d )</div>
+      <div class="ln u0">alors ( _|journée , avance , _|t , _|d )</div>
       <div class="ln gap"></div>
       <div class="ln gl">TA2 — a step: a quarter of an hour more on the clock, a quarter less to go</div>
-      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
-      <div class="ln">si    ( un_t , puis , un_t2 )</div>
-      <div class="ln">si    ( un_d2 , puis , un_d )</div>
-      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln">si    ( _|journée , avance , _|t , _|d )</div>
+      <div class="ln">si    ( _|t , puis , _|t2 )</div>
+      <div class="ln">si    ( _|d2 , puis , _|d )</div>
+      <div class="ln u0">alors ( _|journée , avance , _|t2 , _|d2 )</div>
       <div class="ln gap"></div>
       <div class="ln gl">TA3 — arrived: nothing left to go</div>
-      <div class="ln">si    ( la_journée , avance , un_t , 0q )</div>
-      <div class="ln u0">alors ( la_journée , arrivée , un_t )</div>
+      <div class="ln">si    ( _|journée , avance , _|t , 0q )</div>
+      <div class="ln u0">alors ( _|journée , arrivée , _|t )</div>
       <div class="ln gap"></div>
       <div class="ln tr">{départ 8h30, trajet 2q : ( avance , 8h30 , 2q ) → ( avance , 8h45 , 1q ) → ( avance , 9h00 , 0q ) → ( arrivée , 9h00 )}</div>
     </div>
@@ -736,13 +743,13 @@ footer {
     <table class="spec">
       <thead><tr><th scope="col">Line</th><th scope="col">The words, in their places</th><th scope="col">It is</th></tr></thead>
       <tbody>
-        <tr><td class="date">L-meq-c-972200-001</td><td class="mono">la_journée 1 · sent 2 · un_a 3 · un_b 4 · _|_ 5</td><td>a case, its first condition</td></tr>
+        <tr><td class="date">L-meq-c-972200-001</td><td class="mono">_|journée 1 · sent 2 · _|a 3 · _|b 4 · _|_ 5</td><td>a case, its first condition</td></tr>
         <tr><td class="date">M-robot_horloge-0001</td><td class="mono">6h00 1 · puis 2 · 6h15 3</td><td>a fact</td></tr>
         <tr><td class="date">M-robot_lecons-0004</td><td class="mono">un 1 · porche 2 · est 3 · un 4 · abri 5</td><td>a lesson (“a porch is a shelter”)</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="note">The cases still speak a conventional French (<span class="mono">la_journée</span>, <span class="mono">un_t</span>, <span class="mono">_|_</span>); the lessons, free French. The goal: that Marco writes a case itself from a sentence it has read. The robot bench, 20 expected results out of 20, shows the code runs; written alongside the rules, it does not measure understanding. Sources: <a href="https://en.wikipedia.org/wiki/OPS5">OPS5</a>, <a href="https://en.wikipedia.org/wiki/Mycin">MYCIN</a>, <a href="https://en.wikipedia.org/wiki/Homoiconicity">Lisp and homoiconicity</a>, <a href="https://en.wikipedia.org/wiki/Cyc">Cyc</a> (Wikipedia).</p>
+    <p class="note">The unknowns of the cases are named holes (<span class="mono">_|journée</span>, <span class="mono">_|t</span>, and <span class="mono">_|_</span> for the free slot); the cases speak a conventional French, the lessons free French. The goal: that Marco writes a case itself from a sentence it has read. The robot bench, 20 expected results out of 20, shows the code runs; written alongside the rules, it does not measure understanding. Sources: <a href="https://en.wikipedia.org/wiki/OPS5">OPS5</a>, <a href="https://en.wikipedia.org/wiki/Mycin">MYCIN</a>, <a href="https://en.wikipedia.org/wiki/Homoiconicity">Lisp and homoiconicity</a>, <a href="https://en.wikipedia.org/wiki/Cyc">Cyc</a> (Wikipedia).</p>
   </div>
 </section>
 
@@ -762,17 +769,17 @@ footer {
     </table>
     </div>
     <p>The same actions, at the same times, with the same delay. The same case is written in both languages:</p>
-    <div class="term-bar"><span class="t">BSC · TA2 · French, then Mandarin</span></div>
+    <div class="term-bar"><span class="t">BSC · TA2 · French, then Mandarin · genome of 21 Nov 2026</span></div>
     <div class="term code">
-      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
-      <div class="ln">si    ( un_t , puis , un_t2 )</div>
-      <div class="ln">si    ( un_d2 , puis , un_d )</div>
-      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln">si    ( _|journée , avance , _|t , _|d )</div>
+      <div class="ln">si    ( _|t , puis , _|t2 )</div>
+      <div class="ln">si    ( _|d2 , puis , _|d )</div>
+      <div class="ln u0">alors ( _|journée , avance , _|t2 , _|d2 )</div>
       <div class="ln gap"></div>
-      <div class="ln">si    ( la_今天 , 前进 , un_t , un_d )</div>
-      <div class="ln">si    ( un_t , 然后 , un_t2 )</div>
-      <div class="ln">si    ( un_d2 , 然后 , un_d )</div>
-      <div class="ln u0">alors ( la_今天 , 前进 , un_t2 , un_d2 )</div>
+      <div class="ln">si    ( _|journée , 前进 , _|t , _|d )</div>
+      <div class="ln">si    ( _|t , 然后 , _|t2 )</div>
+      <div class="ln">si    ( _|d2 , 然后 , _|d )</div>
+      <div class="ln u0">alors ( _|journée , 前进 , _|t2 , _|d2 )</div>
     </div>
 
     <h3>The lessons, in Chinese</h3>
@@ -818,9 +825,30 @@ footer {
     </div>
     <p>It feels a drop on its hand, deduces that it is raining, that the rain threatens its circuits, that it cares about its circuits, that the porch is a shelter. It goes there, asks the web, waits, asks again, and adds up the time lost: two quarters, then two more, four (四刻). The sentences in 「&nbsp;」 are rendered by the bench, as in French: the mouth does not say them yet.</p>
 
-    <h3>What stays French: the words of the chip</h3>
-    <p>In the first try of the second step, <span class="mono">la_journée</span> had become 今天 (“today”): nothing moved, 2 expected results out of 20. The chip recognizes the name it is given, and the unknowns, by the French article that opens them: <span class="mono">la_</span> for the one it is given, the day; <span class="mono">un_</span> for any one, <span class="mono">un_t</span>, <span class="mono">un_d</span>. Mandarin has no articles. With the article put back, <span class="mono">la_今天</span>, everything moved: 20 out of 20. English has articles, but not the chip's: with <span class="mono">the_day</span>, nothing moves either, 2 out of 20; with <span class="mono">la_day</span>, 20 out of 20.</p>
-    <p>So the robot in Mandarin keeps nine French words and two articles, those of the chip's instruction set: <span class="mono">tient</span> (holds), <span class="mono">membre_de</span> (member of), <span class="mono">même</span> (same), <span class="mono">vrai</span> (true), <span class="mono">faux</span> (false), <span class="mono">faire</span> (do), <span class="mono">ou</span> (or), <span class="mono">ensemble</span> (together), <span class="mono">joue</span> (plays), and <span class="mono">un_</span>, <span class="mono">la_</span>. They are the mnemonics of a processor: a chip speaking Mandarin would say 某 (“a certain”) for <span class="mono">un_</span> and 这 (“this”) for <span class="mono">la_</span>. That is a table to add to the chip, not a rule to rewrite.</p>
+    <h3>The brain has no articles</h3>
+    <p>In the first try of the second step, on 19 Nov, <span class="mono">la_journée</span> had become 今天 (“today”): nothing moved, 2 expected results out of 20. The chip recognized the name it is given, and the unknowns, by the French article that opened them: <span class="mono">la_</span> for the day, <span class="mono">un_</span> for any one. Mandarin has no articles; English has some, but not the chip's: <span class="mono">the_day</span> also stayed at 2 out of 20.</p>
+    <blockquote class="quote">
+      “The brain has no articles, so it is a defect.”
+      <cite>José Walocha, 20 Nov 2026</cite>
+    </blockquote>
+    <p>The defect left the chip and the genome during the day of 20 November:</p>
+    <ul class="plain">
+      <li><strong>Chip v21</strong>: the name the control room gives is a role, in any language.</li>
+      <li><strong>Genome without articles</strong>: every unknown of a case is a named hole; <span class="mono">un_t</span> becomes <span class="mono">_|t</span>, <span class="mono">la_journée</span> becomes <span class="mono">_|journée</span>. The name of a hole is a label, like the name of a variable in a program.</li>
+      <li><strong>Chip v23</strong>: the twelve French prefixes (<span class="mono">le_</span>, <span class="mono">la_</span>, <span class="mono">un_</span>, <span class="mono">une_</span>…) are removed from the chip.</li>
+      <li><strong>Chip v24</strong>: every script has its own streets. The street of a word is the address where the chip files it by its first signs: two for the town, four for the district. Until then, every sign outside a-z and 0-9 counted as “_”: Chinese, Greek, Russian or Korean words were all born in the same town. Now, from Greek onward, a sign counts as its Unicode number: 今天 lives in town 4e, district 4eca; Москва in 43, district 43c4; 한국 in d5, district d55c.</li>
+    </ul>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Robot bench</th><th scope="col">19 Nov<br>chip v19</th><th scope="col">20 Nov, night<br>chip v21</th><th scope="col">20 Nov, noon<br>no articles</th><th scope="col">20 Nov, evening<br>chip v24</th></tr></thead>
+      <tbody>
+        <tr><td><strong>French</strong></td><td class="v">20 / 20</td><td class="v">20 / 20</td><td class="v">20 / 20</td><td>—</td></tr>
+        <tr class="now"><td><strong>Mandarin</strong>, second step, the day as 今天</td><td class="v">2 / 20</td><td class="v"><strong>20</strong> / 20</td><td class="v"><strong>20</strong> / 20</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr><td><strong>English</strong>, the day as <span class="mono">the_day</span></td><td class="v">2 / 20</td><td class="v"><strong>20</strong> / 20</td><td class="v"><strong>20</strong> / 20</td><td>—</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>The order of the streets stays the French one, extended in the simplest way. The ideal, for its designer, would be different: “a universe where the mother beacon has no language, because it comes from the original meaning”. What stays French in the chip are the words of its instruction set, about seventy (<span class="mono">tient</span>, holds; <span class="mono">même</span>, same; <span class="mono">membre_de</span>, member of; <span class="mono">vrai</span>, true; <span class="mono">faux</span>, false; <span class="mono">faire</span>, do; <span class="mono">ou</span>, or; <span class="mono">ensemble</span>, together; <span class="mono">joue</span>, plays…), and three names the chip binds itself: <span class="mono">la_ligne</span>, <span class="mono">la_phrase</span>, <span class="mono">l_instant</span>. They are the mnemonics of a processor, like MOV or ADD in assembly; naming them without a language is under study.</p>
 
     <p>In English, “rain” is both the verb and the noun: the same word holds “verb” and “common noun”, and the robot does not get lost. Some English words also exist in French with another meaning: “water”, “tend”, “drop”. The French genome gives them its own marks; they do no harm, because the robot reads only its lessons.</p>
 
@@ -833,12 +861,102 @@ footer {
 
     <h3>The human brain does the same</h3>
     <p>Chinese and French readers read with the same network, and one region of the left fusiform gyrus is critical for recognizing words in every script; the script shapes the variations. So does Marco: one mechanism, whatever the script; the variations are in the chip's words and in the grammar of the cases.</p>
-    <p class="note">Sources: D.&nbsp;J.&nbsp;Bolger, C.&nbsp;A.&nbsp;Perfetti, W.&nbsp;Schneider, “<a href="https://doi.org/10.1002/hbm.20124">Cross-cultural effect on the brain revisited</a>”, <em>Human Brain Mapping</em>, 2005; X.&nbsp;Feng et al., “<a href="https://elifesciences.org/articles/54591">A universal reading network and its modulation by writing system and reading ability in French and Chinese children</a>”, <em>eLife</em>, 2020. The bench: Dudo's robot patch (Opus&nbsp;5.5), translated on 19 Nov 2026; chip v19, a newborn Marco.</p>
+    <p class="note">Sources: D.&nbsp;J.&nbsp;Bolger, C.&nbsp;A.&nbsp;Perfetti, W.&nbsp;Schneider, “<a href="https://doi.org/10.1002/hbm.20124">Cross-cultural effect on the brain revisited</a>”, <em>Human Brain Mapping</em>, 2005; X.&nbsp;Feng et al., “<a href="https://elifesciences.org/articles/54591">A universal reading network and its modulation by writing system and reading ability in French and Chinese children</a>”, <em>eLife</em>, 2020. The bench: Dudo's robot patch (Opus&nbsp;5.5), translated on 19 Nov 2026 on chip v19, run again on 20 Nov on chips v21 to v24 (Dudo, Fable); a newborn Marco.</p>
+  </div>
+</section>
+
+<section class="sec" id="trois" aria-labelledby="h-trois">
+  <div class="sec-label"><span class="n">9</span><h2 id="h-trois">The three sentences</h2></div>
+  <div class="sec-body">
+    <p>On 20 Nov 2026, José Walocha sees three sentences behind every sentence read: the sentence as read, the sentence as understood, and the one that carries what it means to feel. Since 21 Nov, every book Marco reads leaves a file where each sentence is written three times, one under the other.</p>
+    <ul class="plain">
+      <li><strong>📖 Read</strong> (<em>la lue</em>): the sentence as Marco saw it, put back together.</li>
+      <li><strong>🧩 Understood</strong> (<em>la comprise</em>): what Marco has stored from it, in words, without articles: who does what, to whom, where. Pronouns are replaced by the name they point to.</li>
+      <li><strong>💗 Felt</strong> (<em>la sensible</em>): Marco's point of view. The characters by their names, the action in the past tense, and the role the story gives them. Whoever ends another's Continuer, the drive to go on living, holds the villain's role: the wolf takes it as soon as he eats the goats. The role is not given to Marco; a rule deduces it.</li>
+    </ul>
+    <blockquote class="quote">
+      “A goal for Monsieur Seguin's goat: to see the read, the understood and the felt unfold as the text unfolds.”
+      <cite>José Walocha, 20 Nov 2026</cite>
+    </blockquote>
+    <div class="term-bar">
+      <span class="t">trois_phrases · La Chèvre de M.&nbsp;Seguin · the ending</span>
+      <button class="replay" id="replay-tp" type="button">Replay the reading</button>
+    </div>
+    <div class="term tp" id="term-tp" aria-live="off" lang="fr">
+      <div class="ln lue">📖 Blanquette redoubla de coups de cornes, le loup de coups de dents…</div>
+      <div class="ln comp">🧩 loup de coups de dents · Blanquette redoubla coups de cornes</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 Une lueur pâle parut dans l'horizon…</div>
+      <div class="ln comp">🧩 lueur pâle parut dans horizon</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 Le chant d'un coq enroué monta d'une métairie.</div>
+      <div class="ln comp">🧩 chant d' coq enroué · chant d' coq monta d' métairie</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 — Enfin&nbsp;!</div>
+      <div class="ln comp">🧩 —</div>
+      <div class="ln sens">💗 (réplique)</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 dit la pauvre bête, qui n'attendait plus que le jour pour mourir ; et elle s'allongea par terre dans sa belle fourrure blanche toute tachée de sang…</div>
+      <div class="ln comp">🧩 jour pour mourir · bête pauvre n' attendait plus que jour · bête pauvre mourir · langue grosse rouge tachée sang · langue grosse rouge allongea langue grosse rouge par · langue grosse rouge terre dans fourrure belle blanche</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 Alors le loup se jeta sur la petite chèvre et la mangea.</div>
+      <div class="ln comp">🧩 Alors jeta · loup jeta loup sur chèvre petite et loup mangea chèvre</div>
+      <div class="ln sens">💗 Le méchant loup a mangé Blanquette.<span class="cur" aria-hidden="true"></span></div>
+      <div class="status"><span>trois_phrases_bonne_version_chevre_seguin_20261121_143722.txt</span><span>177 phrases</span></div>
+    </div>
+    <p>The last six sentences of the tale, extracted as they are, untouched; Marco reads French. The last one is right from end to end: “Then the wolf threw himself on the little goat and ate her” becomes “The wicked wolf ate Blanquette.” The one before it is not: in “and she lay down on the ground”, “she” is put on the wolf's tongue, the last noun read, instead of the goat.</p>
+
+    <h3>The tale, as Marco sees it</h3>
+    <p>A few felt sentences, in the order of the tale:</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">💗 In Marco's file</th><th scope="col">In English</th></tr></thead>
+      <tbody>
+        <tr><td class="mono" lang="fr">Le méchant loup mangeait les chèvres.</td><td>The wicked wolf ate the goats.</td></tr>
+        <tr><td class="mono" lang="fr">M. Seguin a attaché la chèvre.</td><td>M. Seguin tied up the goat.</td></tr>
+        <tr><td class="mono" lang="fr">La chèvre se trouvait heureuse.</td><td>The goat felt happy.</td></tr>
+        <tr><td class="mono" lang="fr">L'ennui est venu.</td><td>Boredom came.</td></tr>
+        <tr><td class="mono" lang="fr">La chèvre a maigri.</td><td>The goat grew thin.</td></tr>
+        <tr><td class="mono" lang="fr">M. Seguin a emporté Blanquette.</td><td>M. Seguin carried Blanquette away.</td></tr>
+        <tr><td class="mono" lang="fr">La petite est allée. M. Seguin a oublié la fenêtre.</td><td>The little one went. M. Seguin forgot the window.</td></tr>
+        <tr><td class="mono" lang="fr">Le vent a fraîchi.</td><td>The wind grew cold.</td></tr>
+        <tr><td class="mono" lang="fr">La montagne est devenue violette.</td><td>The mountain turned violet.</td></tr>
+        <tr><td class="mono" lang="fr">Blanquette a tressailli.</td><td>Blanquette shuddered.</td></tr>
+        <tr><td class="mono" lang="fr">Le méchant loup a mangé Blanquette.</td><td>The wicked wolf ate Blanquette.</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Text read</th><th scope="col">Sentences</th><th scope="col">Empty understood</th><th scope="col">Felt</th><th scope="col">Dialogue lines</th></tr></thead>
+      <tbody>
+        <tr><td><em>Le Dormeur du val</em>, Rimbaud, with its introduction</td><td class="v">22</td><td class="v">0</td><td class="v">9</td><td class="v">0</td></tr>
+        <tr class="now"><td><em>La Chèvre de M.&nbsp;Seguin</em>, Daudet</td><td class="v">177</td><td class="v">29</td><td class="v">40</td><td class="v">27</td></tr>
+        <tr><td><em>Le Petit Chaperon rouge</em>, Perrault</td><td class="v">64</td><td class="v">5</td><td class="v">21</td><td class="v">0</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>The same morning, Marco read all of <em>Eugénie Grandet</em>: 4,032 sentences, 855 felt. A sentence with no felt line is not an error: when nothing holds an action and those who do it, Marco writes nothing.</p>
+
+    <h3>What does not work yet</h3>
+    <ul class="plain">
+      <li><strong>Exclamations.</strong> The empty understood lines are almost all cries and pieces of dialogue cut at the exclamation mark: “Hou!”, “Pécaïre!”, “Reviens!” (“Come back!”). Marco does not yet know what a cry means, or who hears it.</li>
+      <li><strong>Pronouns.</strong> “he” and “she” sometimes take the last noun read instead of the character: “and he ran his big red tongue over his chops” gives, in the understood line, “M.&nbsp;Seguin passed big red tongue”, instead of the wolf.</li>
+      <li><strong>Wrong felt sentences.</strong> “They welcomed her like a little queen” gives “The queen welcomed Blanquette”; “She thought of the wolf” gives “Blanquette thought the wicked wolf”.</li>
+      <li><strong>Knowing where it is.</strong> Marco does not yet know that it is reading a book: the introduction to the tale is read like the tale, and “it was written in 1866” gives “Alphonse was written”. For its designer, “Marco absolutely must understand whether it is reading a book or having a conversation”.</li>
+      <li><strong>The meaning of the poem.</strong> In <em>Le Dormeur du val</em>, Marco writes “The soldier sleeps” and “The soldier is cold”, but “He has two red holes in his right side” does not tell it that the soldier is dead.</li>
+    </ul>
+    <p class="note">The files: program of 21 Nov 2026, 2:29 pm; a newborn Marco reads <em>Le Dormeur du val</em>, <em>La Chèvre de M.&nbsp;Seguin</em> and <em>Le Petit Chaperon rouge</em> one after the other, by the 5250's reading route. The felt sentence is written by cases, in the “understanding” stage; the three-sentence screen writes nothing into the brain. <em>Eugénie Grandet</em>: read by José Walocha, program of 9:50 am.</p>
   </div>
 </section>
 
 <section class="sec" id="revisions" aria-labelledby="h-revisions">
-  <div class="sec-label"><span class="n">9</span><h2 id="h-revisions">Revision history</h2></div>
+  <div class="sec-label"><span class="n">10</span><h2 id="h-revisions">Revision history</h2></div>
   <div class="sec-body">
     <div class="scroll">
     <table class="spec">
@@ -862,7 +980,9 @@ footer {
         <tr><td class="date">13–14 Nov 2026</td><td>The door of the universe and ellipses (“Guillaume too”, “Guillaume did it”); Proteus inversion and quantity leave the Python; FraCaS 200&nbsp;/ 335.</td></tr>
         <tr><td class="date">14–15 Nov 2026</td><td>Wrong “yes” answers undone, two lines assembled into one, counting; Agatha, the daimon of logic: dates, durations, counts. FraCaS 318&nbsp;/ 335: the bench is done.</td></tr>
         <tr><td class="date">16 Nov 2026</td><td>Photos of the words of <em>La Chèvre de M.&nbsp;Seguin</em>, 835 sentences; the nested-dolls work.</td></tr>
-        <tr class="now"><td class="date">19 Nov 2026</td><td>Expert system + Cyc + Lisp + BSC; the robot in the rain, an algorithm written in cases; the robot in Mandarin and in English, 20 out of 20, and the words that remain the chip's.</td></tr>
+        <tr><td class="date">19 Nov 2026</td><td>Expert system + Cyc + Lisp + BSC; the robot in the rain, an algorithm written in cases; the robot in Mandarin and in English, 20 out of 20.</td></tr>
+        <tr><td class="date">20 Nov 2026</td><td>“The brain has no articles”: the chip and the genome without articles, the unknowns as named holes; streets for non-Latin scripts; the parent's rules as triggers (“in the morning, we say good morning”).</td></tr>
+        <tr class="now"><td class="date">21 Nov 2026</td><td>The three sentences: the read, the understood, the felt, one file per book read.</td></tr>
       </tbody>
     </table>
     </div>
@@ -871,7 +991,7 @@ footer {
 </section>
 
 <section class="sec" id="team" aria-labelledby="h-team">
-  <div class="sec-label"><span class="n">10</span><h2 id="h-team">Team</h2></div>
+  <div class="sec-label"><span class="n">11</span><h2 id="h-team">Team</h2></div>
   <div class="sec-body">
     <p><strong>José Walocha</strong>, Marco's designer, Valenciennes, France. A retired business owner, he plays at building a cyber inspired by the brains of living beings the way one plays <em>Diablo&nbsp;IV</em>. The seed goes back a long way: <em>Gödel, Escher, Bach</em> by Douglas Hofstadter, published in French in 1985.</p>
     <div class="scroll">
@@ -891,7 +1011,7 @@ footer {
 </section>
 
 <section class="sec" id="documentation" aria-labelledby="h-documentation">
-  <div class="sec-label"><span class="n">11</span><h2 id="h-documentation">Documentation</h2></div>
+  <div class="sec-label"><span class="n">12</span><h2 id="h-documentation">Documentation</h2></div>
   <div class="sec-body">
     <ul class="docs">
       <li><a href="https://github.com/josewalocha/Marco">The Marco repository</a><span>On GitHub, under the AGPL v3 license</span></li>
@@ -911,9 +1031,9 @@ footer {
 
 </div>
 <script>
-(function () {
-  var btn = document.getElementById('replay');
-  var term = document.getElementById('term');
+[['replay', 'term'], ['replay-tp', 'term-tp']].forEach(function (ids) {
+  var btn = document.getElementById(ids[0]);
+  var term = document.getElementById(ids[1]);
   if (!btn || !term) return;
   var lines = Array.prototype.slice.call(term.querySelectorAll('.ln'));
   var cursor = term.querySelector('.cur');
@@ -952,7 +1072,7 @@ footer {
     nextLine();
   });
   window.addEventListener('pagehide', restore);
-})();
+});
 </script>
 </body>
 </html>

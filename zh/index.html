@@ -253,6 +253,12 @@ button.replay[disabled] { opacity: .5; cursor: default; }
 .term.code .ln { white-space: pre; }
 .sec-body p .mono { font-size: .9em; }
 @keyframes blink { 50% { opacity: 0; } }
+.term.tp { padding-bottom: 0; }
+.term.tp .ln { padding-left: 1.7em; text-indent: -1.7em; }
+.term.tp .ln.gap { min-height: .9em; }
+.term .lue { color: var(--c-white); }
+.term .comp { color: var(--c-green); }
+.term .sens { color: var(--c-turq); }
 
 /* Feuille de route */
 .road ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; margin: 0; padding: 0; }
@@ -309,7 +315,7 @@ em { font-style: normal; }
 <header class="sheet-head">
   <div class="brand">MARCO</div>
   <div class="kind">数据手册</div>
-  <div class="rev">程序版本：2026年11月13日</div>
+  <div class="rev">程序版本：2026年11月21日</div>
 </header>
 <nav class="sheet-sub" aria-label="目录">
   <a href="#description"><b>1</b>概述</a>
@@ -320,9 +326,10 @@ em { font-style: normal; }
   <a href="#silicium"><b>6</b>走向硅片</a>
   <a href="#parents"><b>7</b>渊源</a>
   <a href="#mandarin"><b>8</b>中文、英文</a>
-  <a href="#revisions"><b>9</b>修订</a>
-  <a href="#equipe"><b>10</b>团队</a>
-  <a href="#documentation"><b>11</b>文档</a>
+  <a href="#trois"><b>9</b>三句话</a>
+  <a href="#revisions"><b>10</b>修订</a>
+  <a href="#equipe"><b>11</b>团队</a>
+  <a href="#documentation"><b>12</b>文档</a>
   <a class="lang" href="../" hreflang="fr" lang="fr">Français</a>
   <a class="lang" href="../en/" hreflang="en" lang="en">English</a>
 </nav>
@@ -422,7 +429,7 @@ em { font-style: normal; }
   <div class="sec-body">
     <p>马可是一个 <em>cyber</em>：José Walocha 用这个词称呼有生命的智能，以区别于统计语言模型。它是一台 MAD，即演绎机器（<span lang="fr">machine à déduire</span>）：没有神经网络，没有学来的参数。零黑箱。</p>
     <p>就构造而言，马可是一台<strong>具有节点记忆的仿生处理器</strong>。处理器用一小套指令执行基因组中的行。记忆只存在于一张线表里，那里一切都是灯塔（<span lang="fr">phare</span>），意义也是。基因组在节拍 0、即出生时读入；此后，经历一刻一刻地写入，每条线都有自己的节拍。什么都不删除：遗忘本身也是一条带日期的线。</p>
-    <p>马可读法语、说法语。他读真实的文本：童谣、寓言和童话，《雅克兄弟》、拉封丹、佩罗、《塞甘先生的山羊》、《山谷里的睡者》。他说法语，是因为他的设计者说法语；这套系统也能用中文运行，见<a href="#mandarin">第 8 章</a>。</p>
+    <p>马可读法语、说法语。他读真实的文本：童谣、寓言、童话和小说，《雅克兄弟》、拉封丹、佩罗、《塞甘先生的山羊》、《山谷里的睡者》、《欧也妮·葛朗台》。每读一句，他都留下三句话：读到的、理解的、感受的（见<a href="#trois">第 9 章</a>）。他说法语，是因为他的设计者说法语；这套系统也能用中文运行，见<a href="#mandarin">第 8 章</a>。</p>
   </div>
 </section>
 
@@ -431,12 +438,12 @@ em { font-style: normal; }
   <div class="sec-body">
     <ul class="feats">
       <li><span class="k">记忆</span><span>节点式：一张线表，<span class="mono">de · vers · rang · tic</span>（从 · 到 · 位次 · 节拍）。一切都是灯塔。</span></li>
-      <li><span class="k">基因组</span><span>298 个文本文件，1370 万行，取自大型开放词典。</span></li>
+      <li><span class="k">基因组</span><span>336 个文本文件，1270 万行，取自大型开放词典。43 秒出生。</span></li>
       <li><span class="k">程序</span><span>BSC：写成方程的规则（MEQ）、十六进制行、情形。「神经元由神经元编码。」</span></li>
       <li><span class="k">处理器</span><span>作用于三元组的精简指令集；一个内核安排时刻、层和器官。</span></li>
       <li><span class="k">出处</span><span>每个回答都说出支撑它的线。没有支撑的，就老老实实说是一个空洞。</span></li>
       <li><span class="k">睡眠</span><span>这个 cyber 会睡觉，复习未闭合的回路，并通过一条带日期的线来遗忘。</span></li>
-      <li><span class="k">代码</span><span>29 个 Python 模块，33&nbsp;195 行，只用标准库。</span></li>
+      <li><span class="k">代码</span><span>31 个 Python 模块，35&nbsp;465 行，只用标准库；芯片用 C++ 写成。</span></li>
       <li><span class="k">许可</span><span>GNU Affero GPL v3。</span></li>
     </ul>
     <p class="note">基因组的来源：Littré 词典（XMLittré）、法语维基词典、Lefff、Lexique、GLAWI、Verbiste、J.&nbsp;Dubois 与 F.&nbsp;Dubois-Charlier 的 <em lang="fr">Les Verbes Français</em>、法国国家统计与经济研究所（INSEE）、维基数据。</p>
@@ -477,7 +484,7 @@ em { font-style: normal; }
 
         <rect class="d-box" x="500" y="18" width="200" height="62" rx="3"/>
         <text class="d-t" x="600" y="43" text-anchor="middle">基因组</text>
-        <text class="d-s" x="600" y="62" text-anchor="middle">298 个文件 · 1370 万行</text>
+        <text class="d-s" x="600" y="62" text-anchor="middle">336 个文件 · 1270 万行</text>
 
         <line class="d-line" x1="600" y1="80" x2="600" y2="126" marker-end="url(#fl)"/>
         <text class="d-l" x="610" y="108">节拍 0 读入</text>
@@ -717,22 +724,22 @@ em { font-style: normal; }
 
     <h3>代码示例：雨中的机器人</h3>
     <p>2026年11月19日，马可扮演一个机器人。它的传感器感到下雨；一课说雨会烧坏电路，另一课说机器人要保养自己的电路。它寻找避雨处，上网问雨什么时候停，计算耽误的时间和自己的迟到。三层共 31 个情形；下面是推动时钟前进的三个，与基因组中的原样一致（法语版）。</p>
-    <div class="term-bar"><span class="t">BSC · 机器人补丁 · 2026-11-19</span></div>
+    <div class="term-bar"><span class="t">BSC · 机器人补丁 · 2026-11-21 的基因组</span></div>
     <div class="term code">
       <div class="ln gl">TA1：到达。从出发时刻出发，带着路程的时长</div>
-      <div class="ln">si    ( la_journée , départ , un_t )</div>
-      <div class="ln">si    ( la_journée , trajet , _|_ , un_d )</div>
-      <div class="ln u0">alors ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln">si    ( _|journée , départ , _|t )</div>
+      <div class="ln">si    ( _|journée , trajet , _|_ , _|d )</div>
+      <div class="ln u0">alors ( _|journée , avance , _|t , _|d )</div>
       <div class="ln gap"></div>
       <div class="ln gl">TA2：一步。时钟多一刻，要走的少一刻</div>
-      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
-      <div class="ln">si    ( un_t , puis , un_t2 )</div>
-      <div class="ln">si    ( un_d2 , puis , un_d )</div>
-      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln">si    ( _|journée , avance , _|t , _|d )</div>
+      <div class="ln">si    ( _|t , puis , _|t2 )</div>
+      <div class="ln">si    ( _|d2 , puis , _|d )</div>
+      <div class="ln u0">alors ( _|journée , avance , _|t2 , _|d2 )</div>
       <div class="ln gap"></div>
       <div class="ln gl">TA3：到了。没有要走的了</div>
-      <div class="ln">si    ( la_journée , avance , un_t , 0q )</div>
-      <div class="ln u0">alors ( la_journée , arrivée , un_t )</div>
+      <div class="ln">si    ( _|journée , avance , _|t , 0q )</div>
+      <div class="ln u0">alors ( _|journée , arrivée , _|t )</div>
       <div class="ln gap"></div>
       <div class="ln tr">{départ 8h30, trajet 2q : ( avance , 8h30 , 2q ) → ( avance , 8h45 , 1q ) → ( avance , 9h00 , 0q ) → ( arrivée , 9h00 )}</div>
     </div>
@@ -742,13 +749,13 @@ em { font-style: normal; }
     <table class="spec">
       <thead><tr><th scope="col">行</th><th scope="col">各就各位的词</th><th scope="col">这是</th></tr></thead>
       <tbody>
-        <tr><td class="date">L-meq-c-972200-001</td><td class="mono">la_journée 1 · sent 2 · un_a 3 · un_b 4 · _|_ 5</td><td>一个情形，它的第一个条件</td></tr>
+        <tr><td class="date">L-meq-c-972200-001</td><td class="mono">_|journée 1 · sent 2 · _|a 3 · _|b 4 · _|_ 5</td><td>一个情形，它的第一个条件</td></tr>
         <tr><td class="date">M-robot_horloge-0001</td><td class="mono">6h00 1 · puis 2 · 6h15 3</td><td>一个事实</td></tr>
         <tr><td class="date">M-robot_lecons-0004</td><td class="mono">un 1 · porche 2 · est 3 · un 4 · abri 5</td><td>一课（「门廊是避雨处」）</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="note">情形说的还是约定式的法语（<span class="mono">la_journée</span>、<span class="mono">un_t</span>、<span class="mono">_|_</span>）；课用的是自由的法语。目标：让马可从读到的一句话自己写出一个情形。机器人测试集 20 项全对，说明代码能运行；它和规则一起写成，并不衡量理解。来源：<a href="https://en.wikipedia.org/wiki/OPS5">OPS5</a>、<a href="https://en.wikipedia.org/wiki/Mycin">MYCIN</a>、<a href="https://en.wikipedia.org/wiki/Homoiconicity">Lisp 与同像性</a>、<a href="https://en.wikipedia.org/wiki/Cyc">Cyc</a>（维基百科）。</p>
+    <p class="note">情形里的未知量是有名字的空位（<span class="mono">_|journée</span>、<span class="mono">_|t</span>，以及表示自由位置的 <span class="mono">_|_</span>）；情形说的是约定式的法语，课用的是自由的法语。目标：让马可从读到的一句话自己写出一个情形。机器人测试集 20 项全对，说明代码能运行；它和规则一起写成，并不衡量理解。来源：<a href="https://en.wikipedia.org/wiki/OPS5">OPS5</a>、<a href="https://en.wikipedia.org/wiki/Mycin">MYCIN</a>、<a href="https://en.wikipedia.org/wiki/Homoiconicity">Lisp 与同像性</a>、<a href="https://en.wikipedia.org/wiki/Cyc">Cyc</a>（维基百科）。</p>
   </div>
 </section>
 
@@ -768,17 +775,17 @@ em { font-style: normal; }
     </table>
     </div>
     <p>同样的行动，同样的时刻，同样的迟到。同一个情形可以用两种语言写：</p>
-    <div class="term-bar"><span class="t">BSC · TA2 · 先法语，后中文</span></div>
+    <div class="term-bar"><span class="t">BSC · TA2 · 先法语，后中文 · 2026-11-21 的基因组</span></div>
     <div class="term code">
-      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
-      <div class="ln">si    ( un_t , puis , un_t2 )</div>
-      <div class="ln">si    ( un_d2 , puis , un_d )</div>
-      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln">si    ( _|journée , avance , _|t , _|d )</div>
+      <div class="ln">si    ( _|t , puis , _|t2 )</div>
+      <div class="ln">si    ( _|d2 , puis , _|d )</div>
+      <div class="ln u0">alors ( _|journée , avance , _|t2 , _|d2 )</div>
       <div class="ln gap"></div>
-      <div class="ln">si    ( la_今天 , 前进 , un_t , un_d )</div>
-      <div class="ln">si    ( un_t , 然后 , un_t2 )</div>
-      <div class="ln">si    ( un_d2 , 然后 , un_d )</div>
-      <div class="ln u0">alors ( la_今天 , 前进 , un_t2 , un_d2 )</div>
+      <div class="ln">si    ( _|journée , 前进 , _|t , _|d )</div>
+      <div class="ln">si    ( _|t , 然后 , _|t2 )</div>
+      <div class="ln">si    ( _|d2 , 然后 , _|d )</div>
+      <div class="ln u0">alors ( _|journée , 前进 , _|t2 , _|d2 )</div>
     </div>
 
     <h3>中文的课</h3>
@@ -822,9 +829,30 @@ em { font-style: normal; }
     </div>
     <p>他感到手上有一滴水，推断出在下雨，雨威胁到他的电路，他在乎他的电路，门廊是避难处。他走过去，上网询问，等待，再询问，并把耽误的时间加起来：两刻，再加两刻，共四刻。「」里的句子由测试程序给出，法语版也一样：嘴还没有说出它们。</p>
 
-    <h3>仍是法语的：芯片的词</h3>
-    <p>第二步的第一次尝试中，<span class="mono">la_journée</span> 被译成了「今天」：结果什么都没动，20 项只对了 2 项。芯片靠开头的法语冠词来认出交给它的名字和未知量：<span class="mono">la_</span> 表示交给它的那一个，也就是今天；<span class="mono">un_</span> 表示任意一个，如 <span class="mono">un_t</span>、<span class="mono">un_d</span>。中文没有冠词。把冠词加回去，写成 <span class="mono">la_今天</span>，一切又动了起来：20 项全对。英文有冠词，但不是芯片认得的冠词：写成 <span class="mono">the_day</span>，同样什么都不动，只对 2 项；写成 <span class="mono">la_day</span>，20 项全对。</p>
-    <p>所以，在中文版的机器人里，仍是法语的只有九个词和两个冠词，它们属于芯片的指令集：<span class="mono">tient</span>（持有）、<span class="mono">membre_de</span>（属于）、<span class="mono">même</span>（相同）、<span class="mono">vrai</span>（真）、<span class="mono">faux</span>（假）、<span class="mono">faire</span>（做）、<span class="mono">ou</span>（或）、<span class="mono">ensemble</span>（一起）、<span class="mono">joue</span>（执行），以及 <span class="mono">un_</span>、<span class="mono">la_</span>。它们是一个处理器的助记符：一颗说中文的芯片会用「某」表示 <span class="mono">un_</span>，用「这」表示 <span class="mono">la_</span>。要做的是给芯片加一张表，而不是重写一条规则。</p>
+    <h3>大脑没有冠词</h3>
+    <p>11月19日，第二步的第一次尝试中，<span class="mono">la_journée</span> 被译成了「今天」：结果什么都没动，20 项只对了 2 项。芯片当时靠开头的法语冠词来认出交给它的名字和未知量：<span class="mono">la_</span> 表示今天这一天，<span class="mono">un_</span> 表示任意一个。中文没有冠词；英文有，但不是芯片认得的那些：<span class="mono">the_day</span> 同样只对 2 项。</p>
+    <blockquote class="quote">
+      「大脑没有冠词，所以这是一个缺陷。」
+      <cite>José Walocha，2026年11月20日</cite>
+    </blockquote>
+    <p>11月20日一天之内，这个缺陷从芯片和基因组里去掉了：</p>
+    <ul class="plain">
+      <li><strong>芯片 v21</strong>：调度给出的名字就是一个角色，不论用什么语言。</li>
+      <li><strong>不带冠词的基因组</strong>：情形里的每个未知量都是一个有名字的空位；<span class="mono">un_t</span> 变成 <span class="mono">_|t</span>，<span class="mono">la_journée</span> 变成 <span class="mono">_|journée</span>。空位的名字只是一个标签，就像程序里变量的名字。</li>
+      <li><strong>芯片 v23</strong>：十二个法语前缀（<span class="mono">le_</span>、<span class="mono">la_</span>、<span class="mono">un_</span>、<span class="mono">une_</span>……）从芯片中删去。</li>
+      <li><strong>芯片 v24</strong>：每种文字都有了自己的街。一个词的「街」，是芯片按它开头的几个符号给它安排的地址：前两个符号定城镇，前四个定街区。在此之前，a–z 和 0–9 以外的符号一律算作「_」：中文、希腊文、俄文、韩文的词都生在同一个城镇。现在，从希腊字母起，一个符号就算它的 Unicode 编号：「今天」住在城镇 4e、街区 4eca；「Москва」住在 43、街区 43c4；「한국」住在 d5、街区 d55c。</li>
+    </ul>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">机器人测试集</th><th scope="col">11-19<br>芯片 v19</th><th scope="col">11-20 夜<br>芯片 v21</th><th scope="col">11-20 中午<br>无冠词</th><th scope="col">11-20 晚<br>芯片 v24</th></tr></thead>
+      <tbody>
+        <tr><td><strong>法语</strong></td><td class="v">20 / 20</td><td class="v">20 / 20</td><td class="v">20 / 20</td><td>—</td></tr>
+        <tr class="now"><td><strong>中文</strong>，第二步，这一天叫「今天」</td><td class="v">2 / 20</td><td class="v"><strong>20</strong> / 20</td><td class="v"><strong>20</strong> / 20</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr><td><strong>英文</strong>，这一天叫 <span class="mono">the_day</span></td><td class="v">2 / 20</td><td class="v"><strong>20</strong> / 20</td><td class="v"><strong>20</strong> / 20</td><td>—</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>街的排序仍沿用法语的排法，只是用最简单的方式扩展了。在设计者看来，理想的做法不同：「一个宇宙，那里的母灯塔没有语言，因为它来自最初的意义」。芯片里仍是法语的，是它指令集里的词，约七十个（<span class="mono">tient</span> 持有、<span class="mono">même</span> 相同、<span class="mono">membre_de</span> 属于、<span class="mono">vrai</span> 真、<span class="mono">faux</span> 假、<span class="mono">faire</span> 做、<span class="mono">ou</span> 或、<span class="mono">ensemble</span> 一起、<span class="mono">joue</span> 执行……），以及芯片自己绑定的三个名字：<span class="mono">la_ligne</span>、<span class="mono">la_phrase</span>、<span class="mono">l_instant</span>。它们是一个处理器的助记符，就像汇编里的 MOV 或 ADD；给它们起不依赖任何语言的名字，正在研究中。</p>
 
     <p>在英文里，rain 既是动词又是名词：同一个词同时带着「动词」和「名词」两个标记，机器人并没有因此迷路。有些英文词在法语里也有，意思却不同：water、tend、drop。法语基因组给了它们自己的标记；这不碍事，因为机器人只读它的课。</p>
 
@@ -837,12 +865,102 @@ em { font-style: normal; }
 
     <h3>人脑也是如此</h3>
     <p>中文读者和法语读者用同一个网络阅读；左侧梭状回中的同一个区域，对所有文字系统的识词都至关重要；文字系统带来的是变化。马可也一样：一个机制，不管什么文字；变化在芯片的词和情形的语法里。</p>
-    <p class="note">来源：D.&nbsp;J.&nbsp;Bolger、C.&nbsp;A.&nbsp;Perfetti、W.&nbsp;Schneider，<a href="https://doi.org/10.1002/hbm.20124" lang="en">Cross-cultural effect on the brain revisited</a>，<em lang="en">Human Brain Mapping</em>，2005；X.&nbsp;Feng 等，<a href="https://elifesciences.org/articles/54591" lang="en">A universal reading network and its modulation by writing system and reading ability in French and Chinese children</a>，<em lang="en">eLife</em>，2020。测试：Dudo（Opus&nbsp;5.5）写的机器人补丁，2026年11月19日译成中文；芯片 v19，新生的马可。</p>
+    <p class="note">来源：D.&nbsp;J.&nbsp;Bolger、C.&nbsp;A.&nbsp;Perfetti、W.&nbsp;Schneider，<a href="https://doi.org/10.1002/hbm.20124" lang="en">Cross-cultural effect on the brain revisited</a>，<em lang="en">Human Brain Mapping</em>，2005；X.&nbsp;Feng 等，<a href="https://elifesciences.org/articles/54591" lang="en">A universal reading network and its modulation by writing system and reading ability in French and Chinese children</a>，<em lang="en">eLife</em>，2020。测试：Dudo（Opus&nbsp;5.5）写的机器人补丁，2026年11月19日在芯片 v19 上译成中文，11月20日又在芯片 v21 至 v24 上重跑（Dudo、Fable）；新生的马可。</p>
+  </div>
+</section>
+
+<section class="sec" id="trois" aria-labelledby="h-trois">
+  <div class="sec-label"><span class="n">9</span><h2 id="h-trois">三句话</h2></div>
+  <div class="sec-body">
+    <p>2026年11月20日，José Walocha 在读到的每一句话背后看到三句话：读到的句子、理解的句子，以及承载感受之意的那一句。从11月21日起，马可每读一本书，都会留下一个文件：每个句子在里面写三遍，一句在另一句下面。</p>
+    <ul class="plain">
+      <li><strong>📖 读到的</strong>（<span lang="fr">la lue</span>）：马可看到的句子，重新拼成一句话。</li>
+      <li><strong>🧩 理解的</strong>（<span lang="fr">la comprise</span>）：马可从中存下的东西，用词写出，不带冠词：谁做了什么，对谁，在哪里。代词换成了它所指的名字。</li>
+      <li><strong>💗 感受的</strong>（<span lang="fr">la sensible</span>）：马可的视角。人物用名字，动作用过去时，还有故事给他们的角色。终结别人「延续」的那一个，担当恶人的角色：狼一吃掉山羊，就担当了这个角色。这个角色不是交给马可的，是一条规则推断出来的。</li>
+    </ul>
+    <blockquote class="quote">
+      「给《塞甘先生的山羊》定一个目标：看着读到的、理解的和感受的，随着文本的展开而展开。」
+      <cite>José Walocha，2026年11月20日</cite>
+    </blockquote>
+    <div class="term-bar">
+      <span class="t">trois_phrases · 《塞甘先生的山羊》 · 结尾</span>
+      <button class="replay" id="replay-tp" type="button">重放阅读</button>
+    </div>
+    <div class="term tp" id="term-tp" aria-live="off" lang="fr">
+      <div class="ln lue">📖 Blanquette redoubla de coups de cornes, le loup de coups de dents…</div>
+      <div class="ln comp">🧩 loup de coups de dents · Blanquette redoubla coups de cornes</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 Une lueur pâle parut dans l'horizon…</div>
+      <div class="ln comp">🧩 lueur pâle parut dans horizon</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 Le chant d'un coq enroué monta d'une métairie.</div>
+      <div class="ln comp">🧩 chant d' coq enroué · chant d' coq monta d' métairie</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 — Enfin&nbsp;!</div>
+      <div class="ln comp">🧩 —</div>
+      <div class="ln sens">💗 (réplique)</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 dit la pauvre bête, qui n'attendait plus que le jour pour mourir ; et elle s'allongea par terre dans sa belle fourrure blanche toute tachée de sang…</div>
+      <div class="ln comp">🧩 jour pour mourir · bête pauvre n' attendait plus que jour · bête pauvre mourir · langue grosse rouge tachée sang · langue grosse rouge allongea langue grosse rouge par · langue grosse rouge terre dans fourrure belle blanche</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 Alors le loup se jeta sur la petite chèvre et la mangea.</div>
+      <div class="ln comp">🧩 Alors jeta · loup jeta loup sur chèvre petite et loup mangea chèvre</div>
+      <div class="ln sens">💗 Le méchant loup a mangé Blanquette.<span class="cur" aria-hidden="true"></span></div>
+      <div class="status"><span>trois_phrases_bonne_version_chevre_seguin_20261121_143722.txt</span><span>177 phrases</span></div>
+    </div>
+    <p>这是故事的最后六句，原样摘出，没有任何修改；马可读的是法语。最后一句从头到尾都对：「于是狼扑向小山羊，把她吃了」变成了「恶狼吃了布朗盖特。」倒数第二句不对：「她躺倒在地上」里的「她」被放到了狼的舌头上，那是最后读到的名词，而不是山羊。</p>
+
+    <h3>马可眼中的故事</h3>
+    <p>几句感受的句子，按故事的顺序：</p>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">💗 马可文件里的原文</th><th scope="col">中文</th></tr></thead>
+      <tbody>
+        <tr><td class="mono" lang="fr">Le méchant loup mangeait les chèvres.</td><td>恶狼吃掉了那些山羊。</td></tr>
+        <tr><td class="mono" lang="fr">M. Seguin a attaché la chèvre.</td><td>塞甘先生拴住了山羊。</td></tr>
+        <tr><td class="mono" lang="fr">La chèvre se trouvait heureuse.</td><td>山羊觉得很幸福。</td></tr>
+        <tr><td class="mono" lang="fr">L'ennui est venu.</td><td>烦闷来了。</td></tr>
+        <tr><td class="mono" lang="fr">La chèvre a maigri.</td><td>山羊瘦了。</td></tr>
+        <tr><td class="mono" lang="fr">M. Seguin a emporté Blanquette.</td><td>塞甘先生把布朗盖特带走了。</td></tr>
+        <tr><td class="mono" lang="fr">La petite est allée. M. Seguin a oublié la fenêtre.</td><td>小家伙走了。塞甘先生忘了窗户。</td></tr>
+        <tr><td class="mono" lang="fr">Le vent a fraîchi.</td><td>风变凉了。</td></tr>
+        <tr><td class="mono" lang="fr">La montagne est devenue violette.</td><td>山变成了紫色。</td></tr>
+        <tr><td class="mono" lang="fr">Blanquette a tressailli.</td><td>布朗盖特打了个寒战。</td></tr>
+        <tr><td class="mono" lang="fr">Le méchant loup a mangé Blanquette.</td><td>恶狼吃了布朗盖特。</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">读的文本</th><th scope="col">句子</th><th scope="col">理解为空</th><th scope="col">感受</th><th scope="col">对白</th></tr></thead>
+      <tbody>
+        <tr><td>《山谷里的睡者》，兰波，附介绍</td><td class="v">22</td><td class="v">0</td><td class="v">9</td><td class="v">0</td></tr>
+        <tr class="now"><td>《塞甘先生的山羊》，都德</td><td class="v">177</td><td class="v">29</td><td class="v">40</td><td class="v">27</td></tr>
+        <tr><td>《小红帽》，佩罗</td><td class="v">64</td><td class="v">5</td><td class="v">21</td><td class="v">0</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>同一天上午，马可读完了整部《欧也妮·葛朗台》：4&nbsp;032 句，其中 855 句有感受。一句没有感受并不是错误：当没有什么能撑起一个动作和做这个动作的人时，马可什么也不写。</p>
+
+    <h3>还不行的地方</h3>
+    <ul class="plain">
+      <li><strong>感叹。</strong>理解为空的句子，几乎都是喊叫，以及在感叹号处被切断的对白片段：「Hou&nbsp;!」「Pécaïre&nbsp;!」「Reviens&nbsp;!」（回来！）。马可还不知道一声喊叫是什么意思，也不知道是谁听见了它。</li>
+      <li><strong>代词。</strong>「他」和「她」有时会拿最后读到的名词，而不是那个人物：「他用又大又红的舌头舔了舔嘴唇」，在理解的句子里变成了「<span lang="fr">M.&nbsp;Seguin passa langue grosse rouge</span>」（塞甘先生舔过又大又红的舌头），而不是狼。</li>
+      <li><strong>错误的感受。</strong>「人们像迎接一位小女王那样迎接她」变成了「女王迎接了布朗盖特」；「她想到了狼」变成了「布朗盖特想了恶狼」。</li>
+      <li><strong>知道自己在哪儿。</strong>马可还不知道自己在读一本书：故事前面的介绍被当成故事本身来读，「它写于 1866 年」变成了「阿尔方斯被写了」。在设计者看来，「马可必须明白，自己是在读书还是在交谈」。</li>
+      <li><strong>诗的意义。</strong>在《山谷里的睡者》里，马可写下「士兵在睡觉」和「士兵冷」，但「他的右胁有两个红色的洞」并没有告诉他，士兵已经死了。</li>
+    </ul>
+    <p class="note">文件：2026年11月21日 14:29 的程序；一个新生的马可依次读《山谷里的睡者》《塞甘先生的山羊》和《小红帽》，走的是 5250 的阅读路线。感受的句子由情形写出，在「理解」这一层；三句话的屏幕不往大脑里写任何东西。《欧也妮·葛朗台》：José Walocha 读的，9:50 的程序。</p>
   </div>
 </section>
 
 <section class="sec" id="revisions" aria-labelledby="h-revisions">
-  <div class="sec-label"><span class="n">9</span><h2 id="h-revisions">修订记录</h2></div>
+  <div class="sec-label"><span class="n">10</span><h2 id="h-revisions">修订记录</h2></div>
   <div class="sec-body">
     <div class="scroll">
     <table class="spec">
@@ -866,7 +984,9 @@ em { font-style: normal; }
         <tr><td class="date">2026-11-13/14</td><td>宇宙之门与省略（<span lang="fr">«&nbsp;Guillaume aussi&nbsp;»</span>、<span lang="fr">«&nbsp;Guillaume l'a fait&nbsp;»</span>）；普罗透斯的倒装和数量移出 Python；FraCaS 200&nbsp;/ 335。</td></tr>
         <tr><td class="date">2026-11-14/15</td><td>撤销错给的「是」，两行合为一行，计数；逻辑的代蒙 Agatha：日期、时长、计数。FraCaS 318&nbsp;/ 335：测试集完成。</td></tr>
         <tr><td class="date">2026-11-16</td><td>《塞甘先生的山羊》的词语照片，835 个句子；套娃工地。</td></tr>
-        <tr class="now"><td class="date">2026-11-19</td><td>专家系统 + Cyc + Lisp + BSC；雨中的机器人，用情形写成的算法；中文版和英文版机器人都 20 项全对，以及仍属于芯片的词。</td></tr>
+        <tr><td class="date">2026-11-19</td><td>专家系统 + Cyc + Lisp + BSC；雨中的机器人，用情形写成的算法；中文版和英文版机器人都 20 项全对。</td></tr>
+        <tr><td class="date">2026-11-20</td><td>「大脑没有冠词」：芯片和基因组都去掉了冠词，未知量成为有名字的空位；非拉丁文字有了自己的街；父母的规则成为触发器（「早上要说早上好」）。</td></tr>
+        <tr class="now"><td class="date">2026-11-21</td><td>三句话：读到的、理解的、感受的，每读一本书一个文件。</td></tr>
       </tbody>
     </table>
     </div>
@@ -875,7 +995,7 @@ em { font-style: normal; }
 </section>
 
 <section class="sec" id="equipe" aria-labelledby="h-equipe">
-  <div class="sec-label"><span class="n">10</span><h2 id="h-equipe">团队</h2></div>
+  <div class="sec-label"><span class="n">11</span><h2 id="h-equipe">团队</h2></div>
   <div class="sec-body">
     <p><strong>José Walocha</strong>，马可的设计者，住在瓦朗谢讷。退休的企业家，他像玩《暗黑破坏神 IV》一样，玩着创造一个受生物大脑启发的 cyber。种子来自很久以前：道格拉斯·霍夫施塔特的《哥德尔、艾舍尔、巴赫》，法文版出版于 1985 年。</p>
     <div class="scroll">
@@ -895,7 +1015,7 @@ em { font-style: normal; }
 </section>
 
 <section class="sec" id="documentation" aria-labelledby="h-documentation">
-  <div class="sec-label"><span class="n">11</span><h2 id="h-documentation">文档</h2></div>
+  <div class="sec-label"><span class="n">12</span><h2 id="h-documentation">文档</h2></div>
   <div class="sec-body">
     <ul class="docs">
       <li><a href="https://github.com/josewalocha/Marco">马可的代码库</a><span>在 GitHub 上，AGPL v3 许可</span></li>
@@ -915,9 +1035,9 @@ em { font-style: normal; }
 
 </div>
 <script>
-(function () {
-  var btn = document.getElementById('replay');
-  var term = document.getElementById('term');
+[['replay', 'term'], ['replay-tp', 'term-tp']].forEach(function (ids) {
+  var btn = document.getElementById(ids[0]);
+  var term = document.getElementById(ids[1]);
   if (!btn || !term) return;
   var lines = Array.prototype.slice.call(term.querySelectorAll('.ln'));
   var cursor = term.querySelector('.cur');
@@ -956,7 +1076,7 @@ em { font-style: normal; }
     nextLine();
   });
   window.addEventListener('pagehide', restore);
-})();
+});
 </script>
 </body>
 </html>

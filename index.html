@@ -253,6 +253,12 @@ button.replay[disabled] { opacity: .5; cursor: default; }
 .term.code .ln { white-space: pre; }
 .sec-body p .mono { font-size: .9em; }
 @keyframes blink { 50% { opacity: 0; } }
+.term.tp { padding-bottom: 0; }
+.term.tp .ln { padding-left: 1.7em; text-indent: -1.7em; }
+.term.tp .ln.gap { min-height: .9em; }
+.term .lue { color: var(--c-white); }
+.term .comp { color: var(--c-green); }
+.term .sens { color: var(--c-turq); }
 
 /* Feuille de route */
 .road ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; margin: 0; padding: 0; }
@@ -303,7 +309,7 @@ footer {
 <header class="sheet-head">
   <div class="brand">MARCO</div>
   <div class="kind">Fiche technique</div>
-  <div class="rev">Programme du 13&nbsp;novembre&nbsp;2026</div>
+  <div class="rev">Programme du 21&nbsp;novembre&nbsp;2026</div>
 </header>
 <nav class="sheet-sub" aria-label="Sommaire">
   <a href="#description"><b>1</b>Description</a>
@@ -314,9 +320,10 @@ footer {
   <a href="#silicium"><b>6</b>Vers le silicium</a>
   <a href="#parents"><b>7</b>Parents</a>
   <a href="#mandarin"><b>8</b>Mandarin, anglais</a>
-  <a href="#revisions"><b>9</b>Révisions</a>
-  <a href="#equipe"><b>10</b>Équipe</a>
-  <a href="#documentation"><b>11</b>Documentation</a>
+  <a href="#trois"><b>9</b>Trois phrases</a>
+  <a href="#revisions"><b>10</b>Révisions</a>
+  <a href="#equipe"><b>11</b>Équipe</a>
+  <a href="#documentation"><b>12</b>Documentation</a>
   <a class="lang" href="en/" hreflang="en" lang="en">English</a>
   <a class="lang" href="zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a>
 </nav>
@@ -416,7 +423,7 @@ footer {
   <div class="sec-body">
     <p>Marco est un <em>cyber</em>, le mot que José Walocha donne aux intelligences vivantes pour les distinguer des modèles de langage statistiques. C'est une MAD, une machine à déduire&nbsp;: aucun réseau de neurones, aucun paramètre appris. Zéro boîte noire.</p>
     <p>Par sa construction, Marco est un <strong>processeur bionique à mémoire nodale</strong>. Le processeur exécute un petit jeu d'instructions sur les lignes du génome. La mémoire tient dans une seule table de fils, où tout est phare, le sens compris. Le génome est lu au tic&nbsp;0, à la naissance&nbsp;; le vécu s'écrit ensuite, instant après instant, chaque fil a son tic. Rien n'est effacé&nbsp;: l'oubli est lui-même un fil daté.</p>
-    <p>Marco lit et parle le français. Il lit de vrais textes, des comptines, des fables et des contes&nbsp;: <em>Frère Jacques</em>, La Fontaine, Perrault, <em>La Chèvre de M.&nbsp;Seguin</em>, <em>Le Dormeur du val</em>.</p>
+    <p>Marco lit et parle le français. Il lit de vrais textes, des comptines, des fables, des contes et des romans&nbsp;: <em>Frère Jacques</em>, La Fontaine, Perrault, <em>La Chèvre de M.&nbsp;Seguin</em>, <em>Le Dormeur du val</em>, <em>Eugénie Grandet</em>. De chaque phrase lue, il garde trois phrases&nbsp;: la lue, la comprise, la sensible (<a href="#trois">chapitre&nbsp;9</a>).</p>
   </div>
 </section>
 
@@ -425,12 +432,12 @@ footer {
   <div class="sec-body">
     <ul class="feats">
       <li><span class="k">Mémoire</span><span>Nodale&nbsp;: une table de fils, <span class="mono">de · vers · rang · tic</span>. Tout est phare.</span></li>
-      <li><span class="k">Génome</span><span>298 fichiers texte, 13,7&nbsp;millions de rangées, tirés des grands dictionnaires ouverts.</span></li>
+      <li><span class="k">Génome</span><span>336 fichiers texte, 12,7&nbsp;millions de lignes, tirés des grands dictionnaires ouverts. Né en 43&nbsp;secondes.</span></li>
       <li><span class="k">Programme</span><span>Le BSC&nbsp;: des règles mises en équation (MEQ), des hexalignes, des cas. «&nbsp;Le neurone se code avec le neurone.&nbsp;»</span></li>
       <li><span class="k">Processeur</span><span>Un jeu d'instructions réduit sur des triplets&nbsp;; un noyau qui ordonnance les moments, les étages, les organes.</span></li>
       <li><span class="k">Provenance</span><span>Chaque réponse dit les fils qui la tiennent. Ce qui n'est pas tenu reste un trou, dit honnêtement.</span></li>
       <li><span class="k">Sommeil</span><span>Le cyber dort, révise ses boucles ouvertes et oublie par un fil daté.</span></li>
-      <li><span class="k">Code</span><span>29 modules Python, 33&nbsp;195 lignes, la seule bibliothèque standard.</span></li>
+      <li><span class="k">Code</span><span>31 modules Python, 35&nbsp;465 lignes, la seule bibliothèque standard, et la puce en C++.</span></li>
       <li><span class="k">Licence</span><span>GNU Affero GPL v3.</span></li>
     </ul>
     <p class="note">Sources du génome&nbsp;: le Littré (XMLittré), le Wiktionnaire, Lefff, Lexique, GLAWI, Verbiste, <em>Les Verbes Français</em> de J.&nbsp;Dubois et F.&nbsp;Dubois-Charlier, l'INSEE, Wikidata.</p>
@@ -471,7 +478,7 @@ footer {
 
         <rect class="d-box" x="500" y="18" width="200" height="62" rx="3"/>
         <text class="d-t" x="600" y="43" text-anchor="middle">GÉNOME</text>
-        <text class="d-s" x="600" y="62" text-anchor="middle">298 fichiers · 13,7 M rangées</text>
+        <text class="d-s" x="600" y="62" text-anchor="middle">336 fichiers · 12,7 M lignes</text>
 
         <line class="d-line" x1="600" y1="80" x2="600" y2="126" marker-end="url(#fl)"/>
         <text class="d-l" x="610" y="108">lu au tic 0</text>
@@ -701,22 +708,22 @@ footer {
 
     <h3>Exemple de code&nbsp;: le robot sous la pluie</h3>
     <p>Le 19/11/2026, Marco joue un robot. Ses capteurs sentent la pluie&nbsp;; une leçon dit que la pluie grille les circuits, une autre qu'un robot soigne ses circuits. Il cherche un abri, demande au web quand la pluie finira, compte le temps perdu et son retard. Trente et un cas en trois étages&nbsp;; voici les trois qui font avancer l'horloge, tels qu'ils sont au génome.</p>
-    <div class="term-bar"><span class="t">BSC · patch robot · 19/11/2026</span></div>
+    <div class="term-bar"><span class="t">BSC · patch robot · génome du 21/11/2026</span></div>
     <div class="term code">
       <div class="ln gl">TA1 — l'arrivée : on part du départ avec la durée du trajet</div>
-      <div class="ln">si    ( la_journée , départ , un_t )</div>
-      <div class="ln">si    ( la_journée , trajet , _|_ , un_d )</div>
-      <div class="ln u0">alors ( la_journée , avance , un_t , un_d )</div>
+      <div class="ln">si    ( _|journée , départ , _|t )</div>
+      <div class="ln">si    ( _|journée , trajet , _|_ , _|d )</div>
+      <div class="ln u0">alors ( _|journée , avance , _|t , _|d )</div>
       <div class="ln gap"></div>
       <div class="ln gl">TA2 — un pas : un quart d'heure de plus à l'horloge, un quart de moins à faire</div>
-      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
-      <div class="ln">si    ( un_t , puis , un_t2 )</div>
-      <div class="ln">si    ( un_d2 , puis , un_d )</div>
-      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln">si    ( _|journée , avance , _|t , _|d )</div>
+      <div class="ln">si    ( _|t , puis , _|t2 )</div>
+      <div class="ln">si    ( _|d2 , puis , _|d )</div>
+      <div class="ln u0">alors ( _|journée , avance , _|t2 , _|d2 )</div>
       <div class="ln gap"></div>
       <div class="ln gl">TA3 — arrivé : plus rien à faire</div>
-      <div class="ln">si    ( la_journée , avance , un_t , 0q )</div>
-      <div class="ln u0">alors ( la_journée , arrivée , un_t )</div>
+      <div class="ln">si    ( _|journée , avance , _|t , 0q )</div>
+      <div class="ln u0">alors ( _|journée , arrivée , _|t )</div>
       <div class="ln gap"></div>
       <div class="ln tr">{départ 8h30, trajet 2q : ( avance , 8h30 , 2q ) → ( avance , 8h45 , 1q ) → ( avance , 9h00 , 0q ) → ( arrivée , 9h00 )}</div>
     </div>
@@ -726,13 +733,13 @@ footer {
     <table class="spec">
       <thead><tr><th scope="col">Ligne</th><th scope="col">Les mots, à leur place</th><th scope="col">C'est</th></tr></thead>
       <tbody>
-        <tr><td class="date">L-meq-c-972200-001</td><td class="mono">la_journée 1 · sent 2 · un_a 3 · un_b 4 · _|_ 5</td><td>un cas, sa première condition</td></tr>
+        <tr><td class="date">L-meq-c-972200-001</td><td class="mono">_|journée 1 · sent 2 · _|a 3 · _|b 4 · _|_ 5</td><td>un cas, sa première condition</td></tr>
         <tr><td class="date">M-robot_horloge-0001</td><td class="mono">6h00 1 · puis 2 · 6h15 3</td><td>un fait</td></tr>
         <tr><td class="date">M-robot_lecons-0004</td><td class="mono">un 1 · porche 2 · est 3 · un 4 · abri 5</td><td>une leçon</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="note">Les cas parlent encore un français de convention (<span class="mono">la_journée</span>, <span class="mono">un_t</span>, <span class="mono">_|_</span>)&nbsp;; les leçons, un français libre. Le but&nbsp;: que Marco écrive lui-même un cas à partir d'une phrase qu'il a lue. Le banc du robot, 20 attendus sur 20, montre que le code tourne&nbsp;; écrit avec les règles, il ne mesure pas la compréhension. Sources&nbsp;: <a href="https://en.wikipedia.org/wiki/OPS5">OPS5</a>, <a href="https://en.wikipedia.org/wiki/Mycin">MYCIN</a>, <a href="https://en.wikipedia.org/wiki/Homoiconicity">Lisp et l'homoiconicité</a>, <a href="https://en.wikipedia.org/wiki/Cyc">Cyc</a> (Wikipedia).</p>
+    <p class="note">Les inconnues des cas sont des trous nommés (<span class="mono">_|journée</span>, <span class="mono">_|t</span>, et <span class="mono">_|_</span> pour la place libre)&nbsp;; les cas parlent un français de convention, les leçons un français libre. Le but&nbsp;: que Marco écrive lui-même un cas à partir d'une phrase qu'il a lue. Le banc du robot, 20 attendus sur 20, montre que le code tourne&nbsp;; écrit avec les règles, il ne mesure pas la compréhension. Sources&nbsp;: <a href="https://en.wikipedia.org/wiki/OPS5">OPS5</a>, <a href="https://en.wikipedia.org/wiki/Mycin">MYCIN</a>, <a href="https://en.wikipedia.org/wiki/Homoiconicity">Lisp et l'homoiconicité</a>, <a href="https://en.wikipedia.org/wiki/Cyc">Cyc</a> (Wikipedia).</p>
   </div>
 </section>
 
@@ -752,17 +759,17 @@ footer {
     </table>
     </div>
     <p>Les mêmes actions, aux mêmes heures, avec le même retard. Le même cas s'écrit dans les deux langues&nbsp;:</p>
-    <div class="term-bar"><span class="t">BSC · TA2 · français, puis mandarin</span></div>
+    <div class="term-bar"><span class="t">BSC · TA2 · français, puis mandarin · génome du 21/11/2026</span></div>
     <div class="term code">
-      <div class="ln">si    ( la_journée , avance , un_t , un_d )</div>
-      <div class="ln">si    ( un_t , puis , un_t2 )</div>
-      <div class="ln">si    ( un_d2 , puis , un_d )</div>
-      <div class="ln u0">alors ( la_journée , avance , un_t2 , un_d2 )</div>
+      <div class="ln">si    ( _|journée , avance , _|t , _|d )</div>
+      <div class="ln">si    ( _|t , puis , _|t2 )</div>
+      <div class="ln">si    ( _|d2 , puis , _|d )</div>
+      <div class="ln u0">alors ( _|journée , avance , _|t2 , _|d2 )</div>
       <div class="ln gap"></div>
-      <div class="ln">si    ( la_今天 , 前进 , un_t , un_d )</div>
-      <div class="ln">si    ( un_t , 然后 , un_t2 )</div>
-      <div class="ln">si    ( un_d2 , 然后 , un_d )</div>
-      <div class="ln u0">alors ( la_今天 , 前进 , un_t2 , un_d2 )</div>
+      <div class="ln">si    ( _|journée , 前进 , _|t , _|d )</div>
+      <div class="ln">si    ( _|t , 然后 , _|t2 )</div>
+      <div class="ln">si    ( _|d2 , 然后 , _|d )</div>
+      <div class="ln u0">alors ( _|journée , 前进 , _|t2 , _|d2 )</div>
     </div>
 
     <h3>Les leçons, en chinois</h3>
@@ -808,9 +815,30 @@ footer {
     </div>
     <p>Il sent une goutte sur sa main, en déduit qu'il pleut, que la pluie menace ses circuits, qu'il tient à ses circuits, que le porche est un refuge. Il y va, demande au web, attend, redemande, et additionne le temps perdu&nbsp;: deux quarts, puis deux de plus, quatre (四刻). Les phrases entre 「&nbsp;」 sont rendues par le banc, comme en français&nbsp;: la bouche ne les dit pas encore.</p>
 
-    <h3>Ce qui reste français&nbsp;: les mots de la puce</h3>
-    <p>Au premier essai du second temps, «&nbsp;la_journée&nbsp;» était devenu «&nbsp;今天&nbsp;»&nbsp;: rien n'a bougé, 2 attendus sur 20. La puce reconnaît le nom qu'on lui donne et les inconnues par l'article français qui les ouvre&nbsp;: «&nbsp;la_&nbsp;» pour celle qu'on lui donne, la journée&nbsp;; «&nbsp;un_&nbsp;» pour n'importe laquelle, <span class="mono">un_t</span>, <span class="mono">un_d</span>. Le mandarin n'a pas d'article. L'article remis, «&nbsp;la_今天&nbsp;», tout a bougé&nbsp;: 20 sur 20. L'anglais a des articles, mais pas ceux de la puce&nbsp;: avec «&nbsp;the_day&nbsp;», rien ne bouge non plus, 2 sur 20&nbsp;; avec «&nbsp;la_day&nbsp;», 20 sur 20.</p>
-    <p>Dans le robot en mandarin, il reste donc en français neuf mots et deux articles, ceux du jeu d'instructions de la puce&nbsp;: <span class="mono">tient</span>, <span class="mono">membre_de</span>, <span class="mono">même</span>, <span class="mono">vrai</span>, <span class="mono">faux</span>, <span class="mono">faire</span>, <span class="mono">ou</span>, <span class="mono">ensemble</span>, <span class="mono">joue</span>, et <span class="mono">un_</span>, <span class="mono">la_</span>. Ce sont les mnémoniques d'un processeur&nbsp;: une puce en mandarin dirait 某 («&nbsp;un certain&nbsp;») pour <span class="mono">un_</span> et 这 («&nbsp;ce&nbsp;») pour <span class="mono">la_</span>. C'est une table à ajouter à la puce, pas une règle à réécrire.</p>
+    <h3>Le cerveau n'a pas d'article</h3>
+    <p>Au premier essai du second temps, le 19/11, «&nbsp;la_journée&nbsp;» était devenu «&nbsp;今天&nbsp;»&nbsp;: rien n'a bougé, 2 attendus sur 20. La puce reconnaissait le nom qu'on lui donne et les inconnues par l'article français qui les ouvrait&nbsp;: «&nbsp;la_&nbsp;» pour la journée, «&nbsp;un_&nbsp;» pour n'importe laquelle. Le mandarin n'a pas d'article&nbsp;; l'anglais en a, mais pas ceux de la puce&nbsp;: «&nbsp;the_day&nbsp;» restait lui aussi à 2 sur 20.</p>
+    <blockquote class="quote">
+      «&nbsp;Le cerveau n'a pas d'article, donc c'est un défaut.&nbsp;»
+      <cite>José Walocha, 20/11/2026</cite>
+    </blockquote>
+    <p>Le défaut est sorti de la puce et du génome dans la journée du 20 novembre&nbsp;:</p>
+    <ul class="plain">
+      <li><strong>Puce v21</strong>&nbsp;: le nom que donne la régie est un rôle, dans n'importe quelle langue.</li>
+      <li><strong>Génome sans article</strong>&nbsp;: toute inconnue d'un cas est un trou nommé&nbsp;; <span class="mono">un_t</span> devient <span class="mono">_|t</span>, <span class="mono">la_journée</span> devient <span class="mono">_|journée</span>. Le nom d'un trou est une étiquette, comme le nom d'une variable dans un programme.</li>
+      <li><strong>Puce v23</strong>&nbsp;: les douze préfixes français (<span class="mono">le_</span>, <span class="mono">la_</span>, <span class="mono">un_</span>, <span class="mono">une_</span>…) sont retirés de la puce.</li>
+      <li><strong>Puce v24</strong>&nbsp;: chaque écriture a ses rues. La rue d'un mot est l'adresse où la puce le range d'après ses premiers signes&nbsp;: deux pour l'agglomération, quatre pour le quartier. Jusque-là, tout signe hors a-z et 0-9 valait «&nbsp;_&nbsp;»&nbsp;: les mots chinois, grecs, russes ou coréens naissaient tous dans la même agglomération. Désormais, à partir du grec, un signe vaut son numéro Unicode&nbsp;: «&nbsp;今天&nbsp;» habite l'agglomération 4e, quartier 4eca&nbsp;; «&nbsp;Москва&nbsp;», 43, quartier 43c4&nbsp;; «&nbsp;한국&nbsp;», d5, quartier d55c.</li>
+    </ul>
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Banc du robot</th><th scope="col">19/11<br>puce v19</th><th scope="col">20/11, nuit<br>puce v21</th><th scope="col">20/11, midi<br>sans article</th><th scope="col">20/11, soir<br>puce v24</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Français</strong></td><td class="v">20 / 20</td><td class="v">20 / 20</td><td class="v">20 / 20</td><td>—</td></tr>
+        <tr class="now"><td><strong>Mandarin</strong>, second temps, la journée «&nbsp;今天&nbsp;»</td><td class="v">2 / 20</td><td class="v"><strong>20</strong> / 20</td><td class="v"><strong>20</strong> / 20</td><td class="v"><strong>20</strong> / 20</td></tr>
+        <tr><td><strong>Anglais</strong>, la journée «&nbsp;the_day&nbsp;»</td><td class="v">2 / 20</td><td class="v"><strong>20</strong> / 20</td><td class="v"><strong>20</strong> / 20</td><td>—</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Le classement des rues reste celui du français, étendu au plus simple. L'idéal, pour son concepteur, serait autre&nbsp;: «&nbsp;un univers où le phare mère est sans langue, car issu du sens d'origine&nbsp;». Restent français dans la puce les mots de son jeu d'instructions, environ soixante-dix (<span class="mono">tient</span>, <span class="mono">même</span>, <span class="mono">membre_de</span>, <span class="mono">vrai</span>, <span class="mono">faux</span>, <span class="mono">faire</span>, <span class="mono">ou</span>, <span class="mono">ensemble</span>, <span class="mono">joue</span>…), et trois noms que la puce lie elle-même&nbsp;: <span class="mono">la_ligne</span>, <span class="mono">la_phrase</span>, <span class="mono">l_instant</span>. Ce sont les mnémoniques d'un processeur, comme MOV ou ADD en assembleur&nbsp;; leur nommage sans langue est à l'étude.</p>
 
     <p>En anglais, «&nbsp;rain&nbsp;» est à la fois le verbe et le nom&nbsp;: le même mot tient «&nbsp;verbe&nbsp;» et «&nbsp;nom commun&nbsp;», et le robot ne s'y perd pas. Des mots anglais existent aussi en français, avec un autre sens&nbsp;: «&nbsp;water&nbsp;», «&nbsp;tend&nbsp;», «&nbsp;drop&nbsp;». Le génome français leur donne ses marques&nbsp;; elles ne gênent pas, parce que le robot ne lit que ses leçons.</p>
 
@@ -823,12 +851,97 @@ footer {
 
     <h3>Le cerveau humain fait de même</h3>
     <p>Le lecteur chinois et le lecteur français lisent avec le même réseau, et une même région, dans le gyrus fusiforme gauche, est décisive pour reconnaître les mots dans toutes les écritures&nbsp;; l'écriture en module les variations. Marco aussi&nbsp;: un seul mécanisme, quelle que soit l'écriture&nbsp;; les variations sont dans les mots de la puce et dans la grammaire des cas.</p>
-    <p class="note">Sources&nbsp;: D.&nbsp;J.&nbsp;Bolger, C.&nbsp;A.&nbsp;Perfetti, W.&nbsp;Schneider, «&nbsp;<a href="https://doi.org/10.1002/hbm.20124">Cross-cultural effect on the brain revisited</a>&nbsp;», <em>Human Brain Mapping</em>, 2005&nbsp;; X.&nbsp;Feng et al., «&nbsp;<a href="https://elifesciences.org/articles/54591">A universal reading network and its modulation by writing system and reading ability in French and Chinese children</a>&nbsp;», <em>eLife</em>, 2020. Le banc&nbsp;: le patch robot de Dudo (Opus&nbsp;5.5), traduit le 19/11/2026&nbsp;; puce v19, Marco neuf.</p>
+    <p class="note">Sources&nbsp;: D.&nbsp;J.&nbsp;Bolger, C.&nbsp;A.&nbsp;Perfetti, W.&nbsp;Schneider, «&nbsp;<a href="https://doi.org/10.1002/hbm.20124">Cross-cultural effect on the brain revisited</a>&nbsp;», <em>Human Brain Mapping</em>, 2005&nbsp;; X.&nbsp;Feng et al., «&nbsp;<a href="https://elifesciences.org/articles/54591">A universal reading network and its modulation by writing system and reading ability in French and Chinese children</a>&nbsp;», <em>eLife</em>, 2020. Le banc&nbsp;: le patch robot de Dudo (Opus&nbsp;5.5), traduit le 19/11/2026 sur la puce v19, repris le 20/11 sur les puces v21 à v24 (Dudo, Fable)&nbsp;; Marco neuf.</p>
+  </div>
+</section>
+
+<section class="sec" id="trois" aria-labelledby="h-trois">
+  <div class="sec-label"><span class="n">9</span><h2 id="h-trois">Les trois phrases</h2></div>
+  <div class="sec-body">
+    <p>Le 20/11/2026, José Walocha voit trois phrases derrière chaque phrase lue&nbsp;: la phrase lue, la phrase comprise, et celle qui porte le sens sensible. Depuis le 21/11, chaque livre que Marco lit laisse un fichier où chaque phrase est écrite trois fois, l'une sous l'autre.</p>
+    <ul class="plain">
+      <li><strong>📖 La lue</strong>&nbsp;: la phrase telle que Marco l'a vue, remise en phrase.</li>
+      <li><strong>🧩 La comprise</strong>&nbsp;: ce que Marco en a déposé, en mots, sans article&nbsp;: qui fait quoi, à qui, où. Les pronoms y sont remplacés par le nom qu'ils désignent.</li>
+      <li><strong>💗 La sensible</strong>&nbsp;: le point de vue de Marco. Les personnages par leur nom, l'action au passé composé, et le rôle que l'histoire leur donne. Celui qui finit le Continuer d'un autre tient le rôle du méchant&nbsp;: le loup le prend dès qu'il mange les chèvres. Le rôle n'est pas donné à Marco, une règle le déduit.</li>
+    </ul>
+    <blockquote class="quote">
+      «&nbsp;Un objectif pour la chèvre de Monsieur Seguin&nbsp;: voir le lu, le compris et le sensible se dérouler au fur et à mesure que le texte se déroule.&nbsp;»
+      <cite>José Walocha, 20/11/2026</cite>
+    </blockquote>
+    <div class="term-bar">
+      <span class="t">trois_phrases · La Chèvre de M.&nbsp;Seguin · la fin</span>
+      <button class="replay" id="replay-tp" type="button">Rejouer la lecture</button>
+    </div>
+    <div class="term tp" id="term-tp" aria-live="off">
+      <div class="ln lue">📖 Blanquette redoubla de coups de cornes, le loup de coups de dents…</div>
+      <div class="ln comp">🧩 loup de coups de dents · Blanquette redoubla coups de cornes</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 Une lueur pâle parut dans l'horizon…</div>
+      <div class="ln comp">🧩 lueur pâle parut dans horizon</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 Le chant d'un coq enroué monta d'une métairie.</div>
+      <div class="ln comp">🧩 chant d' coq enroué · chant d' coq monta d' métairie</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 — Enfin&nbsp;!</div>
+      <div class="ln comp">🧩 —</div>
+      <div class="ln sens">💗 (réplique)</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 dit la pauvre bête, qui n'attendait plus que le jour pour mourir ; et elle s'allongea par terre dans sa belle fourrure blanche toute tachée de sang…</div>
+      <div class="ln comp">🧩 jour pour mourir · bête pauvre n' attendait plus que jour · bête pauvre mourir · langue grosse rouge tachée sang · langue grosse rouge allongea langue grosse rouge par · langue grosse rouge terre dans fourrure belle blanche</div>
+      <div class="ln sens">💗 —</div>
+      <div class="ln gap"></div>
+      <div class="ln lue">📖 Alors le loup se jeta sur la petite chèvre et la mangea.</div>
+      <div class="ln comp">🧩 Alors jeta · loup jeta loup sur chèvre petite et loup mangea chèvre</div>
+      <div class="ln sens">💗 Le méchant loup a mangé Blanquette.<span class="cur" aria-hidden="true"></span></div>
+      <div class="status"><span>trois_phrases_bonne_version_chevre_seguin_20261121_143722.txt</span><span>177 phrases</span></div>
+    </div>
+    <p>Les six dernières phrases du conte, extraites telles quelles, sans retouche. La dernière est juste de bout en bout. L'avant-dernière ne l'est pas&nbsp;: «&nbsp;elle s'allongea&nbsp;» est posé sur la langue du loup, le dernier nom lu, au lieu de la chèvre.</p>
+
+    <h3>Le conte, vu par Marco</h3>
+    <p>Quelques sensibles, dans l'ordre du conte&nbsp;:</p>
+    <div class="term code">
+      <div class="ln tr">Le méchant loup mangeait les chèvres.</div>
+      <div class="ln tr">M. Seguin a attaché la chèvre.</div>
+      <div class="ln tr">La chèvre se trouvait heureuse.</div>
+      <div class="ln tr">L'ennui est venu.</div>
+      <div class="ln tr">La chèvre a maigri.</div>
+      <div class="ln tr">M. Seguin a emporté Blanquette.</div>
+      <div class="ln tr">La petite est allée. M. Seguin a oublié la fenêtre.</div>
+      <div class="ln tr">Le vent a fraîchi.</div>
+      <div class="ln tr">La montagne est devenue violette.</div>
+      <div class="ln tr">Blanquette a tressailli.</div>
+      <div class="ln tr">Le méchant loup a mangé Blanquette.</div>
+    </div>
+
+    <div class="scroll">
+    <table class="spec">
+      <thead><tr><th scope="col">Texte lu</th><th scope="col">Phrases</th><th scope="col">Comprises vides</th><th scope="col">Sensibles</th><th scope="col">Répliques</th></tr></thead>
+      <tbody>
+        <tr><td><em>Le Dormeur du val</em>, Rimbaud, avec sa présentation</td><td class="v">22</td><td class="v">0</td><td class="v">9</td><td class="v">0</td></tr>
+        <tr class="now"><td><em>La Chèvre de M.&nbsp;Seguin</em>, Daudet</td><td class="v">177</td><td class="v">29</td><td class="v">40</td><td class="v">27</td></tr>
+        <tr><td><em>Le Petit Chaperon rouge</em>, Perrault</td><td class="v">64</td><td class="v">5</td><td class="v">21</td><td class="v">0</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Le même matin, Marco a lu <em>Eugénie Grandet</em> en entier&nbsp;: 4&nbsp;032 phrases, 855 sensibles. Une phrase sans sensible n'est pas une erreur&nbsp;: quand rien ne tient une action et ceux qui la font, Marco n'écrit rien.</p>
+
+    <h3>Ce qui ne va pas encore</h3>
+    <ul class="plain">
+      <li><strong>Les exclamations.</strong> Les comprises vides sont presque toutes des cris et des bouts de réplique coupés au point d'exclamation&nbsp;: «&nbsp;Hou&nbsp;!&nbsp;», «&nbsp;Pécaïre&nbsp;!&nbsp;», «&nbsp;Reviens&nbsp;!&nbsp;». Marco ne sait pas encore ce qu'un cri veut dire, ni qui l'entend.</li>
+      <li><strong>Les pronoms.</strong> «&nbsp;il&nbsp;» et «&nbsp;elle&nbsp;» prennent parfois le dernier nom lu au lieu du personnage&nbsp;: «&nbsp;et il passa sa grosse langue rouge sur ses babines&nbsp;» donne, dans la comprise, «&nbsp;M.&nbsp;Seguin passa langue grosse rouge&nbsp;», à la place du loup.</li>
+      <li><strong>Des sensibles fausses.</strong> «&nbsp;On la reçut comme une petite reine.&nbsp;» donne «&nbsp;La reine a reçu Blanquette.&nbsp;»&nbsp;; «&nbsp;Elle pensa au loup&nbsp;» donne «&nbsp;Blanquette a pensé le méchant loup.&nbsp;»</li>
+      <li><strong>Se situer.</strong> Marco ne sait pas encore qu'il lit un livre&nbsp;: la présentation du conte est lue comme le conte, et «&nbsp;il a été écrit en 1866&nbsp;» donne «&nbsp;Alphonse a été écrit.&nbsp;» Pour son concepteur, «&nbsp;il faut impérativement que Marco comprenne qu'il lit un livre ou qu'il converse&nbsp;».</li>
+      <li><strong>Le sens du poème.</strong> Dans <em>Le Dormeur du val</em>, Marco écrit «&nbsp;Le soldat dort.&nbsp;» et «&nbsp;Le soldat a froid.&nbsp;», mais «&nbsp;Il a deux trous rouges au côté droit&nbsp;» ne lui dit pas que le soldat est mort.</li>
+    </ul>
+    <p class="note">Les fichiers&nbsp;: programme du 21/11/2026, 14&nbsp;h&nbsp;29&nbsp;; un Marco neuf lit à la suite <em>Le Dormeur du val</em>, <em>La Chèvre de M.&nbsp;Seguin</em> et <em>Le Petit Chaperon rouge</em>, par la route de la lecture du 5250. La sensible est écrite par des cas, dans l'étage «&nbsp;compréhension&nbsp;»&nbsp;; l'écran des trois phrases n'écrit rien au cerveau. <em>Eugénie Grandet</em>&nbsp;: lecture de José Walocha, programme de 9&nbsp;h&nbsp;50.</p>
   </div>
 </section>
 
 <section class="sec" id="revisions" aria-labelledby="h-revisions">
-  <div class="sec-label"><span class="n">9</span><h2 id="h-revisions">Historique des révisions</h2></div>
+  <div class="sec-label"><span class="n">10</span><h2 id="h-revisions">Historique des révisions</h2></div>
   <div class="sec-body">
     <div class="scroll">
     <table class="spec">
@@ -852,7 +965,9 @@ footer {
         <tr><td class="date">13-14/11/2026</td><td>La porte de l'univers et les ellipses («&nbsp;Guillaume aussi&nbsp;», «&nbsp;Guillaume l'a fait&nbsp;»)&nbsp;; l'inversion de Protée et la quantité sortent du Python&nbsp;; FraCaS 200&nbsp;/ 335.</td></tr>
         <tr><td class="date">14-15/11/2026</td><td>Les «&nbsp;oui&nbsp;» à tort défaits, deux lignes assemblées en une, les dénombrements&nbsp;; Agatha, le daimon de la logique&nbsp;: les dates, les durées, les comptes. FraCaS 318&nbsp;/ 335&nbsp;: le banc est plié.</td></tr>
         <tr><td class="date">16/11/2026</td><td>Les photos des mots de <em>La Chèvre de M.&nbsp;Seguin</em>, 835 phrases&nbsp;; le chantier des poupées.</td></tr>
-        <tr class="now"><td class="date">19/11/2026</td><td>Système expert + Cyc + Lisp + BSC&nbsp;; le robot sous la pluie, un algorithme écrit en cas&nbsp;; le robot en mandarin et en anglais, 20 sur 20, et les mots qui restent à la puce.</td></tr>
+        <tr><td class="date">19/11/2026</td><td>Système expert + Cyc + Lisp + BSC&nbsp;; le robot sous la pluie, un algorithme écrit en cas&nbsp;; le robot en mandarin et en anglais, 20 sur 20.</td></tr>
+        <tr><td class="date">20/11/2026</td><td>«&nbsp;Le cerveau n'a pas d'article&nbsp;»&nbsp;: la puce et le génome sans article, les inconnues en trous nommés&nbsp;; les rues des écritures non latines&nbsp;; les règles du parent en déclencheurs («&nbsp;le matin, on dit bonjour&nbsp;»).</td></tr>
+        <tr class="now"><td class="date">21/11/2026</td><td>Les trois phrases&nbsp;: la lue, la comprise, la sensible, un fichier par livre lu.</td></tr>
       </tbody>
     </table>
     </div>
@@ -861,7 +976,7 @@ footer {
 </section>
 
 <section class="sec" id="equipe" aria-labelledby="h-equipe">
-  <div class="sec-label"><span class="n">10</span><h2 id="h-equipe">Équipe</h2></div>
+  <div class="sec-label"><span class="n">11</span><h2 id="h-equipe">Équipe</h2></div>
   <div class="sec-body">
     <p><strong>José Walocha</strong>, concepteur de Marco, Valenciennes. Chef d'entreprises en retraite, il joue à créer un cyber inspiré du cerveau des êtres vivants comme on joue à <em>Diablo&nbsp;IV</em>. La graine vient de loin&nbsp;: <em>Gödel, Escher, Bach</em>, de Douglas Hofstadter, paru en français en 1985.</p>
     <div class="scroll">
@@ -881,7 +996,7 @@ footer {
 </section>
 
 <section class="sec" id="documentation" aria-labelledby="h-documentation">
-  <div class="sec-label"><span class="n">11</span><h2 id="h-documentation">Documentation</h2></div>
+  <div class="sec-label"><span class="n">12</span><h2 id="h-documentation">Documentation</h2></div>
   <div class="sec-body">
     <ul class="docs">
       <li><a href="https://github.com/josewalocha/Marco">Le dépôt Marco</a><span>Sur GitHub, sous licence AGPL v3</span></li>
@@ -901,9 +1016,9 @@ footer {
 
 </div>
 <script>
-(function () {
-  var btn = document.getElementById('replay');
-  var term = document.getElementById('term');
+[['replay', 'term'], ['replay-tp', 'term-tp']].forEach(function (ids) {
+  var btn = document.getElementById(ids[0]);
+  var term = document.getElementById(ids[1]);
   if (!btn || !term) return;
   var lines = Array.prototype.slice.call(term.querySelectorAll('.ln'));
   var cursor = term.querySelector('.cur');
@@ -942,7 +1057,7 @@ footer {
     nextLine();
   });
   window.addEventListener('pagehide', restore);
-})();
+});
 </script>
 </body>
 </html>
