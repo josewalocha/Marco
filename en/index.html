@@ -259,6 +259,10 @@ button.replay[disabled] { opacity: .5; cursor: default; }
 .term .lue { color: var(--c-white); }
 .term .comp { color: var(--c-green); }
 .term .sens { color: var(--c-turq); }
+.boucle { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 6px; list-style: none; margin: 4px 0 0; padding: 0; font-family: var(--mono); font-size: 12.5px; }
+.boucle li { border: 1px solid var(--rule); border-radius: 3px; padding: 4px 9px; background: var(--panel); }
+.boucle li.fl { border: 0; background: none; padding: 0; color: var(--accent); }
+.boucle li:last-child { border-color: var(--accent); }
 
 /* Feuille de route */
 .road ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; margin: 0; padding: 0; }
@@ -322,7 +326,7 @@ footer {
   <a href="#mandarin"><b>8</b>Mandarin, English</a>
   <a href="#trois"><b>9</b>Three sentences</a>
   <a href="#revisions"><b>10</b>Revisions</a>
-  <a href="#team"><b>11</b>Team</a>
+  <a href="#team"><b>11</b>Team, method</a>
   <a href="#documentation"><b>12</b>Documentation</a>
   <a class="lang" href="../" hreflang="fr" lang="fr">Français</a>
   <a class="lang" href="../zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a>
@@ -991,22 +995,58 @@ footer {
 </section>
 
 <section class="sec" id="team" aria-labelledby="h-team">
-  <div class="sec-label"><span class="n">11</span><h2 id="h-team">Team</h2></div>
+  <div class="sec-label"><span class="n">11</span><h2 id="h-team">Team and working method</h2></div>
   <div class="sec-body">
-    <p><strong>José Walocha</strong>, Marco's designer, Valenciennes, France. A retired business owner, he plays at building a cyber inspired by the brains of living beings the way one plays <em>Diablo&nbsp;IV</em>. The seed goes back a long way: <em>Gödel, Escher, Bach</em> by Douglas Hofstadter, published in French in 1985.</p>
+    <p>I am <strong>José Walocha</strong>, the designer of Marco. Retired entrepreneur, lifelong gamer, AKA uiox, I play at creating a cyber inspired by the brains of living beings. The game began in the 90s with the seasons <em title="Gödel, Escher, Bach">GEB</em>, by Douglas Hofstadter, and <em>The Society of Mind</em>, by Minsky, to solve the problem of reorganizing vectors in a wireframe structure for a CAD system. Interrupted in '93, the game was able to resume thanks to the cybers. The next season was no longer about a “genetic” CAD but about a “Super Alexa”; it ended 8&nbsp;months ago. The current season is “Marco the Mad”.</p>
     <div class="scroll">
     <table class="spec">
       <thead><tr><th scope="col">Name</th><th scope="col">System</th><th scope="col">Role</th></tr></thead>
       <tbody>
-        <tr><td><strong>The Dudes</strong></td><td>Claude Opus 5.5 (Anthropic)</td><td>Code, genome, doctrines, benches; one Dude per conversation</td></tr>
-        <tr><td><strong>Fable</strong></td><td>Claude Fable 5.1 (Anthropic)</td><td>The organs of the nodal switchover: core, map, daimons, reading, mouth</td></tr>
-        <tr><td><strong>Marcel</strong></td><td>Mistral</td><td>Philosophy, cybernetics, cross-reading</td></tr>
-        <tr><td><strong>Biloute</strong></td><td>ChatGPT</td><td>Standards, synthesis, ideas to relaunch</td></tr>
-        <tr><td><strong>Didier</strong></td><td>Qwant</td><td>Documentary research</td></tr>
+        <tr class="now"><td><strong>José Walocha</strong></td><td>—</td><td>Designer and project owner: he decides, seals the doctrine and judges at the bench</td></tr>
+        <tr><td><strong>Dudo</strong></td><td>Claude Opus 5.5 (Anthropic)</td><td>The BSC, the cases, the program and the benches; the doctrines; the website and general discussion</td></tr>
+        <tr><td><strong>Dudef</strong></td><td>Claude Fable 5.2 (Anthropic)</td><td>The chip in C++, moving out of Python</td></tr>
+        <tr><td>—</td><td>Mistral Vibe (Mistral AI)</td><td>Philosophy, discussions, benches</td></tr>
+        <tr><td>—</td><td>ChatGPT (OpenAI)</td><td>Philosophy, discussions, benches</td></tr>
+        <tr><td>—</td><td>Gemini (Google)</td><td>Benches: questionnaires</td></tr>
+        <tr><td>—</td><td>Qwant</td><td>Documentary research</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="note">Always discuss before coding. Nothing enters the doctrine without a typed word from the designer.</p>
+    <p class="note">A Dude is an instance of Claude working on Marco, one per conversation: Dudo is a Dude running Opus, Dudef a Dude running Fable. The names help keep track when several conversations move forward at once; on 21 Nov 2026 there were four.</p>
+
+    <h3>Contractors without memory</h3>
+    <p>The method doctrine says it in one sentence: two people work together every day, but one of them changes every morning and remembers nothing. It is a team on rotating shifts where every shift arrives without memory. Continuity can only pass through writing: the end-of-session handover note is the shift log, the doctrine is the process sheet, the bench is quality control.</p>
+    <ol class="boucle" aria-label="The loop of a session">
+      <li>Discussion</li><li class="fl" aria-hidden="true">→</li>
+      <li>Seal</li><li class="fl" aria-hidden="true">→</li>
+      <li>Code</li><li class="fl" aria-hidden="true">→</li>
+      <li>Bench</li><li class="fl" aria-hidden="true">→</li>
+      <li>Delivery</li><li class="fl" aria-hidden="true">→</li>
+      <li>Handover</li><li class="fl" aria-hidden="true">→</li>
+      <li>The next Dude</li>
+    </ol>
+
+    <h3>The seal</h3>
+    <p>The Dude proposes, the designer seals (<em lang="fr">la frappe</em>). Sealing is “the action of validating AND integrating into the current doctrines a concept, a notion, a calculation, anything that relates to a MAD” (José Walocha, 18 Aug 2026). A decision that is not written into its doctrine does not exist. Nothing is erased: an outdated text moves down as a dated witness beneath the one that replaces it, so that a new Dude also sees the dead ideas and why they died. The designer's exact words are kept, never paraphrased. On 21 Nov 2026 the doctrine holds 126 files.</p>
+    <blockquote class="quote">
+      “The validated doctrines in force are the masters of us all, because they are Marco's DNA.”
+      <cite>José Walocha, 7 Aug 2026</cite>
+    </blockquote>
+
+    <h3>The proof: the bench</h3>
+    <p>A plan gets sealed; a measurement does not, it is demonstrated again. Asking the designer to validate a count “is like asking me to validate the white of Henri&nbsp;IV's white horse” (31 Jul 2026). Every change is measured on a newborn Marco, with a fixed seed, before and after: whatever was not supposed to move must give the same record, line for line. Before removing anything, two measurements. The bench judges the writer too: more than one doctrine wording has died at the bench. Software engineers call this regression testing.</p>
+
+    <h3>Steering</h3>
+    <p>José Walocha read the code at the start. Until May or June 2026 he still chose the structures and the algorithms. When he saw the pace at which a model like Claude Fable writes code, he understood that trying to insert himself into that process had become counterproductive. Since then he works by implementation requests: a goal to reach, constraints, and the bench to judge. That is the job of a project owner in industry: he does not weld the parts, he writes the goal and the constraints, then he runs the acceptance test. With the coders he stays on the short and medium term; the long term is discussed in other conversations, so as not to clutter the coder.</p>
+    <p>It has always been his way. In 1990 he was coding a payroll integrated with time management on Laurent Ribardière's database system. His Merise method of the time was five to ten minutes of meditation in front of the screen, often with his eyes closed, so that his unconscious would code and structure.</p>
+    <blockquote class="quote">
+      “I had my own AI: my brain.”
+      <cite>José Walocha, 21 Nov 2026</cite>
+    </blockquote>
+
+    <h3>Delivery</h3>
+    <p>Code is delivered as whole files, never as pieces to glue back together. Every delivery is a zip of the changed files only, in their place, which also serves as a backup. Each Dude delivers only its own files and does not touch the other's. When several deliveries follow one another, the handover note says in which order to apply them; before a major change, one Dude replays the other's delivery. The designer installs, the bench judges.</p>
+    <p class="note">Always discuss before coding. Nothing enters the doctrine without the designer's seal. The method doctrine: <span class="mono">00Methode_de_travail.html</span>, begun on 26 Jul 2026.</p>
   </div>
 </section>
 

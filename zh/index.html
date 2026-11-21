@@ -259,6 +259,10 @@ button.replay[disabled] { opacity: .5; cursor: default; }
 .term .lue { color: var(--c-white); }
 .term .comp { color: var(--c-green); }
 .term .sens { color: var(--c-turq); }
+.boucle { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 6px; list-style: none; margin: 4px 0 0; padding: 0; font-family: var(--mono); font-size: 12.5px; }
+.boucle li { border: 1px solid var(--rule); border-radius: 3px; padding: 4px 9px; background: var(--panel); }
+.boucle li.fl { border: 0; background: none; padding: 0; color: var(--accent); }
+.boucle li:last-child { border-color: var(--accent); }
 
 /* Feuille de route */
 .road ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 20px; margin: 0; padding: 0; }
@@ -328,7 +332,7 @@ em { font-style: normal; }
   <a href="#mandarin"><b>8</b>中文、英文</a>
   <a href="#trois"><b>9</b>三句话</a>
   <a href="#revisions"><b>10</b>修订</a>
-  <a href="#equipe"><b>11</b>团队</a>
+  <a href="#equipe"><b>11</b>团队与方法</a>
   <a href="#documentation"><b>12</b>文档</a>
   <a class="lang" href="../" hreflang="fr" lang="fr">Français</a>
   <a class="lang" href="../en/" hreflang="en" lang="en">English</a>
@@ -995,22 +999,58 @@ em { font-style: normal; }
 </section>
 
 <section class="sec" id="equipe" aria-labelledby="h-equipe">
-  <div class="sec-label"><span class="n">11</span><h2 id="h-equipe">团队</h2></div>
+  <div class="sec-label"><span class="n">11</span><h2 id="h-equipe">团队与工作方法</h2></div>
   <div class="sec-body">
-    <p><strong>José Walocha</strong>，马可的设计者，住在瓦朗谢讷。退休的企业家，他像玩《暗黑破坏神 IV》一样，玩着创造一个受生物大脑启发的 cyber。种子来自很久以前：道格拉斯·霍夫施塔特的《哥德尔、艾舍尔、巴赫》，法文版出版于 1985 年。</p>
+    <p>我是 <strong>José Walocha</strong>，马可的设计者。退休的企业家，一辈子的玩家，网名 uiox，我在玩着创造一个受生物大脑启发的 cyber。这场游戏开始于九十年代，那几个赛季是道格拉斯·霍夫施塔特的《<span title="哥德尔、艾舍尔、巴赫">GEB</span>》和明斯基的《心智社会》，为的是解决一个 CAD 软件里线框结构中向量重组的问题。这场游戏在 93 年中断，后来多亏了 cyber 才得以继续。新的赛季不再是「基因式」的 CAD，而是一个「超级 Alexa」；它在 8 个月前结束了。当前的赛季是「<span lang="fr">Marco le Mad</span>」。</p>
     <div class="scroll">
     <table class="spec">
       <thead><tr><th scope="col">名字</th><th scope="col">系统</th><th scope="col">角色</th></tr></thead>
       <tbody>
-        <tr><td><strong>Les Dudes</strong></td><td>Claude Opus 5.5（Anthropic）</td><td>代码、基因组、教义、测试集；每次对话一个 Dude</td></tr>
-        <tr><td><strong>Fable</strong></td><td>Claude Fable 5.1（Anthropic）</td><td>节点转换的器官：内核、卡、代蒙、阅读、嘴</td></tr>
-        <tr><td><strong>Marcel</strong></td><td>Mistral</td><td>哲学、控制论、反向阅读</td></tr>
-        <tr><td><strong>Biloute</strong></td><td>ChatGPT</td><td>规范、综合、重新出发的点子</td></tr>
-        <tr><td><strong>Didier</strong></td><td>Qwant</td><td>文献检索</td></tr>
+        <tr class="now"><td><strong>José Walocha</strong></td><td>—</td><td>设计者、业主：他做决定，敲定教义，在测试集上评判</td></tr>
+        <tr><td><strong>Dudo</strong></td><td>Claude Opus 5.5（Anthropic）</td><td>BSC、情形、程序和测试集；教义；网站和一般性讨论</td></tr>
+        <tr><td><strong>Dudef</strong></td><td>Claude Fable 5.2（Anthropic）</td><td>C++ 写的芯片，把代码移出 Python</td></tr>
+        <tr><td>—</td><td>Mistral Vibe（Mistral AI）</td><td>哲学、讨论、测试集</td></tr>
+        <tr><td>—</td><td>ChatGPT（OpenAI）</td><td>哲学、讨论、测试集</td></tr>
+        <tr><td>—</td><td>Gemini（Google）</td><td>测试集：问卷</td></tr>
+        <tr><td>—</td><td>Qwant</td><td>文献检索</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="note">永远先讨论，再写代码。没有设计者亲手敲下的一句话，什么都进不了教义。</p>
+    <p class="note">Dude 是在马可上工作的一个 Claude 实例，每次对话一个：Dudo 是用 Opus 的 Dude，Dudef 是用 Fable 的 Dude。这些名字是为了在几个对话同时推进时分得清；2026年11月21日，同时有四个。</p>
+
+    <h3>没有记忆的施工方</h3>
+    <p>关于方法的那份教义用一句话说清了：两个人每天一起工作，但其中一个每天早上都换人，而且什么都不记得。这就像一支三班倒的队伍，每一班来的时候都没有记忆。连续性只能靠写下来的东西：每次工作结束时的交接记录是交班本，教义是工艺卡，测试集是质检。</p>
+    <ol class="boucle" aria-label="一次工作的循环">
+      <li>讨论</li><li class="fl" aria-hidden="true">→</li>
+      <li>敲定</li><li class="fl" aria-hidden="true">→</li>
+      <li>写代码</li><li class="fl" aria-hidden="true">→</li>
+      <li>测试</li><li class="fl" aria-hidden="true">→</li>
+      <li>交付</li><li class="fl" aria-hidden="true">→</li>
+      <li>交接</li><li class="fl" aria-hidden="true">→</li>
+      <li>下一个 Dude</li>
+    </ol>
+
+    <h3>敲定</h3>
+    <p>Dude 提议，设计者敲定（<span lang="fr">la frappe</span>）。敲定，就是「验证并且纳入现行教义的行为：一个概念、一个观念、一个计算，凡是与 MAD 有关的一切」（José Walocha，2026年8月18日）。一个没有写进对应教义的决定，就不存在。什么都不删除：过时的文本作为带日期的见证，下沉到取代它的文本之下，好让一个新的 Dude 也能看到那些已经死去的想法，以及它们为什么死去。设计者的原话被保留，从不转述。到2026年11月21日，教义共有 126 个文件。</p>
+    <blockquote class="quote">
+      「现行的、经过验证的教义是我们所有人的老师，因为它们是马可的 DNA。」
+      <cite>José Walocha，2026年8月7日</cite>
+    </blockquote>
+
+    <h3>证明：测试集</h3>
+    <p>计划可以敲定；测量不能敲定，它要重新证明。让设计者去验证一个计数，「就像让我去验证亨利四世那匹白马是不是白的」（2026年7月31日）。每一处改动都在一个新生的马可上测量，用固定的种子，改动前后各测一次：不该变的东西，必须给出逐行相同的记录。删掉任何东西之前，先测两次。测试集也评判撰写者：已经不止一句教义的表述死在了测试集上。软件工程师把这叫作回归测试。</p>
+
+    <h3>掌舵</h3>
+    <p>José Walocha 一开始是读代码的。直到2026年五六月，他还在选择数据结构和算法。当他看到像 Claude Fable 这样的模型写代码的速度时，他明白了，再想把自己插进这个过程已经适得其反。从那以后，他通过实现请求来工作：一个要达到的目标，一些约束，再用测试集来评判。这正是工业里业主的工作：他不焊零件，他写下目标和约束，然后做验收。和写代码的 Dude 在一起时，他只谈短期和中期；长期的事在别的对话里讨论，免得干扰写代码的人。</p>
+    <p>这一直是他的方式。1990 年，他在 Laurent Ribardière 的数据库系统上编写一套与考勤管理集成的工资系统。他当年的 Merise 方法，是在屏幕前冥想五到十分钟，常常闭着眼睛，让他的潜意识去编码、去搭结构。</p>
+    <blockquote class="quote">
+      「我有我自己的 AI：我的大脑。」
+      <cite>José Walocha，2026年11月21日</cite>
+    </blockquote>
+
+    <h3>交付</h3>
+    <p>代码以完整的文件交付，从不交一块块要重新拼起来的碎片。每次交付是一个只装着改动过的文件的 zip，文件各在其位，它同时也是备份。每个 Dude 只交付自己的文件，不碰别人的。几次交付接连而来时，交接记录写明安装的顺序；在重大改动之前，一个 Dude 会重放另一个的交付。设计者安装，测试集评判。</p>
+    <p class="note">永远先讨论，再写代码。没有设计者的敲定，什么都进不了教义。关于方法的教义：<span class="mono">00Methode_de_travail.html</span>，始于2026年7月26日。</p>
   </div>
 </section>
 
